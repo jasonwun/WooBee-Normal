@@ -1,0 +1,2 @@
+MainPackage=C:\Users\yinju\documents\visual studio 2015\Projects\WooBee-Normal\WooBee-Normal\bin\x64\Release\Upload\WooBee-Normal_2016.1.15.0_x64.appx
+SymbolPackage=C:\Users\yinju\documents\visual studio 2015\Projects\WooBee-Normal\WooBee-Normal\AppPackages\WooBee-Normal_2016.1.15.0\WooBee-Normal_2016.1.15.0_x64.appxsym

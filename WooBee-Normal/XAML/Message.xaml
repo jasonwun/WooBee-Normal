@@ -1,0 +1,164 @@
+﻿<Page
+    x:Class="WooBee_Normal.Message"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WooBee_Normal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+
+        <DataTemplate x:Name="CommentToWeibo">
+            <Grid Margin="0,10,0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="73*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0*"/>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="38*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image x:Name="image"
+               Height="40"
+               Source="{Binding User.AvatarLarge}"
+               Grid.Column="1"
+               d:LayoutOverrides="LeftPosition, RightPosition"
+               Margin="0,0,0,0" />
+
+                <TextBlock x:Name="textBlock"
+                   TextWrapping="Wrap"
+                   Text="{Binding User.ScreenName}"
+                   Margin="4,-2,0,10.333"
+                   Grid.Column="2" d:LayoutOverrides="TopPosition, BottomPosition"/>
+
+                <TextBlock x:Name="textBlock1"
+                   Margin="0,3.667,10,0"
+                   Height="157"
+                   TextWrapping="Wrap"
+                   Text="{Binding Text}"
+                   Grid.ColumnSpan="3"
+                   Grid.Row="1"
+                   VerticalAlignment="Top"/>
+
+                <TextBlock x:Name="textBlock2" 
+                   Margin="0,35,0,0" 
+                   Grid.Column="1" 
+                   Grid.Row="1" 
+                   Grid.ColumnSpan="2"
+                   TextWrapping="Wrap"
+                   Text="{Binding Status.Text}"
+                   d:LayoutOverrides="HorizontalAlignment, TopPosition, BottomPosition"/>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Name="CommentToComment">
+            <Grid Margin="0,10,0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="73*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0*"/>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="38*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image x:Name="image"
+               Height="40"
+               Source="{Binding User.AvatarLarge}"
+               Grid.Column="1"
+               d:LayoutOverrides="LeftPosition, RightPosition"
+               Margin="0,0,0,0" />
+
+                <TextBlock x:Name="textBlock"
+                   TextWrapping="Wrap"
+                   Text="{Binding User.ScreenName}"
+                   Margin="4,-2,0,10.333"
+                   Grid.Column="2" d:LayoutOverrides="TopPosition, BottomPosition"/>
+
+                <TextBlock x:Name="textBlock1"
+                   Margin="0,3.667,10,0"
+                   Height="157"
+                   TextWrapping="Wrap"
+                   Text="{Binding Text}"
+                   Grid.ColumnSpan="3"
+                   Grid.Row="1"
+                   VerticalAlignment="Top"/>
+
+                <TextBlock x:Name="textBlock2" 
+                   Margin="0,50,0,0" 
+                   Grid.Column="1" 
+                   Grid.Row="1" 
+                   Grid.ColumnSpan="2"
+                   TextWrapping="Wrap"
+                   Text="{Binding ReplyComment.Text}"
+                   d:LayoutOverrides="HorizontalAlignment, TopPosition, BottomPosition"/>
+            </Grid>
+        </DataTemplate>
+
+        <local:CommentDataTemplateSelector x:Name="MyCommentDataTemplateSelector"
+                                           RepliedToCommentTemplate="{StaticResource CommentToComment}"
+                                           RepliedToWeiboTemplate="{StaticResource CommentToWeibo}"/>
+
+    </Page.Resources>
+
+        <Grid Background="#FFF1F1F1">
+            <Pivot x:Name="MyPivot" Style="{StaticResource PivotStyle1}">
+                <Pivot.HeaderTemplate>
+                    <DataTemplate>
+                        <Grid Height="auto">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="21*"/>
+                                <RowDefinition Height="299*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="19*"/>
+                            </Grid.ColumnDefinitions>
+
+
+                            <TextBlock  x:Name="HeaderTextBlock"
+                                        Text="{Binding}"
+                                        Margin="14,50,9,-120"
+                                        Grid.Row="1"
+                                        HorizontalAlignment="Center"
+                                        FontSize="48"
+                                        FontFamily="ms-appx:NotoSansCJKscBlackCleaned.otf#Noto Sans CJK SC"
+                                        TextWrapping="Wrap"
+                                        LineStackingStrategy="BlockLineHeight"
+                                        LineHeight="49" 
+                                        Width="48"
+                                        Height="auto" FontWeight="Bold"/>
+                        </Grid>
+                    </DataTemplate>
+                </Pivot.HeaderTemplate>
+
+                <PivotItem Header="评论" 
+                           Margin="83,-47,0,0" 
+                           Background="#FFF1F1F1">
+                    <Grid>
+                        <ListView x:Name="CommentListview" 
+                                  d:LayoutOverrides="TopPosition, BottomPosition" 
+                                  Margin="10,0,0,0" 
+                                  
+                                  ItemTemplateSelector="{StaticResource MyCommentDataTemplateSelector}"/>
+                    </Grid>
+                </PivotItem>
+                <PivotItem Header="转发" 
+                           Margin="93,-47,0,0" 
+                           Background="#FFF1F1F1">
+                    <Grid>
+                    <TextBlock Text="鉴于渣浪的最新政策，某个时间点以后申请的新应用中所有涉及获取微博的转发以及@ 的数据的功能均只限定为SDK3.0特有功能，然而windows并没有sdk3.0"
+                                   TextWrapping="Wrap" FontFamily="Microsoft YaHei" FontSize="16" FontWeight="Bold" Foreground="#FFC8C8C8"
+                                   VerticalAlignment="Top"
+                               Margin="0,50,0,0"/>
+                </Grid>
+                </PivotItem>
+            </Pivot>
+
+
+        </Grid>
+</Page>
