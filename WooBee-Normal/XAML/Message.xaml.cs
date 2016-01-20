@@ -23,11 +23,30 @@ namespace WooBee_Normal
     public sealed partial class Message : Page
     {
         CommentSource commentsource = new CommentSource();
-
+        public double pointx1;
         public Message()
         {
             this.InitializeComponent();
             CommentListview.ItemsSource = commentsource;
+        }
+
+        private void OnCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
+        {
+            var pointx2 = Window.Current.CoreWindow.PointerPosition.X;
+            if (pointx2 > pointx1)
+            {
+                if (myPivot.SelectedIndex == 0)
+                    myPivot.SelectedIndex = 1;
+                else
+                    myPivot.SelectedIndex = 0;
+            }
+            else
+                return;
+        }
+
+        private void OnStarting(object sender, ManipulationStartingRoutedEventArgs e)
+        {
+            pointx1 = Window.Current.CoreWindow.PointerPosition.X;
         }
     }
 }

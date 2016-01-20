@@ -8,7 +8,7 @@
         <Style x:Key="PivotStyle1" TargetType="Pivot">
             <Setter Property="Margin" Value="0"/>
             <Setter Property="Padding" Value="0"/>
-            <Setter Property="Foreground" Value="{ThemeResource PivotForegroundThemeBrush}"/>
+            <Setter Property="Foreground" Value="{ThemeResource PivotHeaderForegroundUnselectedBrush}"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="ItemsPanel">
                 <Setter.Value>
@@ -21,11 +21,24 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Pivot">
                         <Grid x:Name="RootElement" Background="{TemplateBinding Background}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                            <Grid.Resources>
+                                <Style TargetType="PivotHeaderItem" >
+                                    <Setter Property="FontWeight" Value="{ThemeResource PivotHeaderItemThemeFontWeight}" />
+                                    <Setter Property="CharacterSpacing" Value="{ThemeResource PivotHeaderItemCharacterSpacing}" />
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Foreground" Value="Transparent" />
+                                    <Setter Property="Padding" Value="{ThemeResource PivotHeaderItemMargin}" />
+                                    <Setter Property="Height" Value="48" />
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    <Setter Property="IsTabStop" Value="False" />
+                                </Style>
+                            </Grid.Resources>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <VisualStateManager.VisualStateGroups>
+
                                 <VisualStateGroup x:Name="Orientation">
                                     <VisualState x:Name="Portrait">
                                         <Storyboard>
@@ -46,14 +59,14 @@
                             <ContentControl x:Name="TitleContentControl" ContentTemplate="{TemplateBinding TitleTemplate}" Content="{TemplateBinding Title}" Style="{StaticResource PivotTitleContentControlStyle}"/>
                             <ScrollViewer x:Name="ScrollViewer" HorizontalSnapPointsAlignment="Center" HorizontalSnapPointsType="MandatorySingle" HorizontalScrollBarVisibility="Hidden" Margin="{TemplateBinding Padding}" Grid.Row="1" Template="{StaticResource ScrollViewerScrollBarlessTemplate}" VerticalSnapPointsType="None" VerticalScrollBarVisibility="Disabled" VerticalScrollMode="Disabled" VerticalContentAlignment="Stretch" ZoomMode="Disabled">
                                 <PivotPanel x:Name="Panel" VerticalAlignment="Stretch">
-                                    <PivotHeaderPanel x:Name="Header">
+                                    <PivotHeaderPanel x:Name="Header" ManipulationMode="None">
                                         <PivotHeaderPanel.RenderTransform>
-                                            <CompositeTransform x:Name="HeaderTranslateTransform" TranslateX="0"/>
+                                            <CompositeTransform x:Name="HeaderTranslateTransform" TranslateX="0" />
                                         </PivotHeaderPanel.RenderTransform>
                                     </PivotHeaderPanel>
-                                    <ItemsPresenter x:Name="PivotItemPresenter">
+                                    <ItemsPresenter x:Name="PivotItemPresenter" ManipulationMode="None">
                                         <ItemsPresenter.RenderTransform>
-                                            <TranslateTransform x:Name="ItemsPresenterTranslateTransform" X="0"/>
+                                            <TranslateTransform x:Name="ItemsPresenterTranslateTransform" X="0" />
                                         </ItemsPresenter.RenderTransform>
                                     </ItemsPresenter>
                                 </PivotPanel>

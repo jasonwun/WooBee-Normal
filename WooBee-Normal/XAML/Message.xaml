@@ -106,37 +106,35 @@
     </Page.Resources>
 
         <Grid Background="#FFF1F1F1">
-            <Pivot x:Name="MyPivot" Style="{StaticResource PivotStyle1}">
-                <Pivot.HeaderTemplate>
-                    <DataTemplate>
-                        <Grid Height="auto">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="21*"/>
-                                <RowDefinition Height="299*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="5*"/>
-                                <ColumnDefinition Width="19*"/>
-                            </Grid.ColumnDefinitions>
+        <Pivot x:Name="myPivot" Style="{StaticResource PivotStyle1}" ManipulationMode="TranslateX" ManipulationStarting="OnStarting" ManipulationCompleted="OnCompleted">
+            <Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <Grid Height="auto">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="21*"/>
+                            <RowDefinition Height="299*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="19*"/>
+                        </Grid.ColumnDefinitions>
 
 
-                            <TextBlock  x:Name="HeaderTextBlock"
-                                        Text="{Binding}"
-                                        Margin="14,50,9,-120"
-                                        Grid.Row="1"
-                                        HorizontalAlignment="Center"
-                                        FontSize="48"
-                                        FontFamily="ms-appx:NotoSansCJKscBlackCleaned.otf#Noto Sans CJK SC"
-                                        TextWrapping="Wrap"
-                                        LineStackingStrategy="BlockLineHeight"
-                                        LineHeight="49" 
-                                        Width="48"
-                                        Height="auto" FontWeight="Bold"/>
-                        </Grid>
-                    </DataTemplate>
-                </Pivot.HeaderTemplate>
+                        <TextBlock  Text="{Binding}"
+                                    Margin="14,50,9,-120"
+                                    Grid.Row="1"
+                                    HorizontalAlignment="Center"
+                                    FontSize="48"
+                                    FontFamily="ms-appx:NotoSansCJKsc-Black.otf#Noto Sans CJK SC"
+                                    TextWrapping="Wrap"
+                                    LineStackingStrategy="BlockLineHeight"
+                                    LineHeight="49" Width="48"
+                                    Height="auto"/>
+                    </Grid>
+                </DataTemplate>
+            </Pivot.HeaderTemplate>
 
-                <PivotItem Header="评论" 
+            <PivotItem Header="评论" 
                            Margin="83,-47,0,0" 
                            Background="#FFF1F1F1">
                     <Grid>
