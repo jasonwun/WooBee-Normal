@@ -149,7 +149,7 @@
                            Margin="93,-47,0,0" 
                            Background="#FFF1F1F1">
                     <Grid>
-                    <TextBlock Text="鉴于渣浪的最新政策，某个时间点以后申请的新应用中所有涉及获取微博的转发以及@ 的数据的功能均只限定为SDK3.0特有功能，然而windows并没有sdk3.0"
+                    <TextBlock Text="渣浪最新政策限制部分API，导致没有使用官方SDK3.0的新创建应用无法获得完整信息，所以很明显你就知道看谁@ 了你的功能是基本作废的"
                                    TextWrapping="Wrap" FontFamily="Microsoft YaHei" FontSize="16" FontWeight="Bold" Foreground="#FFC8C8C8"
                                    VerticalAlignment="Top"
                                Margin="0,50,0,0"/>

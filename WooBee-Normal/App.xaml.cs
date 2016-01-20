@@ -30,9 +30,6 @@ namespace WooBee_Normal
         public static string client_secret = "d9a2ae8a01ef87772897bcf0c32ea575";
         public static string access_token { get; set; }
 
-        public static int current_id = 0;
-        public static int count = 0;
-        public static int page_num = 1;
 
 
         /// <summary>

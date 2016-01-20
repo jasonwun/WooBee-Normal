@@ -107,13 +107,12 @@
     <Compile Include="XAML\CommentPage.xaml.cs">
       <DependentUpon>CommentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Extensions.cs" />
     <Compile Include="XAML\RepostPage.xaml.cs">
       <DependentUpon>RepostPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Repost.cs" />
     <Compile Include="Utilities\RepostUti.cs" />
-    <Compile Include="WeiboDetailDataTemplateSelector.cs" />
+    <Compile Include="DataTemplateSelector\WeiboDetailDataTemplateSelector.cs" />
     <Compile Include="XAML\PhotoPage.xaml.cs">
       <DependentUpon>PhotoPage.xaml</DependentUpon>
     </Compile>
