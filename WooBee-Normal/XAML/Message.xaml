@@ -125,7 +125,7 @@
                                     Grid.Row="1"
                                     HorizontalAlignment="Center"
                                     FontSize="48"
-                                    FontFamily="ms-appx:NotoSansCJKsc-Black.otf#Noto Sans CJK SC"
+                                    FontFamily="ms-appx:NotoSansCJKscBlackCleaned.otf#Noto Sans CJK SC"
                                     TextWrapping="Wrap"
                                     LineStackingStrategy="BlockLineHeight"
                                     LineHeight="49" Width="48"
