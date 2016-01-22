@@ -30,9 +30,11 @@ namespace WooBee_Normal
         SolidColorBrush black = new SolidColorBrush(Windows.UI.Colors.Black);
         SolidColorBrush grey = new SolidColorBrush(Windows.UI.Colors.Gray);
         public event RoutedEventHandler LostFocus;
+
         public SendWeibo()
         {
             InputPane inputPane = InputPane.GetForCurrentView();
+            
             this.InitializeComponent();
             ShowStatusBar();
             inputPane.Showing += this.InputPaneShowing;
@@ -101,13 +103,16 @@ namespace WooBee_Normal
             {
                 var dialog = new Windows.UI.Popups.MessageDialog("不能为空");
                 dialog.Commands.Add(new Windows.UI.Popups.UICommand("OK") { Id = 0 });
-                dialog.DefaultCommandIndex = 0;
-                dialog.CancelCommandIndex = 1;
-
                 var result = await dialog.ShowAsync();
                 contentTextBox.Text = "写点啥吧";
                 contentTextBox.Foreground = grey;
 
+            }
+            else if(abc.Length > 140)
+            {
+                var dialog = new Windows.UI.Popups.MessageDialog("超过了140个字啦！！！！！");
+                dialog.Commands.Add(new Windows.UI.Popups.UICommand("OK") { Id = 0 });
+                var result = await dialog.ShowAsync();
             }
             else
             {

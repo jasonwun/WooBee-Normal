@@ -104,6 +104,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="XAML\SendWeibo.xaml.cs">
+      <DependentUpon>SendWeibo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="XAML\CommentPage.xaml.cs">
       <DependentUpon>CommentPage.xaml</DependentUpon>
     </Compile>
@@ -115,9 +118,6 @@
     <Compile Include="DataTemplateSelector\WeiboDetailDataTemplateSelector.cs" />
     <Compile Include="XAML\PhotoPage.xaml.cs">
       <DependentUpon>PhotoPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="XAML\SendWeibo.xaml.cs">
-      <DependentUpon>SendWeibo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\RepliedComment.cs" />
     <Compile Include="Source\CommentSource.cs" />
@@ -222,6 +222,10 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="XAML\SendWeibo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="XAML\CommentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -231,10 +235,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="XAML\PhotoPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="XAML\SendWeibo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
