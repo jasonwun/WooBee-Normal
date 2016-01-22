@@ -97,8 +97,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="NotoSansCJKscBlackCleaned.otf" />
+    <Content Include="Assets\CheckIcon.png" />
     <None Include="project.json" />
-    <Content Include="Assets\造字工房言宋%28非商用%29常规体.otf" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
