@@ -57,13 +57,26 @@
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
                             <ContentControl x:Name="TitleContentControl" ContentTemplate="{TemplateBinding TitleTemplate}" Content="{TemplateBinding Title}" Style="{StaticResource PivotTitleContentControlStyle}"/>
-                            <ScrollViewer x:Name="ScrollViewer" HorizontalSnapPointsAlignment="Center" HorizontalSnapPointsType="MandatorySingle" HorizontalScrollBarVisibility="Hidden" Margin="{TemplateBinding Padding}" Grid.Row="1" Template="{StaticResource ScrollViewerScrollBarlessTemplate}" VerticalSnapPointsType="None" VerticalScrollBarVisibility="Disabled" VerticalScrollMode="Disabled" VerticalContentAlignment="Stretch" ZoomMode="Disabled">
+                            <ScrollViewer x:Name="ScrollViewer" 
+                                          HorizontalSnapPointsAlignment="Center" 
+                                          HorizontalSnapPointsType="MandatorySingle" 
+                                          HorizontalScrollBarVisibility="Hidden" 
+                                          Margin="{TemplateBinding Padding}" 
+                                          Grid.Row="1" 
+                                          Template="{StaticResource ScrollViewerScrollBarlessTemplate}" 
+                                          VerticalSnapPointsType="None" 
+                                          VerticalScrollBarVisibility="Disabled" 
+                                          VerticalScrollMode="Disabled" 
+                                          VerticalContentAlignment="Stretch" 
+                                          ZoomMode="Disabled">
                                 <PivotPanel x:Name="Panel" VerticalAlignment="Stretch">
+                                    
                                     <PivotHeaderPanel x:Name="Header" ManipulationMode="None">
                                         <PivotHeaderPanel.RenderTransform>
                                             <CompositeTransform x:Name="HeaderTranslateTransform" TranslateX="0" />
                                         </PivotHeaderPanel.RenderTransform>
                                     </PivotHeaderPanel>
+                                    
                                     <ItemsPresenter x:Name="PivotItemPresenter" ManipulationMode="None">
                                         <ItemsPresenter.RenderTransform>
                                             <TranslateTransform x:Name="ItemsPresenterTranslateTransform" X="0" />
