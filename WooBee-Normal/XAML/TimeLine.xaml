@@ -52,7 +52,17 @@
                            FontFamily="Microsoft YaHei" 
                            FontWeight="Normal"/>
 
-                <TextBlock x:Name="WeiboTextTextblock"
+                
+                
+                <RichTextBlock x:Name="WeiboTextTextblock"
+                           Margin="20,35,0,0"
+                           TextWrapping="Wrap"
+                           Grid.Column="2"
+                           Grid.Row="1"
+                           d:LayoutOverrides="HorizontalAlignment, TopMargin, BottomMargin, LeftPosition, RightPosition, TopPosition, BottomPosition"
+                           HorizontalAlignment="Left" 
+                           FontFamily="Microsoft YaHei"/>
+                <!--<TextBlock x:Name="WeiboTextTextblock"
                            Margin="20,35,0,0"
                            TextWrapping="Wrap"
                            Text="{Binding Text}"
@@ -60,7 +70,7 @@
                            Grid.Row="1"
                            d:LayoutOverrides="HorizontalAlignment, TopMargin, BottomMargin, LeftPosition, RightPosition, TopPosition, BottomPosition"
                            HorizontalAlignment="Left" 
-                           FontFamily="Microsoft YaHei"/>
+                           FontFamily="Microsoft YaHei"/>-->
             </Grid>
         </DataTemplate>
 

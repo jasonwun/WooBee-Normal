@@ -56,9 +56,24 @@ namespace WooBee_Normal
             this.InitializeComponent();
             listView.ItemsSource = incrementalSource;
             ShowStatusBar();
+            //DownloadEmotion();
         }
 
-        private async void AppBarButton_Click(object sender, RoutedEventArgs e)
+        private async void DownloadEmotion()
+        {
+            string Uri = "https://api.weibo.com/2/emotions.json?source=";
+            Uri += App.client_id;
+            Uri += "&access_token=";
+            Uri += App.access_token;
+            Uri += "&type=ani";
+
+            HttpClient httpclient = new HttpClient();
+            HttpResponseMessage response = new HttpResponseMessage();
+            response = await httpclient.GetAsync(new Uri(Uri, UriKind.Absolute));
+            string strResponse = response.Content.ToString();
+        }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
             sinceid++;
             IncrementalSource NewIncrementalSource = new IncrementalSource(sinceid);

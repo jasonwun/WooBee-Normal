@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Documents;
 
 namespace WooBee_Normal
 {
@@ -64,5 +65,20 @@ namespace WooBee_Normal
 
         [System.Runtime.Serialization.DataMember(Name = "pic_urls")]
         public ObservableCollection<ThumbnailPics> PicUrls { set; get; }
+
+        
+        //public Paragraph RichText
+        //{
+        //    get
+        //    {
+        //        ConverRichText(Text);
+        //    }
+        //}
+
+        //private Paragraph ConverRichText(string text)
+        //{
+        //    Paragraph richpara = ;
+        //    return richpara;
+        //}
     }
 }
