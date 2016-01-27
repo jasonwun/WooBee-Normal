@@ -7,7 +7,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:MyRichTextBlock">
-                    <Border HorizontalAlignment="Center" Width="auto" Height="auto">
+                    <Border HorizontalAlignment="Left" Width="auto" Height="auto">
                         <StackPanel>
                             <RichTextBlock x:Name="ChildRichTextBlock"/>
                         </StackPanel>
