@@ -52,25 +52,14 @@
                            FontFamily="Microsoft YaHei" 
                            FontWeight="Normal"/>
 
-                
-                
-                <RichTextBlock x:Name="WeiboTextTextblock"
+                <local:MyRichTextBlock x:Name="WeiboTextTextblock"
                            Margin="20,35,0,0"
-                           TextWrapping="Wrap"
+                           Text="{Binding Text, Mode=OneWay}"
                            Grid.Column="2"
                            Grid.Row="1"
                            d:LayoutOverrides="HorizontalAlignment, TopMargin, BottomMargin, LeftPosition, RightPosition, TopPosition, BottomPosition"
                            HorizontalAlignment="Left" 
                            FontFamily="Microsoft YaHei"/>
-                <!--<TextBlock x:Name="WeiboTextTextblock"
-                           Margin="20,35,0,0"
-                           TextWrapping="Wrap"
-                           Text="{Binding Text}"
-                           Grid.Column="2"
-                           Grid.Row="1"
-                           d:LayoutOverrides="HorizontalAlignment, TopMargin, BottomMargin, LeftPosition, RightPosition, TopPosition, BottomPosition"
-                           HorizontalAlignment="Left" 
-                           FontFamily="Microsoft YaHei"/>-->
             </Grid>
         </DataTemplate>
 
@@ -116,10 +105,10 @@
                            Margin="20,0,10,0" 
                            FontFamily="Microsoft YaHei" 
                            FontWeight="Bold"/>
-                <TextBlock x:Name="textBlock1"
+                <local:MyRichTextBlock x:Name="textBlock1"
                            Margin="20,35,8,0"
-                           TextWrapping="Wrap"
-                           Text="{Binding Text}"
+                           
+                           Text="{Binding Text, Mode=OneWay}"
                            Grid.Column="2"
                            Grid.Row="1"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
@@ -135,10 +124,10 @@
                            FontFamily="Microsoft YaHei" 
                            FontWeight="Bold"/>
 
-                <TextBlock x:Name="textBlock2"
+                <local:MyRichTextBlock x:Name="textBlock2"
                            Margin="20,55,8,0"
-                           TextWrapping="Wrap"
-                           Text="{Binding RepostWeibo.Text}"
+                           
+                           Text="{Binding RepostWeibo.Text, Mode=OneWay}"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
                            Grid.Column="2"
                            Grid.Row="2"/>
@@ -186,10 +175,10 @@
                            d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
                            Height="40" 
                            Margin="20,0,10,0" FontFamily="Microsoft YaHei" FontWeight="Bold"/>
-                <TextBlock x:Name="textBlock1"
+                <local:MyRichTextBlock x:Name="textBlock1"
                            Margin="20,35,8,0"
-                           TextWrapping="Wrap"
-                           Text="{Binding Text}"
+                           
+                           Text="{Binding Text, Mode=OneWay}"
                            Grid.Column="2"
                            Grid.Row="1"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" FontFamily="Microsoft YaHei"/>
@@ -245,10 +234,10 @@
                            d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
                            Height="40" 
                            Margin="20,0,10,0"/>
-                <TextBlock x:Name="textBlock1"
+                <local:MyRichTextBlock  x:Name="textBlock1"
                            Margin="20,35,8,0"
-                           TextWrapping="Wrap"
-                           Text="{Binding Text}"
+                           
+                           Text="{Binding Text, Mode=OneWay}"
                            Grid.Column="2"
                            Grid.Row="1"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition"/>
@@ -314,10 +303,10 @@
                            Margin="20,0,10,0" 
                            FontFamily="Microsoft YaHei" 
                            FontWeight="Bold"/>
-                <TextBlock x:Name="textBlock1"
+                <local:MyRichTextBlock x:Name="textBlock1"
                            Margin="20,35,0,0"
-                           TextWrapping="Wrap"
-                           Text="{Binding Text}"
+                           
+                           Text="{Binding Text, Mode=OneWay}"
                            Grid.Column="2"
                            Grid.Row="1"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" 
@@ -334,10 +323,10 @@
                            FontWeight="Bold"/>
 
 
-                <TextBlock x:Name="textBlock2"
+                <local:MyRichTextBlock x:Name="textBlock2"
                            Margin="20,55,8,0"
-                           TextWrapping="Wrap"
-                           Text="{Binding RepostWeibo.Text}"
+                           
+                           Text="{Binding RepostWeibo.Text, Mode=OneWay}"
                            Grid.Column="2"
                            Grid.Row="2"
                            d:LayoutOverrides="LeftMargin, RightMargin" Height="81" VerticalAlignment="Bottom"/>
@@ -395,10 +384,10 @@
                            Margin="20,0,10,0" 
                            FontFamily="Microsoft YaHei" 
                            FontWeight="Bold"/>
-                <TextBlock x:Name="textBlock1"
+                <local:MyRichTextBlock x:Name="textBlock1"
                            Margin="20,35,0,0"
-                           TextWrapping="Wrap"
-                           Text="{Binding Text}"
+                           
+                           Text="{Binding Text, Mode=OneWay}"
                            Grid.Column="2"
                            Grid.Row="1"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" 
@@ -415,10 +404,10 @@
                            FontWeight="Bold"/>
 
 
-                <TextBlock x:Name="textBlock2"
+                <local:MyRichTextBlock x:Name="textBlock2"
                            Margin="20,55,8,0"
-                           TextWrapping="Wrap"
-                           Text="{Binding RepostWeibo.Text}"
+                           
+                           Text="{Binding RepostWeibo.Text, Mode=OneWay}"
                            Grid.Column="2"
                            Grid.Row="2"
                            d:LayoutOverrides="LeftMargin, RightMargin" Height="81" VerticalAlignment="Bottom"/>
@@ -472,6 +461,9 @@
             <RowDefinition Height="127*"/>
             <RowDefinition Height="0*"/>
         </Grid.RowDefinitions>
+
+
+        
 
         <ListView x:Name="listView"
                   ItemTemplateSelector="{StaticResource MyTimelineDataTemplateSelector}" Grid.Column="1" Grid.Row="1" Tapped="listView_Tapped"/>
