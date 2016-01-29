@@ -35,10 +35,13 @@ namespace WooBee_Normal
             {
                 if (listItem.RepostWeibo.PicUrls == null || listItem.RepostWeibo.PicUrls.Count == 0)
                     return TextRepostTemplate;
+                //return NormalTemplate;
                 else if (listItem.RepostWeibo.PicUrls.Count == 1)
                     return RepostOneImageTemplate;
+                //return NormalTemplate;
                 else if (listItem.RepostWeibo.PicUrls.Count > 1)
                     return RepostMultiImagesTemplate;
+                //return NormalTemplate;
 
             }
             else if (listItem.RepostWeibo == null)
@@ -49,8 +52,10 @@ namespace WooBee_Normal
                 }
                 else if (listItem.PicUrls.Count == 1)
                     return OneImageTemplate;
+                //return NormalTemplate;
                 else if (listItem.PicUrls.Count > 1)
                     return MultiImagesTemplate;
+                //return NormalTemplate;
             }
             return base.SelectTemplateCore(item, container);
         }

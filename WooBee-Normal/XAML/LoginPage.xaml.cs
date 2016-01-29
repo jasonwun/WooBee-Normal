@@ -35,13 +35,8 @@ namespace WooBee_Normal
 
         private async void webView_NavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
         {
-            if (count == 0)
-            {
-                count++;
-                Debug.WriteLine(args.Uri.ToString());
-            }
-
-            else if (count == 1)
+            string codestr = "code";
+            if (args.Uri.AbsoluteUri.ToString().Contains(codestr))
             {
                 Debug.WriteLine(args.Uri.ToString());
                 code = args.Uri.AbsoluteUri.ToString();
@@ -49,7 +44,11 @@ namespace WooBee_Normal
                 oauthsina.SetCode(code);
                 await oauthsina.GetAccessToekn();
                 Frame.Navigate(typeof(TimeLine));
+                Debug.WriteLine(args.Uri.ToString());
             }
+            else
+                return;
+
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
