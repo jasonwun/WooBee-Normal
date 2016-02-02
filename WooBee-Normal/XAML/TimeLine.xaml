@@ -27,8 +27,8 @@
                 </Grid.ColumnDefinitions>
 
                 <Image x:Name="AvartarImage"
-                       Height="40"
-                       Width="40"
+                       Height="40*"
+                       Width="40*"
                        Grid.Row="1"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Stretch"
@@ -81,8 +81,8 @@
                 </Grid.ColumnDefinitions>
 
                 <Image x:Name="image"
-                       Height="40"
-                       Width="40"
+                       Height="40*"
+                       Width="40*"
                        Grid.Row="1"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Stretch"
@@ -280,6 +280,7 @@
 
                 <Image x:Name="image"
                        Height="40"
+                       Width="40"
                        Grid.Row="1"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Stretch"
@@ -361,6 +362,7 @@
 
                 <Image x:Name="image"
                        Height="40"
+                       Width="40"
                        Grid.Row="1"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Stretch"
@@ -442,8 +444,12 @@
 
     <Page.BottomAppBar>
         <CommandBar Background="Black" Foreground="White">
-            <AppBarButton Foreground="White" Icon="Refresh" Click="AppBarButton_Click"/>
-            <AppBarButton x:Name="SentWeiboButton" Foreground="White" Icon="Send" Click="SentWeiboButton_Click"/>
+            <AppBarButton Foreground="White" Click="AppBarButton_Click">
+                <Image Source="/Assets/Reload.png"/>
+            </AppBarButton>
+            <AppBarButton x:Name="SentWeiboButton" Foreground="White"  Click="SentWeiboButton_Click">
+                <Image Source="/Assets/SendDats.png"/>
+            </AppBarButton>
             <AppBarButton x:Name="GotocommentButton" Foreground="White" Icon="Message" Click="GotocommentButton_Click"/>
         </CommandBar>
     </Page.BottomAppBar>

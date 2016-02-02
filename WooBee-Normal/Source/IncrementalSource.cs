@@ -54,7 +54,6 @@ namespace WooBee_Normal
             {
                 try
                 {
-                    //List<Weibo> items = new List<Weibo>();
                     await GetWeibo();
                     if (_currentid == _sinceid)
                     {
@@ -65,7 +64,6 @@ namespace WooBee_Normal
                             {
                                 this.Add(item);
                                 lastItem++;
-
                             }
                         });
                     }
