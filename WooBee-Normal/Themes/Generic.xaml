@@ -8,7 +8,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:MyRichTextBlock">
                     <Border>
-                        <RichTextBlock x:Name="ChildRichTextBlock" IsTextSelectionEnabled="False"/>
+                        <RichTextBlock x:Name="ChildRichTextBlock" IsTextSelectionEnabled="False" TextIndent="-5"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
