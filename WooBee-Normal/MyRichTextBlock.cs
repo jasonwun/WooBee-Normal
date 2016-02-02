@@ -61,7 +61,7 @@ namespace WooBee_Normal
 
         private void SetRichTextBlock(string value)
         {
-            value = value.Replace("<", "&lt;").Replace(">", "&gt;").Replace(" &", "&amp;");
+            value = value.Replace("<", "&lt;").Replace(">", "&gt;").Replace("&", "&amp;");
             if (_richTextBlock == null)
                 return;
 
