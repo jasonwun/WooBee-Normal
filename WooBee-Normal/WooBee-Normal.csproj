@@ -96,8 +96,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Reload.png" />
-    <Content Include="Assets\SendDats.png" />
     <Content Include="Assets\Emoji\01.png" />
     <Content Include="Assets\Emoji\02.png" />
     <Content Include="Assets\Emoji\03.png" />
@@ -315,9 +313,11 @@
     <Content Include="Assets\Emoji\97.png" />
     <Content Include="Assets\Emoji\98.png" />
     <Content Include="Assets\Emoji\99.png" />
-    <Content Include="Assets\Link.png" />
+    <Content Include="Assets\Icons\Reload.png" />
+    <Content Include="Assets\Icons\SendDats.png" />
+    <Content Include="Assets\Icons\Link.png" />
     <Content Include="NotoSansCJKscBlackCleaned.otf" />
-    <Content Include="Assets\CheckIcon.png" />
+    <Content Include="Assets\Icons\CheckIcon.png" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>

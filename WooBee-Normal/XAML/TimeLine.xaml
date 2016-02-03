@@ -51,6 +51,7 @@
                            Margin="20,0,10,0" 
                            FontFamily="Microsoft YaHei" 
                            FontWeight="Black"/>
+                
 
                 <local:MyRichTextBlock x:Name="WeiboTextTextblock"
                            Margin="20,35,0,0"
@@ -494,10 +495,10 @@
     <Page.BottomAppBar>
         <CommandBar Background="Black" Foreground="White">
             <AppBarButton Foreground="White" Click="AppBarButton_Click">
-                <Image Source="/Assets/Reload.png"/>
+                <Image Source="/Assets/Icons/Reload.png"/>
             </AppBarButton>
             <AppBarButton x:Name="SentWeiboButton" Foreground="White"  Click="SentWeiboButton_Click">
-                <Image Source="/Assets/SendDats.png"/>
+                <Image Source="/Assets/Icons/SendDats.png"/>
             </AppBarButton>
             <AppBarButton x:Name="GotocommentButton" Foreground="White" Icon="Message" Click="GotocommentButton_Click"/>
         </CommandBar>
