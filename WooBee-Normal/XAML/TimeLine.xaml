@@ -40,21 +40,28 @@
                         <RectangleGeometry Rect="0 0 40 40"/>
                     </Image.Clip>
                 </Image>
-                <TextBlock x:Name="ScreenNameTextBlock"
+
+                <Grid Background="Black"
+                      Height="35" 
+              Width="auto"
+              Grid.Column="2"
+              Grid.Row="1"
+              Margin="20,3,0,0" 
+              VerticalAlignment="Top" 
+              HorizontalAlignment="Left">
+                    <TextBlock x:Name="textBlock7"
+                           Margin="10,8,20,0"
                            TextWrapping="Wrap"
                            Text="{Binding User.ScreenName}"
-                           Grid.Column="2"
-                           Grid.Row="1"
-                           VerticalAlignment="Top"
-                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
-                           Height="40" 
-                           Margin="20,0,10,0" 
+                           d:LayoutOverrides="TopPosition, BottomPosition"
                            FontFamily="Microsoft YaHei" 
-                           FontWeight="Black"/>
-                
+                           FontWeight="Bold"
+                       Foreground="White"/>
+                </Grid>
+
 
                 <local:MyRichTextBlock x:Name="WeiboTextTextblock"
-                           Margin="20,35,0,0"
+                           Margin="20,50,0,0"
                            Text="{Binding Text}"
                            Grid.Column="2"
                            Grid.Row="1"
@@ -95,40 +102,46 @@
                         <RectangleGeometry Rect="0 0 40 40"/>
                     </Image.Clip>
                 </Image>
-                <TextBlock x:Name="textBlock"
-                           TextWrapping="Wrap"
-                           Text="{Binding User.ScreenName}"
-                           Grid.Column="2"
-                           Grid.Row="1"
-                           VerticalAlignment="Top"
-                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
-                           Height="auto" 
-                           Margin="20,0,10,0" 
-                           FontFamily="Microsoft YaHei" 
-                           FontWeight="Bold"/>
+                <Grid Background="Black"
+                      Height="35" 
+                      Width="auto"
+                      Grid.Column="2"
+                      Grid.Row="1"
+                      Margin="20,3,0,0" 
+                      VerticalAlignment="Top" 
+                      HorizontalAlignment="Left">
+                    <TextBlock x:Name="textBlock927"
+                               Margin="10,8,20,0"
+                               TextWrapping="Wrap"
+                               Text="{Binding User.ScreenName}"
+                               d:LayoutOverrides="TopPosition, BottomPosition"
+                               FontFamily="Microsoft YaHei" 
+                               FontWeight="Bold"
+                               Foreground="White"/>
+                </Grid>
                 <local:MyRichTextBlock x:Name="textBlock1"
-                           Margin="20,35,8,17"
+                           Margin="20,50,8,17"
                            Text="{Binding Text}"
                            Grid.Column="2"
                            Grid.Row="1"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
                            FontFamily="Microsoft YaHei"/>
-                <Grid Background="Black"
-                      Height="35" 
-              Width="auto"
-              Grid.Column="2"
-              Grid.Row="2"
-              Margin="20,0,0,0" 
-              VerticalAlignment="Top" 
-              HorizontalAlignment="Left">
+                <Grid Background="#FFABABAB"
+                      Height="35"
+                      Width="auto"
+                      Grid.Column="2"
+                      Grid.Row="2"
+                      Margin="20,0,0,0" 
+                      VerticalAlignment="Top" 
+                      HorizontalAlignment="Left">
                     <TextBlock x:Name="textBlock7"
-                           Margin="10,8,20,0"
-                           TextWrapping="Wrap"
-                           Text="{Binding RepostWeibo.User.ScreenName}"
-                           d:LayoutOverrides="TopPosition, BottomPosition"
-                           FontFamily="Microsoft YaHei" 
-                           FontWeight="Bold"
-                       Foreground="White"/>
+                               Margin="10,8,20,0"
+                               TextWrapping="Wrap"
+                               Text="{Binding RepostWeibo.User.ScreenName}"
+                               d:LayoutOverrides="TopPosition, BottomPosition"
+                               FontFamily="Microsoft YaHei" 
+                               FontWeight="Bold"
+                               Foreground="White"/>
                 </Grid>
 
 
@@ -173,17 +186,25 @@
                         <RectangleGeometry Rect="0 0 40 40"/>
                     </Image.Clip>
                 </Image>
-                <TextBlock x:Name="textBlock"
+                <Grid Background="Black"
+                      Height="35" 
+              Width="auto"
+              Grid.Column="2"
+              Grid.Row="1"
+              Margin="20,3,0,0" 
+              VerticalAlignment="Top" 
+              HorizontalAlignment="Left">
+                    <TextBlock x:Name="textBlock7"
+                           Margin="10,8,20,0"
                            TextWrapping="Wrap"
                            Text="{Binding User.ScreenName}"
-                           Grid.Column="2"
-                           Grid.Row="1"
-                           VerticalAlignment="Top"
-                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
-                           Height="40" 
-                           Margin="20,0,10,0" FontFamily="Microsoft YaHei" FontWeight="Bold"/>
+                           d:LayoutOverrides="TopPosition, BottomPosition"
+                           FontFamily="Microsoft YaHei" 
+                           FontWeight="Bold"
+                       Foreground="White"/>
+                </Grid>
                 <local:MyRichTextBlock x:Name="textBlock1"
-                           Margin="20,35,8,0"
+                           Margin="20,50,8,0"
                            Text="{Binding Text}"
                            Grid.Column="2"
                            Grid.Row="1"
@@ -231,19 +252,25 @@
                         <RectangleGeometry Rect="0 0 40 40"/>
                     </Image.Clip>
                 </Image>
-                <TextBlock x:Name="ScreenNameTextBlock"
-                           TextWrapping="Wrap"
-                           Text="{Binding User.ScreenName}"
-                           Grid.Column="2"
-                           Grid.Row="1"
-                           VerticalAlignment="Top"
-                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
-                           Height="40" 
-                           Margin="20,0.333,0,0" 
-                           FontFamily="Microsoft YaHei" 
-                           FontWeight="Black"/>
+                <Grid Background="Black"
+                      Height="35" 
+                      Width="auto"
+                      Grid.Column="2"
+                      Grid.Row="1"
+                      Margin="20,3,0,0" 
+                      VerticalAlignment="Top" 
+                      HorizontalAlignment="Left">
+                    <TextBlock x:Name="textBlock927"
+                               Margin="10,8,20,0"
+                               TextWrapping="Wrap"
+                               Text="{Binding User.ScreenName}"
+                               d:LayoutOverrides="TopPosition, BottomPosition"
+                               FontFamily="Microsoft YaHei" 
+                               FontWeight="Bold"
+                               Foreground="White"/>
+                </Grid>
                 <local:MyRichTextBlock  x:Name="textBlock1"
-                           Margin="20,35.333,0,0"
+                           Margin="20,50,0,0"
                            Text="{Binding Text}"
                            Grid.Column="2"
                            Grid.Row="1"
@@ -313,27 +340,33 @@
                     </Image.Clip>
                 </Image>
 
-                <TextBlock x:Name="textBlock"
-                           TextWrapping="Wrap"
-                           Text="{Binding User.ScreenName}"
-                           Grid.Column="2"
-                           Grid.Row="1"
-                           VerticalAlignment="Top"
-                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
-                           Height="40" 
-                           Margin="20,0,10,0" 
-                           FontFamily="Microsoft YaHei" 
-                           FontWeight="Bold"/>
+                <Grid Background="Black"
+                      Height="35" 
+                      Width="auto"
+                      Grid.Column="2"
+                      Grid.Row="1"
+                      Margin="20,3,0,0" 
+                      VerticalAlignment="Top" 
+                      HorizontalAlignment="Left">
+                    <TextBlock x:Name="textBlock927"
+                               Margin="10,8,20,0"
+                               TextWrapping="Wrap"
+                               Text="{Binding User.ScreenName}"
+                               d:LayoutOverrides="TopPosition, BottomPosition"
+                               FontFamily="Microsoft YaHei" 
+                               FontWeight="Bold"
+                               Foreground="White"/>
+                </Grid>
 
                 <local:MyRichTextBlock x:Name="textBlock1"
-                           Margin="20,35,0,20"
+                           Margin="20,50,0,20"
                            Text="{Binding Text}"
                            Grid.Column="2"
                            Grid.Row="1"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" 
                            FontFamily="Microsoft YaHei"/>
 
-                <Grid Background="Black"
+                <Grid Background="Silver"
                       Height="35"
                       Width="auto"
                       Grid.Column="2"
@@ -405,21 +438,27 @@
                         <RectangleGeometry Rect="0 0 40 40"/>
                     </Image.Clip>
                 </Image>
-                
-                <TextBlock x:Name="textBlock"
-                           TextWrapping="Wrap"
-                           Text="{Binding User.ScreenName}"
-                           Grid.Column="2"
-                           Grid.Row="1"
-                           VerticalAlignment="Top"
-                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
-                           Height="40" 
-                           Margin="20,0,10,0" 
-                           FontFamily="Microsoft YaHei" 
-                           FontWeight="Bold"/>
-                
+
+                <Grid Background="Black"
+                      Height="35" 
+                      Width="auto"
+                      Grid.Column="2"
+                      Grid.Row="1"
+                      Margin="20,3,0,0" 
+                      VerticalAlignment="Top" 
+                      HorizontalAlignment="Left">
+                    <TextBlock x:Name="textBlock927"
+                               Margin="10,8,20,0"
+                               TextWrapping="Wrap"
+                               Text="{Binding User.ScreenName}"
+                               d:LayoutOverrides="TopPosition, BottomPosition"
+                               FontFamily="Microsoft YaHei" 
+                               FontWeight="Bold"
+                               Foreground="White"/>
+                </Grid>
+
                 <local:MyRichTextBlock x:Name="textBlock1"
-                           Margin="20,35,0,17"
+                           Margin="20,50,0,17"
                            Text="{Binding Text}"
                            Grid.Column="2"
                            Grid.Row="1"
@@ -513,15 +552,26 @@
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="8*"/>
-            <RowDefinition Height="127*"/>
+            <RowDefinition Height="0*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="77*"/>
             <RowDefinition Height="0*"/>
         </Grid.RowDefinitions>
 
 
 
-
         <ListView x:Name="listView"
-                  ItemTemplateSelector="{StaticResource MyTimelineDataTemplateSelector}" Grid.Column="1" Grid.Row="1" Tapped="listView_Tapped"/>
+                  ItemTemplateSelector="{StaticResource MyTimelineDataTemplateSelector}" Grid.Column="1" Grid.Row="1" Tapped="listView_Tapped" Grid.RowSpan="2"
+                  Padding="0,20,0,0"/>
+
+
+        <Rectangle Grid.ColumnSpan="2" Grid.RowSpan="2" IsHitTestVisible="False">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFF1F1F1"/>
+                    <GradientStop Color="#3FF1F1F1" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
     </Grid>
 </Page>
