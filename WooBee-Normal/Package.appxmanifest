@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="63299MetrsignStudio.Woobee" Publisher="CN=691BCA65-0225-4D09-BA12-DFA680F370B8" Version="2016.1.22.0" />
+  <Identity Name="63299MetrsignStudio.Woobee" Publisher="CN=691BCA65-0225-4D09-BA12-DFA680F370B8" Version="2016.2.4.0" />
   <mp:PhoneIdentity PhoneProductId="84d7a1ac-1db0-48ac-8037-84888d5c2132" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Woobee</DisplayName>

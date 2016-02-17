@@ -1,2 +1,2 @@
-MainPackage=C:\Users\yinju\documents\visual studio 2015\Projects\WooBee-Normal\WooBee-Normal\bin\x86\Release\Upload\WooBee-Normal_2016.1.22.0_x86.appx
-SymbolPackage=C:\Users\yinju\documents\visual studio 2015\Projects\WooBee-Normal\WooBee-Normal\AppPackages\WooBee-Normal_2016.1.22.0\WooBee-Normal_2016.1.22.0_x86.appxsym
+MainPackage=C:\Users\yinju\Documents\Visual Studio 2015\Projects\WooBee-Normal\WooBee-Normal\bin\x86\Release\Upload\WooBee-Normal_2016.2.4.0_x86.appx
+SymbolPackage=C:\Users\yinju\Documents\Visual Studio 2015\Projects\WooBee-Normal\WooBee-Normal\AppPackages\WooBee-Normal_2016.2.4.0\WooBee-Normal_2016.2.4.0_x86.appxsym

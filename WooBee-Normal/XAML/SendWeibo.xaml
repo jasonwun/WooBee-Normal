@@ -294,7 +294,7 @@
                         Margin="-22.667,-8,-22.333,-8" 
                         VerticalAlignment="Top">
 
-                <BitmapIcon  x:Name="asd"  UriSource="/Assets/CheckIcon.png"
+                <BitmapIcon  x:Name="asd"  UriSource="/Assets/Icons/CheckIcon.png"
                        Margin="1,0,-1,0"/>
             </StackPanel>
         </Button>

@@ -35,7 +35,7 @@
                        d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
                        Grid.ColumnSpan="2"
                        Source="{Binding User.AvatarLarge}" 
-                       Margin="0,3,0,0">
+                       Margin="4,3,0,0">
                     <Image.Clip>
                         <RectangleGeometry Rect="0 0 40 40"/>
                     </Image.Clip>
@@ -196,6 +196,7 @@
                        d:LayoutOverrides="TopMargin, BottomMargin" 
                        MaxHeight="200"
                        MaxWidth="500"
+                       MinWidth="100"
                        VerticalAlignment="Top" 
                        Stretch="Uniform"
                        HorizontalAlignment="Stretch"/>
@@ -214,9 +215,8 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0*"/>
-                    <ColumnDefinition Width="47*"/>
-                    <ColumnDefinition Width="313*"/>
-                    <ColumnDefinition Width="0*"/>
+                    <ColumnDefinition Width="12*"/>
+                    <ColumnDefinition Width="80*"/>
                 </Grid.ColumnDefinitions>
 
                 <Image x:Name="image"
@@ -365,6 +365,7 @@
                        Source="{Binding RepostWeibo.ThumbnailPic}" 
                        MaxHeight="200"
                        MaxWidth="500" 
+                       MinWidth="100"
                        Stretch="Uniform"
                        HorizontalAlignment="Stretch" 
                        d:LayoutOverrides="TopMargin, BottomMargin" 
