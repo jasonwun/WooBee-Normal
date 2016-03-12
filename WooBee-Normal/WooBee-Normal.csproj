@@ -316,7 +316,7 @@
     <Content Include="Assets\Icons\Reload.png" />
     <Content Include="Assets\Icons\SendDats.png" />
     <Content Include="Assets\Icons\Link.png" />
-    <Content Include="NotoSansCJKscBlackCleaned.otf" />
+    <Content Include="Assets\NotoSansCJKscBlackCleaned.otf" />
     <Content Include="Assets\Icons\CheckIcon.png" />
     <None Include="project.json" />
   </ItemGroup>
@@ -324,8 +324,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BoolConverter.cs" />
-    <Compile Include="MyRichTextBlock.cs" />
+    <Compile Include="Utilities\BoolConverter.cs" />
+    <Compile Include="Controls\MyRichTextBlock.cs" />
     <Compile Include="XAML\SinaWebPage.xaml.cs">
       <DependentUpon>SinaWebPage.xaml</DependentUpon>
     </Compile>

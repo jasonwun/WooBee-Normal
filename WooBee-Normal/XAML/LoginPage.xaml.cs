@@ -32,6 +32,8 @@ namespace WooBee_Normal
                 NormalToken.IsChecked = true;
             if (App.weico_access_token != null)
                 WeicoToken.IsChecked = true;
+            if (NormalToken.IsChecked ==true && WeicoToken.IsChecked==true)
+                NavigateButton.IsEnabled = true;
         }
 
         private void NavigateNormalToken_Click(object sender, RoutedEventArgs e)
@@ -42,6 +44,11 @@ namespace WooBee_Normal
         private void NavigateWeicoToken_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(SinaWebPage), "weico");
+        }
+
+        private void NavigateButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(TimeLine));
         }
     }
 }

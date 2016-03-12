@@ -17,13 +17,14 @@
                    VerticalAlignment="Top" 
                    Margin="0,50,0,0" Height="71"/>
 
-        
+
 
         <CheckBox x:Name="NormalToken" 
                   Content="普通登录" 
                   HorizontalAlignment="Stretch" 
                   VerticalAlignment="Top" 
-                  Margin="125,121,115,0"/>
+                  Margin="125,121,115,0"
+                  IsHitTestVisible="False"/>
 
         <Button x:Name="NavigateNormalToken" 
                 Content="普通登录" 
@@ -37,23 +38,31 @@
                   Content="黑魔法登陆" 
                   HorizontalAlignment="Stretch" 
                   VerticalAlignment="Top" 
-                  Margin="125,205,115,0"/>
-        
+                  Margin="125,205,115,0"
+                  IsHitTestVisible="False"/>
+
         <Button x:Name="NavigateWeicoToken" 
-                Content="黑魔法登陆" 
+                Content="黑魔法" 
                 HorizontalAlignment="Stretch" 
                 VerticalAlignment="Top" 
                 Margin="125,242,155,0"
                 IsEnabled="{Binding ElementName=WeicoToken,Path=IsChecked, Converter={StaticResource BoolConverter}}" 
                 Click="NavigateWeicoToken_Click"/>
 
-        
+
 
         <TextBlock x:Name="DescriptionSecond" 
                    TextWrapping="Wrap" 
                    Text="   你要普通登录也可以使用，只不过就是不能看@ 了你的微博，很多功能都是用不了，你自己选吧" 
                    VerticalAlignment="Top" 
                    Margin="0,332,0,0" Height="71"/>
+
+        <Button x:Name="NavigateButton" 
+                Content="开始使用" 
+                HorizontalAlignment="Stretch" 
+                VerticalAlignment="Top" 
+                Margin="125,451,155,0"
+                IsEnabled="False" Click="NavigateButton_Click"/>
 
 
     </Grid>
