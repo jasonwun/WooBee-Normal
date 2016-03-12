@@ -23,11 +23,13 @@ namespace WooBee_Normal
     public sealed partial class Message : Page
     {
         CommentSource commentsource = new CommentSource();
+        MentionsSource mentionssource = new MentionsSource();
         public double pointx1;
         public Message()
         {
             this.InitializeComponent();
             CommentListview.ItemsSource = commentsource;
+            MentionsListview.ItemsSource = mentionssource;
         }
 
         private void OnCompleted(object sender, ManipulationCompletedRoutedEventArgs e)

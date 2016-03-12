@@ -15,7 +15,7 @@
                    TextWrapping="Wrap" 
                    Text="你需要登陆两次，第一次正常的登陆，第二次黑魔法" 
                    VerticalAlignment="Top" 
-                   Margin="0,50,0,0" Height="71"/>
+                   Margin="10,50,0,0" Height="71"/>
 
 
 
@@ -55,7 +55,7 @@
                    TextWrapping="Wrap" 
                    Text="   你要普通登录也可以使用，只不过就是不能看@ 了你的微博，很多功能都是用不了，你自己选吧" 
                    VerticalAlignment="Top" 
-                   Margin="0,332,0,0" Height="71"/>
+                   Margin="10,332,0,0" Height="71"/>
 
         <Button x:Name="NavigateButton" 
                 Content="开始使用" 

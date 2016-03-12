@@ -14,16 +14,8 @@ using Windows.Web.Http;
 
 namespace WooBee_Normal
 {
-    public class IncrementalSource : ObservableCollection<Weibo>, ISupportIncrementalLoading, INotifyPropertyChanged
+    public class MentionsSource : ObservableCollection<Weibo>, ISupportIncrementalLoading, INotifyPropertyChanged
     {
-
-        public IncrementalSource(int sinceid)
-        {
-            _sinceid = sinceid;
-        }
-
-
-
         public int lastItem = 0;
         HomeWeibo homeweibo = new HomeWeibo();
         private int _sinceid { get; set; }
@@ -54,7 +46,7 @@ namespace WooBee_Normal
             {
                 try
                 {
-                    await GetWeibo();
+                    await GetMentions();
                     if (_currentid == _sinceid)
                     {
                         await coreDispatcher.RunAsync(CoreDispatcherPriority.Normal,
@@ -68,7 +60,7 @@ namespace WooBee_Normal
                         });
                     }
                     else
-                        _currentid=_sinceid;
+                        _currentid = _sinceid;
                 }
                 catch (Exception ex)
                 {
@@ -81,12 +73,10 @@ namespace WooBee_Normal
             }).AsAsyncOperation<LoadMoreItemsResult>();
         }
 
-        private async Task GetWeibo()
+        private async Task GetMentions()
         {
-            string Uri = "https://api.weibo.com/2/statuses/home_timeline.json?source=";
-            Uri += App.client_id;
-            Uri += "&access_token=";
-            Uri += App.access_token;
+            string Uri = "https://api.weibo.com/2/statuses/mentions.json?access_token=";
+            Uri += App.weico_access_token;
             Uri += "&page=";
             Uri += page_num.ToString();
             Uri += "&since_id=";

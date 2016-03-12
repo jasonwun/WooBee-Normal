@@ -324,6 +324,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Source\MentionsSource.cs" />
     <Compile Include="Utilities\BoolConverter.cs" />
     <Compile Include="Controls\MyRichTextBlock.cs" />
     <Compile Include="XAML\SinaWebPage.xaml.cs">
