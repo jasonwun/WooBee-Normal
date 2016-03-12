@@ -324,7 +324,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BoolConverter.cs" />
     <Compile Include="MyRichTextBlock.cs" />
+    <Compile Include="XAML\SinaWebPage.xaml.cs">
+      <DependentUpon>SinaWebPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="XAML\SendWeibo.xaml.cs">
       <DependentUpon>SendWeibo.xaml</DependentUpon>
     </Compile>
@@ -443,6 +447,10 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="XAML\SinaWebPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

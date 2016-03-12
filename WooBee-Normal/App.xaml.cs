@@ -29,6 +29,7 @@ namespace WooBee_Normal
         public static string client_id = "839927271";
         public static string client_secret = "d9a2ae8a01ef87772897bcf0c32ea575";
         public static string access_token { get; set; }
+        public static string weico_access_token { get; set; }
 
         #region EmojiDict
         public static readonly Dictionary<string, string> emojiDict = new Dictionary<string, string>

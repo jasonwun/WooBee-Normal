@@ -23,45 +23,25 @@ namespace WooBee_Normal
     /// </summary>
     public sealed partial class LoginPage : Page
     {
-        string Uri = "https://api.weibo.com/oauth2/authorize" + "?client_id=" + App.client_id + "&redirect_uri=" + OauthSina.RedirectUri;
-        OauthSina oauthsina = new OauthSina();
-        int count = 0;
-        string code;
+
 
         public LoginPage()
         {
             this.InitializeComponent();
+            if (App.access_token != null)
+                NormalToken.IsChecked = true;
+            if (App.weico_access_token != null)
+                WeicoToken.IsChecked = true;
         }
 
-        private async void webView_NavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
+        private void NavigateNormalToken_Click(object sender, RoutedEventArgs e)
         {
-            string codestr = "code";
-            if (args.Uri.AbsoluteUri.ToString().Contains(codestr))
-            {
-                Debug.WriteLine(args.Uri.ToString());
-                code = args.Uri.AbsoluteUri.ToString();
-                code = code.Substring(code.IndexOf("=") + 1);
-                oauthsina.SetCode(code);
-                await oauthsina.GetAccessToekn();
-                Frame.Navigate(typeof(TimeLine));
-                Debug.WriteLine(args.Uri.ToString());
-            }
-            else
-                return;
-
+            Frame.Navigate(typeof(SinaWebPage), "normal");
         }
 
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        private void NavigateWeicoToken_Click(object sender, RoutedEventArgs e)
         {
-            if (!App.localsetting.Values.ContainsKey("access_token"))
-                webView.Navigate(new Uri(Uri, UriKind.Absolute));
-            else
-            {
-                object value = App.localsetting.Values["access_token"];
-                App.access_token = value.ToString();
-                Frame.Navigate(typeof(TimeLine));
-            }
-
+            Frame.Navigate(typeof(SinaWebPage), "weico");
         }
     }
 }

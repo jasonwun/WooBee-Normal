@@ -7,19 +7,54 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Loaded="Grid_Loaded" Background="#FFF1F1F1">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0*"/>
-            <RowDefinition/>
-            <RowDefinition Height="0*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="0*"/>
-        </Grid.ColumnDefinitions>
+    <Page.Resources>
+        <local:BoolConverter x:Key="BoolConverter"></local:BoolConverter>
+    </Page.Resources>
+    <Grid Background="#FFF1F1F1">
+        <TextBlock x:Name="Description" 
+                   TextWrapping="Wrap" 
+                   Text="你需要登陆两次，第一次正常的登陆，第二次黑魔法" 
+                   VerticalAlignment="Top" 
+                   Margin="0,50,0,0" Height="71"/>
 
-        <WebView x:Name="webView" NavigationCompleted="webView_NavigationCompleted" Grid.Column="1" Grid.Row="1" />
+        
+
+        <CheckBox x:Name="NormalToken" 
+                  Content="普通登录" 
+                  HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Top" 
+                  Margin="125,121,115,0"/>
+
+        <Button x:Name="NavigateNormalToken" 
+                Content="普通登录" 
+                HorizontalAlignment="Stretch" 
+                VerticalAlignment="Top" 
+                Margin="125,158,155,0"
+                IsEnabled="{Binding ElementName=NormalToken,Path=IsChecked, Converter={StaticResource BoolConverter}}" 
+                Click="NavigateNormalToken_Click"/>
+
+        <CheckBox x:Name="WeicoToken" 
+                  Content="黑魔法登陆" 
+                  HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Top" 
+                  Margin="125,205,115,0"/>
+        
+        <Button x:Name="NavigateWeicoToken" 
+                Content="黑魔法登陆" 
+                HorizontalAlignment="Stretch" 
+                VerticalAlignment="Top" 
+                Margin="125,242,155,0"
+                IsEnabled="{Binding ElementName=WeicoToken,Path=IsChecked, Converter={StaticResource BoolConverter}}" 
+                Click="NavigateWeicoToken_Click"/>
+
+        
+
+        <TextBlock x:Name="DescriptionSecond" 
+                   TextWrapping="Wrap" 
+                   Text="   你要普通登录也可以使用，只不过就是不能看@ 了你的微博，很多功能都是用不了，你自己选吧" 
+                   VerticalAlignment="Top" 
+                   Margin="0,332,0,0" Height="71"/>
+
 
     </Grid>
 </Page>

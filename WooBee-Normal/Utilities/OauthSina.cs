@@ -11,7 +11,7 @@ namespace WooBee_Normal
 {
     class OauthSina
     {
-        public const string RedirectUri = "https://api.weibo.com/oauth2/default.html";
+        public const string RedirectUri = "http://oauth.weico.cc";
 
         private string Code { get; set; }
 
