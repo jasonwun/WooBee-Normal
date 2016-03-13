@@ -76,23 +76,31 @@ namespace WooBee_Normal
 
         private async Task GetMentions()
         {
-            string Uri = "https://api.weibo.com/2/statuses/mentions.json?access_token=";
-            Uri += App.weico_access_token;
-            Uri += "&page=";
-            Uri += page_num.ToString();
-            Uri += "&since_id=";
-            Uri += _sinceid.ToString();
-            HttpClient httpclient = new HttpClient();
-            HttpResponseMessage response = new HttpResponseMessage();
-            response = await httpclient.GetAsync(new Uri(Uri, UriKind.Absolute));
-            string strResponse = response.Content.ToString();
-            homeweibo = JsonConvert.DeserializeObject<HomeWeibo>(strResponse);
-            if (count == 0)
-                count++;
-            else
+            try
             {
-                page_num++;
+                string Uri = "https://api.weibo.com/2/statuses/mentions.json?access_token=";
+                Uri += App.weico_access_token;
+                Uri += "&page=";
+                Uri += page_num.ToString();
+                Uri += "&since_id=";
+                Uri += _sinceid.ToString();
+                HttpClient httpclient = new HttpClient();
+                HttpResponseMessage response = new HttpResponseMessage();
+                response = await httpclient.GetAsync(new Uri(Uri, UriKind.Absolute));
+                string strResponse = response.Content.ToString();
+                homeweibo = JsonConvert.DeserializeObject<HomeWeibo>(strResponse);
+                if (count == 0)
+                    count++;
+                else
+                {
+                    page_num++;
+                }
             }
+            catch(Exception e)
+            {
+                string ax = e.Message;
+            }
+            
         }
     }
 }
