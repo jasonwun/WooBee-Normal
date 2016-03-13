@@ -10,7 +10,7 @@
     <Page.Resources>
         <local:BoolConverter x:Key="BoolConverter"></local:BoolConverter>
     </Page.Resources>
-    <Grid Background="#FFF1F1F1">
+    <Grid Background="#FFF1F1F1" Loaded="Grid_Loaded">
         <TextBlock x:Name="Description" 
                    TextWrapping="Wrap" 
                    Text="你需要登陆两次，第一次正常的登陆，第二次黑魔法" 

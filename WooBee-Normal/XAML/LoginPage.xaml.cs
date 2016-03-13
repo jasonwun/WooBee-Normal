@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -24,16 +25,9 @@ namespace WooBee_Normal
     public sealed partial class LoginPage : Page
     {
 
-
         public LoginPage()
         {
-            this.InitializeComponent();
-            if (App.access_token != null)
-                NormalToken.IsChecked = true;
-            if (App.weico_access_token != null)
-                WeicoToken.IsChecked = true;
-            if (NormalToken.IsChecked ==true && WeicoToken.IsChecked==true)
-                NavigateButton.IsEnabled = true;
+            this.InitializeComponent(); 
         }
 
         private void NavigateNormalToken_Click(object sender, RoutedEventArgs e)
@@ -49,6 +43,19 @@ namespace WooBee_Normal
         private void NavigateButton_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(TimeLine));
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (App.access_token != null)
+                NormalToken.IsChecked = true;
+            if (App.weico_access_token != null)
+                WeicoToken.IsChecked = true;
+            if (App.access_token != null && App.weico_access_token != null)
+            {
+                Frame.Navigate(typeof(TimeLine));
+            }
+                
         }
     }
 }

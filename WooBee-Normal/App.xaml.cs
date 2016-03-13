@@ -72,6 +72,10 @@ namespace WooBee_Normal
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            if(localsetting.Values["weico_access_token"]!=null)
+                weico_access_token = localsetting.Values["weico_access_token"].ToString();
+            if(localsetting.Values["access_token"] != null)
+                access_token = localsetting.Values["access_token"].ToString();
         }
 
         /// <summary>

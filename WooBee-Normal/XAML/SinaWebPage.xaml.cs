@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -28,6 +29,7 @@ namespace WooBee_Normal
         private static string appkey = "211160679";
         private static string appsecret = "1e6e33db08f9192306c4afa0a61ad56c";
         private static string scope = "email,direct_messages_read,direct_messages_write,friendships_groups_read,friendships_groups_write,statuses_to_me_read,follow_app_official_microblog,invitation_write";
+        private static ApplicationDataContainer localsetting = ApplicationData.Current.LocalSettings;
         string code;
         OauthSina oauthsina = new OauthSina();
 
