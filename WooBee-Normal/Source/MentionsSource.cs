@@ -22,6 +22,7 @@ namespace WooBee_Normal
         private int _currentid = 89089089;
         private int page_num = 1;
         private int count = 0;
+        
 
         public bool HasMoreItems
         {
