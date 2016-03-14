@@ -50,10 +50,10 @@ namespace WooBee_Normal
                 {
                     foreach (Comment item in commentuti.Comment)
                     {
-                        if (item.ReplyComment != null && item.ReplyComment.Text.Length > 15)
-                            item.ReplyComment.Text = item.ReplyComment.Text.Substring(0, 15);
-                        else if(item.Status!= null && item.Status.Text.Length > 15)
-                            item.Status.Text = item.Status.Text.Substring(0, 15);
+                        if (item.ReplyComment != null && item.ReplyComment.Text.Length > 22)
+                            item.ReplyComment.Text = item.ReplyComment.Text.Substring(0, 22);
+                        else if(item.Status!= null && item.Status.Text.Length > 22)
+                            item.Status.Text = item.Status.Text.Substring(0, 22);
                         this.Add(item);
                         lastItem++;
                     }
