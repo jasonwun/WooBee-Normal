@@ -13,8 +13,10 @@
         <DataTemplate x:Name="CommentToWeibo">
             <Grid Margin="0,10,0,10">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="7*"/>
-                    <RowDefinition Height="73*"/>
+                    <RowDefinition Height="0*"/>
+                    <RowDefinition Height="28*"/>
+                    <RowDefinition Height="27*"/>
+                    <RowDefinition Height="265*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0*"/>
@@ -23,43 +25,50 @@
                 </Grid.ColumnDefinitions>
 
                 <Image x:Name="image"
-               Height="40"
-               Source="{Binding User.AvatarLarge}"
-               Grid.Column="1"
-               d:LayoutOverrides="LeftPosition, RightPosition"
-               Margin="0,0,0,0" />
+                       Source="{Binding User.AvatarLarge}"
+                       Grid.Column="1"
+                       d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition"
+                       Margin="5,5,5,5"/>
 
                 <TextBlock x:Name="textBlock"
-                   TextWrapping="Wrap"
-                   Text="{Binding User.ScreenName}"
-                   Margin="4,-2,0,10.333"
-                   Grid.Column="2" d:LayoutOverrides="TopPosition, BottomPosition"/>
+                           TextWrapping="Wrap"
+                           Text="{Binding User.ScreenName}"
+                           Grid.Column="2" 
+                           Grid.RowSpan="2"
+                           d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition"
+                           Margin="6,0,0,0"/>
 
                 <TextBlock x:Name="textBlock1"
-                   Margin="0,3.667,10,0"
-                   Height="157"
-                   TextWrapping="Wrap"
-                   Text="{Binding Text}"
-                   Grid.ColumnSpan="3"
-                   Grid.Row="1"
-                   VerticalAlignment="Top"/>
+                           TextWrapping="Wrap"
+                           Text="{Binding Text}"
+                           Grid.Column="1"
+                           Grid.ColumnSpan="2"
+                           Grid.Row="1" 
+                           Height="auto"
+                           d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition"
+                           Margin="5,10,0,0"/>
 
-                <TextBlock x:Name="textBlock2" 
-                   Margin="0,35,0,0" 
-                   Grid.Column="1" 
-                   Grid.Row="1" 
-                   Grid.ColumnSpan="2"
-                   TextWrapping="Wrap"
-                   Text="{Binding Status.Text}"
-                   d:LayoutOverrides="HorizontalAlignment, TopPosition, BottomPosition"/>
+                <Grid Background="#FFE5E5E5" 
+                      Grid.ColumnSpan="3" 
+                      Grid.Row="3" 
+                      Height="20"
+                      d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" 
+                      Margin="5,15,0,0">
+                    <TextBlock x:Name="textBlock2"
+                               TextWrapping="Wrap"
+                               Text="{Binding Status.Text}"
+                               Margin="10,10,0,0"/>
+                </Grid>
             </Grid>
         </DataTemplate>
 
         <DataTemplate x:Name="CommentToComment">
             <Grid Margin="0,10,0,10">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="7*"/>
-                    <RowDefinition Height="73*"/>
+                    <RowDefinition Height="0*"/>
+                    <RowDefinition Height="28*"/>
+                    <RowDefinition Height="27*"/>
+                    <RowDefinition Height="265*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0*"/>
@@ -68,43 +77,50 @@
                 </Grid.ColumnDefinitions>
 
                 <Image x:Name="image"
-               Height="40"
-               Source="{Binding User.AvatarLarge}"
-               Grid.Column="1"
-               d:LayoutOverrides="LeftPosition, RightPosition"
-               Margin="0,0,0,0" />
+                       Source="{Binding User.AvatarLarge}"
+                       Grid.Column="1"
+                       d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition"
+                       Margin="5,5,5,5"/>
 
                 <TextBlock x:Name="textBlock"
-                   TextWrapping="Wrap"
-                   Text="{Binding User.ScreenName}"
-                   Margin="4,-2,0,10.333"
-                   Grid.Column="2" d:LayoutOverrides="TopPosition, BottomPosition"/>
+                           TextWrapping="Wrap"
+                           Text="{Binding User.ScreenName}"
+                           Grid.Column="2" 
+                           Grid.RowSpan="2"
+                           d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition"
+                           Margin="6,0,0,0"/>
 
                 <TextBlock x:Name="textBlock1"
-                   Margin="0,3.667,10,0"
-                   Height="157"
-                   TextWrapping="Wrap"
-                   Text="{Binding Text}"
-                   Grid.ColumnSpan="3"
-                   Grid.Row="1"
-                   VerticalAlignment="Top"/>
+                           TextWrapping="Wrap"
+                           Text="{Binding Text}"
+                           Grid.Column="1"
+                           Grid.ColumnSpan="2"
+                           Grid.Row="1" 
+                           Height="auto"
+                           d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition"
+                           Margin="5,10,0,0"/>
 
-                <TextBlock x:Name="textBlock2" 
-                   Margin="0,50,0,0" 
-                   Grid.Column="1" 
-                   Grid.Row="1" 
-                   Grid.ColumnSpan="2"
-                   TextWrapping="Wrap"
-                   Text="{Binding ReplyComment.Text}"
-                   d:LayoutOverrides="HorizontalAlignment, TopPosition, BottomPosition"/>
+                <Grid Background="#FFE5E5E5" 
+                      Grid.ColumnSpan="3" 
+                      Grid.Row="3" 
+                      Height="20"
+                      d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" 
+                      Margin="5,15,0,0">
+                    <TextBlock x:Name="textBlock2"
+                               TextWrapping="Wrap"
+                               Text="{Binding ReplyComment.Text}"
+                               Margin="10,10,0,0"/>
+                </Grid>
             </Grid>
         </DataTemplate>
 
         <DataTemplate x:Name="MentionsToMe">
             <Grid Margin="0,10,0,10">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="7*"/>
-                    <RowDefinition Height="73*"/>
+                    <RowDefinition Height="0*"/>
+                    <RowDefinition Height="28*"/>
+                    <RowDefinition Height="27*"/>
+                    <RowDefinition Height="265*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0*"/>
@@ -113,36 +129,40 @@
                 </Grid.ColumnDefinitions>
 
                 <Image x:Name="image"
-                       Height="40"
                        Source="{Binding User.AvatarLarge}"
                        Grid.Column="1"
-                       d:LayoutOverrides="LeftPosition, RightPosition"
-                       Margin="0,0,0,0" />
+                       d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition"
+                       Margin="5,5,5,5"/>
 
                 <TextBlock x:Name="textBlock"
                            TextWrapping="Wrap"
                            Text="{Binding User.ScreenName}"
-                           Margin="4,-2,0,10.333"
                            Grid.Column="2" 
-                           d:LayoutOverrides="TopPosition, BottomPosition"/>
+                           Grid.RowSpan="2"
+                           d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition"
+                           Margin="6,0,0,0"/>
 
                 <TextBlock x:Name="textBlock1"
-                           Margin="0,3.667,10,0"
-                           Height="157"
                            TextWrapping="Wrap"
                            Text="{Binding Text}"
-                           Grid.ColumnSpan="3"
-                           Grid.Row="1"
-                           VerticalAlignment="Top"/>
+                           Grid.Column="1"
+                           Grid.ColumnSpan="2"
+                           Grid.Row="1" 
+                           Height="auto"
+                           d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition"
+                           Margin="5,10,0,0"/>
 
-                <TextBlock x:Name="textBlock2" 
-                   Margin="0,50,0,0" 
-                   Grid.Column="1" 
-                   Grid.Row="1" 
-                   Grid.ColumnSpan="2"
-                   TextWrapping="Wrap"
-                   Text="{Binding RepostWeibo.Text}"
-                   d:LayoutOverrides="HorizontalAlignment, TopPosition, BottomPosition"/>
+                <Grid Background="#FFE5E5E5" 
+                      Grid.ColumnSpan="3" 
+                      Grid.Row="3" 
+                      Height="20"
+                      d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" 
+                      Margin="5,15,0,0">
+                    <TextBlock x:Name="textBlock2"
+                               TextWrapping="Wrap"
+                               Text="{Binding RepostWeibo.Text}"
+                               Margin="10,10,0,0"/>
+                </Grid>
             </Grid>
         </DataTemplate>
 
@@ -154,6 +174,11 @@
 
         <Grid Background="#FFF1F1F1">
         <Pivot>
+            <Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" FontFamily="ms-appx:/Assets/NotoSansCJKscBlackCleaned.otf#Noto Sans CJK SC"/>
+                </DataTemplate>
+            </Pivot.HeaderTemplate>
             <PivotItem Header="评论">
                 <Grid>
                     <ListView x:Name="CommentListView" ItemsSource="{x:Bind commentsource}" ItemTemplateSelector="{StaticResource MyCommentDataTemplateSelector}"/>

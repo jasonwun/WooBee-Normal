@@ -45,8 +45,6 @@ namespace WooBee_Normal
 
             return Task.Run<LoadMoreItemsResult>(async () =>
             {
-                try
-                {
                     await GetMentions();
                     if (_currentid == _sinceid)
                     {
@@ -62,13 +60,6 @@ namespace WooBee_Normal
                     }
                     else
                         _currentid = _sinceid;
-                }
-                catch (Exception ex)
-                {
-                    string abc = ex.ToString();
-                }
-
-
 
                 return new LoadMoreItemsResult() { Count = count };
             }).AsAsyncOperation<LoadMoreItemsResult>();
@@ -76,8 +67,6 @@ namespace WooBee_Normal
 
         private async Task GetMentions()
         {
-            try
-            {
                 string Uri = "https://api.weibo.com/2/statuses/mentions.json?access_token=";
                 Uri += App.weico_access_token;
                 Uri += "&page=";
@@ -95,11 +84,6 @@ namespace WooBee_Normal
                 {
                     page_num++;
                 }
-            }
-            catch(Exception e)
-            {
-                string ax = e.Message;
-            }
             
         }
     }
