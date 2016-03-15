@@ -28,9 +28,13 @@ namespace WooBee_Normal
         public Message()
         {
             this.InitializeComponent();
-            //CommentListview.ItemsSource = commentsource;
-            //MentionsListview.ItemsSource = mentionssource;
         }
 
+        private void replyButton_Click(object sender, RoutedEventArgs e)
+        {
+            Comment item = (Comment)(sender as Button).DataContext;
+            Frame.Navigate(typeof(CommentPage), item);
+            
+        }
     }
 }

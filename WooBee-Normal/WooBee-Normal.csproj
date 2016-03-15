@@ -313,6 +313,7 @@
     <Content Include="Assets\Emoji\97.png" />
     <Content Include="Assets\Emoji\98.png" />
     <Content Include="Assets\Emoji\99.png" />
+    <Content Include="Assets\Icons\Message-Add.png" />
     <Content Include="Assets\Icons\Reload.png" />
     <Content Include="Assets\Icons\SendDats.png" />
     <Content Include="Assets\Icons\Link.png" />

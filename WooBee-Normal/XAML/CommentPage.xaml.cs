@@ -28,7 +28,14 @@ namespace WooBee_Normal
         SolidColorBrush black = new SolidColorBrush(Windows.UI.Colors.Black);
         SolidColorBrush grey = new SolidColorBrush(Windows.UI.Colors.Gray);
         public event RoutedEventHandler LostFocus;
+        private static Comment _comment { get; set; }
         private static Weibo _weibo { get; set; }
+        private static string ReplyWeiboUri = "https://api.weibo.com/2/comments/create.json?";
+        private static string ReplyCommentUri = "https://api.weibo.com/2/comments/reply.json";
+        private static string posturi { get; set; }
+        private static string cid { set; get; }
+        private static string id { set; get; }
+        HttpFormUrlEncodedContent postData;
 
         public CommentPage()
         {
@@ -41,7 +48,29 @@ namespace WooBee_Normal
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            _weibo = e.Parameter as Weibo;
+            try
+            {
+                if (e.Parameter.GetType() == typeof(Comment))
+                {
+                    headerTextBlock.Text = "回复评论";
+                    _comment = e.Parameter as Comment;
+                    posturi = ReplyCommentUri;
+                    cid = _comment.ID;
+                    id = _comment.Status.ID;
+                }
+                else if (e.Parameter.GetType() == typeof(Weibo))
+                {
+                    headerTextBlock.Text = "评论微博";
+                    _weibo = e.Parameter as Weibo;
+                    posturi = ReplyWeiboUri;
+                    id = _weibo.ID;
+                }
+            }
+            catch(Exception er)
+            {
+                string ex = er.Message.ToString();
+            }
+            
         }
 
         private async void SendButton_Tapped(object sender, TappedRoutedEventArgs e)
@@ -64,6 +93,8 @@ namespace WooBee_Normal
                 contentTextBox.LostFocus += LostFocus;
                 await HttpPost(contentTextBox.Text);
                 await Task.Delay(500);
+                _weibo = null;
+                _comment = null;
                 Frame.GoBack();
             }
         }
@@ -77,22 +108,36 @@ namespace WooBee_Normal
             }
         }
 
-        public static async Task HttpPost(string postMsg)
+        public async Task HttpPost(string postMsg)
         {
             try
             {
                 HttpClient httpClient = new HttpClient();
-                string posturi = "https://api.weibo.com/2/comments/create.json?";
                 HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri(posturi));
-                HttpFormUrlEncodedContent postData = new HttpFormUrlEncodedContent(
-                    new List<KeyValuePair<string, string>>
-                    {
+                if(_comment != null)
+                {
+                    postData = new HttpFormUrlEncodedContent(
+                       new List<KeyValuePair<string, string>>
+                       {
                         new KeyValuePair<string, string>("access_token",App.access_token),
                         new KeyValuePair<string, string>("comment", postMsg),
-                        new KeyValuePair<string, string>("id", _weibo.ID.ToString())
-
-                    }
-                );
+                        new KeyValuePair<string, string>("cid", cid),
+                        new KeyValuePair<string, string>("id",id)
+                       }
+                   );
+                }
+                else if(_weibo != null)
+                {
+                    postData = new HttpFormUrlEncodedContent(
+                       new List<KeyValuePair<string, string>>
+                       {
+                        new KeyValuePair<string, string>("access_token",App.access_token),
+                        new KeyValuePair<string, string>("comment", postMsg),
+                        new KeyValuePair<string, string>("id",id)
+                       }
+                   );
+                }
+                
                 request.Content = postData;
                 HttpResponseMessage response = await httpClient.SendRequestAsync(request);
                 string responseString = await response.Content.ReadAsStringAsync();

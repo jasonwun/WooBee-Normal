@@ -22,7 +22,7 @@
 
         <TextBlock x:Name="headerTextBlock" 
                    TextWrapping="NoWrap" 
-                   Text="评论微博" 
+                   Text=" " 
                    VerticalAlignment="Top" 
                    FontFamily="Microsoft YaHei UI Light" 
                    Grid.Column="1" 
