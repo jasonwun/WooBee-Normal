@@ -53,6 +53,8 @@ namespace WooBee_Normal
                         {
                             foreach (Weibo item in homeweibo.Statuses)
                             {
+                                if (item.RepostWeibo!=null &&item.RepostWeibo.Text.Length > 22)
+                                    item.RepostWeibo.Text = item.RepostWeibo.Text.Substring(0, 22);
                                 this.Add(item);
                                 lastItem++;
                             }
