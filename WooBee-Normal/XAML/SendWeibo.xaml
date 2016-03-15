@@ -279,8 +279,8 @@
 
         <Button x:Name="SendButton"
                 HorizontalAlignment="Right" 
-                Margin="0,536,0,9"
-                VerticalAlignment="Stretch"
+                Margin="0,0,0,20"
+                VerticalAlignment="Bottom"
                 Background="#FFF1F1F1" 
                 BorderBrush="Black"
                 Width="45"

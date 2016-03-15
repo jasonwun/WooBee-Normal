@@ -88,12 +88,12 @@ namespace WooBee_Normal
 
         void InputPaneHiding(InputPane sender, InputPaneVisibilityEventArgs args)
         {
-            this.SendButton.Margin = new Thickness(0, 536, 0, 10);
+            this.SendButton.Margin = new Thickness(0, 0, 0, 20);
         }
 
         private void InputPaneShowing(InputPane sender, InputPaneVisibilityEventArgs args)
         {
-            this.SendButton.Margin = new Thickness(0, 536 - args.OccludedRect.Height, 0, 10 + args.OccludedRect.Height);
+            this.SendButton.Margin = new Thickness(0, 0, 0, 20 + args.OccludedRect.Height);
         }
 
         private async void SendButton_Tapped(object sender, TappedRoutedEventArgs e)
