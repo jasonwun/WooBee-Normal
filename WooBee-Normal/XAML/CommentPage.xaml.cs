@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -25,27 +26,16 @@ namespace WooBee_Normal
     /// </summary>
     public sealed partial class CommentPage : Page
     {
-        SolidColorBrush black = new SolidColorBrush(Windows.UI.Colors.Black);
-        SolidColorBrush grey = new SolidColorBrush(Windows.UI.Colors.Gray);
-        public event RoutedEventHandler LostFocus;
-        private static Comment _comment { get; set; }
-        private static Weibo _weibo { get; set; }
-        private static string ReplyWeiboUri = "https://api.weibo.com/2/comments/create.json?";
-        private static string ReplyCommentUri = "https://api.weibo.com/2/comments/reply.json";
-        private static string posturi { get; set; }
-        private static string cid { set; get; }
-        private static string id { set; get; }
-        HttpFormUrlEncodedContent postData;
-
         public CommentPage()
         {
             this.InitializeComponent();
-            InputPane inputPane = InputPane.GetForCurrentView();
             ShowStatusBar();
             inputPane.Showing += this.InputPaneShowing;
             inputPane.Hiding += this.InputPaneHiding;
+            message.Commands.Add(new UICommand("日"));
         }
 
+        #region Override
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             try
@@ -66,17 +56,62 @@ namespace WooBee_Normal
                     id = _weibo.ID;
                 }
             }
-            catch(Exception er)
+            catch (Exception er)
             {
                 string ex = er.Message.ToString();
             }
-            
-        }
 
+        }
+        #endregion
+
+        #region Method
+        public async Task HttpPost(string postMsg)
+        {
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri(posturi));
+                if (_comment != null)
+                {
+                    postData = new HttpFormUrlEncodedContent(
+                       new List<KeyValuePair<string, string>>
+                       {
+                        new KeyValuePair<string, string>("access_token",App.access_token),
+                        new KeyValuePair<string, string>("comment", postMsg),
+                        new KeyValuePair<string, string>("cid", cid),
+                        new KeyValuePair<string, string>("id",id)
+                       }
+                   );
+                }
+                else if (_weibo != null)
+                {
+                    postData = new HttpFormUrlEncodedContent(
+                       new List<KeyValuePair<string, string>>
+                       {
+                        new KeyValuePair<string, string>("access_token",App.access_token),
+                        new KeyValuePair<string, string>("comment", postMsg),
+                        new KeyValuePair<string, string>("id",id)
+                       }
+                   );
+                }
+
+                request.Content = postData;
+                HttpResponseMessage response = await httpClient.SendRequestAsync(request);
+                string responseString = await response.Content.ReadAsStringAsync();
+
+            }
+            catch (Exception ex)
+            {
+                string asc = ex.ToString();
+            }
+        }
+        #endregion
+
+        #region Event
         private async void SendButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
             string abc = contentTextBox.Text;
-            if (abc == "写点啥吧" || abc=="")
+            if (abc == "写点啥吧" || abc == "")
             {
                 var dialog = new Windows.UI.Popups.MessageDialog("不能为空");
                 dialog.Commands.Add(new Windows.UI.Popups.UICommand("OK") { Id = 0 });
@@ -108,45 +143,21 @@ namespace WooBee_Normal
             }
         }
 
-        public async Task HttpPost(string postMsg)
+        private void InputPaneHiding(InputPane sender, InputPaneVisibilityEventArgs args)
         {
-            try
-            {
-                HttpClient httpClient = new HttpClient();
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri(posturi));
-                if(_comment != null)
-                {
-                    postData = new HttpFormUrlEncodedContent(
-                       new List<KeyValuePair<string, string>>
-                       {
-                        new KeyValuePair<string, string>("access_token",App.access_token),
-                        new KeyValuePair<string, string>("comment", postMsg),
-                        new KeyValuePair<string, string>("cid", cid),
-                        new KeyValuePair<string, string>("id",id)
-                       }
-                   );
-                }
-                else if(_weibo != null)
-                {
-                    postData = new HttpFormUrlEncodedContent(
-                       new List<KeyValuePair<string, string>>
-                       {
-                        new KeyValuePair<string, string>("access_token",App.access_token),
-                        new KeyValuePair<string, string>("comment", postMsg),
-                        new KeyValuePair<string, string>("id",id)
-                       }
-                   );
-                }
-                
-                request.Content = postData;
-                HttpResponseMessage response = await httpClient.SendRequestAsync(request);
-                string responseString = await response.Content.ReadAsStringAsync();
+            this.SendButton.Margin = new Thickness(0, 0, 0, 20);
+            this.EmojiButton.Margin = new Thickness(0, 0, 65, 20);
+        }
 
-            }
-            catch (Exception ex)
-            {
-                string asc = ex.ToString();
-            }
+        private void InputPaneShowing(InputPane sender, InputPaneVisibilityEventArgs args)
+        {
+            this.SendButton.Margin = new Thickness(0, 0, 0, 20 + args.OccludedRect.Height);
+            this.EmojiButton.Margin = new Thickness(0, 0, 65, 20 + args.OccludedRect.Height);
+        }
+
+        private async void EmojiButton_Click(object sender, RoutedEventArgs e)
+        {
+            await message.ShowAsync();
         }
 
         private void contentTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -159,14 +170,31 @@ namespace WooBee_Normal
             }
         }
 
-        void InputPaneHiding(InputPane sender, InputPaneVisibilityEventArgs args)
+        private void contentTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            this.SendButton.Margin = new Thickness(0, 536, 0, 10);
-        }
+            if (contentTextBox.Text == "")
+            {
+                contentTextBox.Foreground = grey;
+                contentTextBox.Text = "写点啥吧";
+            }
 
-        private void InputPaneShowing(InputPane sender, InputPaneVisibilityEventArgs args)
-        {
-            this.SendButton.Margin = new Thickness(0, 536 - args.OccludedRect.Height, 0, 10 + args.OccludedRect.Height);
         }
+        #endregion
+
+        #region Filed
+        SolidColorBrush black = new SolidColorBrush(Windows.UI.Colors.Black);
+        SolidColorBrush grey = new SolidColorBrush(Windows.UI.Colors.Gray);
+        public event RoutedEventHandler LostFocus;
+        private static Comment _comment { get; set; }
+        private static Weibo _weibo { get; set; }
+        private static string ReplyWeiboUri = "https://api.weibo.com/2/comments/create.json?";
+        private static string ReplyCommentUri = "https://api.weibo.com/2/comments/reply.json";
+        private static string posturi { get; set; }
+        private static string cid { set; get; }
+        private static string id { set; get; }
+        HttpFormUrlEncodedContent postData;
+        MessageDialog message = new MessageDialog("该功能尚未开放");
+        InputPane inputPane = InputPane.GetForCurrentView();
+        #endregion
     }
 }

@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -29,15 +30,17 @@ namespace WooBee_Normal
         SolidColorBrush grey = new SolidColorBrush(Windows.UI.Colors.Gray);
         public event RoutedEventHandler LostFocus;
         private static Weibo _weibo { get; set; }
+        MessageDialog message = new MessageDialog("该功能尚未开放");
+        InputPane inputPane = InputPane.GetForCurrentView();
 
 
         public RepostPage()
         {
             this.InitializeComponent();
-            InputPane inputPane = InputPane.GetForCurrentView();
             ShowStatusBar();
             inputPane.Showing += this.InputPaneShowing;
             inputPane.Hiding += this.InputPaneHiding;
+            message.Commands.Add(new UICommand("日"));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -56,9 +59,8 @@ namespace WooBee_Normal
                 dialog.CancelCommandIndex = 1;
 
                 var result = await dialog.ShowAsync();
-                contentTextBox.Text = "写点啥吧";
                 contentTextBox.Foreground = grey;
-
+                contentTextBox.Text = "写点啥吧";
             }
             else
             {
@@ -117,12 +119,29 @@ namespace WooBee_Normal
 
         void InputPaneHiding(InputPane sender, InputPaneVisibilityEventArgs args)
         {
-            this.SendButton.Margin = new Thickness(0, 536, 0, 10);
+            this.SendButton.Margin = new Thickness(0, 0, 0, 20);
+            this.EmojiButton.Margin = new Thickness(0, 0, 65, 20);
         }
 
         private void InputPaneShowing(InputPane sender, InputPaneVisibilityEventArgs args)
         {
-            this.SendButton.Margin = new Thickness(0, 536 - args.OccludedRect.Height, 0, 10 + args.OccludedRect.Height);
+            this.SendButton.Margin = new Thickness(0, 0, 0, 20 + args.OccludedRect.Height);
+            this.EmojiButton.Margin = new Thickness(0, 0, 65, 20 + args.OccludedRect.Height);
+        }
+
+        private async void EmojiButton_Click(object sender, RoutedEventArgs e)
+        {
+            await message.ShowAsync();
+        }
+
+            private void contentTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (contentTextBox.Text == "")
+            {
+                contentTextBox.Foreground = grey;
+                contentTextBox.Text = "写点啥吧";
+            }
+
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -26,30 +27,101 @@ namespace WooBee_Normal
     /// </summary>
     public sealed partial class SendWeibo : Page
     {
-        
-        SolidColorBrush black = new SolidColorBrush(Windows.UI.Colors.Black);
-        SolidColorBrush grey = new SolidColorBrush(Windows.UI.Colors.Gray);
-        public event RoutedEventHandler LostFocus;
+
 
         public SendWeibo()
         {
-            InputPane inputPane = InputPane.GetForCurrentView();
-            
             this.InitializeComponent();
             ShowStatusBar();
             inputPane.Showing += this.InputPaneShowing;
             inputPane.Hiding += this.InputPaneHiding;
+            message.Commands.Add(new UICommand("日"));
         }
 
-        private async void ShowStatusBar()
+        #region Field
+        SolidColorBrush black = new SolidColorBrush(Windows.UI.Colors.Black);
+        SolidColorBrush grey = new SolidColorBrush(Windows.UI.Colors.Gray);
+        public event RoutedEventHandler LostFocus;
+        MessageDialog message = new MessageDialog("该功能尚未开放");
+        InputPane inputPane = InputPane.GetForCurrentView();
+        #endregion
+
+        #region Event
+        private void contentTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+
+            if (contentTextBox.Text == "写点啥吧")
             {
-                var statusbar = StatusBar.GetForCurrentView();
-                await statusbar.HideAsync();
+                contentTextBox.Text = "";
+                contentTextBox.Foreground = black;
             }
         }
 
+        void InputPaneHiding(InputPane sender, InputPaneVisibilityEventArgs args)
+        {
+            this.SendButton.Margin = new Thickness(0, 0, 0, 20);
+            this.EmojiButton.Margin = new Thickness(0, 0, 65, 20);
+            this.UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20);
+        }
+
+        private void InputPaneShowing(InputPane sender, InputPaneVisibilityEventArgs args)
+        {
+            this.SendButton.Margin = new Thickness(0, 0, 0, 20 + args.OccludedRect.Height);
+            this.EmojiButton.Margin = new Thickness(0, 0, 65, 20 + args.OccludedRect.Height);
+            this.UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20 + args.OccludedRect.Height);
+        }
+
+        private async void SendButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            string abc = contentTextBox.Text;
+            if (abc == "写点啥吧" || abc == "")
+            {
+                var dialog = new Windows.UI.Popups.MessageDialog("不能为空");
+                dialog.Commands.Add(new Windows.UI.Popups.UICommand("OK") { Id = 0 });
+                var result = await dialog.ShowAsync();
+                contentTextBox.Foreground = grey;
+                contentTextBox.Text = "写点啥吧";
+
+
+            }
+            else if (abc.Length > 140)
+            {
+                var dialog = new Windows.UI.Popups.MessageDialog("超过了140个字啦！！！！！");
+                dialog.Commands.Add(new Windows.UI.Popups.UICommand("OK") { Id = 0 });
+                var result = await dialog.ShowAsync();
+            }
+            else
+            {
+                contentTextBox.LostFocus += LostFocus;
+                await HttpPost(contentTextBox.Text);
+                await Task.Delay(500);
+                Frame.GoBack();
+            }
+
+        }
+
+        private async void EmojiButton_Click(object sender, RoutedEventArgs e)
+        {
+            await message.ShowAsync();
+        }
+
+        private async void UploadPhotoButton_Click(object sender, RoutedEventArgs e)
+        {
+            await message.ShowAsync();
+        }
+
+        private void contentTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (contentTextBox.Text == "")
+            {
+                contentTextBox.Foreground = grey;
+                contentTextBox.Text = "写点啥吧";
+            }
+
+        }
+        #endregion
+
+        #region Method
         public static async Task HttpPost(string postMsg)
         {
             try
@@ -76,53 +148,19 @@ namespace WooBee_Normal
             }
         }
 
-        private void contentTextBox_GotFocus(object sender, RoutedEventArgs e)
+        private async void ShowStatusBar()
         {
-            
-            if (contentTextBox.Text == "写点啥吧")
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
             {
-                contentTextBox.Text = "";
-                contentTextBox.Foreground = black;
+                var statusbar = StatusBar.GetForCurrentView();
+                await statusbar.HideAsync();
             }
         }
+        #endregion
 
-        void InputPaneHiding(InputPane sender, InputPaneVisibilityEventArgs args)
-        {
-            this.SendButton.Margin = new Thickness(0, 0, 0, 20);
-        }
 
-        private void InputPaneShowing(InputPane sender, InputPaneVisibilityEventArgs args)
-        {
-            this.SendButton.Margin = new Thickness(0, 0, 0, 20 + args.OccludedRect.Height);
-        }
 
-        private async void SendButton_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            string abc = contentTextBox.Text;
-            if (abc == "写点啥吧" || abc == "")
-            {
-                var dialog = new Windows.UI.Popups.MessageDialog("不能为空");
-                dialog.Commands.Add(new Windows.UI.Popups.UICommand("OK") { Id = 0 });
-                var result = await dialog.ShowAsync();
-                contentTextBox.Text = "写点啥吧";
-                contentTextBox.Foreground = grey;
 
-            }
-            else if(abc.Length > 140)
-            {
-                var dialog = new Windows.UI.Popups.MessageDialog("超过了140个字啦！！！！！");
-                dialog.Commands.Add(new Windows.UI.Popups.UICommand("OK") { Id = 0 });
-                var result = await dialog.ShowAsync();
-            }
-            else
-            {
-                contentTextBox.LostFocus += LostFocus;
-                await HttpPost(contentTextBox.Text);
-                await Task.Delay(500);
-                Frame.GoBack();
-            }
-                
-        }
 
     }
 }
