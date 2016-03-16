@@ -286,6 +286,66 @@
             </Grid>
         </DataTemplate>
 
+        <DataTemplate x:Name="CommentToWeibo">
+            <Grid d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
+                  Margin="0,10,0,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0*"/>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="73*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0*"/>
+                    <ColumnDefinition Width="19*"/>
+                    <ColumnDefinition Width="161*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image x:Name="image"
+                       Source="{Binding User.AvatarLarge}"
+                       Grid.Column="1"
+                       d:LayoutOverrides="VerticalAlignment, LeftMargin, RightMargin, TopMargin, BottomMargin"
+                       Width="35"
+                       Height="35"
+                       Grid.RowSpan="2"/>
+
+                <TextBlock x:Name="textBlock"
+                           TextWrapping="Wrap"
+                           Text="{Binding User.ScreenName}"
+                           Grid.Column="2" 
+                           Grid.RowSpan="2"
+                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition"
+                           Margin="8,6,0,0"/>
+
+                <Button x:Name="replyButton"
+                        Grid.RowSpan="2" 
+                        HorizontalAlignment="Stretch"
+                        Background="Transparent"
+                        VerticalAlignment="Stretch"
+                        Grid.Column="2" 
+                        d:LayoutOverrides="TopMargin, BottomMargin, LeftPosition, RightPosition"
+                        Margin="300,5,0,21" 
+                        Click="replyButton_Click">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="/Assets/Icons/Message-Add.png"
+                                   Width="20"
+                                   Height="20"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <TextBlock x:Name="textBlock1"
+                           TextWrapping="Wrap"
+                           Text="{Binding Text}"
+                           Grid.Column="1"
+                           Grid.ColumnSpan="2"
+                           Grid.Row="2" 
+                           Height="auto"
+                           Margin="0,3,0,0"
+                           d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition"/>
+            </Grid>
+        </DataTemplate>
+
         <local:WeiboDetailDataTemplateSelector x:Key="MyWeiboDetailDataTemplateSelector"
                                                NormalTemplate="{StaticResource NormalTemplate}"
                                             TextRepostTemplate="{StaticResource TextRepostTemplate}"
@@ -301,97 +361,174 @@
             <AppBarButton x:Name="CommentButton" Foreground="White" Icon="Message" Click="CommentButton_Click"/>
         </CommandBar>
     </Page.BottomAppBar>
-    
-    <ScrollViewer >
-        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="26*"/>
-                <RowDefinition Height="107*"/>
-                <RowDefinition Height="311*"/>
-                <RowDefinition Height="196*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0*"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid Height="70"
-              Background="Black"
-              Grid.Column="1"
-              VerticalAlignment="Top"
-              Grid.Row="1"
-              HorizontalAlignment="Left"
-              Width="auto">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="9*"/>
-                    <RowDefinition Height="61*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0*"/>
-                    <ColumnDefinition Width="19*"/>
-                    <ColumnDefinition Width="89*"/>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="0*"/>
-                </Grid.ColumnDefinitions>
 
-                <Image x:Name="WeiboUserAvatar" 
-                   Margin="14,14,13,17" 
-                   Grid.Column="1"
-                   Source="Assets/StoreLogo.scale-100.jpg" 
-                   Grid.Row="1" 
-                   d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
-                   Width="30"
-                   Height="30"/>
-                <TextBlock x:Name="ScreenNameTextBlock"
-                       Margin="2,11,9.667,9"
-                       TextWrapping="NoWrap"
-                       Text="正在做出承诺的青木和介" 
-                       Grid.Column="2"
-                       Width="auto" 
-                       Foreground="White" 
-                       FontFamily="Microsoft YaHei UI" 
-                       FontWeight="Bold" 
-                       FontSize="24" 
-                       d:LayoutOverrides="LeftMargin, RightMargin, LeftPosition, RightPosition, TopPosition, BottomPosition" 
-                       Grid.Row="1"
-                       Height="auto"/>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-            </Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0*"/>
+        </Grid.RowDefinitions>
+        <Pivot d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition"
+               VerticalContentAlignment="Top">
+            <PivotItem Margin="0,-50,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="26*"/>
+                        <RowDefinition Height="107*"/>
+                        <RowDefinition Height="465*"/>
+                        <RowDefinition Height="44*"/>
+                    </Grid.RowDefinitions>
 
+                    <Grid Height="70"
+                          Background="Black"
+                          VerticalAlignment="Top"
+                          Grid.Row="1"
+                          HorizontalAlignment="Left"
+                          Width="auto">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="9*"/>
+                            <RowDefinition Height="61*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0*"/>
+                            <ColumnDefinition Width="19*"/>
+                            <ColumnDefinition Width="89*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="0*"/>
+                        </Grid.ColumnDefinitions>
 
-
-            <ItemsControl x:Name="myItems"
-                      Grid.ColumnSpan="2"
-                      HorizontalAlignment="Left" 
-                      Height="auto" 
-                      VerticalAlignment="Top" 
-                      Width="360" 
-                      Grid.Row="2"
-                      ItemTemplateSelector="{StaticResource MyWeiboDetailDataTemplateSelector}"
-                      ItemsSource="{Binding _weibo}"/>
-
-            <Pivot Grid.ColumnSpan="2" Margin="10,9,10,10" Grid.Row="3" >
-                <PivotItem >
-                    <PivotItem.Header>
-                        <TextBlock Text="评论" FontFamily="Microsoft YaHei" FontSize="21.333" FontWeight="Bold"/>
-                    </PivotItem.Header>
-                    <Grid>
-                        <ListView x:Name="CommentListView" Loaded="CommentListView_Loaded" ItemTemplate="{StaticResource CommentAndRepostTemplate}"/>
+                        <Image x:Name="WeiboUserAvatar"
+                               Margin="14,14,13,17"
+                               Grid.Column="1"
+                               Source="Assets/StoreLogo.scale-100.jpg"
+                               Grid.Row="1" 
+                               d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
+                               Width="30"
+                               Height="30"/>
+                        <TextBlock x:Name="ScreenNameTextBlock"
+                                   Margin="2,11,9.667,9"
+                                   TextWrapping="NoWrap"
+                                   Text="正在做出承诺的青木和介" 
+                                   Grid.Column="2"
+                                   Width="auto" 
+                                   Foreground="White" 
+                                   FontFamily="Microsoft YaHei UI" 
+                                   FontWeight="Bold"
+                                   FontSize="24" 
+                                   d:LayoutOverrides="LeftMargin, RightMargin, LeftPosition, RightPosition, TopPosition, BottomPosition" 
+                                   Grid.Row="1"
+                                   Height="auto"/>
                     </Grid>
-                </PivotItem>
-                
-                
-                <PivotItem>
-                    <PivotItem.Header>
-                        <TextBlock Text="转发" FontFamily="Microsoft YaHei" FontSize="21.333" FontWeight="Bold"/>
-                    </PivotItem.Header>
-                    <Grid>
-                        <TextBlock Text="鉴于渣浪的最新政策，某个时间点以后申请的新应用中所有涉及获取微博的转发以及@ 的数据的功能均只限定为SDK3.0特有功能，然而windows并没有sdk3.0"
-                                   TextWrapping="Wrap" FontFamily="Microsoft YaHei" FontSize="16" FontWeight="Bold" Foreground="#FFC8C8C8"
-                                   />
+
+                    <ItemsControl x:Name="myItems" 
+                                  Grid.Row="2"
+                                  ItemTemplateSelector="{StaticResource MyWeiboDetailDataTemplateSelector}"/>
+                </Grid>
+            </PivotItem>
+
+            <PivotItem x:Name="CommentItem"
+                       Margin="0,-50,0,0" 
+                       Loaded="CommentItem_Loaded">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="26*"/>
+                        <RowDefinition Height="107*"/>
+                        <RowDefinition Height="509*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Height="70"
+                          Background="Black"
+                          VerticalAlignment="Top"
+                          Grid.Row="1"
+                          HorizontalAlignment="Left"
+                          Width="auto">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="9*"/>
+                            <RowDefinition Height="61*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0*"/>
+                            <ColumnDefinition Width="19*"/>
+                            <ColumnDefinition Width="89*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="0*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock x:Name="CommentTextBlock"
+                                   Margin="12,11,12,9"
+                                   TextWrapping="NoWrap"
+                                   Text="评论"
+                                   Grid.Column="2"
+                                   Width="auto" 
+                                   Foreground="White" 
+                                   FontFamily="Microsoft YaHei UI" 
+                                   FontWeight="Bold" 
+                                   FontSize="24" 
+                                   d:LayoutOverrides="LeftMargin, RightMargin, LeftPosition, RightPosition, TopPosition, BottomPosition" 
+                                   Grid.Row="1"
+                                   Height="auto"/>
                     </Grid>
-                </PivotItem>
-            </Pivot>
-        </Grid>
-    </ScrollViewer>
+
+                    <ListView x:Name="CommentListView"
+                              Grid.Row="2"
+                              Height="auto"
+                              ItemTemplate="{StaticResource CommentToWeibo}"/>
+
+                </Grid>
+            </PivotItem>
+
+            <PivotItem x:Name="MentionsItem"
+                       Margin="0,-50,0,0" 
+                       Loaded="MentionsItem_Loaded">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="26*"/>
+                        <RowDefinition Height="107*"/>
+                        <RowDefinition Height="509*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Height="70"
+                          Background="Black"
+                          VerticalAlignment="Top"
+                          Grid.Row="1"
+                          HorizontalAlignment="Left"
+                          Width="auto">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="9*"/>
+                            <RowDefinition Height="61*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0*"/>
+                            <ColumnDefinition Width="19*"/>
+                            <ColumnDefinition Width="89*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="0*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock x:Name="MentionsTextBlock"
+                                   Margin="12,11,12,9"
+                                   TextWrapping="NoWrap"
+                                   Text="转发"
+                                   Grid.Column="2"
+                                   Width="auto" 
+                                   Foreground="White" 
+                                   FontFamily="Microsoft YaHei UI" 
+                                   FontWeight="Bold" 
+                                   FontSize="24" 
+                                   d:LayoutOverrides="LeftMargin, RightMargin, LeftPosition, RightPosition, TopPosition, BottomPosition" 
+                                   Grid.Row="1"
+                                   Height="auto"/>
+                    </Grid>
+
+                    <ListView x:Name="MentionListView"
+                              Grid.Row="2"
+                              Height="auto"
+                              ItemTemplate="{StaticResource CommentToWeibo}"/>
+
+                </Grid>
+            </PivotItem>
+
+
+        </Pivot>
+
+    </Grid>
 
 </Page>

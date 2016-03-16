@@ -35,22 +35,6 @@ namespace WooBee_Normal
         private static int sinceid = 0;
 
 
-        //private ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
-        
-        //ScrollViewer _scrollViewer;
-        //Compositor _compositor;
-        //CompositionPropertySet _scrollerViewerManipulation;
-        //ExpressionAnimation _rotationAnimation, _opacityAnimation, _offsetAnimation;
-        //ScalarKeyFrameAnimation _resetAnimation, _loadingAnimation;
-
-        //Visual _borderVisual;
-        //Visual _refreshIconVisual;
-        //float _refreshIconOffsetY;
-        //const float REFRESH_ICON_MAX_OFFSET_Y = 36.0f;
-
-        //bool _refresh;
-        //DateTime _pulledDownTime, _restoredTime;
-
         public TimeLine()
         {
             this.InitializeComponent();
