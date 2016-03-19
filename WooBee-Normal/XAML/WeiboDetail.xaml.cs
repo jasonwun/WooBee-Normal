@@ -47,6 +47,8 @@ namespace WooBee_Normal
             var bitmap = new BitmapImage(uri);
             WeiboUserAvatar.Source = bitmap;
             _weiboSource.Add(_weibo);
+            CommentCount.Text = _weibo.CommentsCount;
+            RepostCount.Text = _weibo.RepostsCount;
             myItems.ItemsSource = _weiboSource;
         }
 
@@ -62,7 +64,14 @@ namespace WooBee_Normal
             Frame.Navigate(typeof(CommentPage), _weiboParameter);
         }
 
-        private async void CommentItem_Loaded(object sender, RoutedEventArgs e)
+        private void replyButton_Click(object sender, RoutedEventArgs e)
+        {
+            Comment item = (Comment)(sender as Button).DataContext;
+            Frame.Navigate(typeof(CommentPage), item);
+        }
+
+
+        private async void CommentItemRootGrid_Loaded(object sender, RoutedEventArgs e)
         {
             string Uri = "https://api.weibo.com/2/comments/show.json?access_token=";
             Uri += App.access_token;
@@ -76,7 +85,7 @@ namespace WooBee_Normal
             CommentListView.ItemsSource = commentuti.Comment;
         }
 
-        private async void MentionsItem_Loaded(object sender, RoutedEventArgs e)
+        private async void MentionsItemRootGrid_Loaded(object sender, RoutedEventArgs e)
         {
             string Uri = "https://api.weibo.com/2/statuses/repost_timeline.json?access_token=";
             Uri += App.weico_access_token;
@@ -88,22 +97,6 @@ namespace WooBee_Normal
             string strResponse = response.Content.ToString();
             repostUti = JsonConvert.DeserializeObject<RepostUti>(strResponse);
             MentionListView.ItemsSource = repostUti.Repost;
-            //string Uri = "https://api.weibo.com/2/comments/show.json?access_token=";
-            //Uri += App.access_token;
-            //Uri += "&id=";
-            //Uri += _weibo.ID;
-            //HttpClient httpclient = new HttpClient();
-            //HttpResponseMessage response = new HttpResponseMessage();
-            //response = await httpclient.GetAsync(new Uri(Uri, UriKind.Absolute));
-            //string strResponse = response.Content.ToString();
-            //commentuti = JsonConvert.DeserializeObject<CommentUti>(strResponse);
-            //CommentsListView.ItemsSource = commentuti.Comment;
-        }
-
-        private void replyButton_Click(object sender, RoutedEventArgs e)
-        {
-            Comment item = (Comment)(sender as Button).DataContext;
-            Frame.Navigate(typeof(CommentPage), item);
         }
     }
 }
