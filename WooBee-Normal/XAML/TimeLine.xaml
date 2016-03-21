@@ -59,6 +59,37 @@
                                Foreground="White"/>
                 </Grid>
 
+                <StackPanel Margin="0,3,10,0" 
+                            Grid.Column="2" 
+                            Height="auto" 
+                            Grid.Row="1" 
+                            VerticalAlignment="Top" 
+                            Width="auto"
+                            Orientation="Horizontal" 
+                            HorizontalAlignment="Right">
+                    <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
+                                Width="15"
+                                Height="15"
+                                Margin="0,5,0,0"/>
+                    <TextBlock Text="{Binding CommentsCount}" 
+                               FontWeight="Bold" 
+                               Margin="3,0,3,0"/>
+                    <BitmapIcon UriSource="/Assets/Icons/retweet-black.png"
+                                Width="15"
+                                Height="15"
+                                Margin="0,2,0,0"/>
+                    <TextBlock Text="{Binding RepostsCount}" 
+                               FontWeight="Bold" 
+                               Margin="3,0,3,0"/>
+                    <BitmapIcon UriSource="/Assets/Icons/like.png"
+                                Width="15"
+                                Height="15"/>
+                    <TextBlock Text="{Binding AttitudesCount}" 
+                               FontWeight="Bold" 
+                               Margin="3,0,3,0"/>
+
+                </StackPanel>
+
 
                 <local:MyRichTextBlock x:Name="WeiboTextTextblock"
                            Margin="20,50,0,0"
@@ -116,7 +147,38 @@
                                FontWeight="Bold"
                                Foreground="White"/>
                 </Grid>
-                
+
+                <StackPanel Margin="0,3,10,0" 
+                            Grid.Column="2" 
+                            Height="auto" 
+                            Grid.Row="1" 
+                            VerticalAlignment="Top" 
+                            Width="auto"
+                            Orientation="Horizontal" 
+                            HorizontalAlignment="Right">
+                    <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
+                                Width="15"
+                                Height="15"
+                                Margin="0,5,0,0"/>
+                    <TextBlock Text="{Binding CommentsCount}" 
+                               FontWeight="Bold" 
+                               Margin="3,0,3,0"/>
+                    <BitmapIcon UriSource="/Assets/Icons/retweet-black.png"
+                                Width="15"
+                                Height="15"
+                                Margin="0,2,0,0"/>
+                    <TextBlock Text="{Binding RepostsCount}" 
+                               FontWeight="Bold" 
+                               Margin="3,0,3,0"/>
+                    <BitmapIcon UriSource="/Assets/Icons/like.png"
+                                Width="15"
+                                Height="15"/>
+                    <TextBlock Text="{Binding AttitudesCount}" 
+                               FontWeight="Bold" 
+                               Margin="3,0,3,0"/>
+
+                </StackPanel>
+
                 <local:MyRichTextBlock x:Name="textBlock1"
                            Margin="20,50,0,0"
                            Text="{Binding Text}"
@@ -192,6 +254,38 @@
                            FontWeight="Bold"
                        Foreground="White"/>
                 </Grid>
+
+
+                <StackPanel Margin="0,3,10,0" 
+                            Grid.Column="2" 
+                            Height="auto" 
+                            Grid.Row="1" 
+                            VerticalAlignment="Top" 
+                            Width="auto"
+                            Orientation="Horizontal" 
+                            HorizontalAlignment="Right">
+                    <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
+                                Width="15"
+                                Height="15"
+                                Margin="0,5,0,0"/>
+                    <TextBlock Text="{Binding CommentsCount}" 
+                               FontWeight="Bold" 
+                               Margin="3,0,3,0"/>
+                    <BitmapIcon UriSource="/Assets/Icons/retweet-black.png"
+                                Width="15"
+                                Height="15"
+                                Margin="0,2,0,0"/>
+                    <TextBlock Text="{Binding RepostsCount}" 
+                               FontWeight="Bold" 
+                               Margin="3,0,3,0"/>
+                    <BitmapIcon UriSource="/Assets/Icons/like.png"
+                                Width="15"
+                                Height="15"/>
+                    <TextBlock Text="{Binding AttitudesCount}" 
+                               FontWeight="Bold" 
+                               Margin="3,0,3,0"/>
+
+                </StackPanel>
                 <local:MyRichTextBlock x:Name="textBlock1"
                            Margin="20,50,8,0"
                            Text="{Binding Text}"
@@ -256,7 +350,37 @@
                                FontWeight="Bold"
                                Foreground="White"/>
                 </Grid>
-                
+
+                <StackPanel Margin="0,3,10,0" 
+                            Grid.Column="2" 
+                            Height="auto" 
+                            Grid.Row="1" 
+                            VerticalAlignment="Top" 
+                            Width="auto"
+                            Orientation="Horizontal" 
+                            HorizontalAlignment="Right">
+                    <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
+                                Width="15"
+                                Height="15"
+                                Margin="0,5,0,0"/>
+                    <TextBlock Text="{Binding CommentsCount}" 
+                               FontWeight="Bold" 
+                               Margin="3,0,3,0"/>
+                    <BitmapIcon UriSource="/Assets/Icons/retweet-black.png"
+                                Width="15"
+                                Height="15"
+                                Margin="0,2,0,0"/>
+                    <TextBlock Text="{Binding RepostsCount}" 
+                               FontWeight="Bold" 
+                               Margin="3,0,3,0"/>
+                    <BitmapIcon UriSource="/Assets/Icons/like.png"
+                                Width="15"
+                                Height="15"/>
+                    <TextBlock Text="{Binding AttitudesCount}" 
+                               FontWeight="Bold" 
+                               Margin="3,0,3,0"/>
+
+                </StackPanel>
                 <local:MyRichTextBlock  x:Name="textBlock1"
                                         Margin="20,50,0,0"
                                         Text="{Binding Text}"
@@ -342,6 +466,37 @@
                                FontWeight="Bold"
                                Foreground="White"/>
                 </Grid>
+
+                <StackPanel Margin="0,3,10,0" 
+                            Grid.Column="2" 
+                            Height="auto" 
+                            Grid.Row="1" 
+                            VerticalAlignment="Top" 
+                            Width="auto"
+                            Orientation="Horizontal" 
+                            HorizontalAlignment="Right">
+                    <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
+                                Width="15"
+                                Height="15"
+                                Margin="0,5,0,0"/>
+                    <TextBlock Text="{Binding CommentsCount}" 
+                               FontWeight="Bold" 
+                               Margin="3,0,3,0"/>
+                    <BitmapIcon UriSource="/Assets/Icons/retweet-black.png"
+                                Width="15"
+                                Height="15"
+                                Margin="0,2,0,0"/>
+                    <TextBlock Text="{Binding RepostsCount}" 
+                               FontWeight="Bold" 
+                               Margin="3,0,3,0"/>
+                    <BitmapIcon UriSource="/Assets/Icons/like.png"
+                                Width="15"
+                                Height="15"/>
+                    <TextBlock Text="{Binding AttitudesCount}" 
+                               FontWeight="Bold" 
+                               Margin="3,0,3,0"/>
+
+                </StackPanel>
 
                 <local:MyRichTextBlock x:Name="textBlock1"
                            Margin="20,50,0,0"
@@ -431,6 +586,37 @@
                                FontWeight="Bold"
                                Foreground="White"/>
                 </Grid>
+
+                <StackPanel Margin="0,3,10,0" 
+                            Grid.Column="2" 
+                            Height="auto" 
+                            Grid.Row="1" 
+                            VerticalAlignment="Top" 
+                            Width="auto"
+                            Orientation="Horizontal" 
+                            HorizontalAlignment="Right">
+                    <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
+                                Width="15"
+                                Height="15"
+                                Margin="0,5,0,0"/>
+                    <TextBlock Text="{Binding CommentsCount}" 
+                               FontWeight="Bold" 
+                               Margin="3,0,3,0"/>
+                    <BitmapIcon UriSource="/Assets/Icons/retweet-black.png"
+                                Width="15"
+                                Height="15"
+                                Margin="0,2,0,0"/>
+                    <TextBlock Text="{Binding RepostsCount}" 
+                               FontWeight="Bold" 
+                               Margin="3,0,3,0"/>
+                    <BitmapIcon UriSource="/Assets/Icons/like.png"
+                                Width="15"
+                                Height="15"/>
+                    <TextBlock Text="{Binding AttitudesCount}" 
+                               FontWeight="Bold" 
+                               Margin="3,0,3,0"/>
+
+                </StackPanel>
 
                 <local:MyRichTextBlock x:Name="textBlock1"
                            Margin="20,50,0,0"

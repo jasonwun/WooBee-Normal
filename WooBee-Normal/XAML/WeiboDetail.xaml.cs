@@ -49,6 +49,7 @@ namespace WooBee_Normal
             _weiboSource.Add(_weibo);
             CommentCount.Text = _weibo.CommentsCount;
             RepostCount.Text = _weibo.RepostsCount;
+            LikesCount.Text = _weibo.AttitudesCount;
             myItems.ItemsSource = _weiboSource;
         }
 

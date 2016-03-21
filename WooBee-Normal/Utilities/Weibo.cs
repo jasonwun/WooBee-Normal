@@ -54,6 +54,9 @@ namespace WooBee_Normal
         [System.Runtime.Serialization.DataMember(Name = "comments_count")]
         public string CommentsCount { set; get; }
 
+        [System.Runtime.Serialization.DataMember(Name = "attitudes_count")]
+        public string AttitudesCount { set; get; }
+
         [System.Runtime.Serialization.DataMember(Name = "user")]
         public User User { set; get; }
 
