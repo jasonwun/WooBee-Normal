@@ -238,21 +238,21 @@
                        Margin="4,3,0,0"/>
                 
                 <Grid Background="Black"
-                      Height="35" 
-              Width="auto"
-              Grid.Column="2"
-              Grid.Row="1"
-              Margin="20,3,0,0" 
-              VerticalAlignment="Top" 
-              HorizontalAlignment="Left">
+                      Height="35"
+                      Width="auto"
+                      Grid.Column="2"
+                      Grid.Row="1"
+                      Margin="20,3,0,0" 
+                      VerticalAlignment="Top" 
+                      HorizontalAlignment="Left">
                     <TextBlock x:Name="textBlock7"
-                           Margin="10,8,20,0"
-                           TextWrapping="Wrap"
-                           Text="{Binding User.ScreenName}"
-                           d:LayoutOverrides="TopPosition, BottomPosition"
-                           FontFamily="Microsoft YaHei" 
-                           FontWeight="Bold"
-                       Foreground="White"/>
+                               Margin="10,8,20,0"
+                               TextWrapping="Wrap"
+                               Text="{Binding User.ScreenName}"
+                               d:LayoutOverrides="TopPosition, BottomPosition"
+                               FontFamily="Microsoft YaHei" 
+                               FontWeight="Bold"
+                               Foreground="White"/>
                 </Grid>
 
 
@@ -286,6 +286,7 @@
                                Margin="3,0,3,0"/>
 
                 </StackPanel>
+                
                 <local:MyRichTextBlock x:Name="textBlock1"
                            Margin="20,50,8,0"
                            Text="{Binding Text}"
@@ -303,7 +304,8 @@
                        MinWidth="100"
                        VerticalAlignment="Top" 
                        Stretch="Uniform"
-                       HorizontalAlignment="Stretch"/>
+                       HorizontalAlignment="Stretch" 
+                       Tapped="image1_Tapped"/>
             </Grid>
         </DataTemplate>
 
@@ -400,7 +402,8 @@
                           HorizontalAlignment="Stretch"
                           SelectionMode="None" 
                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition"
-                          Style="{StaticResource ImageGridViewStyle}">
+                          Style="{StaticResource ImageGridViewStyle}" 
+                          Tapped="gridView_Tapped">
                     <GridView.ItemContainerStyle>
                         <Style TargetType="FrameworkElement">
                             <Setter Property="Margin" Value="0 0 1 1"/>
@@ -412,7 +415,6 @@
                                    Width="100"
                                    Height="100" 
                                    Stretch="UniformToFill" 
-                                   Tapped="Image_Tapped"
                                    Margin="0,0,0,0"/>
                         </DataTemplate>
                     </GridView.ItemTemplate>
@@ -537,7 +539,8 @@
                        HorizontalAlignment="Stretch" 
                        d:LayoutOverrides="TopMargin, BottomMargin" 
                        VerticalAlignment="Top"
-                       Margin="20,15,0,0"/>
+                       Margin="20,15,0,0"
+                       Tapped="image1_Tapped"/>
             </Grid>
         </DataTemplate>
 
@@ -657,7 +660,7 @@
                           HorizontalAlignment="Stretch"
                           SelectionMode="None" 
                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition"
-                          Style="{StaticResource ImageGridViewStyle}">
+                          Style="{StaticResource ImageGridViewStyle}" Tapped="gridView_Tapped">
                     <GridView.ItemContainerStyle>
                         <Style TargetType="FrameworkElement">
                             <Setter Property="Margin" Value="0 0 1 1"/>
@@ -668,8 +671,7 @@
                             <Image Source="{Binding thumpic}"
                                    Width="100"
                                    Height="100" 
-                                   Stretch="UniformToFill" 
-                                   Tapped="Image_Tapped"
+                                   Stretch="UniformToFill"
                                    Margin="0,0,0,0"/>
                         </DataTemplate>
                     </GridView.ItemTemplate>

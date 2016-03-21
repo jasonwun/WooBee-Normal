@@ -82,12 +82,6 @@ namespace WooBee_Normal
             Frame.Navigate(typeof(WeiboDetail), _weibo);
         }
 
-        private void Image_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(PhotoPage));
-        }
-
-
         private async void ShowStatusBar()
         {
             if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
@@ -95,6 +89,22 @@ namespace WooBee_Normal
                 var statusbar = StatusBar.GetForCurrentView();
                 await statusbar.HideAsync();
             }
+        }
+
+        private void image1_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            var item = (Weibo)(sender as Image).DataContext;
+            Frame.Navigate(typeof(PhotoPage), item.PicUrls);
+        }
+
+        private void gridView_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            var item = (Weibo)(sender as GridView).DataContext;
+            if (item.RepostWeibo != null)
+                Frame.Navigate(typeof(PhotoPage), item.RepostWeibo.PicUrls);
+            else
+                Frame.Navigate(typeof(PhotoPage), item.PicUrls);
+
         }
 
     }

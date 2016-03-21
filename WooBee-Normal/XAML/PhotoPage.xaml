@@ -7,7 +7,21 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="Black" Loaded="Grid_Loaded">
+        <FlipView x:Name="ImagesFlip">
 
+            <FlipView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Image Source="{Binding thumpic}"
+                               Stretch="Fill"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </FlipView.ItemTemplate>
+
+
+        </FlipView>
     </Grid>
 </Page>
