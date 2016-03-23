@@ -129,7 +129,7 @@ namespace WooBee_Normal
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(typeof(LoginPage), e.Arguments);
+                rootFrame.Navigate(typeof(SendWeibo), e.Arguments);
             }
             // Ensure the current window is active
             Window.Current.Activate();

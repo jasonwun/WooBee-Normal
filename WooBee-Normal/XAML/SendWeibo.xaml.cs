@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -27,7 +28,7 @@ namespace WooBee_Normal
     /// </summary>
     public sealed partial class SendWeibo : Page
     {
-
+        private bool _isEmojiButtomTapped = false;
 
         public SendWeibo()
         {
@@ -36,6 +37,7 @@ namespace WooBee_Normal
             inputPane.Showing += this.InputPaneShowing;
             inputPane.Hiding += this.InputPaneHiding;
             message.Commands.Add(new UICommand("日"));
+            
         }
 
         #region Field
@@ -67,6 +69,7 @@ namespace WooBee_Normal
         private void InputPaneShowing(InputPane sender, InputPaneVisibilityEventArgs args)
         {
             this.SendButton.Margin = new Thickness(0, 0, 0, 20 + args.OccludedRect.Height);
+            double itm = args.OccludedRect.Height;
             this.EmojiButton.Margin = new Thickness(0, 0, 65, 20 + args.OccludedRect.Height);
             this.UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20 + args.OccludedRect.Height);
         }
@@ -100,10 +103,20 @@ namespace WooBee_Normal
 
         }
 
-        private async void EmojiButton_Click(object sender, RoutedEventArgs e)
+        private void EmojiButton_Click(object sender, RoutedEventArgs e)
         {
-            await message.ShowAsync();
+            if (!_isEmojiButtomTapped)
+            {
+                EmojiPanelShowing();
+            }
+
+            else
+            {
+                Nothing.LostFocus += Nothing_LostFocus;
+            }
+
         }
+
 
         private async void UploadPhotoButton_Click(object sender, RoutedEventArgs e)
         {
@@ -156,11 +169,42 @@ namespace WooBee_Normal
                 await statusbar.HideAsync();
             }
         }
+
+        private void EmojiPanelShowing()
+        {
+            SendButton.Margin = new Thickness(0, 0, 0, 20 + Nothing.Height);
+            EmojiButton.Margin = new Thickness(0, 0, 65, 20 + Nothing.Height);
+            UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20 + Nothing.Height);
+            Nothing.Visibility = Visibility.Visible;
+            _isEmojiButtomTapped = true;
+        }
+
+        private void EmojiPanelHiding()
+        {
+            SendButton.Margin = new Thickness(0, 0, 0, 20);
+            EmojiButton.Margin = new Thickness(0, 0, 65, 20);
+            UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20);
+            Nothing.Visibility = Visibility.Collapsed;
+            _isEmojiButtomTapped = false;
+        }
+
+
+
+
         #endregion
 
+        #region Protected
 
+        #endregion
 
+        private void Nothing_GotFocus(object sender, RoutedEventArgs e)
+        {
+            EmojiPanelShowing();
+        }
 
-
+        private void Nothing_LostFocus(object sender, RoutedEventArgs e)
+        {
+            EmojiPanelHiding();
+        }
     }
 }

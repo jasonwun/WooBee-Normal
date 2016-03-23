@@ -22,6 +22,21 @@
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
 
+        <StackPanel x:Name="Nothing"
+              Grid.ColumnSpan="4" 
+              Grid.Row="1" 
+              Background="Black"
+              Visibility="Collapsed" 
+              Height="296" 
+              VerticalAlignment="Bottom"
+                    GotFocus="Nothing_GotFocus"
+                    LostFocus="Nothing_LostFocus">
+            
+            
+            
+            
+        </StackPanel>
+
         <TextBlock x:Name="headerTextBlock" 
                    TextWrapping="NoWrap" 
                    Text="新微博" 
@@ -86,7 +101,8 @@
                 BorderThickness="4" 
                 Grid.Column="2" 
                 Grid.Row="1" 
-                Style="{StaticResource ButtonStyle1}" Click="EmojiButton_Click">
+                Style="{StaticResource ButtonStyle1}" 
+                Click="EmojiButton_Click">
             <StackPanel Height="30" 
                         Width="30" 
                         Margin="-22.667,-8,-22.333,-8" 
