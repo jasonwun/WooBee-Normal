@@ -49,10 +49,6 @@ namespace WooBee_Normal
             EmoticonContainer.ItemsSource = _emojisource;
         }
 
-
-
-
-
         #region Field
         SolidColorBrush black = new SolidColorBrush(Windows.UI.Colors.Black);
         SolidColorBrush grey = new SolidColorBrush(Windows.UI.Colors.Gray);
@@ -240,10 +236,6 @@ namespace WooBee_Normal
                 _reverseEmojiDict.Add(item.Value, item.Key);
             }
         }
-
-        #endregion
-
-        #region Protected
 
         #endregion
 

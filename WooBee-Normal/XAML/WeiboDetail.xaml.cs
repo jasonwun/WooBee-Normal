@@ -99,5 +99,31 @@ namespace WooBee_Normal
             repostUti = JsonConvert.DeserializeObject<RepostUti>(strResponse);
             MentionListView.ItemsSource = repostUti.Repost;
         }
+
+        private async void LikeButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                string posturi = "https://api.weibo.com/2/attitudes/create.json?";
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri(posturi));
+                HttpFormUrlEncodedContent postData = new HttpFormUrlEncodedContent(
+                    new List<KeyValuePair<string, string>>
+                    {
+                        new KeyValuePair<string, string>("access_token",App.weico_access_token),
+                        new KeyValuePair<string, string>("attitude","smile"),
+                        new KeyValuePair<string, string>("id",_weibo.ID),
+                    }
+                );
+                request.Content = postData;
+                HttpResponseMessage response = await httpClient.SendRequestAsync(request);
+                string responseString = await response.Content.ReadAsStringAsync();
+
+            }
+            catch (Exception ex)
+            {
+                string asc = ex.ToString();
+            }
+        }
     }
 }

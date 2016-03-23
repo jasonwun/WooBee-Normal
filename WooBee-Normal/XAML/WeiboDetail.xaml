@@ -349,6 +349,7 @@
                 </AppBarButton.Icon>
             </AppBarButton>
             <AppBarButton x:Name="CommentButton" Foreground="White" Icon="Message" Click="CommentButton_Click"/>
+            <AppBarButton x:Name="LikeButton" Foreground="White" Icon="Like" Click="LikeButton_Click"/>
         </CommandBar>
     </Page.BottomAppBar>
 
@@ -369,42 +370,30 @@
                         <RowDefinition Height="265*"/>
                     </Grid.RowDefinitions>
 
-                    <Grid Background="Black"
-                          Grid.Row="1"
-                          Width="auto"
-                          HorizontalAlignment="Left"
-                          Margin="0,0,27,37" 
-                          d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="9*"/>
-                            <RowDefinition Height="61*"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0*"/>
-                            <ColumnDefinition Width="19*"/>
-                            <ColumnDefinition Width="92*"/>
-                        </Grid.ColumnDefinitions>
+                    <StackPanel Background="Black"
+                                Grid.Row="1"
+                                Width="auto"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Left"
+                                Margin="0,0,27,37" 
+                                d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+
 
                         <Image x:Name="WeiboUserAvatar"
-                               Margin="14,14,13,17"
-                               Grid.Column="1"
-                               Source="Assets/StoreLogo.scale-100.jpg"
-                               Grid.Row="1" 
                                d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
                                Width="30"
-                               Height="30"/>
+                               Height="30"
+                               Margin="15,0,0,0"/>
                         <TextBlock x:Name="ScreenNameTextBlock"
-                                   Margin="2,11,9,9"
-                                   TextWrapping="NoWrap"
-                                   Text="{Binding User.ScreenName}" 
-                                   Grid.Column="2" 
+                                   Margin="15,18,20,0"
+                                   TextWrapping="NoWrap" 
                                    Foreground="White" 
                                    FontFamily="Microsoft YaHei UI" 
                                    FontWeight="Bold"
                                    FontSize="24" 
-                                   Grid.Row="1"
-                                   Height="auto" d:LayoutOverrides="LeftPosition, RightPosition"/>
-                    </Grid>
+                                   Height="auto" 
+                                   d:LayoutOverrides="LeftPosition, RightPosition"/>
+                    </StackPanel>
 
                     <ItemsControl x:Name="myItems" 
                                   Grid.Row="2"
