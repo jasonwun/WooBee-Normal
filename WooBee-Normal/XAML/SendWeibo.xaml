@@ -22,20 +22,31 @@
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel x:Name="Nothing"
+        <Grid x:Name="Nothing"
               Grid.ColumnSpan="4" 
-              Grid.Row="1" 
-              Background="Black"
+              Grid.Row="1"
               Visibility="Collapsed" 
               Height="296" 
-              VerticalAlignment="Bottom"
-                    GotFocus="Nothing_GotFocus"
-                    LostFocus="Nothing_LostFocus">
-            
-            
-            
-            
-        </StackPanel>
+              VerticalAlignment="Bottom">
+
+            <GridView x:Name="EmoticonContainer"
+                      Style="{StaticResource GridViewStyle1}"
+                      Height="auto" 
+                      Grid.RowSpan="2" 
+                      d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
+                      Padding="15,15,0,0"
+                      Background="#1f1f1f" 
+                      Tapped="EmoticonContainer_Tapped"
+                      SelectionMode="Single">
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding UriSource}"
+                               Height="35"
+                               Width="35"/>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+        </Grid>
 
         <TextBlock x:Name="headerTextBlock" 
                    TextWrapping="NoWrap" 

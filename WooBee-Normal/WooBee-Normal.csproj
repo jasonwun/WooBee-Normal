@@ -331,9 +331,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EmojiKeyboard.xaml.cs">
-      <DependentUpon>EmojiKeyboard.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Source\MentionsSource.cs" />
     <Compile Include="Utilities\BoolConverter.cs" />
     <Compile Include="Controls\MyRichTextBlock.cs" />
@@ -458,10 +455,6 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="EmojiKeyboard.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="XAML\SinaWebPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

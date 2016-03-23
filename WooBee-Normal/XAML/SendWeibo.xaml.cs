@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Phone.UI.Input;
+using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Popups;
@@ -16,6 +20,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Windows.Web.Http;
 
@@ -28,17 +33,25 @@ namespace WooBee_Normal
     /// </summary>
     public sealed partial class SendWeibo : Page
     {
-        private bool _isEmojiButtomTapped = false;
+        private bool _isEmojiActivated = false;
+        private static ObservableCollection<BitmapImage> _emojisource = App._emoticonSource;
+        private static Dictionary<string, string> _reverseEmojiDict = new Dictionary<string, string>();
 
         public SendWeibo()
         {
             this.InitializeComponent();
             ShowStatusBar();
+            ReverseDict(App.emojiDict);
             inputPane.Showing += this.InputPaneShowing;
             inputPane.Hiding += this.InputPaneHiding;
+            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
             message.Commands.Add(new UICommand("日"));
-            
+            EmoticonContainer.ItemsSource = _emojisource;
         }
+
+
+
+
 
         #region Field
         SolidColorBrush black = new SolidColorBrush(Windows.UI.Colors.Black);
@@ -49,14 +62,34 @@ namespace WooBee_Normal
         #endregion
 
         #region Event
+
+        private void EmoticonContainer_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            var _gridview = EmoticonContainer as GridView;
+            var p = _gridview.SelectedItem;
+            BitmapImage item = (BitmapImage)_gridview.SelectedItem;
+            string uri = item.UriSource.ToString();
+            uri = Regex.Match(uri, @"\d+").Value;
+            if (contentTextBox.Text != "写点啥吧")
+                contentTextBox.Text += _reverseEmojiDict[uri];
+            else
+            {
+                contentTextBox.Text = "";
+                contentTextBox.Foreground = black;
+                contentTextBox.Text += _reverseEmojiDict[uri];
+            }
+        }
         private void contentTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-
+            
             if (contentTextBox.Text == "写点啥吧")
             {
                 contentTextBox.Text = "";
                 contentTextBox.Foreground = black;
             }
+
+            if (_isEmojiActivated)
+                EmojiPanelHiding();
         }
 
         void InputPaneHiding(InputPane sender, InputPaneVisibilityEventArgs args)
@@ -64,6 +97,8 @@ namespace WooBee_Normal
             this.SendButton.Margin = new Thickness(0, 0, 0, 20);
             this.EmojiButton.Margin = new Thickness(0, 0, 65, 20);
             this.UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20);
+            if (_isEmojiActivated)
+                EmojiPanelShowing();
         }
 
         private void InputPaneShowing(InputPane sender, InputPaneVisibilityEventArgs args)
@@ -105,14 +140,14 @@ namespace WooBee_Normal
 
         private void EmojiButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!_isEmojiButtomTapped)
+            if (!_isEmojiActivated)
             {
                 EmojiPanelShowing();
             }
 
             else
             {
-                Nothing.LostFocus += Nothing_LostFocus;
+                EmojiPanelHiding();
             }
 
         }
@@ -131,6 +166,15 @@ namespace WooBee_Normal
                 contentTextBox.Text = "写点啥吧";
             }
 
+        }
+
+        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
+        {
+            if (_isEmojiActivated)
+            {
+                EmojiPanelHiding();
+                e.Handled = true;
+            }
         }
         #endregion
 
@@ -176,7 +220,8 @@ namespace WooBee_Normal
             EmojiButton.Margin = new Thickness(0, 0, 65, 20 + Nothing.Height);
             UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20 + Nothing.Height);
             Nothing.Visibility = Visibility.Visible;
-            _isEmojiButtomTapped = true;
+
+            _isEmojiActivated = true;
         }
 
         private void EmojiPanelHiding()
@@ -185,11 +230,16 @@ namespace WooBee_Normal
             EmojiButton.Margin = new Thickness(0, 0, 65, 20);
             UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20);
             Nothing.Visibility = Visibility.Collapsed;
-            _isEmojiButtomTapped = false;
+            _isEmojiActivated = false;
         }
 
-
-
+        private void ReverseDict(Dictionary<string, string> a)
+        {
+            foreach (var item in a)
+            {
+                _reverseEmojiDict.Add(item.Value, item.Key);
+            }
+        }
 
         #endregion
 
@@ -197,14 +247,6 @@ namespace WooBee_Normal
 
         #endregion
 
-        private void Nothing_GotFocus(object sender, RoutedEventArgs e)
-        {
-            EmojiPanelShowing();
-        }
 
-        private void Nothing_LostFocus(object sender, RoutedEventArgs e)
-        {
-            EmojiPanelHiding();
-        }
     }
 }
