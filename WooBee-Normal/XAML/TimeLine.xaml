@@ -91,7 +91,7 @@
                 </StackPanel>
 
 
-                <local:MyRichTextBlock x:Name="WeiboTextTextblock"
+                <local:MyRichTextBlock x:Name="NormalTextblock"
                            Margin="20,50,0,0"
                            Text="{Binding Text}"
                            Grid.Column="2"
@@ -179,13 +179,14 @@
 
                 </StackPanel>
 
-                <local:MyRichTextBlock x:Name="textBlock1"
+                <local:MyRichTextBlock x:Name="TextRepostContentTextBlock"
                            Margin="20,50,0,0"
                            Text="{Binding Text}"
                            Grid.Column="2"
                            Grid.Row="1"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
-                           FontFamily="Microsoft YaHei"/>
+                           FontFamily="Microsoft YaHei"
+                                       Background="Green"/>
 
                 <TextBlock x:Name="textBlock7"
                            TextWrapping="Wrap"
@@ -199,7 +200,7 @@
                            Foreground="Black"/>
 
 
-                <local:MyRichTextBlock x:Name="textBlock2"
+                <local:MyRichTextBlock x:Name="TextRepostTextBlock"
                            Margin="20,50,8,0"
                            Text="{Binding RepostWeibo.Text}"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
@@ -286,8 +287,8 @@
                                Margin="3,0,3,0"/>
 
                 </StackPanel>
-                
-                <local:MyRichTextBlock x:Name="textBlock1"
+
+                <local:MyRichTextBlock x:Name="OneImageContentTextBlock"
                            Margin="20,50,8,0"
                            Text="{Binding Text}"
                            Grid.Column="2"
@@ -383,7 +384,8 @@
                                Margin="3,0,3,0"/>
 
                 </StackPanel>
-                <local:MyRichTextBlock  x:Name="textBlock1"
+
+                <local:MyRichTextBlock  x:Name="MultipleImageContentTextBlock"
                                         Margin="20,50,0,0"
                                         Text="{Binding Text}"
                                         Grid.Column="2"
@@ -500,13 +502,14 @@
 
                 </StackPanel>
 
-                <local:MyRichTextBlock x:Name="textBlock1"
+                <local:MyRichTextBlock x:Name="RepostOneImageContentTextBlock"
                            Margin="20,50,0,0"
                            Text="{Binding Text}"
                            Grid.Column="2"
                            Grid.Row="1"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" 
-                           FontFamily="Microsoft YaHei"/>
+                           FontFamily="Microsoft YaHei"
+                                       Background="Green"/>
 
 
                 <TextBlock x:Name="textBlock7"
@@ -521,7 +524,7 @@
                            Foreground="Black"/>
 
 
-                <local:MyRichTextBlock x:Name="textBlock2"
+                <local:MyRichTextBlock x:Name="RepostOneImageRepostTextBlock"
                            Margin="20,50,0,0"
                            Text="{Binding RepostWeibo.Text}"
                            Grid.Column="2"
@@ -621,7 +624,7 @@
 
                 </StackPanel>
 
-                <local:MyRichTextBlock x:Name="textBlock1"
+                <local:MyRichTextBlock x:Name="RepostMultiImageContentTextBlock"
                            Margin="20,50,0,0"
                            Text="{Binding Text}"
                            Grid.Column="2"
@@ -639,8 +642,8 @@
                            FontFamily="Microsoft YaHei" 
                            FontWeight="Bold"
                            Foreground="Black"/>
-                
-                <local:MyRichTextBlock x:Name="textBlock2"
+
+                <local:MyRichTextBlock x:Name="RepostMultiImageRepostTextBlock"
                                        Margin="20,50,0,0"
                                        Text="{Binding RepostWeibo.Text}"
                                        Grid.Column="2"
@@ -718,7 +721,8 @@
 
         <ListView x:Name="listView"
                   ItemTemplateSelector="{StaticResource MyTimelineDataTemplateSelector}" Grid.Column="1" Grid.Row="1" Tapped="listView_Tapped" Grid.RowSpan="2"
-                  Padding="0,20,0,0"/>
+                  Padding="0,20,0,0"
+                  />
 
 
         <Rectangle Grid.ColumnSpan="2" Grid.RowSpan="2" IsHitTestVisible="False">

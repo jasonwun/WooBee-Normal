@@ -7,9 +7,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:MyRichTextBlock">
-                    <Border>
-                        <RichTextBlock x:Name="ChildRichTextBlock" IsTextSelectionEnabled="False" TextIndent="-5"/>
-                    </Border>
+                    <StackPanel x:Name="Root">
+                        <RichTextBlock x:Name="ChildRichTextBlock" 
+                                       IsTextSelectionEnabled="False" 
+                                       TextIndent="-5"/>
+                    </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

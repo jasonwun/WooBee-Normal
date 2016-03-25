@@ -17,9 +17,10 @@ using Windows.UI.Xaml.Media;
 
 namespace WooBee_Normal
 {
-    public sealed class MyRichTextBlock : Control
+    public sealed class MyRichTextBlock : ContentControl
     {
         RichTextBlock _richTextBlock;
+        
         StringBuilder builder = new StringBuilder();
 
         public MyRichTextBlock()
@@ -39,10 +40,18 @@ namespace WooBee_Normal
 
         protected override void OnApplyTemplate()
         {
-            _richTextBlock = GetTemplateChild("ChildRichTextBlock") as RichTextBlock;
+            
+            _richTextBlock = GetTemplateChild <RichTextBlock>("ChildRichTextBlock");
+            
         }
 
-
+        T GetTemplateChild<T>(string name) where T : DependencyObject
+        {
+            var child = GetTemplateChild(name) as T;
+            if (child == null)
+                throw new NullReferenceException(name);
+            return child;
+        }
         public String Text
         {
             get { return (String)GetValue(TextProperty); }

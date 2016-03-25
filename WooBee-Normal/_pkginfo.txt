@@ -1,1 +1,1 @@
-C:\Users\yinju\documents\visual studio 2015\Projects\WooBee-Normal\WooBee-Normal\AppPackages\WooBee-Normal_2016.3.14.0\WooBee-Normal_2016.3.14.0_x86_x64_arm.appxbundle
+C:\Users\yinju\documents\visual studio 2015\Projects\WooBee-Normal\WooBee-Normal\AppPackages\WooBee-Normal_2016.3.23.0\WooBee-Normal_2016.3.23.0_x86_x64_arm.appxbundle
