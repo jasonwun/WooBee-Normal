@@ -44,7 +44,6 @@ namespace WooBee_Normal
             ReverseDict(App.emojiDict);
             inputPane.Showing += this.InputPaneShowing;
             inputPane.Hiding += this.InputPaneHiding;
-            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
             message.Commands.Add(new UICommand("日"));
             EmoticonContainer.ItemsSource = _emojisource;
         }
@@ -75,6 +74,8 @@ namespace WooBee_Normal
                 contentTextBox.Text += _reverseEmojiDict[uri];
             }
         }
+
+
         private void contentTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             
@@ -103,6 +104,7 @@ namespace WooBee_Normal
             double itm = args.OccludedRect.Height;
             this.EmojiButton.Margin = new Thickness(0, 0, 65, 20 + args.OccludedRect.Height);
             this.UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20 + args.OccludedRect.Height);
+            
         }
 
         private async void SendButton_Tapped(object sender, TappedRoutedEventArgs e)
@@ -216,7 +218,7 @@ namespace WooBee_Normal
             EmojiButton.Margin = new Thickness(0, 0, 65, 20 + Nothing.Height);
             UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20 + Nothing.Height);
             Nothing.Visibility = Visibility.Visible;
-
+            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
             _isEmojiActivated = true;
         }
 
@@ -231,14 +233,21 @@ namespace WooBee_Normal
 
         private void ReverseDict(Dictionary<string, string> a)
         {
+            if (_reverseEmojiDict.Count != 0)
+                return;
             foreach (var item in a)
             {
                 _reverseEmojiDict.Add(item.Value, item.Key);
             }
         }
 
+
         #endregion
 
-
+        private void DelteButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if(contentTextBox.Text != "写点啥吧" && contentTextBox.Text.Length != 0)
+                contentTextBox.Text = contentTextBox.Text.Substring(0, contentTextBox.Text.Length - 1);
+        }
     }
 }

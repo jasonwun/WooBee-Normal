@@ -16,39 +16,35 @@
                   Grid.Row="1" 
                   d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
                   Margin="0,17,0,17"
-                  Name="NormalTemplateGrid">
+                  Name="NormalTemplateGrid" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="14*"/>
                     <RowDefinition Height="325*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0*"/>
-                    <ColumnDefinition Width="12*"/>
-                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="47*"/>
+                    <ColumnDefinition Width="313*"/>
                 </Grid.ColumnDefinitions>
 
                 <Image x:Name="AvartarImage"
                        Height="40"
-                       Width="40"
                        Grid.Row="1"
                        VerticalAlignment="Top"
-                       HorizontalAlignment="Stretch"
-                       d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
+                       HorizontalAlignment="Stretch" 
                        Grid.ColumnSpan="2"
                        Source="{Binding User.AvatarLarge}" 
-                       Margin="4,3,0,0">
-                    
-                </Image>
+                       Margin="6,2.667,1,0" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
 
                 <Grid Background="Black"
                       Height="35"
                       Width="auto"
                       Grid.Column="2"
                       Grid.Row="1"
-                      Margin="20,3,0,0"
+                      Margin="20,2.667,0,0"
                       VerticalAlignment="Top"
-                      HorizontalAlignment="Left">
-                    
+                      HorizontalAlignment="Left" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+
                     <TextBlock x:Name="textBlock7"
                                Margin="10,8,20,0"
                                TextWrapping="Wrap"
@@ -59,14 +55,14 @@
                                Foreground="White"/>
                 </Grid>
 
-                <StackPanel Margin="0,3,10,0" 
-                            Grid.Column="2" 
-                            Height="auto" 
+                <StackPanel Margin="0,2.667,0,0" 
+                    Grid.Column="2" 
+                            Height="20" 
                             Grid.Row="1" 
                             VerticalAlignment="Top" 
                             Width="auto"
                             Orientation="Horizontal" 
-                            HorizontalAlignment="Right">
+                            HorizontalAlignment="Right" d:LayoutOverrides="TopMargin, BottomMargin">
                     <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
                                 Width="15"
                                 Height="15"
@@ -91,14 +87,16 @@
                 </StackPanel>
 
 
-                <local:MyRichTextBlock x:Name="NormalTextblock"
-                           Margin="20,50,0,0"
-                           Text="{Binding Text}"
+                <RichTextBlock x:Name="NormalTextblock"
+                           Margin="20,49.667,0,0"
+                           local:BindingHelper.Text="{Binding Text}"
                            Grid.Column="2"
                            Grid.Row="1"
-                           d:LayoutOverrides="HorizontalAlignment, TopMargin, BottomMargin, LeftPosition, RightPosition, TopPosition, BottomPosition"
+                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition"
                            HorizontalAlignment="Left" 
-                           FontFamily="Microsoft YaHei"/>
+                           FontFamily="Microsoft YaHei"
+                           TextWrapping="WrapWholeWords"
+                   Width="auto"/>
             </Grid>
         </DataTemplate>
 
@@ -106,7 +104,8 @@
             <Grid Grid.Column="1"
                   Grid.Row="1" 
                   d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
-                  Margin="0,17,0,17">
+                  Margin="0,17,0,17"
+                  >
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="13*"/>
@@ -148,14 +147,14 @@
                                Foreground="White"/>
                 </Grid>
 
-                <StackPanel Margin="0,3,10,0" 
-                            Grid.Column="2" 
-                            Height="auto" 
+                <StackPanel Margin="0,2.667,0,0" 
+                    Grid.Column="2" 
+                            Height="20" 
                             Grid.Row="1" 
                             VerticalAlignment="Top" 
                             Width="auto"
                             Orientation="Horizontal" 
-                            HorizontalAlignment="Right">
+                            HorizontalAlignment="Right" d:LayoutOverrides="TopMargin, BottomMargin">
                     <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
                                 Width="15"
                                 Height="15"
@@ -179,14 +178,14 @@
 
                 </StackPanel>
 
-                <local:MyRichTextBlock x:Name="TextRepostContentTextBlock"
+                <RichTextBlock x:Name="TextRepostContentTextBlock"
                            Margin="20,50,0,0"
-                           Text="{Binding Text}"
+                           local:BindingHelper.Text="{Binding Text}"
                            Grid.Column="2"
                            Grid.Row="1"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
                            FontFamily="Microsoft YaHei"
-                                       Background="Green"/>
+                                       />
 
                 <TextBlock x:Name="textBlock7"
                            TextWrapping="Wrap"
@@ -200,9 +199,9 @@
                            Foreground="Black"/>
 
 
-                <local:MyRichTextBlock x:Name="TextRepostTextBlock"
+                <RichTextBlock x:Name="TextRepostTextBlock"
                            Margin="20,50,8,0"
-                           Text="{Binding RepostWeibo.Text}"
+                           local:BindingHelper.Text="{Binding RepostWeibo.Text}"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
                            Grid.Column="2"
                            Grid.Row="2"/>
@@ -215,7 +214,8 @@
             <Grid Grid.Column="1"
                   Grid.Row="1" 
                   d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
-                  Margin="0,17,0,17">
+                  Margin="0,17,0,17"
+                  >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="13*"/>
                     <RowDefinition Height="52*"/>
@@ -257,14 +257,14 @@
                 </Grid>
 
 
-                <StackPanel Margin="0,3,10,0" 
-                            Grid.Column="2" 
-                            Height="auto" 
+                <StackPanel Margin="0,2.667,0,0" 
+                    Grid.Column="2" 
+                            Height="20" 
                             Grid.Row="1" 
                             VerticalAlignment="Top" 
                             Width="auto"
                             Orientation="Horizontal" 
-                            HorizontalAlignment="Right">
+                            HorizontalAlignment="Right" d:LayoutOverrides="TopMargin, BottomMargin">
                     <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
                                 Width="15"
                                 Height="15"
@@ -288,9 +288,9 @@
 
                 </StackPanel>
 
-                <local:MyRichTextBlock x:Name="OneImageContentTextBlock"
+                <RichTextBlock x:Name="OneImageContentTextBlock"
                            Margin="20,50,8,0"
-                           Text="{Binding Text}"
+                           local:BindingHelper.Text="{Binding Text}"
                            Grid.Column="2"
                            Grid.Row="1"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" FontFamily="Microsoft YaHei"/>
@@ -314,7 +314,8 @@
             <Grid Grid.Column="1"
                   Grid.Row="1" 
                   d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
-                  Margin="0,17,0,17">
+                  Margin="0,17,0,17"
+                  >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="13*"/>
                     <RowDefinition Height="52*"/>
@@ -354,14 +355,14 @@
                                Foreground="White"/>
                 </Grid>
 
-                <StackPanel Margin="0,3,10,0" 
-                            Grid.Column="2" 
-                            Height="auto" 
+                <StackPanel Margin="0,2.667,0,0" 
+                    Grid.Column="2" 
+                            Height="20" 
                             Grid.Row="1" 
                             VerticalAlignment="Top" 
                             Width="auto"
                             Orientation="Horizontal" 
-                            HorizontalAlignment="Right">
+                            HorizontalAlignment="Right" d:LayoutOverrides="TopMargin, BottomMargin">
                     <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
                                 Width="15"
                                 Height="15"
@@ -385,9 +386,9 @@
 
                 </StackPanel>
 
-                <local:MyRichTextBlock  x:Name="MultipleImageContentTextBlock"
+                <RichTextBlock  x:Name="MultipleImageContentTextBlock"
                                         Margin="20,50,0,0"
-                                        Text="{Binding Text}"
+                                        local:BindingHelper.Text="{Binding Text}"
                                         Grid.Column="2"
                                         Grid.Row="1"
                                         d:LayoutOverrides="TopMargin, BottomMargin, TopPosition, BottomPosition"
@@ -402,7 +403,7 @@
                           Width="auto"
                           VerticalAlignment="Top"
                           HorizontalAlignment="Stretch"
-                          SelectionMode="None" 
+                          SelectionMode="Single" 
                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition"
                           Style="{StaticResource ImageGridViewStyle}" 
                           Tapped="gridView_Tapped">
@@ -429,7 +430,8 @@
                   Grid.Row="1" 
                   d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
                   Margin="0,17,0,17"
-                  Height="auto">
+                  Height="auto"
+                  >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25*"/>
                     <RowDefinition Height="98*"/>
@@ -471,14 +473,14 @@
                                Foreground="White"/>
                 </Grid>
 
-                <StackPanel Margin="0,3,10,0" 
-                            Grid.Column="2" 
-                            Height="auto" 
+                <StackPanel Margin="0,2.667,0,0" 
+                    Grid.Column="2" 
+                            Height="20" 
                             Grid.Row="1" 
                             VerticalAlignment="Top" 
                             Width="auto"
                             Orientation="Horizontal" 
-                            HorizontalAlignment="Right">
+                            HorizontalAlignment="Right" d:LayoutOverrides="TopMargin, BottomMargin">
                     <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
                                 Width="15"
                                 Height="15"
@@ -502,14 +504,14 @@
 
                 </StackPanel>
 
-                <local:MyRichTextBlock x:Name="RepostOneImageContentTextBlock"
+                <RichTextBlock x:Name="RepostOneImageContentTextBlock"
                            Margin="20,50,0,0"
-                           Text="{Binding Text}"
+                           local:BindingHelper.Text="{Binding Text}"
                            Grid.Column="2"
                            Grid.Row="1"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" 
                            FontFamily="Microsoft YaHei"
-                                       Background="Green"/>
+                                       />
 
 
                 <TextBlock x:Name="textBlock7"
@@ -524,9 +526,9 @@
                            Foreground="Black"/>
 
 
-                <local:MyRichTextBlock x:Name="RepostOneImageRepostTextBlock"
+                <RichTextBlock x:Name="RepostOneImageRepostTextBlock"
                            Margin="20,50,0,0"
-                           Text="{Binding RepostWeibo.Text}"
+                           local:BindingHelper.Text="{Binding RepostWeibo.Text}"
                            Grid.Column="2"
                            Grid.Row="2"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
@@ -551,7 +553,8 @@
             <Grid Grid.Column="1"
                   Grid.Row="1" 
                   d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
-                  Margin="0,17,0,17">
+                  Margin="0,17,0,17"
+                  >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25*"/>
                     <RowDefinition Height="99*"/>
@@ -593,14 +596,14 @@
                                Foreground="White"/>
                 </Grid>
 
-                <StackPanel Margin="0,3,10,0" 
-                            Grid.Column="2" 
-                            Height="auto" 
+                <StackPanel Margin="0,2.667,0,0" 
+                    Grid.Column="2" 
+                            Height="20" 
                             Grid.Row="1" 
                             VerticalAlignment="Top" 
                             Width="auto"
                             Orientation="Horizontal" 
-                            HorizontalAlignment="Right">
+                            HorizontalAlignment="Right" d:LayoutOverrides="TopMargin, BottomMargin">
                     <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
                                 Width="15"
                                 Height="15"
@@ -624,9 +627,9 @@
 
                 </StackPanel>
 
-                <local:MyRichTextBlock x:Name="RepostMultiImageContentTextBlock"
+                <RichTextBlock x:Name="RepostMultiImageContentTextBlock"
                            Margin="20,50,0,0"
-                           Text="{Binding Text}"
+                           local:BindingHelper.Text="{Binding Text}"
                            Grid.Column="2"
                            Grid.Row="1"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" 
@@ -643,9 +646,9 @@
                            FontWeight="Bold"
                            Foreground="Black"/>
 
-                <local:MyRichTextBlock x:Name="RepostMultiImageRepostTextBlock"
+                <RichTextBlock x:Name="RepostMultiImageRepostTextBlock"
                                        Margin="20,50,0,0"
-                                       Text="{Binding RepostWeibo.Text}"
+                                       local:BindingHelper.Text="{Binding RepostWeibo.Text}"
                                        Grid.Column="2"
                                        Grid.Row="2"
                                        d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
@@ -661,7 +664,7 @@
                           Width="auto"
                           VerticalAlignment="Top"
                           HorizontalAlignment="Stretch"
-                          SelectionMode="None" 
+                          SelectionMode="Single" 
                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition"
                           Style="{StaticResource ImageGridViewStyle}" Tapped="gridView_Tapped">
                     <GridView.ItemContainerStyle>
@@ -720,9 +723,19 @@
 
 
         <ListView x:Name="listView"
-                  ItemTemplateSelector="{StaticResource MyTimelineDataTemplateSelector}" Grid.Column="1" Grid.Row="1" Tapped="listView_Tapped" Grid.RowSpan="2"
-                  Padding="0,20,0,0"
-                  />
+                  ItemTemplateSelector="{StaticResource MyTimelineDataTemplateSelector}"
+                  Grid.Column="1" 
+                  Grid.Row="1" 
+                  Tapped="listView_Tapped" 
+                  Grid.RowSpan="2"
+                  Padding="0,20,0,0" Style="{StaticResource ListViewStyle1}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
 
 
         <Rectangle Grid.ColumnSpan="2" Grid.RowSpan="2" IsHitTestVisible="False">

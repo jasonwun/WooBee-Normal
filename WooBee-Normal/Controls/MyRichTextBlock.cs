@@ -23,10 +23,12 @@ namespace WooBee_Normal
         
         StringBuilder builder = new StringBuilder();
 
+        DependencyObject _root { get; set; }
+
         public MyRichTextBlock()
         {
             this.DefaultStyleKey = typeof(MyRichTextBlock);
-
+            _root = this.GetTemplateChild("Root");
             foreach (var key in emojiDict.Keys)
             {
                 builder.Append(key.Replace("[", @"\[").Replace("]", @"\]"));
@@ -40,9 +42,9 @@ namespace WooBee_Normal
 
         protected override void OnApplyTemplate()
         {
-            
-            _richTextBlock = GetTemplateChild <RichTextBlock>("ChildRichTextBlock");
-            
+
+            _richTextBlock = GetTemplateChild<RichTextBlock>("ChildRichTextBlock");
+
         }
 
         T GetTemplateChild<T>(string name) where T : DependencyObject
@@ -101,8 +103,7 @@ namespace WooBee_Normal
                                         xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
                                         xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml"">
                                     <Paragraph.Inlines>
-                                    <Run></Run>
-                                      {0}
+                                    
                                     </Paragraph.Inlines>
                                 </Paragraph>", value);
             var p = (Paragraph)XamlReader.Load(xaml);

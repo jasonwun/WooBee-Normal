@@ -12,7 +12,7 @@
     <DefaultLanguage>zh-CN</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -313,6 +313,7 @@
     <Content Include="Assets\Emoji\97.png" />
     <Content Include="Assets\Emoji\98.png" />
     <Content Include="Assets\Emoji\99.png" />
+    <Content Include="Assets\Icons\delete-512.png" />
     <Content Include="Assets\Icons\Emotions.png" />
     <Content Include="Assets\Icons\like.png" />
     <Content Include="Assets\Icons\Message-Add.png" />
@@ -331,6 +332,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BindingHelper.cs" />
+    <Compile Include="Utilities\PageParametersContainers.cs" />
     <Compile Include="Source\MentionsSource.cs" />
     <Compile Include="Utilities\BoolConverter.cs" />
     <Compile Include="Controls\MyRichTextBlock.cs" />

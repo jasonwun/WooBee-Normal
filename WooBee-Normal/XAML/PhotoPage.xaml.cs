@@ -26,6 +26,7 @@ namespace WooBee_Normal
     {
 
         private static ObservableCollection<ThumbnailPics> _imageSource { get; set; }
+        private int _index { get; set; }
 
         public PhotoPage()
         {
@@ -45,17 +46,25 @@ namespace WooBee_Normal
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            _imageSource = e.Parameter as ObservableCollection<ThumbnailPics>;
-            
+            var p = e.Parameter as PageParametersContainers;
+            if(p.parameter1 != null)
+                _imageSource = p.parameter1;
+            if(p.parameter2 >= 0)
+                _index = p.parameter2;
+            foreach (var item in _imageSource)
+            {
+                item.thumpic = item.thumpic.Replace("thumbnail", "mw1024");
+            }
+
+
+
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         { 
-            foreach( var item in _imageSource)
-            {
-                item.thumpic.Replace("thumbnail", "mw1024");
-            }
             ImagesFlip.ItemsSource = _imageSource;
+            if(_index >= 0)
+                ImagesFlip.SelectedIndex = _index;
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -35,6 +36,7 @@ namespace WooBee_Normal
         public static string weico_access_token { get; set; }
         private static ObservableCollection<BitmapImage> _EmoticonSource = new ObservableCollection<BitmapImage>();
         public  static ObservableCollection<BitmapImage> _emoticonSource { get { return _EmoticonSource; } set {; } }
+        public static StringBuilder builder = new StringBuilder();
 
         #region EmojiDict
         public static readonly Dictionary<string, string> emojiDict = new Dictionary<string, string>
@@ -78,11 +80,23 @@ namespace WooBee_Normal
             this.InitializeComponent();
             this.Suspending += OnSuspending;
             LoadEmoticons();
+            StringBuilder();
 
             if (localsetting.Values["weico_access_token"]!=null)
                 weico_access_token = localsetting.Values["weico_access_token"].ToString();
             if(localsetting.Values["access_token"] != null)
                 access_token = localsetting.Values["access_token"].ToString();
+        }
+
+        private void StringBuilder()
+        {
+            foreach (var key in emojiDict.Keys)
+            {
+                builder.Append(key.Replace("[", @"\[").Replace("]", @"\]"));
+
+                builder.Append("|");
+            }
+            builder.Remove(builder.Length - 1, 1);
         }
 
         /// <summary>

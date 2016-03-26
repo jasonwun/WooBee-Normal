@@ -93,17 +93,38 @@ namespace WooBee_Normal
 
         private void image1_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            PageParametersContainers para = new PageParametersContainers();
             var item = (Weibo)(sender as Image).DataContext;
-            Frame.Navigate(typeof(PhotoPage), item.PicUrls);
+            if (item.RepostWeibo != null)
+            {
+                para.parameter1 = item.RepostWeibo.PicUrls;
+                Frame.Navigate(typeof(PhotoPage), para);
+            }
+
+            else
+            {
+                para.parameter1 = item.PicUrls;
+                Frame.Navigate(typeof(PhotoPage), para);
+            }
         }
 
         private void gridView_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            PageParametersContainers para = new PageParametersContainers();
             var item = (Weibo)(sender as GridView).DataContext;
             if (item.RepostWeibo != null)
-                Frame.Navigate(typeof(PhotoPage), item.RepostWeibo.PicUrls);
+            {
+                para.parameter1 = item.RepostWeibo.PicUrls;
+                para.parameter2 = (sender as GridView).SelectedIndex;
+                Frame.Navigate(typeof(PhotoPage), para);
+            }
+                
             else
-                Frame.Navigate(typeof(PhotoPage), item.PicUrls);
+            {
+                para.parameter1 = item.PicUrls;
+                para.parameter2 = (sender as GridView).SelectedIndex;
+                Frame.Navigate(typeof(PhotoPage), para);
+            }
 
         }
 

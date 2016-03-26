@@ -13,10 +13,7 @@
             <FlipView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                        <Image Source="{Binding thumpic}"
-                               Stretch="Fill"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Center"/>
+                        <Image Source="{Binding thumpic}"/>
                     </Grid>
                 </DataTemplate>
             </FlipView.ItemTemplate>

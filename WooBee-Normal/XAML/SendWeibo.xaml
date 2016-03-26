@@ -46,6 +46,18 @@
                     </DataTemplate>
                 </GridView.ItemTemplate>
             </GridView>
+
+            <Button x:Name="DelteButton" Height="40" Width="57"
+                Background="#464646"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom" Tapped="DelteButton_Tapped">
+                <StackPanel>
+                    <Image Source="/Assets/Icons/delete-512.png"
+                       Height="23" 
+                       d:LayoutOverrides="LeftMargin, RightMargin"
+                       Margin="0,1,0,0"/>
+                </StackPanel>
+            </Button>
         </Grid>
 
         <TextBlock x:Name="headerTextBlock" 
