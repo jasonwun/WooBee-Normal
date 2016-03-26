@@ -12,9 +12,13 @@
 
             <FlipView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <Image Source="{Binding thumpic}"/>
-                    </Grid>
+                    <ScrollViewer HorizontalScrollMode="Disabled" 
+                                  VerticalScrollMode="Enabled">
+                        <Grid>
+                            <Image Source="{Binding thumpic}"/>
+                        </Grid>
+                    </ScrollViewer>
+                    
                 </DataTemplate>
             </FlipView.ItemTemplate>
 

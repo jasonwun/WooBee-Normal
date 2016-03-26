@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Phone.UI.Input;
 using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -14,6 +17,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Windows.Web.Http;
 
@@ -26,28 +30,30 @@ namespace WooBee_Normal
     /// </summary>
     public sealed partial class RepostPage : Page
     {
+
+        public RepostPage()
+        {
+            this.InitializeComponent();
+            ShowStatusBar();
+            ReverseDict(App.emojiDict);
+            inputPane.Showing += this.InputPaneShowing;
+            inputPane.Hiding += this.InputPaneHiding;
+            message.Commands.Add(new UICommand("日"));
+            EmoticonContainer.ItemsSource = _emojisource;
+        }
+        #region Field
         SolidColorBrush black = new SolidColorBrush(Windows.UI.Colors.Black);
         SolidColorBrush grey = new SolidColorBrush(Windows.UI.Colors.Gray);
         public event RoutedEventHandler LostFocus;
         private static Weibo _weibo { get; set; }
         MessageDialog message = new MessageDialog("该功能尚未开放");
         InputPane inputPane = InputPane.GetForCurrentView();
+        private bool _isEmojiActivated = false;
+        private static ObservableCollection<BitmapImage> _emojisource = App._emoticonSource;
+        private static Dictionary<string, string> _reverseEmojiDict = new Dictionary<string, string>();
+        #endregion
 
-
-        public RepostPage()
-        {
-            this.InitializeComponent();
-            ShowStatusBar();
-            inputPane.Showing += this.InputPaneShowing;
-            inputPane.Hiding += this.InputPaneHiding;
-            message.Commands.Add(new UICommand("日"));
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            _weibo = e.Parameter as Weibo;
-        }
-
+        #region Event
         private async void SendButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
             string abc = contentTextBox.Text;
@@ -71,6 +77,91 @@ namespace WooBee_Normal
             }
         }
 
+        private void EmojiButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!_isEmojiActivated)
+            {
+                EmojiPanelShowing();
+            }
+
+            else
+            {
+                EmojiPanelHiding();
+            }
+
+        }
+
+        private void contentTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+
+            if (contentTextBox.Text == "写点啥吧")
+            {
+                contentTextBox.Text = "";
+                contentTextBox.Foreground = black;
+            }
+
+            if (_isEmojiActivated)
+                EmojiPanelHiding();
+        }
+
+        void InputPaneHiding(InputPane sender, InputPaneVisibilityEventArgs args)
+        {
+            this.SendButton.Margin = new Thickness(0, 0, 0, 20);
+            this.EmojiButton.Margin = new Thickness(0, 0, 65, 20);
+            if (_isEmojiActivated)
+                EmojiPanelShowing();
+        }
+
+        private void InputPaneShowing(InputPane sender, InputPaneVisibilityEventArgs args)
+        {
+            this.SendButton.Margin = new Thickness(0, 0, 0, 20 + args.OccludedRect.Height);
+            this.EmojiButton.Margin = new Thickness(0, 0, 65, 20 + args.OccludedRect.Height);
+        }
+
+        private void contentTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (contentTextBox.Text == "")
+            {
+                contentTextBox.Foreground = grey;
+                contentTextBox.Text = "写点啥吧";
+            }
+
+        }
+
+        private void EmoticonContainer_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            var _gridview = EmoticonContainer as GridView;
+            var p = _gridview.SelectedItem;
+            BitmapImage item = (BitmapImage)_gridview.SelectedItem;
+            string uri = item.UriSource.ToString();
+            uri = Regex.Match(uri, @"\d+").Value;
+            if (contentTextBox.Text != "写点啥吧")
+                contentTextBox.Text += _reverseEmojiDict[uri];
+            else
+            {
+                contentTextBox.Text = "";
+                contentTextBox.Foreground = black;
+                contentTextBox.Text += _reverseEmojiDict[uri];
+            }
+        }
+
+        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
+        {
+            if (_isEmojiActivated)
+            {
+                EmojiPanelHiding();
+                e.Handled = true;
+            }
+        }
+
+        private void DelteButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (contentTextBox.Text != "写点啥吧" && contentTextBox.Text.Length != 0)
+                contentTextBox.Text = contentTextBox.Text.Substring(0, contentTextBox.Text.Length - 1);
+        }
+        #endregion
+
+        #region Method
         private async void ShowStatusBar()
         {
             if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
@@ -107,41 +198,49 @@ namespace WooBee_Normal
             }
         }
 
-        private void contentTextBox_GotFocus(object sender, RoutedEventArgs e)
+        private void EmojiPanelShowing()
         {
+            SendButton.Margin = new Thickness(0, 0, 0, 20 + Nothing.Height);
+            EmojiButton.Margin = new Thickness(0, 0, 65, 20 + Nothing.Height);
+            Nothing.Visibility = Visibility.Visible;
+            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+            _isEmojiActivated = true;
+        }
 
-            if (contentTextBox.Text == "写点啥吧")
+        private void EmojiPanelHiding()
+        {
+            SendButton.Margin = new Thickness(0, 0, 0, 20);
+            EmojiButton.Margin = new Thickness(0, 0, 65, 20);
+            Nothing.Visibility = Visibility.Collapsed;
+            _isEmojiActivated = false;
+        }
+
+        private void ReverseDict(Dictionary<string, string> a)
+        {
+            if (_reverseEmojiDict.Count != 0)
+                return;
+            foreach (var item in a)
             {
-                contentTextBox.Text = "";
-                contentTextBox.Foreground = black;
+                _reverseEmojiDict.Add(item.Value, item.Key);
             }
         }
+        #endregion
 
-        void InputPaneHiding(InputPane sender, InputPaneVisibilityEventArgs args)
+        #region Override
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.SendButton.Margin = new Thickness(0, 0, 0, 20);
-            this.EmojiButton.Margin = new Thickness(0, 0, 65, 20);
+            _weibo = e.Parameter as Weibo;
         }
 
-        private void InputPaneShowing(InputPane sender, InputPaneVisibilityEventArgs args)
-        {
-            this.SendButton.Margin = new Thickness(0, 0, 0, 20 + args.OccludedRect.Height);
-            this.EmojiButton.Margin = new Thickness(0, 0, 65, 20 + args.OccludedRect.Height);
-        }
 
-        private async void EmojiButton_Click(object sender, RoutedEventArgs e)
-        {
-            await message.ShowAsync();
-        }
+        #endregion
 
-            private void contentTextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (contentTextBox.Text == "")
-            {
-                contentTextBox.Foreground = grey;
-                contentTextBox.Text = "写点啥吧";
-            }
 
-        }
+
+
+
+        
+
+        
     }
 }

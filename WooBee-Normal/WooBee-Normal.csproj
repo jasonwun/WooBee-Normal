@@ -332,11 +332,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BindingHelper.cs" />
+    <Compile Include="Utilities\BindingHelper.cs" />
     <Compile Include="Utilities\PageParametersContainers.cs" />
     <Compile Include="Source\MentionsSource.cs" />
     <Compile Include="Utilities\BoolConverter.cs" />
-    <Compile Include="Controls\MyRichTextBlock.cs" />
     <Compile Include="XAML\SinaWebPage.xaml.cs">
       <DependentUpon>SinaWebPage.xaml</DependentUpon>
     </Compile>
@@ -461,10 +460,6 @@
     <Page Include="XAML\SinaWebPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="XAML\SendWeibo.xaml">
       <SubType>Designer</SubType>

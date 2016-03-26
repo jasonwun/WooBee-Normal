@@ -33,9 +33,7 @@ namespace WooBee_Normal
     /// </summary>
     public sealed partial class SendWeibo : Page
     {
-        private bool _isEmojiActivated = false;
-        private static ObservableCollection<BitmapImage> _emojisource = App._emoticonSource;
-        private static Dictionary<string, string> _reverseEmojiDict = new Dictionary<string, string>();
+        
 
         public SendWeibo()
         {
@@ -54,6 +52,9 @@ namespace WooBee_Normal
         public event RoutedEventHandler LostFocus;
         MessageDialog message = new MessageDialog("该功能尚未开放");
         InputPane inputPane = InputPane.GetForCurrentView();
+        private bool _isEmojiActivated = false;
+        private static ObservableCollection<BitmapImage> _emojisource = App._emoticonSource;
+        private static Dictionary<string, string> _reverseEmojiDict = new Dictionary<string, string>();
         #endregion
 
         #region Event
@@ -74,7 +75,6 @@ namespace WooBee_Normal
                 contentTextBox.Text += _reverseEmojiDict[uri];
             }
         }
-
 
         private void contentTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -150,7 +150,6 @@ namespace WooBee_Normal
 
         }
 
-
         private async void UploadPhotoButton_Click(object sender, RoutedEventArgs e)
         {
             await message.ShowAsync();
@@ -173,6 +172,12 @@ namespace WooBee_Normal
                 EmojiPanelHiding();
                 e.Handled = true;
             }
+        }
+
+        private void DelteButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (contentTextBox.Text != "写点啥吧" && contentTextBox.Text.Length != 0)
+                contentTextBox.Text = contentTextBox.Text.Substring(0, contentTextBox.Text.Length - 1);
         }
         #endregion
 
@@ -244,10 +249,6 @@ namespace WooBee_Normal
 
         #endregion
 
-        private void DelteButton_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            if(contentTextBox.Text != "写点啥吧" && contentTextBox.Text.Length != 0)
-                contentTextBox.Text = contentTextBox.Text.Substring(0, contentTextBox.Text.Length - 1);
-        }
+        
     }
 }
