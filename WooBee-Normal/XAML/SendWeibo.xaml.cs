@@ -255,11 +255,18 @@ namespace WooBee_Normal
                     BitmapImage bitmapImage = new BitmapImage();
                     await bitmapImage.SetSourceAsync(fileStream);
                     image.Source = bitmapImage;
-                    image.Visibility = Visibility.Visible;
+                    ImagesCount.Visibility = Visibility.Collapsed;
+                    ImagePanel.Visibility = Visibility.Visible;
                 }
                  else if(files.Count > 1)
                 {
-
+                    IRandomAccessStream fileStream = await files[0].OpenAsync(FileAccessMode.Read);
+                    BitmapImage bitmapImage = new BitmapImage();
+                    await bitmapImage.SetSourceAsync(fileStream);
+                    image.Source = bitmapImage;
+                    ImagesCount.Text = files.Count.ToString() ;
+                    ImagesCount.Visibility = Visibility.Visible;
+                    ImagePanel.Visibility = Visibility.Visible;
                 }
                 
             }

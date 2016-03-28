@@ -8,6 +8,7 @@
     mc:Ignorable="d"
     IsTabStop="True">
 
+    
 
     <Grid Background="#FFF1F1F1">
         <Grid.RowDefinitions>
@@ -228,15 +229,20 @@
                        Margin="0,-1,-1,0"/>
             </StackPanel>
         </Button>
-        <Image x:Name="image" 
-               Grid.ColumnSpan="2" 
-               HorizontalAlignment="Left" 
-               Height="100" 
-               VerticalAlignment="Bottom" 
-               Width="100" 
-               Grid.Row="1" 
-               Grid.Column="1"
-               Visibility="Collapsed"/>
+        <StackPanel x:Name="ImagePanel" 
+                    Grid.ColumnSpan="2" 
+                    HorizontalAlignment="Left" 
+                    Height="80" 
+                    VerticalAlignment="Bottom" 
+                    Width="80" 
+                    Grid.Row="1" 
+                    Grid.Column="1"
+                    Visibility="Collapsed"
+                    Orientation="Vertical"
+                    Background="#FFE0E0E0">
+            <TextBlock x:Name="ImagesCount" Text="0" HorizontalAlignment="Center"/>
+            <Image x:Name="image" />
+        </StackPanel>
 
 
         <!--<Button x:Name="button" Content="Button" Grid.Column="2" HorizontalAlignment="Stretch" Margin="240,0,10,71" VerticalAlignment="Stretch" Grid.Row="2"/>-->
