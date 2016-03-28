@@ -11,6 +11,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -37,6 +38,7 @@ namespace WooBee_Normal
         private static ObservableCollection<BitmapImage> _EmoticonSource = new ObservableCollection<BitmapImage>();
         public  static ObservableCollection<BitmapImage> _emoticonSource { get { return _EmoticonSource; } set {; } }
         public static StringBuilder builder = new StringBuilder();
+        public static StorageFile photofile { get; set; }
 
         #region EmojiDict
         public static readonly Dictionary<string, string> emojiDict = new Dictionary<string, string>

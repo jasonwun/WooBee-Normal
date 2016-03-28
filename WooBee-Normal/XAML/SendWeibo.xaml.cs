@@ -60,6 +60,7 @@ namespace WooBee_Normal
         private static Dictionary<string, string> _reverseEmojiDict = new Dictionary<string, string>();
         private static IReadOnlyList<StorageFile> files { get; set; }
         private static string pic_ids = "";
+        private static FileRandomAccessStream stream { get; set; }
         #endregion
 
         #region Event
@@ -121,32 +122,36 @@ namespace WooBee_Normal
         private async void SendButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
             string abc = contentTextBox.Text;
-            if (abc == "写点啥吧" || abc == "")
-            {
-                var dialog = new Windows.UI.Popups.MessageDialog("不能为空");
-                dialog.Commands.Add(new Windows.UI.Popups.UICommand("OK") { Id = 0 });
-                var result = await dialog.ShowAsync();
-                contentTextBox.Foreground = grey;
-                contentTextBox.Text = "写点啥吧";
 
-
-            }
-            else if (abc.Length > 140)
+            if (abc.Length > 140)
             {
                 var dialog = new Windows.UI.Popups.MessageDialog("超过了140个字啦！！！！！");
                 dialog.Commands.Add(new Windows.UI.Popups.UICommand("OK") { Id = 0 });
                 var result = await dialog.ShowAsync();
             }
-            else
+
+            if (files == null && App.photofile == null) //Text only
             {
-                if(files.Count == 0)
+                if (abc == "写点啥吧" || abc == "")
+                {
+                    var dialog = new Windows.UI.Popups.MessageDialog("不能为空");
+                    dialog.Commands.Add(new Windows.UI.Popups.UICommand("OK") { Id = 0 });
+                    var result = await dialog.ShowAsync();
+                    contentTextBox.Foreground = grey;
+                    contentTextBox.Text = "写点啥吧";
+                }
+
+                else
                 {
                     contentTextBox.LostFocus += LostFocus;
                     await HttpPost(contentTextBox.Text);
                     await Task.Delay(500);
                     Frame.GoBack();
                 }
-                else if(files.Count == 1)
+            }
+            else if(files != null && App.photofile == null)
+            {
+                if(files.Count == 1)
                 {
                     if (abc == "写点啥吧")
                         abc = "分享图片";
@@ -161,7 +166,14 @@ namespace WooBee_Normal
                     await HttpPostWithMultipleImage(abc);
                     Frame.GoBack();
                 }
-                
+            }
+
+            else if(files == null && App.photofile != null)
+            {
+                if (abc == "写点啥吧")
+                    abc = "分享图片";
+                await HttpPostWithImage(abc);
+                //Frame.GoBack();
             }
 
         }
@@ -229,7 +241,8 @@ namespace WooBee_Normal
 
         private async void CameraButton_Click(object sender, RoutedEventArgs e)
         {
-            await message.ShowAsync();
+            if (App.photofile == null)
+                Frame.Navigate(typeof(CameraPage));
         }
 
         private async void PhotoButton_Click(object sender, RoutedEventArgs e)
@@ -303,16 +316,29 @@ namespace WooBee_Normal
 
         private static async Task HttpPostWithImage(string postMsg)
         {
-            string posturi = "https://upload.api.weibo.com/2/statuses/upload.json?access_token=" + App.access_token;
-            HttpClient httpClient = new HttpClient();
-            FileRandomAccessStream stream = (FileRandomAccessStream)await files[0].OpenAsync(FileAccessMode.Read);
-            HttpStreamContent streamContent1 = new HttpStreamContent(stream);
-            HttpStringContent stringContent = new HttpStringContent(postMsg);
-            HttpMultipartFormDataContent fileContent = new HttpMultipartFormDataContent();
-            fileContent.Add(stringContent, "status");
-            fileContent.Add(streamContent1, "pic", "pic.jpg");
-            HttpResponseMessage response = await httpClient.PostAsync(new Uri(posturi), fileContent);
-            string responString = await response.Content.ReadAsStringAsync();
+            try
+            {
+                string posturi = "https://upload.api.weibo.com/2/statuses/upload.json?access_token=" + App.access_token;
+                HttpClient httpClient = new HttpClient();
+                if (files == null)
+                    stream = (FileRandomAccessStream)await App.photofile.OpenAsync(FileAccessMode.Read);
+                else
+                    stream = (FileRandomAccessStream)await files[0].OpenAsync(FileAccessMode.Read);
+                HttpStreamContent streamContent1 = new HttpStreamContent(stream);
+                HttpStringContent stringContent = new HttpStringContent(postMsg);
+                HttpMultipartFormDataContent fileContent = new HttpMultipartFormDataContent();
+                fileContent.Add(stringContent, "status");
+                fileContent.Add(streamContent1, "pic", "pic.jpg");
+                HttpResponseMessage response = await httpClient.PostAsync(new Uri(posturi), fileContent);
+                string responString = await response.Content.ReadAsStringAsync();
+                App.photofile = null;
+                stream = null;
+            }
+            catch(Exception ex)
+            {
+                string e = ex.Message.ToString();
+            }
+            
         }
 
         private async Task HttpPostWithMultipleImage(string abc)
@@ -397,10 +423,22 @@ namespace WooBee_Normal
             }
         }
 
-
-
         #endregion
 
-        
+        #region Override
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if(App.photofile != null)
+            {
+                stream = (FileRandomAccessStream)await App.photofile.OpenAsync(FileAccessMode.Read);
+                BitmapImage bitmapImage = new BitmapImage();
+                await bitmapImage.SetSourceAsync(stream);
+                image.Source = bitmapImage;
+                ImagesCount.Visibility = Visibility.Collapsed;
+                ImagePanel.Visibility = Visibility.Visible;
+            }
+        }
+        #endregion
+
     }
 }
