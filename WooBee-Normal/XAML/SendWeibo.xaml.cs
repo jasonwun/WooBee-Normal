@@ -94,6 +94,9 @@ namespace WooBee_Normal
             this.SendButton.Margin = new Thickness(0, 0, 0, 20);
             this.EmojiButton.Margin = new Thickness(0, 0, 65, 20);
             this.UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20);
+            this.PhotoButton.Margin = new Thickness(0, 0, 0, 20);
+            this.CameraButton.Margin = new Thickness(0, 0, 65, 20);
+            this.ReturnButton.Margin = new Thickness(0, 0, 130, 20);
             if (_isEmojiActivated)
                 EmojiPanelShowing();
         }
@@ -101,10 +104,13 @@ namespace WooBee_Normal
         private void InputPaneShowing(InputPane sender, InputPaneVisibilityEventArgs args)
         {
             this.SendButton.Margin = new Thickness(0, 0, 0, 20 + args.OccludedRect.Height);
-            double itm = args.OccludedRect.Height;
+            this.PhotoButton.Margin = new Thickness(0, 0, 0, 20 + args.OccludedRect.Height);
             this.EmojiButton.Margin = new Thickness(0, 0, 65, 20 + args.OccludedRect.Height);
+            this.CameraButton.Margin = new Thickness(0, 0, 65, 20 + args.OccludedRect.Height);
             this.UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20 + args.OccludedRect.Height);
-            
+            this.ReturnButton.Margin = new Thickness(0, 0, 130, 20 + args.OccludedRect.Height);
+
+
         }
 
         private async void SendButton_Tapped(object sender, TappedRoutedEventArgs e)
@@ -150,9 +156,15 @@ namespace WooBee_Normal
 
         }
 
-        private async void UploadPhotoButton_Click(object sender, RoutedEventArgs e)
+        private void UploadPhotoButton_Click(object sender, RoutedEventArgs e)
         {
-            await message.ShowAsync();
+            UploadPhotoButton.Visibility = Visibility.Collapsed;
+            EmojiButton.Visibility = Visibility.Collapsed;
+            SendButton.Visibility = Visibility.Collapsed;
+            ReturnButton.Visibility = Visibility.Visible;
+            CameraButton.Visibility = Visibility.Visible;
+            PhotoButton.Visibility = Visibility.Visible;
+            inputPane.Visible = false;
         }
 
         private void contentTextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -178,6 +190,27 @@ namespace WooBee_Normal
         {
             if (contentTextBox.Text != "写点啥吧" && contentTextBox.Text.Length != 0)
                 contentTextBox.Text = contentTextBox.Text.Substring(0, contentTextBox.Text.Length - 1);
+        }
+
+        private void ReturnButton_Click(object sender, RoutedEventArgs e)
+        {
+            ReturnButton.Visibility = Visibility.Collapsed;
+            CameraButton.Visibility = Visibility.Collapsed;
+            PhotoButton.Visibility = Visibility.Collapsed;
+            UploadPhotoButton.Visibility = Visibility.Visible;
+            EmojiButton.Visibility = Visibility.Visible;
+            SendButton.Visibility = Visibility.Visible;
+            inputPane.Visible = false;
+        }
+
+        private async void CameraButton_Click(object sender, RoutedEventArgs e)
+        {
+            await message.ShowAsync();
+        }
+
+        private async void PhotoButton_Click(object sender, RoutedEventArgs e)
+        {
+            await message.ShowAsync();
         }
         #endregion
 
@@ -222,6 +255,9 @@ namespace WooBee_Normal
             SendButton.Margin = new Thickness(0, 0, 0, 20 + Nothing.Height);
             EmojiButton.Margin = new Thickness(0, 0, 65, 20 + Nothing.Height);
             UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20 + Nothing.Height);
+            PhotoButton.Margin = new Thickness(0, 0, 0, 20 + Nothing.Height);
+            CameraButton.Margin = new Thickness(0, 0, 65, 20 + Nothing.Height);
+            ReturnButton.Margin = new Thickness(0, 0, 130, 20 + Nothing.Height);
             Nothing.Visibility = Visibility.Visible;
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
             _isEmojiActivated = true;
@@ -232,6 +268,9 @@ namespace WooBee_Normal
             SendButton.Margin = new Thickness(0, 0, 0, 20);
             EmojiButton.Margin = new Thickness(0, 0, 65, 20);
             UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20);
+            PhotoButton.Margin = new Thickness(0, 0, 0, 20);
+            CameraButton.Margin = new Thickness(0, 0, 65, 20);
+            ReturnButton.Margin = new Thickness(0, 0, 130, 20);
             Nothing.Visibility = Visibility.Collapsed;
             _isEmojiActivated = false;
         }
@@ -245,6 +284,7 @@ namespace WooBee_Normal
                 _reverseEmojiDict.Add(item.Value, item.Key);
             }
         }
+
 
 
         #endregion

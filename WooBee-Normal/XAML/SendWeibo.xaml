@@ -5,7 +5,8 @@
     xmlns:local="using:WooBee_Normal"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    IsTabStop="True">
 
 
     <Grid Background="#FFF1F1F1">
@@ -87,8 +88,8 @@
                  BorderBrush="{x:Null}" 
                  Grid.ColumnSpan="2" 
                  Grid.RowSpan="2" 
-                 LostFocus="contentTextBox_LostFocus" Style="{StaticResource TextBoxStyle1}"
-                 />
+                 LostFocus="contentTextBox_LostFocus" 
+                 Style="{StaticResource TextBoxStyle1}"/>
 
         <Button x:Name="SendButton"
                 HorizontalAlignment="Right" 
@@ -98,6 +99,7 @@
                 BorderBrush="Black"
                 Width="45"
                 Height="45"
+                Visibility="Visible"
                 BorderThickness="4" 
                 Grid.Column="2" 
                 Grid.Row="1" 
@@ -121,6 +123,7 @@
                 BorderBrush="Black"
                 Width="45"
                 Height="45"
+                Visibility="Visible"
                 BorderThickness="4" 
                 Grid.Column="2" 
                 Grid.Row="1" 
@@ -144,6 +147,7 @@
                 BorderBrush="Black"
                 Width="45"
                 Height="45"
+                Visibility="Visible"
                 BorderThickness="4" 
                 Grid.Column="2" 
                 Grid.Row="1" 
@@ -153,6 +157,74 @@
                         Margin="-22.667,-8,-22.333,-8" 
                         VerticalAlignment="Top">
                 <BitmapIcon  x:Name="Photo"  UriSource="/Assets/Icons/Uploadphoto.png"
+                       Margin="0,-1,-1,0"/>
+            </StackPanel>
+        </Button>
+
+        <Button x:Name="PhotoButton"
+                HorizontalAlignment="Right" 
+                Margin="0,0,0,20"
+                VerticalAlignment="Bottom"
+                Background="#FFF1F1F1" 
+                BorderBrush="Black"
+                Width="45"
+                Height="45"
+                Visibility="Collapsed"
+                BorderThickness="4" 
+                Grid.Column="2" 
+                Grid.Row="1"
+                Style="{StaticResource ButtonStyle1}" Click="PhotoButton_Click">
+            <StackPanel Height="22" 
+                        Width="22" 
+                        Margin="-22.5,-7,-22.333,-8" 
+                        VerticalAlignment="Top">
+
+                <BitmapIcon UriSource="/Assets/Icons/Images.png"
+                            Margin="1,0,-1,0"/>
+            </StackPanel>
+        </Button>
+
+        <Button x:Name="CameraButton"
+                HorizontalAlignment="Right" 
+                Margin="0,0,65,20"
+                VerticalAlignment="Bottom"
+                Background="#FFF1F1F1" 
+                BorderBrush="Black"
+                Width="45"
+                Height="45"
+                Visibility="Collapsed"
+                BorderThickness="4" 
+                Grid.Column="2" 
+                Grid.Row="1" 
+                Style="{StaticResource ButtonStyle1}" Click="CameraButton_Click" >
+            <StackPanel Height="23" 
+                        Width="23" 
+                        Margin="-21,-8,-22.333,-8" 
+                        VerticalAlignment="Top">
+
+                <BitmapIcon UriSource="/Assets/Icons/Camera.png"
+                       Margin="0,0,-1,0"/>
+            </StackPanel>
+        </Button>
+
+        <Button x:Name="ReturnButton"
+                HorizontalAlignment="Right" 
+                Margin="0,0,130,20"
+                VerticalAlignment="Bottom"
+                Background="#FFF1F1F1" 
+                BorderBrush="Black"
+                Width="45"
+                Height="45"
+                Visibility="Collapsed"
+                BorderThickness="4" 
+                Grid.Column="2" 
+                Grid.Row="1" 
+                Style="{StaticResource ButtonStyle1}" Click="ReturnButton_Click">
+            <StackPanel Height="20" 
+                        Width="20" 
+                        Margin="-22.667,-5,-22.333,-8" 
+                        VerticalAlignment="Top">
+                <BitmapIcon  UriSource="/Assets/Icons/Previous.png"
                        Margin="0,-1,-1,0"/>
             </StackPanel>
         </Button>
