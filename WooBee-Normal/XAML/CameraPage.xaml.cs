@@ -48,7 +48,8 @@ namespace WooBee_Normal
         {
             CameraCaptureUI captureUI = new CameraCaptureUI();
             captureUI.PhotoSettings.Format = CameraCaptureUIPhotoFormat.Jpeg;
-            captureUI.PhotoSettings.MaxResolution = CameraCaptureUIMaxPhotoResolution.MediumXga; 
+            
+            captureUI.PhotoSettings.MaxResolution = CameraCaptureUIMaxPhotoResolution.Large3M; 
 
             StorageFile photo = await captureUI.CaptureFileAsync(CameraCaptureUIMode.Photo);
 
