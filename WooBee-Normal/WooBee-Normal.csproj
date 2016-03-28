@@ -332,6 +332,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CameraPage.xaml.cs">
+      <DependentUpon>CameraPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\BindingHelper.cs" />
     <Compile Include="Utilities\PageParametersContainers.cs" />
     <Compile Include="Source\MentionsSource.cs" />
@@ -457,6 +460,10 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="CameraPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="XAML\SinaWebPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
