@@ -10,6 +10,8 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Phone.UI.Input;
 using Windows.Storage;
+using Windows.Storage.Pickers;
+using Windows.Storage.Streams;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Popups;
@@ -55,6 +57,7 @@ namespace WooBee_Normal
         private bool _isEmojiActivated = false;
         private static ObservableCollection<BitmapImage> _emojisource = App._emoticonSource;
         private static Dictionary<string, string> _reverseEmojiDict = new Dictionary<string, string>();
+        private static StorageFile file { get; set; }
         #endregion
 
         #region Event
@@ -134,10 +137,21 @@ namespace WooBee_Normal
             }
             else
             {
-                contentTextBox.LostFocus += LostFocus;
-                await HttpPost(contentTextBox.Text);
-                await Task.Delay(500);
-                Frame.GoBack();
+                if(file == null)
+                {
+                    contentTextBox.LostFocus += LostFocus;
+                    await HttpPost(contentTextBox.Text);
+                    await Task.Delay(500);
+                    Frame.GoBack();
+                }
+                else
+                {
+                    if (contentTextBox.Text == "写点啥吧")
+                        contentTextBox.Text = "分享图片";
+                    await HttpPostWithImage(contentTextBox.Text);
+                    Frame.GoBack();
+                }
+                
             }
 
         }
@@ -210,7 +224,29 @@ namespace WooBee_Normal
 
         private async void PhotoButton_Click(object sender, RoutedEventArgs e)
         {
-            await message.ShowAsync();
+            FileOpenPicker open = new FileOpenPicker();
+            open.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            open.ViewMode = PickerViewMode.Thumbnail;
+
+            // Filter to include a sample subset of file types
+            open.FileTypeFilter.Clear();
+            open.FileTypeFilter.Add(".gif");
+            open.FileTypeFilter.Add(".png");
+            open.FileTypeFilter.Add(".jpeg");
+            open.FileTypeFilter.Add(".jpg");
+
+            // Open a stream for the selected file
+            file = await open.PickSingleFileAsync();
+            if(file != null)
+            {
+                
+                IRandomAccessStream fileStream = await file.OpenAsync(FileAccessMode.Read);
+                BitmapImage bitmapImage = new BitmapImage();
+                await bitmapImage.SetSourceAsync(fileStream);
+                image.Source = bitmapImage;
+                image.Visibility = Visibility.Visible;
+            }
+            
         }
         #endregion
 
@@ -239,6 +275,20 @@ namespace WooBee_Normal
             {
                 string asc = ex.ToString();
             }
+        }
+
+        private static async Task HttpPostWithImage(string postMsg)
+        {
+            string posturi = "https://upload.api.weibo.com/2/statuses/upload.json?access_token=" + App.access_token;
+            HttpClient httpClient = new HttpClient();
+            FileRandomAccessStream stream = (FileRandomAccessStream)await file.OpenAsync(FileAccessMode.Read);
+            HttpStreamContent streamContent1 = new HttpStreamContent(stream);
+            HttpStringContent stringContent = new HttpStringContent(postMsg);
+            HttpMultipartFormDataContent fileContent = new HttpMultipartFormDataContent();
+            fileContent.Add(stringContent, "status");
+            fileContent.Add(streamContent1, "pic", "pic.jpg");
+            HttpResponseMessage response = await httpClient.PostAsync(new Uri(posturi), fileContent);
+            string responString = await response.Content.ReadAsStringAsync();
         }
 
         private async void ShowStatusBar()

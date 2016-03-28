@@ -228,6 +228,15 @@
                        Margin="0,-1,-1,0"/>
             </StackPanel>
         </Button>
+        <Image x:Name="image" 
+               Grid.ColumnSpan="2" 
+               HorizontalAlignment="Left" 
+               Height="100" 
+               VerticalAlignment="Bottom" 
+               Width="100" 
+               Grid.Row="1" 
+               Grid.Column="1"
+               Visibility="Collapsed"/>
 
 
         <!--<Button x:Name="button" Content="Button" Grid.Column="2" HorizontalAlignment="Stretch" Margin="240,0,10,71" VerticalAlignment="Stretch" Grid.Row="2"/>-->
