@@ -97,25 +97,26 @@ namespace WooBee_Normal
 
         void InputPaneHiding(InputPane sender, InputPaneVisibilityEventArgs args)
         {
-            this.SendButton.Margin = new Thickness(0, 0, 0, 20);
-            this.EmojiButton.Margin = new Thickness(0, 0, 65, 20);
-            this.UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20);
-            this.PhotoButton.Margin = new Thickness(0, 0, 0, 20);
-            this.CameraButton.Margin = new Thickness(0, 0, 65, 20);
-            this.ReturnButton.Margin = new Thickness(0, 0, 130, 20);
+            SendButton.Margin = new Thickness(0, 0, 0, 20);
+            EmojiButton.Margin = new Thickness(0, 0, 65, 20);
+            UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20);
+            PhotoButton.Margin = new Thickness(0, 0, 0, 20);
+            CameraButton.Margin = new Thickness(0, 0, 65, 20);
+            ReturnButton.Margin = new Thickness(0, 0, 130, 20);
+            ImagePanel.Margin = new Thickness(0, 0, 0, 0);
             if (_isEmojiActivated)
                 EmojiPanelShowing();
         }
 
         private void InputPaneShowing(InputPane sender, InputPaneVisibilityEventArgs args)
         {
-            this.SendButton.Margin = new Thickness(0, 0, 0, 20 + args.OccludedRect.Height);
-            this.PhotoButton.Margin = new Thickness(0, 0, 0, 20 + args.OccludedRect.Height);
-            this.EmojiButton.Margin = new Thickness(0, 0, 65, 20 + args.OccludedRect.Height);
-            this.CameraButton.Margin = new Thickness(0, 0, 65, 20 + args.OccludedRect.Height);
-            this.UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20 + args.OccludedRect.Height);
-            this.ReturnButton.Margin = new Thickness(0, 0, 130, 20 + args.OccludedRect.Height);
-
+            SendButton.Margin = new Thickness(0, 0, 0, 20 + args.OccludedRect.Height);
+            PhotoButton.Margin = new Thickness(0, 0, 0, 20 + args.OccludedRect.Height);
+            EmojiButton.Margin = new Thickness(0, 0, 65, 20 + args.OccludedRect.Height);
+            CameraButton.Margin = new Thickness(0, 0, 65, 20 + args.OccludedRect.Height);
+            UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20 + args.OccludedRect.Height);
+            ReturnButton.Margin = new Thickness(0, 0, 130, 20 + args.OccludedRect.Height);
+            ImagePanel.Margin = new Thickness(0, 0, 0, args.OccludedRect.Height);
 
         }
 
@@ -396,6 +397,7 @@ namespace WooBee_Normal
             PhotoButton.Margin = new Thickness(0, 0, 0, 20 + Nothing.Height);
             CameraButton.Margin = new Thickness(0, 0, 65, 20 + Nothing.Height);
             ReturnButton.Margin = new Thickness(0, 0, 130, 20 + Nothing.Height);
+            ImagePanel.Margin = new Thickness(0, 0, 0, Nothing.Height);
             Nothing.Visibility = Visibility.Visible;
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
             _isEmojiActivated = true;
@@ -409,6 +411,7 @@ namespace WooBee_Normal
             PhotoButton.Margin = new Thickness(0, 0, 0, 20);
             CameraButton.Margin = new Thickness(0, 0, 65, 20);
             ReturnButton.Margin = new Thickness(0, 0, 130, 20);
+            ImagePanel.Margin = new Thickness(0, 0, 0, 0);
             Nothing.Visibility = Visibility.Collapsed;
             _isEmojiActivated = false;
         }

@@ -237,9 +237,10 @@
                     Width="80" 
                     Grid.Row="1" 
                     Grid.Column="1"
-                    Visibility="Collapsed"
+                    Visibility="Visible"
                     Orientation="Vertical"
-                    Background="#FFE0E0E0">
+                    Background="#FFE0E0E0"
+                    Margin="0,0,0,0">
             <TextBlock x:Name="ImagesCount" Text="0" HorizontalAlignment="Center"/>
             <Image x:Name="image" />
         </StackPanel>
