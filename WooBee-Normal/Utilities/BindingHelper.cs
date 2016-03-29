@@ -43,7 +43,7 @@ namespace WooBee_Normal
                 value = value.Replace("<", "&lt;").Replace(">", "&gt;").Replace("&", "&amp;");
 
 
-                Regex urlRx = new Regex(@"(?<url>(http:[/][/]t.cn[/]\w{7}))", RegexOptions.IgnoreCase);
+                Regex urlRx = new Regex(@"((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)", RegexOptions.IgnoreCase);
                 MatchCollection matches = urlRx.Matches(value);
                 var r = new Regex(builder.ToString());
                 var mc = r.Matches(value);
@@ -55,7 +55,7 @@ namespace WooBee_Normal
                 }
                 foreach (Match match in matches)
                 {
-                    string url = match.Groups["url"].Value;
+                    string url = match.Value;
                     value = value.Replace(url,
                         string.Format(@"<InlineUIContainer><Border><HyperlinkButton Margin=""0,0,0,-4"" Padding=""0,2,0,0"" NavigateUri =""{0}""><StackPanel HorizontalAlignment=""Center"" Height=""23"" Width=""87"" Background=""#FFB8E9FF"" Orientation = ""Horizontal"">
                         <Image Margin=""5,0,0,0"" Source = ""ms-appx:///Assets/Icons/Link.png"" Width = ""15"" Height = ""15""/><TextBlock Margin=""4,1.5,0,0"" Text=""网页链接"" Foreground=""White"" FontFamily=""Microsoft YaHei UI"" FontSize=""14"" FontWeight=""Bold""/>

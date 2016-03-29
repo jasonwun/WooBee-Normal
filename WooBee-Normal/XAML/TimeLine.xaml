@@ -201,12 +201,13 @@
 
 
                 <RichTextBlock x:Name="TextRepostTextBlock"
-                           Margin="20,50,8,0"
+                           Margin="20,50,8,5"
                            local:BindingHelper.Text="{Binding RepostWeibo.Text}"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
                            Grid.Column="2"
                            Grid.Row="2"
-                                IsTextSelectionEnabled="False"/>
+                                IsTextSelectionEnabled="False"
+                               Height="auto"/>
 
 
             </Grid>
