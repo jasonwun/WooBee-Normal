@@ -128,5 +128,10 @@ namespace WooBee_Normal
 
         }
 
+        private void HashTagHyperlinkButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(HashTagPage));
+        }
+
     }
 }
