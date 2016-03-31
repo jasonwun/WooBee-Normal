@@ -42,8 +42,8 @@ namespace WooBee_Normal
 
                 value = value.Replace("<", "&lt;").Replace(">", "&gt;").Replace("&", "&amp;");
 
-
-                Regex urlRx = new Regex(@"((http|https)://)?(www.)?[a-z0-9\.]+(\.(com|net|cn|com\.cn|com\.net|net\.cn))(/[^\s\n]*)?", RegexOptions.IgnoreCase);
+                
+                Regex urlRx = new Regex(@"(?<url>(https?:(?:\/\/)?)[A-Za-z0-9\.\-]+((?:\/[\+~%\/\.\w\-]*)?\??(?:[\-\+=&;%@\.\w]*?)\#?(?:[\.\!\/\\\w\-]*))?)", RegexOptions.IgnoreCase);
                 Regex hashtagRx = new Regex(@"#(.+?)#");
                 MatchCollection matches = urlRx.Matches(value);
                 MatchCollection hastagmc = hashtagRx.Matches(value);
@@ -69,7 +69,7 @@ namespace WooBee_Normal
 
                 foreach(Match m in hastagmc)
                 {
-                    value = value.Replace(m.Value, string.Format(@"<InlineUIContainer><Border Margin=""0,1,0,0"" ><Button x:Name=""HashTagHyperlinkButton""  Padding=""-4,-4,-4,-4"" Content=""{0}"" Style=""{{StaticResource HyperLinkButtonStyle}}""/></Border></InlineUIContainer>", m.Value));
+                    value = value.Replace(m.Value, string.Format(@"<InlineUIContainer><Border Margin=""0,1,0,0"" ><Button x:Name=""HashTagHyperlinkButton""  Padding=""1,-4,1,-4"" Content=""{0}"" Style=""{{StaticResource HyperLinkButtonStyle}}""/></Border></InlineUIContainer>", m.Value));
                 }
 
 

@@ -77,9 +77,18 @@ namespace WooBee_Normal
 
         private void listView_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            var _listview = listView as ListView;
-            _weibo = (Weibo)_listview.SelectedItem;
-            Frame.Navigate(typeof(WeiboDetail), _weibo);
+            ListViewItemPresenter originalsource = e.OriginalSource as ListViewItemPresenter;
+            if (originalsource == null)
+            {
+                e.Handled = true;
+            }
+            else
+            {
+                var _listview = listView as ListView;
+                _weibo = (Weibo)_listview.SelectedItem;
+                Frame.Navigate(typeof(WeiboDetail), _weibo);
+            }
+            
         }
 
         private async void ShowStatusBar()
