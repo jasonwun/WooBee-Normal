@@ -27,6 +27,19 @@ namespace WooBee_Normal
             this.InitializeComponent();
         }
 
+        private void Button_Tapped(object sender, TappedRoutedEventArgs e)
+        {
 
+        }
+
+        private void HashTagHyperlinkButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
+
+        private void HashTagHyperlinkButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

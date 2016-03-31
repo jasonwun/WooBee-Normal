@@ -45,15 +45,17 @@ namespace WooBee_Normal
                 
                 Regex urlRx = new Regex(@"(?<url>(https?:(?:\/\/)?)[A-Za-z0-9\.\-]+((?:\/[\+~%\/\.\w\-]*)?\??(?:[\-\+=&;%@\.\w]*?)\#?(?:[\.\!\/\\\w\-]*))?)", RegexOptions.IgnoreCase);
                 Regex hashtagRx = new Regex(@"#(.+?)#");
+                Regex usernameRx = new Regex(@"@[\u4e00-\u9fa5a-zA-Z0-9_-]{4,30}");
                 MatchCollection matches = urlRx.Matches(value);
                 MatchCollection hastagmc = hashtagRx.Matches(value);
+                MatchCollection usermc = usernameRx.Matches(value);
                 var r = new Regex(builder.ToString());
                 var mc = r.Matches(value);
 
 
                 foreach (Match m in mc)
                 {
-                    value = value.Replace(m.Value, string.Format(@"<InlineUIContainer><Border><StackPanel Margin = ""2,0,2,0"" Width = ""19"" Height = ""19""><Image Source =""/Assets/Emoji/{0}.png""/></StackPanel></Border></InlineUIContainer> ", emojiDict[m.Value]));
+                    value = value.Replace(m.Value, string.Format(@"<InlineUIContainer><Border><StackPanel Margin = ""2,0,-3,0"" ><Image Margin=""0,7,0,0"" Source =""/Assets/Emoji/{0}.png"" Width=""19"" Height=""19"" /></StackPanel></Border></InlineUIContainer> ", emojiDict[m.Value]));
                 }
                 foreach (Match match in matches)
                 {
@@ -69,7 +71,27 @@ namespace WooBee_Normal
 
                 foreach(Match m in hastagmc)
                 {
-                    value = value.Replace(m.Value, string.Format(@"<InlineUIContainer><Border Margin=""0,1,0,0"" ><Button x:Name=""HashTagHyperlinkButton""  Padding=""1,-4,1,-4"" Content=""{0}"" Style=""{{StaticResource HyperLinkButtonStyle}}""/></Border></InlineUIContainer>", m.Value));
+                    value = value.Replace(m.Value, string.Format(@"<InlineUIContainer>
+                                                                       <Border Margin=""0,1,0,0"">
+                                                                             <Button x:Name=""HashTagHyperlinkButton""  
+                                                                                     Padding=""1,-4,1,-4""  
+                                                                                     Content=""{0}""  
+                                                                                     Style=""{{StaticResource HyperLinkButtonStyle}}"" FontFamily=""Microsoft YaHei UI""/>
+                                                                             </Border>
+                                                                   </InlineUIContainer>", m.Value));
+                }
+
+                foreach(Match m in usermc)
+                {
+                    value = value.Replace(m.Value, string.Format(@"<InlineUIContainer>
+                                                                       <Border Margin=""0,1,0,0"">
+                                                                             <Button x:Name=""UserLinkButton""  
+                                                                                     Padding=""1,-4,1,-4""  
+                                                                                     Content=""{0}""  
+                                                                                     Style=""{{StaticResource HyperLinkButtonStyle}}""
+                                                                                     FontFamily=""Microsoft YaHei UI""/>
+                                                                             </Border>
+                                                                   </InlineUIContainer>", m.Value));
                 }
 
 

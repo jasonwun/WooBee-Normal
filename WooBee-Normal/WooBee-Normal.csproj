@@ -335,10 +335,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HashTagPage.xaml.cs">
+    <Compile Include="XAML\HashTagPage.xaml.cs">
       <DependentUpon>HashTagPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserPage.xaml.cs">
+    <Compile Include="XAML\UserPage.xaml.cs">
       <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="XAML\CameraPage.xaml.cs">
@@ -469,11 +469,11 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="HashTagPage.xaml">
+    <Page Include="XAML\HashTagPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserPage.xaml">
+    <Page Include="XAML\UserPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

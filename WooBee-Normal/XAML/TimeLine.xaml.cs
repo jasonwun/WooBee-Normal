@@ -80,7 +80,29 @@ namespace WooBee_Normal
             ListViewItemPresenter originalsource = e.OriginalSource as ListViewItemPresenter;
             if (originalsource == null)
             {
-                e.Handled = true;
+                var advancesource = e.OriginalSource as TextBlock;
+                if(advancesource == null)
+                {
+                    var _listview = listView as ListView;
+                    _weibo = (Weibo)_listview.SelectedItem;
+                    Frame.Navigate(typeof(WeiboDetail), _weibo);
+                }
+                    
+                else if(advancesource.Text == "网页链接")
+                {
+                    e.Handled = true;
+                }
+                else if(advancesource.Text.Substring(0,1) == "@")
+                {
+                    string username = advancesource.Text.Substring(1);
+                    Frame.Navigate(typeof(UserPage), username);
+                }
+                else
+                {
+                    string hashtag = advancesource.Text.Substring(1);
+                    hashtag = hashtag.Remove(hashtag.Length - 1);
+                    Frame.Navigate(typeof(HashTagPage), hashtag);
+                }
             }
             else
             {
@@ -88,6 +110,7 @@ namespace WooBee_Normal
                 _weibo = (Weibo)_listview.SelectedItem;
                 Frame.Navigate(typeof(WeiboDetail), _weibo);
             }
+
             
         }
 

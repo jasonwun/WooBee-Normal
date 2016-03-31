@@ -9,7 +9,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="70,329,0,0" TextWrapping="Wrap" Text="HashPage" VerticalAlignment="Top"/>
-        <Button Content="#qweqweqweqwe#" Padding="-6,-6,-6,-6" Style="{StaticResource HyperLinkButtonStyle}" Margin="19,295,0,337"/>
+        <HyperlinkButton x:Name="HashTagHyperlinkButton" Content="#qweqweqweqwe#" Padding="-6,-6,-6,-6" NavigateUri="/TimeLine.xaml"/>
 
     </Grid>
 </Page>
