@@ -42,8 +42,8 @@ namespace WooBee_Normal
 
                 value = value.Replace("<", "&lt;").Replace(">", "&gt;").Replace("&", "&amp;");
 
-                
-                Regex urlRx = new Regex(@"(?<url>(https?:(?:\/\/)?)[A-Za-z0-9\.\-]+((?:\/[\+~%\/\.\w\-]*)?\??(?:[\-\+=&;%@\.\w]*?)\#?(?:[\.\!\/\\\w\-]*))?)", RegexOptions.IgnoreCase);
+
+                Regex urlRx = new Regex(@"((http|https)://)?(www.)?[a-z0-9\.]+(\.(com|net|cn|com\.cn|com\.net|net\.cn))(/[^\s\n]*)?", RegexOptions.IgnoreCase);
                 Regex hashtagRx = new Regex(@"#(.+?)#");
                 Regex usernameRx = new Regex(@"(\@.*?)(\w+)");
                 MatchCollection matches = urlRx.Matches(value);
@@ -59,14 +59,20 @@ namespace WooBee_Normal
                 }
                 foreach (Match match in matches)
                 {
+
                     string url = match.Value;
-                    value = value.Replace(url,
+                    if (url.Contains("全文"))
+                        value = value.Replace(url, "");
+                    else
+                    {
+                        value = value.Replace(url,
                         string.Format(@"<InlineUIContainer><Border><HyperlinkButton Margin=""0,0,0,-4"" Padding=""0,2,0,0"" NavigateUri =""{0}""><StackPanel HorizontalAlignment=""Center"" Height=""23"" Width=""87"" Background=""#FFB8E9FF"" Orientation = ""Horizontal"">
                         <Image Margin=""5,0,0,0"" Source = ""ms-appx:///Assets/Icons/Link.png"" Width = ""15"" Height = ""15""/><TextBlock Margin=""4,1.5,0,0"" Text=""网页链接"" Foreground=""White"" FontFamily=""Microsoft YaHei UI"" FontSize=""14"" FontWeight=""Bold""/>
                     </StackPanel>
                 </HyperlinkButton>
             </Border>
         </InlineUIContainer>", url));
+                    }
                 }
 
                 foreach(Match m in hastagmc)

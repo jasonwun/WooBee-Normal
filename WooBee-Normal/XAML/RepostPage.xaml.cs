@@ -68,6 +68,13 @@ namespace WooBee_Normal
                 contentTextBox.Foreground = grey;
                 contentTextBox.Text = "写点啥吧";
             }
+            else if (abc.Length > 140)
+            {
+                var dialog = new Windows.UI.Popups.MessageDialog("太长啦");
+                dialog.Commands.Add(new Windows.UI.Popups.UICommand("OK") { Id = 0 });
+                dialog.DefaultCommandIndex = 0;
+                dialog.CancelCommandIndex = 1;
+            }
             else
             {
                 contentTextBox.LostFocus += LostFocus;
@@ -96,8 +103,8 @@ namespace WooBee_Normal
 
             if (contentTextBox.Text == "写点啥吧")
             {
-                contentTextBox.Text = "";
                 contentTextBox.Foreground = black;
+                contentTextBox.Text = "";
             }
 
             if (_isEmojiActivated)
@@ -124,6 +131,10 @@ namespace WooBee_Normal
             {
                 contentTextBox.Foreground = grey;
                 contentTextBox.Text = "写点啥吧";
+            }
+            else
+            {
+                contentTextBox.Foreground = black;
             }
 
         }
@@ -182,7 +193,7 @@ namespace WooBee_Normal
                     new List<KeyValuePair<string, string>>
                     {
                         new KeyValuePair<string, string>("access_token",App.access_token),
-                        new KeyValuePair<string, string>("status", postMsg + "//@" + _weibo.User.ScreenName + ":" + _weibo.Text),
+                        new KeyValuePair<string, string>("status", postMsg),
                         new KeyValuePair<string, string>("id", _weibo.ID)
 
                     }

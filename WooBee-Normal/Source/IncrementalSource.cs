@@ -86,7 +86,7 @@ namespace WooBee_Normal
             string Uri = "https://api.weibo.com/2/statuses/home_timeline.json?source=";
             Uri += App.client_id;
             Uri += "&access_token=";
-            Uri += App.access_token;
+            Uri += App.weico_access_token;
             Uri += "&page=";
             Uri += page_num.ToString();
             Uri += "&since_id=";
