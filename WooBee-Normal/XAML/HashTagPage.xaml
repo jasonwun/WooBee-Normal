@@ -8,8 +8,11 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="70,329,0,0" TextWrapping="Wrap" Text="HashPage" VerticalAlignment="Top"/>
-        <HyperlinkButton x:Name="HashTagHyperlinkButton" Content="#qweqweqweqwe#" Padding="-6,-6,-6,-6" NavigateUri="/TimeLine.xaml"/>
+        <TextBlock x:Name="Header"
+                   Text="话题" 
+                   FontFamily="Microsoft YaHei UI"
+                   FontSize="48"
+                   HorizontalAlignment="Center"/>
 
     </Grid>
 </Page>

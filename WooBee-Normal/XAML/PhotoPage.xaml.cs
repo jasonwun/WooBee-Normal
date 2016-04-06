@@ -55,15 +55,12 @@ namespace WooBee_Normal
             {
                 item.thumpic = item.thumpic.Replace("thumbnail", "mw1024");
             }
-
-
-
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         { 
             ImagesFlip.ItemsSource = _imageSource;
-            if(_index >= 0)
+            if(_index > 0)
                 ImagesFlip.SelectedIndex = _index;
         }
     }

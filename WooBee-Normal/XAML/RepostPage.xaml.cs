@@ -182,8 +182,8 @@ namespace WooBee_Normal
                     new List<KeyValuePair<string, string>>
                     {
                         new KeyValuePair<string, string>("access_token",App.access_token),
-                        new KeyValuePair<string, string>("status", postMsg),
-                        new KeyValuePair<string, string>("id", _weibo.ID.ToString())
+                        new KeyValuePair<string, string>("status", postMsg + "//@" + _weibo.User.ScreenName + ":" + _weibo.Text),
+                        new KeyValuePair<string, string>("id", _weibo.ID)
 
                     }
                 );
@@ -230,6 +230,12 @@ namespace WooBee_Normal
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             _weibo = e.Parameter as Weibo;
+            if(_weibo.RepostWeibo != null)
+            {
+                contentTextBox.Foreground = black;
+                contentTextBox.Text = "//@" + _weibo.User.ScreenName + ":" + _weibo.Text;
+            }
+                
         }
 
 

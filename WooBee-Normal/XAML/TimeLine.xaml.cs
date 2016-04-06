@@ -92,7 +92,7 @@ namespace WooBee_Normal
                 {
                     e.Handled = true;
                 }
-                else if(advancesource.Text.Substring(0,1) == "@")
+                else if(advancesource.Text.Substring(0,1) == "@" || advancesource.Text.Substring(0,1) != "#")
                 {
                     string username = advancesource.Text.Substring(1);
                     Frame.Navigate(typeof(UserPage), username);

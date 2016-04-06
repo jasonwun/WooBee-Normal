@@ -8,7 +8,11 @@
     mc:Ignorable="d">
 
     <Grid Background="White">
-        <Button x:Name="button" Content="aaaa萎不萎哇" FontFamily="Microsoft YaHei UI"/>
+        <TextBlock x:Name="Header"
+                   Text="用户" 
+                   FontFamily="Microsoft YaHei UI"
+                   FontSize="48"
+                   HorizontalAlignment="Center"/>
 
 
     </Grid>
