@@ -45,7 +45,7 @@ namespace WooBee_Normal
                 
                 Regex urlRx = new Regex(@"(?<url>(https?:(?:\/\/)?)[A-Za-z0-9\.\-]+((?:\/[\+~%\/\.\w\-]*)?\??(?:[\-\+=&;%@\.\w]*?)\#?(?:[\.\!\/\\\w\-]*))?)", RegexOptions.IgnoreCase);
                 Regex hashtagRx = new Regex(@"#(.+?)#");
-                Regex usernameRx = new Regex(@"@[\u4e00-\u9fa5a-zA-Z0-9_-]{4,30}");
+                Regex usernameRx = new Regex(@"(\@.*?)(\w+)");
                 MatchCollection matches = urlRx.Matches(value);
                 MatchCollection hastagmc = hashtagRx.Matches(value);
                 MatchCollection usermc = usernameRx.Matches(value);
@@ -71,6 +71,8 @@ namespace WooBee_Normal
 
                 foreach(Match m in hastagmc)
                 {
+                    if (value.Contains(string.Format(@"Content=""{0}""", m.Value)))
+                        break;
                     value = value.Replace(m.Value, string.Format(@"<InlineUIContainer>
                                                                        <Border Margin=""0,1,0,0"">
                                                                              <Button x:Name=""HashTagHyperlinkButton""  
@@ -83,6 +85,8 @@ namespace WooBee_Normal
 
                 foreach(Match m in usermc)
                 {
+                    if (value.Contains(string.Format(@"Content=""{0}""", m.Value)))
+                        break;
                     value = value.Replace(m.Value, string.Format(@"<InlineUIContainer>
                                                                        <Border Margin=""0,1,0,0"">
                                                                              <Button x:Name=""UserLinkButton""  
