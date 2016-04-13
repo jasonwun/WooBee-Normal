@@ -43,7 +43,7 @@ namespace WooBee_Normal
                 value = value.Replace("<", "&lt;").Replace(">", "&gt;").Replace("&", "&amp;");
 
 
-                Regex urlRx = new Regex(@"((http|https)://)?(www.)?[a-z0-9\.]+(\.(com|net|cn|com\.cn|com\.net|net\.cn))(/[^\s\n]*)?", RegexOptions.IgnoreCase);
+                Regex urlRx = new Regex(@"((http|https)://)?(www.)?[a-z0-9\.]+(\.(com|net|cn|com\.cn|com\.net|net\.cn))(/[A-Za-z0-9]*)?", RegexOptions.IgnoreCase);
                 Regex hashtagRx = new Regex(@"#(.+?)#");
                 Regex usernameRx = new Regex(@"(\@.*?)(\w+)");
                 MatchCollection matches = urlRx.Matches(value);
