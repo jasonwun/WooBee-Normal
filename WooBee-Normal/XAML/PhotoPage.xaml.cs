@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -26,13 +27,15 @@ namespace WooBee_Normal
     {
 
         private static ObservableCollection<ThumbnailPics> _imageSource { get; set; }
+        private static ObservableCollection<BitmapImage> _bitmapImage { get; set; }
         private int _index { get; set; }
 
         public PhotoPage()
         {
             this.InitializeComponent();
             ShowStatusBar();
-            
+           
+
         }
 
         private async void ShowStatusBar()
@@ -54,7 +57,24 @@ namespace WooBee_Normal
             foreach (var item in _imageSource)
             {
                 item.thumpic = item.thumpic.Replace("thumbnail", "mw1024");
+                BitmapImage bitimg = new BitmapImage(new Uri(item.thumpic));
+                bitimg.DownloadProgress += Bitimg_DownloadProgress;
+                bitimg.ImageOpened += Bitimg_ImageOpened;
+                
+
             }
+        }
+
+        private void Bitimg_ImageOpened(object sender, RoutedEventArgs e)
+        {
+            _bitmapImage.Add(sender as BitmapImage);
+        }
+
+        private void Bitimg_DownloadProgress(object sender, DownloadProgressEventArgs e)
+        {
+            TextBlock txtBlock = new TextBlock();
+            
+            txtBlock.Text = e.Progress.ToString();
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)

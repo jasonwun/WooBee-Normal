@@ -33,7 +33,8 @@
                        VerticalAlignment="Top"
                        HorizontalAlignment="Stretch" 
                        Grid.ColumnSpan="2"
-                       Source="{Binding User.AvatarLarge}" 
+                       Source="/Assets/UnloadedAvatar.png"
+                       local:ImageBindingHelper.UriProperty="{Binding User.AvatarLarge}" 
                        Margin="6,2.667,1,0" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
 
                 <Grid Background="Black"
@@ -126,7 +127,8 @@
                        HorizontalAlignment="Stretch"
                        d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
                        Grid.ColumnSpan="2"
-                       Source="{Binding User.AvatarLarge}" 
+                       Source="/Assets/UnloadedAvatar.png"
+                       local:ImageBindingHelper.UriProperty="{Binding User.AvatarLarge}" 
                        Margin="4,3,0,0">
                 </Image>
                 <Grid Background="Black"
@@ -237,7 +239,8 @@
                        HorizontalAlignment="Stretch"
                        d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
                        Grid.ColumnSpan="2"
-                       Source="{Binding User.AvatarLarge}" 
+                       Source="/Assets/UnloadedAvatar.png"
+                       local:ImageBindingHelper.UriProperty="{Binding User.AvatarLarge}" 
                        Margin="4,3,0,0"/>
                 
                 <Grid Background="Black"
@@ -337,8 +340,9 @@
                        VerticalAlignment="Top"
                        HorizontalAlignment="Stretch" 
                        Grid.ColumnSpan="2"
-                       Source="{Binding User.AvatarLarge}" 
+                       local:ImageBindingHelper.UriProperty="{Binding User.AvatarLarge}" 
                        Margin="4,3,3,0" 
+                       Source="/Assets/UnloadedAvatar.png"
                        d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
                 
                 <Grid Background="Black"
@@ -457,7 +461,8 @@
                        HorizontalAlignment="Stretch"
                        d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
                        Grid.ColumnSpan="2"
-                       Source="{Binding User.AvatarLarge}" 
+                       Source="/Assets/UnloadedAvatar.png"
+                       local:ImageBindingHelper.UriProperty="{Binding User.AvatarLarge}" 
                        Margin="4,3,3,0"/>
 
                 <Grid Background="Black"
@@ -581,7 +586,8 @@
                        HorizontalAlignment="Stretch"
                        d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
                        Grid.ColumnSpan="2"
-                       Source="{Binding User.AvatarLarge}" 
+                       Source="/Assets/UnloadedAvatar.png"
+                       local:ImageBindingHelper.UriProperty="{Binding User.AvatarLarge}" 
                        Margin="4,3,3,0"/>
 
                 <Grid Background="Black"

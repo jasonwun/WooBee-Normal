@@ -15,9 +15,7 @@
                 <DataTemplate>
                     <ScrollViewer HorizontalScrollMode="Disabled" 
                                   VerticalScrollMode="Enabled">
-                        <Grid>
-                            <Image Source="{Binding thumpic}"/>
-                        </Grid>
+                        <ItemsPresenter />
                     </ScrollViewer>
                     
                 </DataTemplate>
