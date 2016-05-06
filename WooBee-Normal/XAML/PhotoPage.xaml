@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WooBee_Normal"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:gif="using:XamlAnimatedGif"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     NavigationCacheMode="Disabled">
@@ -13,10 +14,15 @@
 
             <FlipView.ItemTemplate>
                 <DataTemplate>
-                    <ScrollViewer HorizontalScrollMode="Disabled" 
+                    <Grid>
+                        <ScrollViewer HorizontalScrollMode="Disabled" 
                                   VerticalScrollMode="Enabled">
-                        <ItemsPresenter />
-                    </ScrollViewer>
+                            <Image x:Name="photo" gif:AnimationBehavior.SourceUri="{Binding Image}" />
+
+                        </ScrollViewer>
+                        <!--<ProgressRing x:Name="progress" IsActive="{Binding IsLoading}"/>-->
+                    </Grid>
+                    
                     
                 </DataTemplate>
             </FlipView.ItemTemplate>

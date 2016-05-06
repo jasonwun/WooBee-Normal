@@ -335,7 +335,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ImageBindingHelper.cs" />
+    <Compile Include="Utilities\ImageBindingHelper.cs" />
     <Compile Include="XAML\HashTagPage.xaml.cs">
       <DependentUpon>HashTagPage.xaml</DependentUpon>
     </Compile>
@@ -471,6 +471,10 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="XAML\HashTagPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

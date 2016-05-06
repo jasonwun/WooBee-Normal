@@ -415,12 +415,9 @@
                           SelectionMode="Single" 
                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition"
                           Style="{StaticResource ImageGridViewStyle}" 
+                          ItemContainerStyle="{StaticResource MyGridViewItemStyle}"
                           Tapped="gridView_Tapped">
-                    <GridView.ItemContainerStyle>
-                        <Style TargetType="FrameworkElement">
-                            <Setter Property="Margin" Value="0 0 1 1"/>
-                        </Style>
-                    </GridView.ItemContainerStyle>
+
                     <GridView.ItemTemplate>
                         <DataTemplate>
                             <Image Source="{Binding thumpic}"
@@ -680,12 +677,9 @@
                           HorizontalAlignment="Stretch"
                           SelectionMode="Single" 
                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition"
-                          Style="{StaticResource ImageGridViewStyle}" Tapped="gridView_Tapped">
-                    <GridView.ItemContainerStyle>
-                        <Style TargetType="FrameworkElement">
-                            <Setter Property="Margin" Value="0 0 1 1"/>
-                        </Style>
-                    </GridView.ItemContainerStyle>
+                          Style="{StaticResource ImageGridViewStyle}" 
+                          Tapped="gridView_Tapped"
+                          ItemContainerStyle="{StaticResource MyGridViewItemStyle}">
                     <GridView.ItemTemplate>
                         <DataTemplate>
                             <Image Source="{Binding thumpic}"
@@ -749,8 +743,6 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-
-
 
         <Rectangle Grid.ColumnSpan="2" Grid.RowSpan="2" IsHitTestVisible="False">
             <Rectangle.Fill>

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -15,6 +17,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using XamlAnimatedGif;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -26,8 +29,8 @@ namespace WooBee_Normal
     public sealed partial class PhotoPage : Page
     {
 
-        private static ObservableCollection<ThumbnailPics> _imageSource { get; set; }
-        private static ObservableCollection<BitmapImage> _bitmapImage { get; set; }
+        private static ObservableCollection<MyImage> _imageSource { get; set; }
+        
         private int _index { get; set; }
 
         public PhotoPage()
@@ -50,31 +53,33 @@ namespace WooBee_Normal
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var p = e.Parameter as PageParametersContainers;
+            ObservableCollection<MyImage> _myimageSource = new ObservableCollection<MyImage>();
             if(p.parameter1 != null)
-                _imageSource = p.parameter1;
+            {
+                foreach (var item in p.parameter1)
+                {
+                    if(item.thumpic.Substring(item.thumpic.Length - 4) == ".gif")
+                    {
+                        item.thumpic = item.thumpic.Replace("thumbnail", "large");
+                        MyImage tmp = new MyImage();
+                        tmp.Image = item.thumpic;
+                        _myimageSource.Add(tmp);
+                    }
+                    else
+                    {
+                        item.thumpic = item.thumpic.Replace("thumbnail", "mw1024");
+                        MyImage tmp = new MyImage();
+                        tmp.Image = item.thumpic;
+                        _myimageSource.Add(tmp);
+                    }
+                    
+                }
+            }
+                
             if(p.parameter2 >= 0)
                 _index = p.parameter2;
-            foreach (var item in _imageSource)
-            {
-                item.thumpic = item.thumpic.Replace("thumbnail", "mw1024");
-                BitmapImage bitimg = new BitmapImage(new Uri(item.thumpic));
-                bitimg.DownloadProgress += Bitimg_DownloadProgress;
-                bitimg.ImageOpened += Bitimg_ImageOpened;
-                
 
-            }
-        }
-
-        private void Bitimg_ImageOpened(object sender, RoutedEventArgs e)
-        {
-            _bitmapImage.Add(sender as BitmapImage);
-        }
-
-        private void Bitimg_DownloadProgress(object sender, DownloadProgressEventArgs e)
-        {
-            TextBlock txtBlock = new TextBlock();
-            
-            txtBlock.Text = e.Progress.ToString();
+            _imageSource=_myimageSource;
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -83,5 +88,44 @@ namespace WooBee_Normal
             if(_index > 0)
                 ImagesFlip.SelectedIndex = _index;
         }
+
+        //private void photo_ImageOpened(object sender, RoutedEventArgs e)
+        //{
+            
+        //    (((Image)sender).DataContext as MyImage).IsLoading = false;
+        //}
+    }
+
+    public class MyImage : INotifyPropertyChanged
+    {
+
+        public MyImage()
+        {
+            this._IsLoading = true;
+        }
+
+        public string Image { get; set; }
+
+        private bool _IsLoading;
+        public bool IsLoading
+        {
+            get { return _IsLoading; }
+            set
+            {
+                
+                _IsLoading = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private void RaisePropertyChanged([CallerMemberName] string caller = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(caller));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

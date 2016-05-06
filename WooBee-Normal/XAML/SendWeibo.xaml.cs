@@ -240,7 +240,7 @@ namespace WooBee_Normal
             inputPane.Visible = false;
         }
 
-        private async void CameraButton_Click(object sender, RoutedEventArgs e)
+        private void CameraButton_Click(object sender, RoutedEventArgs e)
         {
             if (App.photofile == null)
                 Frame.Navigate(typeof(CameraPage));
