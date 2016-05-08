@@ -337,8 +337,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserProfiles.cs" />
-    <Compile Include="UserSource.cs" />
+    <Compile Include="Utilities\UserProfiles.cs" />
+    <Compile Include="Utilities\UserSource.cs" />
     <Compile Include="Utilities\RemindMessageModel.cs" />
     <Compile Include="Utilities\ImageBindingHelper.cs" />
     <Compile Include="XAML\HashTagPage.xaml.cs">
