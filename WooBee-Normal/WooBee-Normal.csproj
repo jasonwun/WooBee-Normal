@@ -316,8 +316,10 @@
     <Content Include="Assets\Icons\Camera.png" />
     <Content Include="Assets\Icons\delete-512.png" />
     <Content Include="Assets\Icons\Emotions.png" />
+    <Content Include="Assets\Icons\female-icon.png" />
     <Content Include="Assets\Icons\Images.png" />
     <Content Include="Assets\Icons\like.png" />
+    <Content Include="Assets\Icons\male-icon.jpg" />
     <Content Include="Assets\Icons\Message-Add.png" />
     <Content Include="Assets\Icons\Previous.png" />
     <Content Include="Assets\Icons\Reload.png" />
@@ -335,6 +337,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserProfiles.cs" />
+    <Compile Include="UserSource.cs" />
+    <Compile Include="Utilities\RemindMessageModel.cs" />
     <Compile Include="Utilities\ImageBindingHelper.cs" />
     <Compile Include="XAML\HashTagPage.xaml.cs">
       <DependentUpon>HashTagPage.xaml</DependentUpon>
@@ -407,6 +412,7 @@
     <Content Include="Assets\BadgeLogo.scale-150.png" />
     <Content Include="Assets\BadgeLogo.scale-200.png" />
     <Content Include="Assets\BadgeLogo.scale-400.png" />
+    <Content Include="Assets\photo-1461409971633-aa0e46732112.jpg" />
     <Content Include="Assets\SplashScreen.scale-100.jpg" />
     <Content Include="Assets\SplashScreen.scale-125.jpg" />
     <Content Include="Assets\SplashScreen.scale-150.jpg" />

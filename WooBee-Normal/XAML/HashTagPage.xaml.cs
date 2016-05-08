@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.Web.Http;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -22,24 +24,33 @@ namespace WooBee_Normal
     /// </summary>
     public sealed partial class HashTagPage : Page
     {
+        
         public HashTagPage()
         {
             this.InitializeComponent();
         }
 
-        private void Button_Tapped(object sender, TappedRoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-
+            string a = "#" + e.Parameter.ToString() + "#";
+            HashTag.Text = a;
+            GetHashTagStatuses(e.Parameter.ToString());
         }
 
-        private void HashTagHyperlinkButton_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void GetHashTagStatuses(string hashTagString)
         {
-
-        }
-
-        private void HashTagHyperlinkButton_Click(object sender, RoutedEventArgs e)
-        {
-
+            string Uri = "https://api.weibo.com/2/search/topics.json?";
+            Uri += "&access_token=";
+            Uri += App.weico_access_token;
+            Uri += "&q=";
+            Uri += hashTagString;
+            Uri += "&count=50";
+            HttpClient httpclient = new HttpClient();
+            HttpResponseMessage response = new HttpResponseMessage();
+            response = await httpclient.GetAsync(new Uri(Uri, UriKind.Absolute));
+            string strResponse = response.Content.ToString();
+            var homeweibo = JsonConvert.DeserializeObject<HomeWeibo>(strResponse);
+            HashTagListView.ItemsSource = homeweibo.Statuses;
         }
     }
 }

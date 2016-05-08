@@ -242,7 +242,7 @@
                        Source="/Assets/UnloadedAvatar.png"
                        local:ImageBindingHelper.UriProperty="{Binding User.AvatarLarge}" 
                        Margin="4,3,0,0"/>
-                
+
                 <Grid Background="Black"
                       Height="35"
                       Width="auto"
@@ -321,8 +321,7 @@
             <Grid Grid.Column="1"
                   Grid.Row="1" 
                   d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
-                  Margin="0,17,0,17"
-                  >
+                  Margin="0,17,0,17">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="13*"/>
                     <RowDefinition Height="52*"/>
@@ -344,7 +343,7 @@
                        Margin="4,3,3,0" 
                        Source="/Assets/UnloadedAvatar.png"
                        d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
-                
+
                 <Grid Background="Black"
                       Height="35" 
                       Width="auto"
@@ -405,8 +404,9 @@
 
                 <GridView x:Name="gridView" 
                           ItemsSource="{Binding PicUrls}"
-                          Margin="20,20,0,0"
-                          Grid.Column="2"
+                          Margin="-21,20,-21,0"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="3"
                           Grid.Row="2"
                           Height="auto" 
                           Width="auto"
@@ -421,8 +421,8 @@
                     <GridView.ItemTemplate>
                         <DataTemplate>
                             <Image Source="{Binding thumpic}"
-                                   Width="100"
-                                   Height="100" 
+                                   Width="140"
+                                   Height="140" 
                                    Stretch="UniformToFill" 
                                    Margin="0,0,0,0"/>
                         </DataTemplate>
@@ -736,13 +736,35 @@
                   Grid.Row="1" 
                   Tapped="listView_Tapped" 
                   Grid.RowSpan="2"
-                  Padding="0,20,0,0" Style="{StaticResource ListViewStyle1}">
+                  HorizontalAlignment="Stretch"
+                  Padding="0,20,0,0" Style="{StaticResource ListViewStyle1}"
+                  >
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                 </Style>
             </ListView.ItemContainerStyle>
+
         </ListView>
+
+        <StackPanel x:Name="PopUpRoot"
+            Background="Yellow"
+                    Grid.ColumnSpan="2" 
+                   Margin="0,0,56,0"
+                   Grid.Row="2" 
+                    Height="48" 
+                    VerticalAlignment="Bottom" 
+                    HorizontalAlignment="Right" 
+                    Width="52"
+                   Visibility="Collapsed">
+            <TextBlock x:Name="MessagePopUp" 
+                   TextWrapping="Wrap" 
+                   Text="0"
+                       FontSize="33"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Stretch"/>
+        </StackPanel>
+
 
         <Rectangle Grid.ColumnSpan="2" Grid.RowSpan="2" IsHitTestVisible="False">
             <Rectangle.Fill>

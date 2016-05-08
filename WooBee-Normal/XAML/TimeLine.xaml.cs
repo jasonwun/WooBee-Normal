@@ -40,21 +40,7 @@ namespace WooBee_Normal
             this.InitializeComponent();
             listView.ItemsSource = incrementalSource;
             ShowStatusBar();
-            //DownloadEmotion();
-        }
-
-        private async void DownloadEmotion()
-        {
-            string Uri = "https://api.weibo.com/2/emotions.json?source=";
-            Uri += App.client_id;
-            Uri += "&access_token=";
-            Uri += App.access_token;
-            Uri += "&type=ani";
-
-            HttpClient httpclient = new HttpClient();
-            HttpResponseMessage response = new HttpResponseMessage();
-            response = await httpclient.GetAsync(new Uri(Uri, UriKind.Absolute));
-            string strResponse = response.Content.ToString();
+            GetNewMessage();
         }
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
@@ -62,8 +48,34 @@ namespace WooBee_Normal
             sinceid++;
             IncrementalSource NewIncrementalSource = new IncrementalSource(sinceid);
             listView.ItemsSource = NewIncrementalSource;
+            GetNewMessage();
         }
 
+        private async void GetNewMessage()
+        {
+            string Uri = "https://rm.api.weibo.com/2/remind/unread_count.json?";
+            Uri += "&access_token=";
+            Uri += App.weico_access_token;
+
+            HttpClient httpclient = new HttpClient();
+            HttpResponseMessage response = new HttpResponseMessage();
+            response = await httpclient.GetAsync(new Uri(Uri, UriKind.Absolute));
+            string strResponse = response.Content.ToString();
+            RemindMessageModel _remindMessageModel = new RemindMessageModel();
+            _remindMessageModel = JsonConvert.DeserializeObject<RemindMessageModel>(strResponse);
+            int total = 0;
+            
+            if (_remindMessageModel.Notice != 0 || _remindMessageModel.Mention_status != 0 || _remindMessageModel.Cmt != 0 || _remindMessageModel.Follower != 0)
+            {
+                PopUpRoot.Visibility = Visibility.Visible;
+                total += _remindMessageModel.Cmt;
+                total += _remindMessageModel.Follower;
+                total += _remindMessageModel.Mention_status;
+                MessagePopUp.Text = total.ToString();
+                
+            }
+                
+        }
 
         private void SentWeiboButton_Click(object sender, RoutedEventArgs e)
         {
@@ -72,42 +84,76 @@ namespace WooBee_Normal
 
         private void GotocommentButton_Click(object sender, RoutedEventArgs e)
         {
+            ResetMessage();
             Frame.Navigate(typeof(Message));
+        }
+
+        private async void ResetMessage()
+        {
+            string Uri = "https://rm.api.weibo.com/2/remind/set_count.json?";
+            Uri += "&access_token=";
+            Uri += App.weico_access_token;
+            Uri += "&type=follower,cmt,dm,mention_status,mention_cmt";
+
+            HttpClient httpclient = new HttpClient();
+            HttpResponseMessage response = new HttpResponseMessage();
+            response = await httpclient.GetAsync(new Uri(Uri, UriKind.Absolute));
+            string strResponse = response.Content.ToString();
         }
 
         private void listView_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            var _listview = listView as ListView;
+            _weibo = (Weibo)_listview.SelectedItem;
             ListViewItemPresenter originalsource = e.OriginalSource as ListViewItemPresenter;
             if (originalsource == null)
             {
                 var advancesource = e.OriginalSource as TextBlock;
-                if(advancesource == null)
+                var imageSource = e.OriginalSource as Image;
+                var richtextBlock = e.OriginalSource as RichTextBlock;
+                if (advancesource != null)
                 {
-                    var _listview = listView as ListView;
-                    _weibo = (Weibo)_listview.SelectedItem;
-                    Frame.Navigate(typeof(WeiboDetail), _weibo);
+                    if (advancesource.Text == "网页链接")
+                    {
+                        e.Handled = true;
+                    }
+                    else if (advancesource.Text.Substring(0, 1) == "#")
+                    {
+                        string hashtag = advancesource.Text.Substring(1);
+                        hashtag = hashtag.Remove(hashtag.Length - 1);
+                        Frame.Navigate(typeof(HashTagPage), hashtag);
+                    }
+                    else if (advancesource.Text.Substring(0, 1) == "@")
+                    {
+                        string username = advancesource.Text.Substring(1);
+                        Frame.Navigate(typeof(UserPage), username);
+                    }
+                    else if (_weibo.User.ScreenName != null && advancesource.Text == _weibo.User.ScreenName)
+                    {
+                        string username = advancesource.Text;
+                        Frame.Navigate(typeof(UserPage), username);
+                    }
+                    else
+                    {
+                        Frame.Navigate(typeof(WeiboDetail), _weibo);
+                    }
                 }
-                    
-                else if(advancesource.Text == "网页链接")
+                
+                else if(imageSource != null)
                 {
-                    e.Handled = true;
-                }
-                else if(advancesource.Text.Substring(0,1) == "@" || advancesource.Text.Substring(0,1) != "#")
-                {
-                    string username = advancesource.Text.Substring(1);
+                    string username = _weibo.User.ScreenName;
                     Frame.Navigate(typeof(UserPage), username);
                 }
-                else
+                else if(richtextBlock != null)
                 {
-                    string hashtag = advancesource.Text.Substring(1);
-                    hashtag = hashtag.Remove(hashtag.Length - 1);
-                    Frame.Navigate(typeof(HashTagPage), hashtag);
+                    Frame.Navigate(typeof(WeiboDetail), _weibo);
                 }
+                
+ 
             }
+            
             else
             {
-                var _listview = listView as ListView;
-                _weibo = (Weibo)_listview.SelectedItem;
                 Frame.Navigate(typeof(WeiboDetail), _weibo);
             }
 

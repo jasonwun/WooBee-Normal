@@ -46,7 +46,7 @@ namespace WooBee_Normal
             }
             else if (listItem.RepostWeibo == null)
             {
-                if (listItem.PicUrls.Count == 0)
+                if (listItem.PicUrls == null || listItem.PicUrls.Count == 0)
                 {
                     return NormalTemplate;
                 }
