@@ -701,7 +701,7 @@
         <Grid Background="Black" 
               Height="60"
               VerticalAlignment="Top">
-            <TextBlock x:Name="HashTag"
+            <TextBlock x:Name="HashTagHeader"
                        Foreground="White"
                        FontWeight="Bold"
                        FontSize="25"

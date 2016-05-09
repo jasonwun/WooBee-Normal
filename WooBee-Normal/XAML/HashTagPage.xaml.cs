@@ -33,7 +33,7 @@ namespace WooBee_Normal
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             string a = "#" + e.Parameter.ToString() + "#";
-            HashTag.Text = a;
+            HashTagHeader.Text = a;
             GetHashTagStatuses(e.Parameter.ToString());
         }
 
