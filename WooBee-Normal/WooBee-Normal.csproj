@@ -416,6 +416,7 @@
     <Content Include="Assets\BadgeLogo.scale-200.png" />
     <Content Include="Assets\BadgeLogo.scale-400.png" />
     <Content Include="Assets\photo-1461409971633-aa0e46732112.jpg" />
+    <Content Include="Assets\PlaceHolder.jpg" />
     <Content Include="Assets\SplashScreen.scale-100.jpg" />
     <Content Include="Assets\SplashScreen.scale-125.jpg" />
     <Content Include="Assets\SplashScreen.scale-150.jpg" />
