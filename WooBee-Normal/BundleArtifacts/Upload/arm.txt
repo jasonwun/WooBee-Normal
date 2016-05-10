@@ -1,6 +1,5 @@
-MainPackage=C:\Users\yinju\Documents\Visual Studio 2015\Projects\WooBee-Normal\WooBee-Normal\bin\ARM\Release\Upload\WooBee-Normal_2016.2.4.0_ARM.appx
-SymbolPackage=C:\Users\yinju\Documents\Visual Studio 2015\Projects\WooBee-Normal\WooBee-Normal\AppPackages\WooBee-Normal_2016.2.4.0\WooBee-Normal_2016.2.4.0_ARM.appxsym
-ResourcePack=C:\Users\yinju\Documents\Visual Studio 2015\Projects\WooBee-Normal\WooBee-Normal\_scale-100.appx
-ResourcePack=C:\Users\yinju\Documents\Visual Studio 2015\Projects\WooBee-Normal\WooBee-Normal\_scale-125.appx
-ResourcePack=C:\Users\yinju\Documents\Visual Studio 2015\Projects\WooBee-Normal\WooBee-Normal\_scale-150.appx
-ResourcePack=C:\Users\yinju\Documents\Visual Studio 2015\Projects\WooBee-Normal\WooBee-Normal\_scale-400.appx
+MainPackage=C:\Users\yinju\Source\Repos\WooBee-Normal\WooBee-Normal\bin\ARM\Release\Upload\WooBee-Normal_2016.5.9.0_ARM.appx
+ResourcePack=C:\Users\yinju\Source\Repos\WooBee-Normal\WooBee-Normal\_scale-100.appx
+ResourcePack=C:\Users\yinju\Source\Repos\WooBee-Normal\WooBee-Normal\_scale-125.appx
+ResourcePack=C:\Users\yinju\Source\Repos\WooBee-Normal\WooBee-Normal\_scale-150.appx
+ResourcePack=C:\Users\yinju\Source\Repos\WooBee-Normal\WooBee-Normal\_scale-400.appx

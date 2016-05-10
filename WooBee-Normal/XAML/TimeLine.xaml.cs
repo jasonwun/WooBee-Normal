@@ -172,7 +172,7 @@ namespace WooBee_Normal
         private void image1_Tapped(object sender, TappedRoutedEventArgs e)
         {
             PageParametersContainers para = new PageParametersContainers();
-            var item = (Weibo)(sender as Image).DataContext;
+            var item = (Weibo)(sender as PlaceHolderImage).DataContext;
             if (item.RepostWeibo != null)
             {
                 para.parameter1 = item.RepostWeibo.PicUrls;

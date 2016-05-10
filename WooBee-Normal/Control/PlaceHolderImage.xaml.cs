@@ -50,12 +50,17 @@ namespace WooBee_Normal
             var control = (PlaceHolderImage)dependencyObject;
             var newSource = (ImageSource)dependencyPropertyChangedEventArgs.NewValue;
 
-            System.Diagnostics.Debug.WriteLine("Image source changed: {0}", ((BitmapImage)newSource).UriSource.AbsolutePath);
+            //System.Diagnostics.Debug.WriteLine("Image source changed: {0}", ((BitmapImage)newSource).UriSource.AbsolutePath);
 
 
             if (newSource != null)
             {
                 var image = (BitmapImage)newSource;
+                string GifType = image.UriSource.ToString().Substring(image.UriSource.ToString().Length - 3);
+                if ( GifType == "gif")
+                {
+                    control.GifWaterMark.Visibility = Visibility.Visible;
+                }
 
                 // If the image is not a local resource or it was not cached
                 if (image.UriSource.Scheme != "ms-appx" && image.UriSource.Scheme != "ms-resource" && (image.PixelHeight * image.PixelWidth == 0))

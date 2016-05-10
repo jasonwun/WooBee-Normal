@@ -11,10 +11,17 @@
     x:Name="ControlRoot">
 
     <Grid>
+        
         <Image x:Name="Staging" Visibility="Collapsed"
                Stretch="UniformToFill"/>
         <Image x:Name="Image" Source="{Binding ElementName=ControlRoot, Path=PlaceHolder}" 
                Stretch="UniformToFill"/>
+        <Image x:Name="GifWaterMark" 
+               Visibility="Collapsed" 
+               VerticalAlignment="Bottom" 
+               HorizontalAlignment="Right"
+               Source="/Assets/GifWaterMark.jpg"
+               Width="35"/>
         <Grid.Resources>
             <Storyboard x:Name="ImageFadeOut">
                 <FadeOutThemeAnimation Storyboard.TargetName="Image" />
