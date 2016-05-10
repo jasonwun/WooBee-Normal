@@ -56,36 +56,18 @@
                                Foreground="White"/>
                 </Grid>
 
-                <StackPanel Margin="0,2.667,0,0" 
-                    Grid.Column="2" 
-                            Height="20" 
-                            Grid.Row="1" 
-                            VerticalAlignment="Top" 
-                            Width="auto"
-                            Orientation="Horizontal" 
-                            HorizontalAlignment="Right" d:LayoutOverrides="TopMargin, BottomMargin">
-                    <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
-                                Width="15"
-                                Height="15"
-                                Margin="0,5,0,0"/>
-                    <TextBlock Text="{Binding CommentsCount}" 
-                               FontWeight="Bold" 
-                               Margin="3,0,3,0"/>
-                    <BitmapIcon UriSource="/Assets/Icons/retweet-black.png"
-                                Width="15"
-                                Height="15"
-                                Margin="0,2,0,0"/>
-                    <TextBlock Text="{Binding RepostsCount}" 
-                               FontWeight="Bold" 
-                               Margin="3,0,3,0"/>
-                    <BitmapIcon UriSource="/Assets/Icons/like.png"
-                                Width="15"
-                                Height="15"/>
-                    <TextBlock Text="{Binding AttitudesCount}" 
-                               FontWeight="Bold" 
-                               Margin="3,0,3,0"/>
-
-                </StackPanel>
+                <TextBlock x:Name="TimingDifference"
+                           local:TimingBindingHelper.Text="{Binding CreatedAt}"
+                           Margin="0,7,0,0"
+                           Grid.Column="2"
+                           Height="20"
+                           Grid.Row="1"
+                           VerticalAlignment="Top"
+                           Width="auto"
+                           FontSize="12"
+                           HorizontalAlignment="Right"
+                           d:LayoutOverrides="TopMargin, BottomMargin"/>
+                
 
 
                 <RichTextBlock x:Name="NormalTextblock"
@@ -148,36 +130,17 @@
                                Foreground="White"/>
                 </Grid>
 
-                <StackPanel Margin="0,2.667,0,0" 
-                    Grid.Column="2" 
-                            Height="20" 
-                            Grid.Row="1" 
-                            VerticalAlignment="Top" 
-                            Width="auto"
-                            Orientation="Horizontal" 
-                            HorizontalAlignment="Right" d:LayoutOverrides="TopMargin, BottomMargin">
-                    <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
-                                Width="15"
-                                Height="15"
-                                Margin="0,5,0,0"/>
-                    <TextBlock Text="{Binding CommentsCount}" 
-                               FontWeight="Bold" 
-                               Margin="3,0,3,0"/>
-                    <BitmapIcon UriSource="/Assets/Icons/retweet-black.png"
-                                Width="15"
-                                Height="15"
-                                Margin="0,2,0,0"/>
-                    <TextBlock Text="{Binding RepostsCount}" 
-                               FontWeight="Bold" 
-                               Margin="3,0,3,0"/>
-                    <BitmapIcon UriSource="/Assets/Icons/like.png"
-                                Width="15"
-                                Height="15"/>
-                    <TextBlock Text="{Binding AttitudesCount}" 
-                               FontWeight="Bold" 
-                               Margin="3,0,3,0"/>
-
-                </StackPanel>
+                <TextBlock x:Name="TimingDifference"
+                           local:TimingBindingHelper.Text="{Binding CreatedAt}"
+                           Margin="0,7,0,0"
+                           Grid.Column="2"
+                           Height="20"
+                           Grid.Row="1"
+                           VerticalAlignment="Top"
+                           Width="auto"
+                           FontSize="12"
+                           HorizontalAlignment="Right"
+                           d:LayoutOverrides="TopMargin, BottomMargin"/>
 
                 <RichTextBlock x:Name="TextRepostContentTextBlock"
                            Margin="20,50,0,0"
@@ -261,36 +224,17 @@
                 </Grid>
 
 
-                <StackPanel Margin="0,2.667,0,0" 
-                    Grid.Column="2" 
-                            Height="20" 
-                            Grid.Row="1" 
-                            VerticalAlignment="Top" 
-                            Width="auto"
-                            Orientation="Horizontal" 
-                            HorizontalAlignment="Right" d:LayoutOverrides="TopMargin, BottomMargin">
-                    <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
-                                Width="15"
-                                Height="15"
-                                Margin="0,5,0,0"/>
-                    <TextBlock Text="{Binding CommentsCount}" 
-                               FontWeight="Bold" 
-                               Margin="3,0,3,0"/>
-                    <BitmapIcon UriSource="/Assets/Icons/retweet-black.png"
-                                Width="15"
-                                Height="15"
-                                Margin="0,2,0,0"/>
-                    <TextBlock Text="{Binding RepostsCount}" 
-                               FontWeight="Bold" 
-                               Margin="3,0,3,0"/>
-                    <BitmapIcon UriSource="/Assets/Icons/like.png"
-                                Width="15"
-                                Height="15"/>
-                    <TextBlock Text="{Binding AttitudesCount}" 
-                               FontWeight="Bold" 
-                               Margin="3,0,3,0"/>
-
-                </StackPanel>
+                <TextBlock x:Name="TimingDifference"
+                           local:TimingBindingHelper.Text="{Binding CreatedAt}"
+                           Margin="0,7,0,0"
+                           Grid.Column="2"
+                           Height="20"
+                           Grid.Row="1"
+                           VerticalAlignment="Top"
+                           Width="auto"
+                           FontSize="12"
+                           HorizontalAlignment="Right"
+                           d:LayoutOverrides="TopMargin, BottomMargin"/>
 
                 <RichTextBlock x:Name="OneImageContentTextBlock"
                            Margin="20,50,8,0"
@@ -361,36 +305,17 @@
                                Foreground="White"/>
                 </Grid>
 
-                <StackPanel Margin="0,2.667,0,0" 
-                    Grid.Column="2" 
-                            Height="20" 
-                            Grid.Row="1" 
-                            VerticalAlignment="Top" 
-                            Width="auto"
-                            Orientation="Horizontal" 
-                            HorizontalAlignment="Right" d:LayoutOverrides="TopMargin, BottomMargin">
-                    <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
-                                Width="15"
-                                Height="15"
-                                Margin="0,5,0,0"/>
-                    <TextBlock Text="{Binding CommentsCount}" 
-                               FontWeight="Bold" 
-                               Margin="3,0,3,0"/>
-                    <BitmapIcon UriSource="/Assets/Icons/retweet-black.png"
-                                Width="15"
-                                Height="15"
-                                Margin="0,2,0,0"/>
-                    <TextBlock Text="{Binding RepostsCount}" 
-                               FontWeight="Bold" 
-                               Margin="3,0,3,0"/>
-                    <BitmapIcon UriSource="/Assets/Icons/like.png"
-                                Width="15"
-                                Height="15"/>
-                    <TextBlock Text="{Binding AttitudesCount}" 
-                               FontWeight="Bold" 
-                               Margin="3,0,3,0"/>
-
-                </StackPanel>
+                <TextBlock x:Name="TimingDifference"
+                           local:TimingBindingHelper.Text="{Binding CreatedAt}"
+                           Margin="0,7,0,0"
+                           Grid.Column="2"
+                           Height="20"
+                           Grid.Row="1"
+                           VerticalAlignment="Top"
+                           Width="auto"
+                           FontSize="12"
+                           HorizontalAlignment="Right"
+                           d:LayoutOverrides="TopMargin, BottomMargin"/>
 
                 <RichTextBlock  x:Name="MultipleImageContentTextBlock"
                                         Margin="20,50,0,0"
@@ -479,36 +404,17 @@
                                Foreground="White"/>
                 </Grid>
 
-                <StackPanel Margin="0,2.667,0,0" 
-                    Grid.Column="2" 
-                            Height="20" 
-                            Grid.Row="1" 
-                            VerticalAlignment="Top" 
-                            Width="auto"
-                            Orientation="Horizontal" 
-                            HorizontalAlignment="Right" d:LayoutOverrides="TopMargin, BottomMargin">
-                    <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
-                                Width="15"
-                                Height="15"
-                                Margin="0,5,0,0"/>
-                    <TextBlock Text="{Binding CommentsCount}" 
-                               FontWeight="Bold" 
-                               Margin="3,0,3,0"/>
-                    <BitmapIcon UriSource="/Assets/Icons/retweet-black.png"
-                                Width="15"
-                                Height="15"
-                                Margin="0,2,0,0"/>
-                    <TextBlock Text="{Binding RepostsCount}" 
-                               FontWeight="Bold" 
-                               Margin="3,0,3,0"/>
-                    <BitmapIcon UriSource="/Assets/Icons/like.png"
-                                Width="15"
-                                Height="15"/>
-                    <TextBlock Text="{Binding AttitudesCount}" 
-                               FontWeight="Bold" 
-                               Margin="3,0,3,0"/>
-
-                </StackPanel>
+                <TextBlock x:Name="TimingDifference"
+                           local:TimingBindingHelper.Text="{Binding CreatedAt}"
+                           Margin="0,7,0,0"
+                           Grid.Column="2"
+                           Height="20"
+                           Grid.Row="1"
+                           VerticalAlignment="Top"
+                           Width="auto"
+                           FontSize="12"
+                           HorizontalAlignment="Right"
+                           d:LayoutOverrides="TopMargin, BottomMargin"/>
 
                 <RichTextBlock x:Name="RepostOneImageContentTextBlock"
                            Margin="20,50,0,0"
@@ -604,36 +510,17 @@
                                Foreground="White"/>
                 </Grid>
 
-                <StackPanel Margin="0,2.667,0,0" 
-                    Grid.Column="2" 
-                            Height="20" 
-                            Grid.Row="1" 
-                            VerticalAlignment="Top" 
-                            Width="auto"
-                            Orientation="Horizontal" 
-                            HorizontalAlignment="Right" d:LayoutOverrides="TopMargin, BottomMargin">
-                    <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
-                                Width="15"
-                                Height="15"
-                                Margin="0,5,0,0"/>
-                    <TextBlock Text="{Binding CommentsCount}" 
-                               FontWeight="Bold" 
-                               Margin="3,0,3,0"/>
-                    <BitmapIcon UriSource="/Assets/Icons/retweet-black.png"
-                                Width="15"
-                                Height="15"
-                                Margin="0,2,0,0"/>
-                    <TextBlock Text="{Binding RepostsCount}" 
-                               FontWeight="Bold" 
-                               Margin="3,0,3,0"/>
-                    <BitmapIcon UriSource="/Assets/Icons/like.png"
-                                Width="15"
-                                Height="15"/>
-                    <TextBlock Text="{Binding AttitudesCount}" 
-                               FontWeight="Bold" 
-                               Margin="3,0,3,0"/>
-
-                </StackPanel>
+                <TextBlock x:Name="TimingDifference"
+                           local:TimingBindingHelper.Text="{Binding CreatedAt}"
+                           Margin="0,7,0,0"
+                           Grid.Column="2"
+                           Height="20"
+                           Grid.Row="1"
+                           VerticalAlignment="Top"
+                           Width="auto"
+                           FontSize="12"
+                           HorizontalAlignment="Right"
+                           d:LayoutOverrides="TopMargin, BottomMargin"/>
 
                 <RichTextBlock x:Name="RepostMultiImageContentTextBlock"
                            Margin="20,50,0,0"
@@ -738,7 +625,7 @@
                   Grid.RowSpan="2"
                   HorizontalAlignment="Stretch"
                   Padding="0,20,0,0" Style="{StaticResource ListViewStyle1}"
-                  >
+                  ShowsScrollingPlaceholders="False">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />

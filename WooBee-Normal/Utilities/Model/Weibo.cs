@@ -71,18 +71,6 @@ namespace WooBee_Normal
         public ObservableCollection<ThumbnailPics> PicUrls { set; get; }
 
         
-        //public Paragraph RichText
-        //{
-        //    get
-        //    {
-        //        ConverRichText(Text);
-        //    }
-        //}
-
-        //private Paragraph ConverRichText(string text)
-        //{
-        //    Paragraph richpara = ;
-        //    return richpara;
-        //}
+        
     }
 }

@@ -342,10 +342,11 @@
     <Compile Include="Control\PlaceHolderImage.xaml.cs">
       <DependentUpon>PlaceHolderImage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\UserProfiles.cs" />
-    <Compile Include="Utilities\UserSource.cs" />
-    <Compile Include="Utilities\RemindMessageModel.cs" />
-    <Compile Include="Utilities\ImageBindingHelper.cs" />
+    <Compile Include="TimingBindingHelper.cs" />
+    <Compile Include="Utilities\Model\UserProfiles.cs" />
+    <Compile Include="Utilities\Model\UserSource.cs" />
+    <Compile Include="Utilities\Model\RemindMessageModel.cs" />
+    <Compile Include="Utilities\Helpers\ImageBindingHelper.cs" />
     <Compile Include="XAML\HashTagPage.xaml.cs">
       <DependentUpon>HashTagPage.xaml</DependentUpon>
     </Compile>
@@ -355,10 +356,10 @@
     <Compile Include="XAML\CameraPage.xaml.cs">
       <DependentUpon>CameraPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\BindingHelper.cs" />
+    <Compile Include="Utilities\Helpers\BindingHelper.cs" />
     <Compile Include="Utilities\PageParametersContainers.cs" />
     <Compile Include="Source\MentionsSource.cs" />
-    <Compile Include="Utilities\BoolConverter.cs" />
+    <Compile Include="Utilities\Converters\BoolConverter.cs" />
     <Compile Include="XAML\SinaWebPage.xaml.cs">
       <DependentUpon>SinaWebPage.xaml</DependentUpon>
     </Compile>
@@ -371,13 +372,13 @@
     <Compile Include="XAML\RepostPage.xaml.cs">
       <DependentUpon>RepostPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\Repost.cs" />
-    <Compile Include="Utilities\RepostUti.cs" />
+    <Compile Include="Utilities\Model\Repost.cs" />
+    <Compile Include="Utilities\Model\RepostUti.cs" />
     <Compile Include="DataTemplateSelector\WeiboDetailDataTemplateSelector.cs" />
     <Compile Include="XAML\PhotoPage.xaml.cs">
       <DependentUpon>PhotoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\RepliedComment.cs" />
+    <Compile Include="Utilities\Model\RepliedComment.cs" />
     <Compile Include="Source\CommentSource.cs" />
     <Compile Include="DataTemplateSelector\CommentDataTemplateSelector.cs" />
     <Compile Include="XAML\WeiboDetail.xaml.cs">
@@ -386,16 +387,16 @@
     <Compile Include="XAML\Message.xaml.cs">
       <DependentUpon>Message.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\Comment.cs" />
-    <Compile Include="Utilities\CommentUti.cs" />
-    <Compile Include="Utilities\HomeWeibo.cs" />
+    <Compile Include="Utilities\Model\Comment.cs" />
+    <Compile Include="Utilities\Model\CommentUti.cs" />
+    <Compile Include="Utilities\Model\HomeWeibo.cs" />
     <Compile Include="Source\IncrementalSource.cs" />
-    <Compile Include="Utilities\RepostWeibo.cs" />
-    <Compile Include="Utilities\ThumbnailPics.cs" />
-    <Compile Include="Utilities\User.cs" />
+    <Compile Include="Utilities\Model\RepostWeibo.cs" />
+    <Compile Include="Utilities\Model\ThumbnailPics.cs" />
+    <Compile Include="Utilities\Model\User.cs" />
     <Compile Include="Utilities\OauthSina.cs" />
     <Compile Include="DataTemplateSelector\TimelineDataTemplateSelector.cs" />
-    <Compile Include="Utilities\Weibo.cs" />
+    <Compile Include="Utilities\Model\Weibo.cs" />
     <Compile Include="XAML\TimeLine.xaml.cs">
       <DependentUpon>TimeLine.xaml</DependentUpon>
     </Compile>
