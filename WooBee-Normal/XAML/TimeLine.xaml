@@ -249,14 +249,14 @@
                                         Grid.Column="2"
                                         Grid.Row="2"
                                         Source="{Binding ThumbnailPic}"
-                                        PlaceHolder="ms:appx///Assets/PlaceHolder.jpg"
-                       d:LayoutOverrides="TopMargin, BottomMargin" 
-                       MaxHeight="200"
-                       MaxWidth="500"
-                       MinWidth="100"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Stretch" 
-                       Tapped="image1_Tapped"/>
+                                        PlaceHolder="/Assets/PlaceHolderLong.jpg"
+                                        d:LayoutOverrides="TopMargin, BottomMargin" 
+                                        MaxHeight="200"
+                                        MaxWidth="500"
+                                        MinWidth="100"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Stretch" 
+                                        Tapped="image1_Tapped"/>
             </Grid>
         </DataTemplate>
 
@@ -347,7 +347,7 @@
                             <local:PlaceHolderImage Source="{Binding thumpic}"
                                    Width="140"
                                    Height="140" 
-                                   PlaceHolder="ms:appx///Assets/PlaceHolder.jpg"
+                                   PlaceHolder="/Assets/PlaceHolder.jpg"
                                    Margin="0,0,0,0"/>
                         </DataTemplate>
                     </GridView.ItemTemplate>
@@ -453,7 +453,7 @@
                        MaxHeight="200"
                        MaxWidth="500" 
                        MinWidth="100"
-                       PlaceHolder="ms:appx///Assets/PlaceHolder.jpg"
+                       PlaceHolder="/Assets/PlaceHolderLong.jpg"
                        HorizontalAlignment="Stretch" 
                        d:LayoutOverrides="TopMargin, BottomMargin" 
                        VerticalAlignment="Top"
@@ -572,7 +572,7 @@
                             <local:PlaceHolderImage Source="{Binding thumpic}"
                                    Width="140"
                                    Height="140" 
-                                   PlaceHolder="ms:appx///Assets/PlaceHolder.jpg"
+                                   PlaceHolder="/Assets/PlaceHolder.jpg"
                                    Margin="0,0,0,0"/>
                         </DataTemplate>
                     </GridView.ItemTemplate>
