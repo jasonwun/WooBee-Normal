@@ -67,7 +67,7 @@
                            FontSize="12"
                            HorizontalAlignment="Right"
                            d:LayoutOverrides="TopMargin, BottomMargin"/>
-                
+
 
 
                 <RichTextBlock x:Name="NormalTextblock"
@@ -632,8 +632,16 @@
                     <Setter Property="Padding" Value="0"/>
                 </Style>
             </ListView.ItemContainerStyle>
-
         </ListView>
+
+        <SymbolIcon x:Name="RefreshIcon" 
+                    HorizontalAlignment="Center" 
+                    Width="48" 
+                    Height="48"
+                    Foreground="Black" 
+                    Symbol="Refresh"
+                    Grid.Column="1" 
+                    Margin="156,0,156,592" Grid.RowSpan="3"/>
 
         <StackPanel x:Name="PopUpRoot"
             Background="Yellow"
@@ -654,13 +662,13 @@
         </StackPanel>
 
 
-        <Rectangle Grid.ColumnSpan="2" Grid.RowSpan="2" IsHitTestVisible="False">
+        <!--<Rectangle Grid.ColumnSpan="2" Grid.RowSpan="2" IsHitTestVisible="False">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFF1F1F1"/>
                     <GradientStop Color="#00F1F1F1" Offset="0.794"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>
-        </Rectangle>
+        </Rectangle>-->
     </Grid>
 </Page>

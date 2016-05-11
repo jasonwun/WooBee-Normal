@@ -342,6 +342,7 @@
     <Compile Include="Control\PlaceHolderImage.xaml.cs">
       <DependentUpon>PlaceHolderImage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extension.cs" />
     <Compile Include="TimingBindingHelper.cs" />
     <Compile Include="Utilities\Model\UserProfiles.cs" />
     <Compile Include="Utilities\Model\UserSource.cs" />
