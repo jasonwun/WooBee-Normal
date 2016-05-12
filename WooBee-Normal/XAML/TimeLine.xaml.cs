@@ -40,7 +40,7 @@ namespace WooBee_Normal
         ScrollViewer _scrollViewer;
         Compositor _compositor;
         ExpressionAnimation _rotationAnimation, _opacityAnimation, _offsetAnimation;
-        ScalarKeyFrameAnimation _resetAnimation, _loadingAnimation;
+        ScalarKeyFrameAnimation _resetAnimation, _loadingAnimation, _opacity, _offsetY;
 
         Visual _borderVisual;
         Visual _refreshIconVisual;
@@ -232,14 +232,35 @@ namespace WooBee_Normal
             
             if (_remindMessageModel.Notice != 0 || _remindMessageModel.Mention_status != 0 || _remindMessageModel.Cmt != 0 || _remindMessageModel.Follower != 0)
             {
-                PopUpRoot.Visibility = Visibility.Visible;
+                
                 total += _remindMessageModel.Cmt;
                 total += _remindMessageModel.Follower;
                 total += _remindMessageModel.Mention_status;
                 MessagePopUp.Text = total.ToString();
-                
+                PopUpRootOffSetAndOpacityAnimationStart();
             }
                 
+        }
+
+        private void PopUpRootOffSetAndOpacityAnimationStart()
+        {
+            var _Popup = ElementCompositionPreview.GetElementVisual(PopUpRoot);
+            _compositor = _Popup.Compositor;
+
+
+            _opacity = _compositor.CreateScalarKeyFrameAnimation();
+            _opacity.InsertKeyFrame(0.00f, 0.00f, _linear);
+            _opacity.InsertKeyFrame(1.00f, 1.0f, _linear);
+            _opacity.Duration = TimeSpan.FromMilliseconds(700);
+
+            _offsetY = _compositor.CreateScalarKeyFrameAnimation();
+            _offsetY.InsertKeyFrame(1.0f, 0.00f, _linear);
+            _offsetY.InsertKeyFrame(0.0f, 30.00f, _linear);
+            _offsetY.Duration = TimeSpan.FromMilliseconds(400);
+
+            PopUpRoot.Visibility = Visibility.Visible;
+            _Popup.StartAnimation("Opacity", _opacity);
+            _Popup.StartAnimation("Offset.Y", _offsetY);
         }
 
         private void SentWeiboButton_Click(object sender, RoutedEventArgs e)
@@ -255,6 +276,7 @@ namespace WooBee_Normal
 
         private async void ResetMessage()
         {
+            PopUpRoot.Visibility = Visibility.Collapsed;
             string Uri = "https://rm.api.weibo.com/2/remind/set_count.json?";
             Uri += "&access_token=";
             Uri += App.weico_access_token;
@@ -264,6 +286,7 @@ namespace WooBee_Normal
             HttpResponseMessage response = new HttpResponseMessage();
             response = await httpclient.GetAsync(new Uri(Uri, UriKind.Absolute));
             string strResponse = response.Content.ToString();
+            PopUpRoot.Visibility = Visibility.Collapsed;
         }
 
         private void listView_Tapped(object sender, TappedRoutedEventArgs e)

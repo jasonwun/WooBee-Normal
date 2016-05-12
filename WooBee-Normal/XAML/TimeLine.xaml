@@ -644,23 +644,21 @@
                     Margin="156,0,156,592" Grid.RowSpan="3"/>
 
         <StackPanel x:Name="PopUpRoot"
-            Background="Yellow"
-                    Grid.ColumnSpan="2" 
+            Background="#fff600"
+                    Grid.Column="1" 
                    Margin="0,0,56,0"
                    Grid.Row="2" 
-                    Height="48" 
+                    Height="45" 
                     VerticalAlignment="Bottom" 
                     HorizontalAlignment="Right" 
                     Width="52"
-                   Visibility="Collapsed">
-            <TextBlock x:Name="MessagePopUp" 
-                   TextWrapping="Wrap" 
-                   Text="0"
-                       FontSize="33"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Stretch"/>
+                    Padding="0,6,0,0"
+                    Visibility="Collapsed">
+            <TextBlock x:Name="MessagePopUp"
+                       Text="0"
+                       FontSize="25"
+                       HorizontalAlignment="Center"/>
         </StackPanel>
-
 
         <!--<Rectangle Grid.ColumnSpan="2" Grid.RowSpan="2" IsHitTestVisible="False">
             <Rectangle.Fill>
