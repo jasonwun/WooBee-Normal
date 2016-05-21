@@ -244,7 +244,7 @@
                            d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
                                FontFamily="Microsoft YaHei"
                                 IsTextSelectionEnabled="False"/>
-                <local:PlaceHolderImage x:Name="image1"
+                <local:SingleImage x:Name="image1"
                                         Margin="20,20,0,0"
                                         Grid.Column="2"
                                         Grid.Row="2"
@@ -344,7 +344,7 @@
 
                     <GridView.ItemTemplate>
                         <DataTemplate>
-                            <local:PlaceHolderImage Source="{Binding thumpic}"
+                            <local:GridViewImages Source="{Binding thumpic}"
                                    Width="140"
                                    Height="140" 
                                    PlaceHolder="/Assets/PlaceHolder.jpg"
@@ -446,7 +446,7 @@
                            d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
                                 IsTextSelectionEnabled="False"/>
 
-                <local:PlaceHolderImage x:Name="image1"
+                <local:SingleImage x:Name="image1"
                        Grid.Column="2"
                        Grid.Row="3"
                        Source="{Binding RepostWeibo.ThumbnailPic}" 
@@ -569,7 +569,7 @@
                           ItemContainerStyle="{StaticResource MyGridViewItemStyle}">
                     <GridView.ItemTemplate>
                         <DataTemplate>
-                            <local:PlaceHolderImage Source="{Binding thumpic}"
+                            <local:GridViewImages Source="{Binding thumpic}"
                                    Width="140"
                                    Height="140" 
                                    PlaceHolder="/Assets/PlaceHolder.jpg"
@@ -660,13 +660,6 @@
                        HorizontalAlignment="Center"/>
         </StackPanel>
 
-        <!--<Rectangle Grid.ColumnSpan="2" Grid.RowSpan="2" IsHitTestVisible="False">
-            <Rectangle.Fill>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFF1F1F1"/>
-                    <GradientStop Color="#00F1F1F1" Offset="0.794"/>
-                </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>-->
+        
     </Grid>
 </Page>

@@ -31,10 +31,12 @@ namespace WooBee_Normal
     /// </summary>
     public sealed partial class TimeLine : Page
     {
+
         public Weibo _weibo { get; set; }
         private HomeWeibo _homeweibo { get; set; }
         IncrementalSource incrementalSource = new IncrementalSource(sinceid);
         private static int sinceid = 0;
+        public DisplayProperty _displayProperty = new DisplayProperty();
 
         CompositionPropertySet _scrollerViewerManipulation;
         ScrollViewer _scrollViewer;
@@ -360,7 +362,7 @@ namespace WooBee_Normal
         private void image1_Tapped(object sender, TappedRoutedEventArgs e)
         {
             PageParametersContainers para = new PageParametersContainers();
-            var item = (Weibo)(sender as PlaceHolderImage).DataContext;
+            var item = (Weibo)(sender as SingleImage).DataContext;
             if (item.RepostWeibo != null)
             {
                 para.parameter1 = item.RepostWeibo.PicUrls;

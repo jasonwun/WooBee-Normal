@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,11 +53,10 @@ namespace WooBee_Normal
                 string WeiboDateTime = e.NewValue.ToString();   //Tue May 31 17:46:55 +0800 2011
                 WeiboDateTime = WeiboDateTimeUnifying(WeiboDateTime);//05 31 17:46:55 2011
                 DateTime dateTime = DateTime.Now;
-                TimeZoneInfo BeijingZone = TimeZoneInfo.FindSystemTimeZoneById("China Standard Time");
-                ObservableCollection<String> language = new ObservableCollection<string>();
-                language.Add("en-US");
-                DateTimeFormatter _formatter = new DateTimeFormatter("day month year hour minute second", language);
-                string SystemDateTime = _formatter.Format(TimeZoneInfo.ConvertTime(dateTime, BeijingZone)); // May‎ ‎11‎, ‎2016‎ ‎3‎:‎38‎:‎10‎ ‎AM
+                TimeZoneInfo BeijingTimeZone = TimeZoneInfo.FindSystemTimeZoneById("China Standard Time");
+                DateTime BeijingDateTime = TimeZoneInfo.ConvertTime(dateTime, BeijingTimeZone);
+                CultureInfo enUS = new CultureInfo("en-US");
+                string SystemDateTime = BeijingDateTime.ToString("MMMddyyyyhhmmsstt", enUS); //May11201634729AM
                 SystemDateTime = SystemDateTimeUnifying(SystemDateTime);
                 string output = DateTimeCompare(WeiboDateTime, SystemDateTime);
                 control.Text = output;
@@ -121,7 +121,7 @@ namespace WooBee_Normal
 
         private static string SystemDateTimeUnifying(string systemDateTime)
         {
-            string tmp = new string(systemDateTime.Where(c => char.IsLetter(c) || char.IsDigit(c)).ToArray()); //May11201634729AM
+            string tmp = new string(systemDateTime.Where(c => char.IsLetter(c) || char.IsDigit(c)).ToArray()); //May112016034729AM
             string month = Weekdays[tmp.Substring(0, 3)];
             string day = tmp.Substring(3, 2);
             string year = tmp.Substring(5, 4);
@@ -129,14 +129,17 @@ namespace WooBee_Normal
             string hour = "";
             if (APM == "AM")
             {
-                hour = "0" + tmp.Substring(9, 1);
+                hour = tmp.Substring(9, 2);
             }
             else if (APM == "PM")
             {
-                hour = (Convert.ToInt32(tmp.Substring(9, 1)) + 12).ToString();
+                if (tmp.Substring(9, 2) != "12")
+                    hour = (Convert.ToInt32(tmp.Substring(9, 2)) + 12).ToString();
+                else
+                    hour = tmp.Substring(9, 2);
             }
-            string minutes = tmp.Substring(10, 2);
-            string seconds = tmp.Substring(12, 2);
+            string minutes = tmp.Substring(11, 2);
+            string seconds = tmp.Substring(13, 2);
             string result = month + " " + day + " " + hour + ":" + minutes + ":" + seconds + " " + year;
             return result;
         }

@@ -339,11 +339,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Control\PlaceHolderImage.xaml.cs">
-      <DependentUpon>PlaceHolderImage.xaml</DependentUpon>
+    <Compile Include="Control\GridViewImages.xaml.cs">
+      <DependentUpon>GridViewImages.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Extension.cs" />
-    <Compile Include="TimingBindingHelper.cs" />
+    <Compile Include="Control\SingleImage.xaml.cs">
+      <DependentUpon>SingleImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DisplayProperty.cs" />
+    <Compile Include="Utilities\Extension.cs" />
+    <Compile Include="Utilities\Helpers\TimingBindingHelper.cs" />
     <Compile Include="Utilities\Model\UserProfiles.cs" />
     <Compile Include="Utilities\Model\UserSource.cs" />
     <Compile Include="Utilities\Model\RemindMessageModel.cs" />
@@ -484,7 +488,11 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Control\PlaceHolderImage.xaml">
+    <Page Include="Control\GridViewImages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\SingleImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -18,19 +18,19 @@ using Windows.UI.Xaml.Navigation;
 
 namespace WooBee_Normal
 {
-    public sealed partial class PlaceHolderImage : UserControl
+    public sealed partial class GridViewImages : UserControl
     {
-        public PlaceHolderImage()
+        public GridViewImages()
         {
             this.InitializeComponent();
         }
 
         public static readonly DependencyProperty SourceProperty =
-        DependencyProperty.Register("Source", typeof(ImageSource), typeof(PlaceHolderImage),
-            new PropertyMetadata(default(ImageSource), SourceChanged));
+       DependencyProperty.Register("Source", typeof(ImageSource), typeof(GridViewImages),
+           new PropertyMetadata(default(ImageSource), SourceChanged));
 
         public static readonly DependencyProperty PlaceHolderProperty =
-            DependencyProperty.Register("PlaceHolder", typeof(ImageSource), typeof(PlaceHolderImage),
+            DependencyProperty.Register("PlaceHolder", typeof(ImageSource), typeof(GridViewImages),
             new PropertyMetadata(default(ImageSource)));
 
         public ImageSource Source
@@ -47,7 +47,7 @@ namespace WooBee_Normal
 
         private static void SourceChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            var control = (PlaceHolderImage)dependencyObject;
+            var control = (GridViewImages)dependencyObject;
             var newSource = (ImageSource)dependencyPropertyChangedEventArgs.NewValue;
 
             //System.Diagnostics.Debug.WriteLine("Image source changed: {0}", ((BitmapImage)newSource).UriSource.AbsolutePath);
@@ -56,8 +56,8 @@ namespace WooBee_Normal
             if (newSource != null)
             {
                 var image = (BitmapImage)newSource;
-                string GifType = image.UriSource.ToString().Substring(image.UriSource.ToString().Length - 3);
-                if ( GifType == "gif")
+                string GifType = image.UriSource.ToString().Substring(image.UriSource.ToString().Length - 4);
+                if (GifType == ".gif")
                 {
                     control.GifWaterMark.Visibility = Visibility.Visible;
                 }
