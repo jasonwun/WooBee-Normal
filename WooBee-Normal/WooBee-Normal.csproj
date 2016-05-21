@@ -345,7 +345,6 @@
     <Compile Include="Control\SingleImage.xaml.cs">
       <DependentUpon>SingleImage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DisplayProperty.cs" />
     <Compile Include="Utilities\Extension.cs" />
     <Compile Include="Utilities\Helpers\TimingBindingHelper.cs" />
     <Compile Include="Utilities\Model\UserProfiles.cs" />
