@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,7 +28,8 @@ namespace WooBee_Normal
 
         public LoginPage()
         {
-            this.InitializeComponent(); 
+            this.InitializeComponent();
+            ShowStatusBar();
         }
 
         private void NavigateNormalToken_Click(object sender, RoutedEventArgs e)
@@ -56,6 +58,15 @@ namespace WooBee_Normal
                 Frame.Navigate(typeof(TimeLine));
             }
                 
+        }
+
+        private async void ShowStatusBar()
+        {
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                var statusbar = StatusBar.GetForCurrentView();
+                await statusbar.HideAsync();
+            }
         }
     }
 }

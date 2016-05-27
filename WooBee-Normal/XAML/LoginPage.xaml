@@ -11,11 +11,16 @@
         <local:BoolConverter x:Key="BoolConverter"></local:BoolConverter>
     </Page.Resources>
     <Grid Background="#FFF1F1F1" Loaded="Grid_Loaded">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
         <TextBlock x:Name="Description" 
                    TextWrapping="Wrap" 
                    Text="你需要登陆两次，第一次正常的登陆，第二次黑魔法" 
                    VerticalAlignment="Top" 
-                   Margin="10,50,0,0" Height="71"/>
+                   Margin="5,50,0,0" Height="71" Grid.Column="1"/>
 
 
 
@@ -23,46 +28,37 @@
                   Content="普通登录" 
                   HorizontalAlignment="Stretch" 
                   VerticalAlignment="Top" 
-                  Margin="125,121,115,0"
-                  IsHitTestVisible="False"/>
+                  Margin="120,121,0,0"
+                  IsHitTestVisible="False" Grid.Column="1" Height="32"/>
 
         <Button x:Name="NavigateNormalToken" 
                 Content="普通登录" 
-                HorizontalAlignment="Stretch" 
-                VerticalAlignment="Top" 
-                Margin="125,158,155,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="122,158,0,0"
                 IsEnabled="{Binding ElementName=NormalToken,Path=IsChecked, Converter={StaticResource BoolConverter}}" 
-                Click="NavigateNormalToken_Click"/>
+                Click="NavigateNormalToken_Click" 
+                Grid.Column="1" 
+                Height="32" 
+                Width="80"/>
 
         <CheckBox x:Name="WeicoToken" 
                   Content="黑魔法登陆" 
                   HorizontalAlignment="Stretch" 
                   VerticalAlignment="Top" 
-                  Margin="125,205,115,0"
-                  IsHitTestVisible="False"/>
+                  Margin="120,205,0,0"
+                  IsHitTestVisible="False" Grid.Column="1" Height="32"/>
 
         <Button x:Name="NavigateWeicoToken" 
                 Content="黑魔法" 
-                HorizontalAlignment="Stretch" 
+                HorizontalAlignment="Left" 
                 VerticalAlignment="Top" 
-                Margin="125,242,155,0"
+                Margin="122,242,0,0"
                 IsEnabled="{Binding ElementName=WeicoToken,Path=IsChecked, Converter={StaticResource BoolConverter}}" 
-                Click="NavigateWeicoToken_Click"/>
-
-
-
-        <TextBlock x:Name="DescriptionSecond" 
-                   TextWrapping="Wrap" 
-                   Text="   你要普通登录也可以使用，只不过就是不能看@ 了你的微博，很多功能都是用不了，你自己选吧" 
-                   VerticalAlignment="Top" 
-                   Margin="10,332,0,0" Height="71"/>
-
-        <Button x:Name="NavigateButton" 
-                Content="开始使用" 
-                HorizontalAlignment="Stretch" 
-                VerticalAlignment="Top" 
-                Margin="125,451,155,0"
-                IsEnabled="False" Click="NavigateButton_Click"/>
+                Click="NavigateWeicoToken_Click" 
+                Grid.Column="1" 
+                Height="32"
+                Width="80"/>
 
 
     </Grid>

@@ -5,4 +5,10 @@
     xmlns:local="using:WooBee_MVVM"
     RequestedTheme="Light">
 
+    <Application.Resources>
+        <ResourceDictionary>
+            <local:ViewModelLocator x:Key="Locator"></local:ViewModelLocator>
+        </ResourceDictionary>
+    </Application.Resources>
+
 </Application>

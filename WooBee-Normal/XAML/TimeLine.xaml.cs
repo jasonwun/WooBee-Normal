@@ -36,7 +36,7 @@ namespace WooBee_Normal
         private HomeWeibo _homeweibo { get; set; }
         IncrementalSource incrementalSource = new IncrementalSource(sinceid);
         private static int sinceid = 0;
-        public DisplayProperty _displayProperty = new DisplayProperty();
+        //public DisplayProperty _displayProperty = new DisplayProperty();
 
         CompositionPropertySet _scrollerViewerManipulation;
         ScrollViewer _scrollViewer;

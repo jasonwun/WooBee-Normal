@@ -245,18 +245,16 @@
                                FontFamily="Microsoft YaHei"
                                 IsTextSelectionEnabled="False"/>
                 <local:SingleImage x:Name="image1"
-                                        Margin="20,20,0,0"
-                                        Grid.Column="2"
-                                        Grid.Row="2"
-                                        Source="{Binding ThumbnailPic}"
-                                        PlaceHolder="/Assets/PlaceHolderLong.jpg"
-                                        d:LayoutOverrides="TopMargin, BottomMargin" 
-                                        MaxHeight="200"
-                                        MaxWidth="500"
-                                        MinWidth="100"
-                                        VerticalAlignment="Top"
-                                        HorizontalAlignment="Stretch" 
-                                        Tapped="image1_Tapped"/>
+                                   Margin="20,20,0,0"
+                                   Grid.Column="2"
+                                   Grid.Row="2"
+                                   MaxHeight="300"
+                                   Source="{Binding ThumbnailPic}"
+                                   PlaceHolder="/Assets/PlaceHolderLong.jpg"
+                                   d:LayoutOverrides="TopMargin, BottomMargin" 
+                                   VerticalAlignment="Top"
+                                   HorizontalAlignment="Left" 
+                                   Tapped="image1_Tapped"/>
             </Grid>
         </DataTemplate>
 
@@ -447,18 +445,16 @@
                                 IsTextSelectionEnabled="False"/>
 
                 <local:SingleImage x:Name="image1"
-                       Grid.Column="2"
-                       Grid.Row="3"
-                       Source="{Binding RepostWeibo.ThumbnailPic}" 
-                       MaxHeight="200"
-                       MaxWidth="500" 
-                       MinWidth="100"
-                       PlaceHolder="/Assets/PlaceHolderLong.jpg"
-                       HorizontalAlignment="Stretch" 
-                       d:LayoutOverrides="TopMargin, BottomMargin" 
-                       VerticalAlignment="Top"
-                       Margin="20,15,0,0"
-                       Tapped="image1_Tapped"/>
+                                   Grid.Column="2"
+                                   Grid.Row="3"
+                                   Source="{Binding RepostWeibo.ThumbnailPic}"
+                                   PlaceHolder="/Assets/PlaceHolderLong.jpg"
+                                   HorizontalAlignment="Left" 
+                                   MaxHeight="300"
+                                   d:LayoutOverrides="TopMargin, BottomMargin" 
+                                   VerticalAlignment="Top"
+                                   Margin="20,15,0,0"
+                                   Tapped="image1_Tapped"/>
             </Grid>
         </DataTemplate>
 

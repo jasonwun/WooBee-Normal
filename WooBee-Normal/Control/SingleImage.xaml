@@ -13,9 +13,9 @@
     <Grid>
 
         <Image x:Name="Staging" Visibility="Collapsed"
-               Stretch="Uniform"/>
+               Stretch="UniformToFill"/>
         <Image x:Name="Image" Source="{Binding ElementName=ControlRoot, Path=PlaceHolder}" 
-               Stretch="Uniform"/>
+               Stretch="UniformToFill"/>
         <Image x:Name="GifWaterMark" 
                Visibility="Collapsed" 
                VerticalAlignment="Bottom" 
