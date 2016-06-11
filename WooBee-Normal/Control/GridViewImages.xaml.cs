@@ -48,14 +48,18 @@ namespace WooBee_Normal
         private static void SourceChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var control = (GridViewImages)dependencyObject;
-            var newSource = (ImageSource)dependencyPropertyChangedEventArgs.NewValue;
+            var newSource = (BitmapImage)dependencyPropertyChangedEventArgs.NewValue;
+            
 
             //System.Diagnostics.Debug.WriteLine("Image source changed: {0}", ((BitmapImage)newSource).UriSource.AbsolutePath);
 
 
             if (newSource != null)
             {
-                var image = (BitmapImage)newSource;
+                string temp = newSource.UriSource.ToString();
+                temp = temp.Replace("thumbnail", "mw690");
+                Uri imageUri = new Uri(temp);
+                BitmapImage image = new BitmapImage(imageUri);
                 string GifType = image.UriSource.ToString().Substring(image.UriSource.ToString().Length - 4);
                 if (GifType == ".gif")
                 {
@@ -70,7 +74,7 @@ namespace WooBee_Normal
                 }
                 else
                 {
-                    control.LoadImage(newSource);
+                    control.LoadImage(image);
                 }
             }
         }

@@ -52,7 +52,7 @@
                                Text="{Binding User.ScreenName}"
                                d:LayoutOverrides="TopPosition, BottomPosition"
                                FontFamily="Microsoft YaHei"
-                               FontWeight="Bold"
+                               FontWeight="ExtraBold"
                                Foreground="White"/>
                 </Grid>
 
@@ -79,6 +79,7 @@
                            HorizontalAlignment="Left" 
                            FontFamily="Microsoft YaHei"
                                Width="auto"
+                               FontSize="13"
                                IsTextSelectionEnabled="False"/>
             </Grid>
         </DataTemplate>
@@ -126,7 +127,7 @@
                                Text="{Binding User.ScreenName}"
                                d:LayoutOverrides="TopPosition, BottomPosition"
                                FontFamily="Microsoft YaHei" 
-                               FontWeight="Bold"
+                               FontWeight="ExtraBold"
                                Foreground="White"/>
                 </Grid>
 
@@ -147,6 +148,7 @@
                            local:BindingHelper.Text="{Binding Text}"
                            Grid.Column="2"
                            Grid.Row="1"
+                               FontSize="13"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
                            FontFamily="Microsoft YaHei"
                               IsTextSelectionEnabled="False"          />
@@ -159,7 +161,7 @@
                            Text="{Binding RepostWeibo.User.ScreenName}"
                            d:LayoutOverrides="TopPosition, BottomPosition"
                            FontFamily="Microsoft YaHei" 
-                           FontWeight="Bold"
+                           FontWeight="ExtraBold"
                            Foreground="Black"/>
 
 
@@ -169,6 +171,7 @@
                            d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
                            Grid.Column="2"
                            Grid.Row="2"
+                               FontSize="13"
                                 IsTextSelectionEnabled="False"
                                Height="auto"/>
 
@@ -219,7 +222,7 @@
                                Text="{Binding User.ScreenName}"
                                d:LayoutOverrides="TopPosition, BottomPosition"
                                FontFamily="Microsoft YaHei" 
-                               FontWeight="Bold"
+                               FontWeight="ExtraBold"
                                Foreground="White"/>
                 </Grid>
 
@@ -241,6 +244,7 @@
                            local:BindingHelper.Text="{Binding Text}"
                            Grid.Column="2"
                            Grid.Row="1"
+                               FontSize="13"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
                                FontFamily="Microsoft YaHei"
                                 IsTextSelectionEnabled="False"/>
@@ -299,7 +303,7 @@
                                Text="{Binding User.ScreenName}"
                                d:LayoutOverrides="TopPosition, BottomPosition"
                                FontFamily="Microsoft YaHei" 
-                               FontWeight="Bold"
+                               FontWeight="ExtraBold"
                                Foreground="White"/>
                 </Grid>
 
@@ -320,6 +324,7 @@
                                         local:BindingHelper.Text="{Binding Text}"
                                         Grid.Column="2"
                                         Grid.Row="1"
+                                FontSize="13"
                                         d:LayoutOverrides="TopMargin, BottomMargin, TopPosition, BottomPosition"
                                         Height="auto"
                                  IsTextSelectionEnabled="False"/>
@@ -346,7 +351,8 @@
                                    Width="140"
                                    Height="140" 
                                    PlaceHolder="/Assets/PlaceHolder.jpg"
-                                   Margin="0,0,0,0"/>
+                                   Margin="0,0,0,0"
+                                                  />
                         </DataTemplate>
                     </GridView.ItemTemplate>
                 </GridView>
@@ -398,7 +404,7 @@
                                Text="{Binding User.ScreenName}"
                                d:LayoutOverrides="TopPosition, BottomPosition"
                                FontFamily="Microsoft YaHei" 
-                               FontWeight="Bold"
+                               FontWeight="ExtraBold"
                                Foreground="White"/>
                 </Grid>
 
@@ -419,6 +425,7 @@
                            local:BindingHelper.Text="{Binding Text}"
                            Grid.Column="2"
                            Grid.Row="1"
+                               FontSize="13"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" 
                            FontFamily="Microsoft YaHei"
                                         IsTextSelectionEnabled="False"/>
@@ -432,7 +439,7 @@
                            Text="{Binding RepostWeibo.User.ScreenName}"
                            d:LayoutOverrides="TopPosition, BottomPosition"
                            FontFamily="Microsoft YaHei"
-                           FontWeight="Bold"
+                           FontWeight="ExtraBold"
                            Foreground="Black"/>
 
 
@@ -502,7 +509,7 @@
                                Text="{Binding User.ScreenName}"
                                d:LayoutOverrides="TopPosition, BottomPosition"
                                FontFamily="Microsoft YaHei" 
-                               FontWeight="Bold"
+                               FontWeight="ExtraBold"
                                Foreground="White"/>
                 </Grid>
 
@@ -523,6 +530,7 @@
                            local:BindingHelper.Text="{Binding Text}"
                            Grid.Column="2"
                            Grid.Row="1"
+                               FontSize="13"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" 
                            FontFamily="Microsoft YaHei"
                                IsTextSelectionEnabled="False"/>
@@ -535,7 +543,7 @@
                            Text="{Binding RepostWeibo.User.ScreenName}"
                            d:LayoutOverrides="TopPosition, BottomPosition"
                            FontFamily="Microsoft YaHei" 
-                           FontWeight="Bold"
+                           FontWeight="ExtraBold"
                            Foreground="Black"/>
 
                 <RichTextBlock x:Name="RepostMultiImageRepostTextBlock"
@@ -545,6 +553,7 @@
                                        Grid.Row="2"
                                        d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
                                        Height="auto" 
+                               FontSize="13"
                                        VerticalAlignment="Bottom"
                                IsTextSelectionEnabled="False"/>
 

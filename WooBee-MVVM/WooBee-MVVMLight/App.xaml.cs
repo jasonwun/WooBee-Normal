@@ -11,6 +11,8 @@ namespace WooBee_MVVMLight
 {
     sealed partial class App
     {
+        public static string AccessToken {get;set;}
+        public static string WeicoAccessToken { get; set; }
         public App()
         {
             InitializeComponent();
@@ -57,7 +59,7 @@ namespace WooBee_MVVMLight
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                rootFrame.Navigate(typeof(LoginView), e.Arguments);
             }
             // Ensure the current window is active
             Window.Current.Activate();

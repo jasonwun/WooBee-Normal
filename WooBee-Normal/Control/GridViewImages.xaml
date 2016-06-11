@@ -12,14 +12,18 @@
 
     <Grid>
 
-        <Image x:Name="Staging" Visibility="Collapsed"
-               Stretch="UniformToFill"/>
+        <Image Name="Staging" Visibility="Collapsed"
+                              Stretch="UniformToFill"/>
+
         <Image x:Name="Image" Source="{Binding ElementName=ControlRoot, Path=PlaceHolder}" 
-               Stretch="UniformToFill"/>
+               Stretch="UniformToFill"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"/>
         <Image x:Name="GifWaterMark" 
                Visibility="Collapsed" 
                VerticalAlignment="Bottom" 
                HorizontalAlignment="Right"
+
                Source="/Assets/GifWaterMark.jpg"
                Width="35"/>
         <Grid.Resources>
