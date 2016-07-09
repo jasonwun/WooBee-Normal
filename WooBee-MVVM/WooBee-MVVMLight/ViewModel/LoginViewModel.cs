@@ -35,8 +35,8 @@ namespace WooBee_MVVMLight.ViewModel
             }
             set
             {
-                Set(nameof(ExtendedButtonEnabled), ref _extendedButtonEnabled, value);
-                NotifyPropertyChanged();
+                _extendedButtonEnabled = value;
+                RaisePropertyChanged(() => ExtendedButtonEnabled);
             }
 
         }
@@ -50,8 +50,8 @@ namespace WooBee_MVVMLight.ViewModel
             }
             set
             {
-                Set(nameof(NormalButtonEnabled), ref _normalButtonEnabled, value);
-                NotifyPropertyChanged();
+                _normalButtonEnabled = value;
+                RaisePropertyChanged(() => NormalButtonEnabled);
             }
         }
 

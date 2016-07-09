@@ -13,6 +13,14 @@ namespace WooBee_MVVMLight
     {
         public static string AccessToken {get;set;}
         public static string WeicoAccessToken { get; set; }
+        public static AppSettings AppSettings
+        {
+            get
+            {
+                return App.Current.Resources["AppSettings"] as AppSettings;
+            }
+        }
+
         public App()
         {
             InitializeComponent();
