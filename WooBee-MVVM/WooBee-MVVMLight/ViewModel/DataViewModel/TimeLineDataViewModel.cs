@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WooBee_MVVM.Model;
+using WooBee_MVVMLight.Common;
 
 namespace WooBee_MVVMLight
 {
@@ -12,33 +13,34 @@ namespace WooBee_MVVMLight
     {
         protected override void ClickItem(Weibo item)
         {
-            
+            throw new NotImplementedException();
         }
 
-        protected override Task<ObservableCollection<Weibo>> GetList(int pageIndex)
+        protected override async Task<IEnumerable<Weibo>> GetList(int pageIndex)
         {
             try
             {
-                var result = await CloudService.GetImages(pageIndex, (int)DEFAULT_PER_PAGE, CTSFactory.MakeCTS(2000).Token);
-                if (result.IsSuccessful)
+                var result = await HttpService.GetData(pageIndex, CTSFactory.MakeCTS(2000).Token, API.HOME_TIMELINE);
+                if (result.IsSuccessStatusCode)
                 {
-                    var list = UnsplashImage.ParseListFromJson(result.JsonSrc);
-                    return list;
+                    string strResponse = result.Content.ToString();
+                    WeiboModel _weiboModel = JsonConvert.DeserializeObject<WeiboModel>(strResponse);
+                    return _weiboModel.Statuses;
                 }
                 else
                 {
-                    //throw new APIException();
+                    throw new Exception();
                 }
             }
             catch(Exception e)
             {
-                return new ObservableCollection<Weibo>();
+                return new List<Weibo>();
             }
         }
 
         protected override void LoadMoreItemCompleted(IEnumerable<Weibo> list, int index)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

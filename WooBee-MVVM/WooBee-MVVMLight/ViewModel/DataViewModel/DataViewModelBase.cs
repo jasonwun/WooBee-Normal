@@ -2,7 +2,6 @@
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,8 +32,8 @@ namespace WooBee_MVVMLight
         ///});
         /// 其中加载数据的逻辑都在：GetIncrementalListData(int pageIndex) 
         /// </summary>
-        private IncrementalLoadingCollection<T> _dataList;
-        public IncrementalLoadingCollection<T> DataList
+        private IncrementalCollection<T> _dataList;
+        public IncrementalCollection<T> DataList
         {
             get
             {
@@ -70,39 +69,39 @@ namespace WooBee_MVVMLight
 
         public DataViewModelBase()
         {
-            DataList = new IncrementalLoadingCollection<T>(count =>
+            DataList = new IncrementalCollection<T>(count =>
             {
                 return Task.Run(() => GetIncrementalListData(PageIndex++));
             });
             //DEFAULT_PER_PAGE = DeviceHelper.IsDesktop ? 20u : 10u;
         }
 
-        //public async Task<bool> RefreshAsync()
-        //{
-        //    try
-        //    {
-        //        if (DataList.IsBusy)
-        //        {
-        //            return false;
-        //        }
+        public async Task<bool> RefreshAsync()
+        {
+            try
+            {
+                if (DataList.IsBusy)
+                {
+                    return false;
+                }
 
-        //        PageIndex = DEFAULT_PAGE_INDEX;
+                PageIndex = DEFAULT_PAGE_INDEX;
 
-        //        DataList = new IncrementalLoadingCollection<T>(count =>
-        //        {
-        //            return GetIncrementalListData(PageIndex++);
-        //        });
+                DataList = new IncrementalCollection<T>(count =>
+                {
+                    return GetIncrementalListData(PageIndex++);
+                });
 
-        //        await DataList.LoadMoreItemsAsync(DEFAULT_PER_PAGE);
+                await DataList.LoadMoreItemsAsync(DEFAULT_PER_PAGE);
 
-        //        return true;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        //var task = ExceptionHelper.WriteRecordAsync(e, nameof(DataViewModelBase<T>), nameof(RefreshAsync));
-        //        return false;
-        //    }
-        //}
+                return true;
+            }
+            catch (Exception e)
+            {
+                //var task = ExceptionHelper.WriteRecordAsync(e, nameof(DataViewModelBase<T>), nameof(RefreshAsync));
+                return false;
+            }
+        }
 
         public async Task RetryAsync()
         {
@@ -111,7 +110,7 @@ namespace WooBee_MVVMLight
 
         private async Task<ResultData<T>> GetIncrementalListData(int pageIndex)
         {
-            ObservableCollection<T> newList = new ObservableCollection<T>();
+            IEnumerable<T> newList = new List<T>();
             bool HasMoreItems = false;
             try
             {
@@ -141,7 +140,7 @@ namespace WooBee_MVVMLight
             return new ResultData<T>() { Data = newList, HasMoreItems = HasMoreItems };
         }
 
-        protected abstract Task<ObservableCollection<T>> GetList(int pageIndex);
+        protected abstract Task<IEnumerable<T>> GetList(int pageIndex);
 
         protected abstract void ClickItem(T item);
 

@@ -6,26 +6,33 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
+using Windows.UI.Core;
 using Windows.UI.Xaml.Data;
 
 namespace WooBee_MVVMLight
 {
     public class ResultData<T>
     {
-        public ObservableCollection<T> Data { get; set; }
+        public IEnumerable<T> Data { get; set; }
 
         public bool HasMoreItems { get; set; }
     }
 
-    public class IncrementalLoadingCollection<T> : ObservableCollection<T>, ISupportIncrementalLoading
+    public class IncrementalCollection<T> : ObservableCollection<T>, ISupportIncrementalLoading
     {
         // 这里为了简单使用了Tuple<IList<T>, bool>作为返回值，第一项是新项目集合，第二项是否还有更多，也可以自定义实体类
         Func<uint, Task<ResultData<T>>> _dataFetchDelegate = null;
 
-        public IncrementalLoadingCollection(Func<uint, Task<ResultData<T>>> dataFetchDelegate)
+        public IncrementalCollection()
         {
-            if (dataFetchDelegate == null) throw new ArgumentNullException("dataFetchDelegate");
+
+        }
+
+        public IncrementalCollection(Func<uint, Task<ResultData<T>>> dataFetchDelegate)
+        {
+            if (dataFetchDelegate == null) throw new ArgumentNullException("dataFetchDelegate should not be null");
 
             this._dataFetchDelegate = dataFetchDelegate;
         }
@@ -36,15 +43,10 @@ namespace WooBee_MVVMLight
             private set;
         }
 
+        public bool IsAppending { get; set; } = true;
+
         public IAsyncOperation<LoadMoreItemsResult> LoadMoreItemsAsync(uint count)
         {
-            if (_busy)
-            {
-                throw new InvalidOperationException("Only one operation in flight at a time");
-            }
-
-            _busy = true;
-
             return AsyncInfo.Run((c) => LoadMoreItemsAsync(c, count));
         }
 
@@ -52,10 +54,12 @@ namespace WooBee_MVVMLight
         {
             try
             {
-                if (this.OnLoadMoreStarted != null)
+                if (IsBusy)
                 {
-                    this.OnLoadMoreStarted(count);
+                    return new LoadMoreItemsResult() { Count = 0 };
                 }
+
+                IsBusy = true;
 
                 // 我们忽略了CancellationToken，因为我们暂时不需要取消，需要的可以加上
                 var result = await this._dataFetchDelegate(count);
@@ -66,21 +70,28 @@ namespace WooBee_MVVMLight
                 {
                     foreach (var item in items)
                     {
-                        this.Add(item);
+                        if (IsAppending)
+                        {
+                            this.Add(item);
+                        }
+                        else this.Insert(0, item);
                     }
                 }
 
                 // 是否还有更多
                 this.HasMoreItems = result.HasMoreItems;
 
-                // 加载完成事件
-                OnLoadMoreCompleted?.Invoke(items == null ? 0 : items.Count);
+                await CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    // 加载完成事件
+                    this.OnLoadMoreCompleted?.Invoke(items == null ? 0 : items.Count());
+                });
 
-                return new LoadMoreItemsResult { Count = items == null ? 0 : (uint)items.Count };
+                return new LoadMoreItemsResult { Count = items == null ? 0 : (uint)items.Count() };
             }
             finally
             {
-                _busy = false;
+                IsBusy = false;
             }
         }
 
@@ -91,7 +102,6 @@ namespace WooBee_MVVMLight
         public event LoadMoreStarted OnLoadMoreStarted;
         public event LoadMoreCompleted OnLoadMoreCompleted;
 
-        protected bool _busy = false;
-
+        public bool IsBusy = false;
     }
 }

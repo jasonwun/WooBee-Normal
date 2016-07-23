@@ -13,6 +13,8 @@ namespace WooBee_MVVMLight
     {
         public static string AccessToken {get;set;}
         public static string WeicoAccessToken { get; set; }
+        public static string AppKey = "839927271";
+        public static string AppSecret = "d9a2ae8a01ef87772897bcf0c32ea575";
         public static AppSettings AppSettings
         {
             get

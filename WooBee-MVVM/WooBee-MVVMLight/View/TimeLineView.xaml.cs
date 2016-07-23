@@ -22,21 +22,15 @@ namespace WooBee_MVVMLight.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class TimeLineView : Page
+    public sealed partial class TimeLineView: BindablePage
     {
 
-        public TimeLineViewModel Vm
-        {
-            get
-            {
-                return (TimeLineViewModel)DataContext;
-            }
-        }
+        public TimeLineViewModel TLVm { get; set; }
 
         public TimeLineView()
         {
             this.InitializeComponent();
-            DataContext = new TimeLineViewModel();
+            this.DataContext = TLVm = new TimeLineViewModel();
             DisableStatusBar();
         }
 
