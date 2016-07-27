@@ -73,10 +73,11 @@ namespace WooBee_MVVMLight.ViewModel
         private async Task RefreshAsync()
         {
 
-            MainList = TimeLineDataViewModel.DataList;
+            
 
             IsRefreshing = true;
             await TimeLineDataViewModel.RefreshAsync();
+            MainList = TimeLineDataViewModel.DataList;
             IsRefreshing = false;
 
             //await SaveMainListDataAsync();

@@ -4,13 +4,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WooBee_MVVMLight"
     xmlns:viewmodel ="using:WooBee_MVVMLight.ViewModel"
+    xmlns:model ="using:WooBee_MVVM.Model"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <!--<local:BindablePage.Resources>
 
-        <DataTemplate x:Name="NormalTemplate">
-            <Grid x:Name="NormalTemplateGrid">
+    <local:BindablePage.Resources>
+        <DataTemplate x:Name="NormalTemplate"
+                      x:DataType="model:Weibo">
+            <Grid x:Name="NormalTemplateGrid"
+                  Margin="0,15,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="14*"/>
                     <RowDefinition Height="325*"/>
@@ -22,48 +25,59 @@
                 </Grid.ColumnDefinitions>
 
                 <Image x:Name="AvartarImage"
-               Height="38"
-               Width="38"
-               Grid.Row="1"
-               VerticalAlignment="Top"
-               HorizontalAlignment="Center"
-               Grid.ColumnSpan="2"
-               Source="{Binding User.AvatarLarge}"
-               Margin="4,2.667,1,0" 
-               Stretch="Fill"
-               d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
+                       Height="38"
+                       Width="38"
+                       Grid.Row="1"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center"
+                       Grid.ColumnSpan="2"
+                       Source="{x:Bind User.AvatarLarge}"
+                       Margin="4,2.667,1,0" 
+                       Stretch="Fill"
+                       d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
 
                 <StackPanel Background="Black"
-                    Height="32"
-                    Width="auto"
-                    Grid.Column="2"
-                    Grid.Row="1"
-                    Margin="15,2.5,0,0"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Left" 
-                    d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+                            Height="32"
+                            Width="auto"
+                            Grid.Column="2"
+                            Grid.Row="1"
+                            Margin="15,2.5,0,0"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Left" 
+                            d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
 
                     <TextBlock x:Name="textBlock7"
-                       Margin="10,5.5,11,0"
-                       TextWrapping="Wrap"
-                       Text="{Binding User.ScreenName}"
-                       FontFamily="Microsoft YaHei"
-                       Foreground="White"/>
+                               Margin="10,5,11,0"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Left"
+                               TextWrapping="Wrap"
+                               Text="{x:Bind User.ScreenName}"
+                               FontFamily="Microsoft YaHei"
+                               FontSize="15"
+                               Foreground="White" 
+                               FontWeight="Bold"/>
                 </StackPanel>
 
                 <TextBlock x:Name="NormalTextblock"
-                   Margin="20,49.667,0,0"
-                   Grid.Column="2"
-                   Grid.Row="1"
-                   Text="{Binding Text}"
-                   d:LayoutOverrides="TopMargin, BottomMargin, LeftPosition, RightPosition, TopPosition, BottomPosition" 
-                   FontFamily="Microsoft YaHei UI"
-                   IsTextSelectionEnabled="False" 
-                   FontSize="12"/>
+                           Margin="15,38,0,0"
+                           Grid.Column="2"
+                           Grid.Row="1"
+                           Text="{x:Bind Text}"
+                           d:LayoutOverrides="TopMargin, BottomMargin, LeftPosition, RightPosition, TopPosition, BottomPosition" 
+                           FontFamily="Microsoft YaHei UI"
+                           IsTextSelectionEnabled="False" 
+                           TextWrapping="Wrap"
+                           FontSize="13"/>
             </Grid>
         </DataTemplate>
+    </local:BindablePage.Resources>
 
-        --><!--<DataTemplate x:Name="TextRepostTemplate">
+
+    <!--<local:BindablePage.Resources>
+
+        
+
+       <DataTemplate x:Name="TextRepostTemplate">
             <Grid Grid.Column="1"
                   Grid.Row="1" 
                   d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
@@ -562,12 +576,12 @@
                     </GridView.ItemTemplate>
                 </GridView>
             </Grid>
-        </DataTemplate>--><!--
+        </DataTemplate>
 
         <local:WeiboDataTemplateSelector x:Key="MyTimelineDataTemplateSelector"
                                          NormalTemplate="{StaticResource NormalTemplate}"/>
-    </local:BindablePage.Resources>-->
-    <!--<Page.BottomAppBar>
+    </local:BindablePage.Resources>
+    <Page.BottomAppBar>
         <CommandBar Background="Black" Foreground="White">
             <AppBarButton Foreground="White" Click="AppBarButton_Click">
                 <Image Source="/Assets/Icons/Reload.png"/>
@@ -585,12 +599,8 @@
                   HorizontalAlignment="Stretch"
                   ShowsScrollingPlaceholders="False"
                   IncrementalLoadingTrigger="Edge"
-                  ItemsSource="{Binding MainList, Mode=OneWay}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Image Source="/Assets/StoreLogo.png"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+                  ItemTemplate="{StaticResource NormalTemplate}"
+                  ItemsSource="{x:Bind TLVm.MainList, Mode=OneWay}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -599,7 +609,7 @@
             </ListView.ItemContainerStyle>
         </ListView>
 
-       
+
 
 
     </Grid>
