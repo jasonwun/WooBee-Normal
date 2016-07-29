@@ -9,7 +9,7 @@ using WooBee_MVVM.Model;
 
 namespace WooBee_MVVMLight
 {
-    public class WeiboDataTemplateSelector : DataTemplateSelector
+    public class TimeLineDataTemplateSelector : DataTemplateSelector
     {
         //normal datatemplat with text
         public DataTemplate NormalTemplate { get; set; }
