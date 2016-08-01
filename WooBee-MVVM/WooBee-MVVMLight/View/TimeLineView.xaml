@@ -276,24 +276,23 @@
 
                 <GridView x:Name="gridView" 
                           ItemsSource="{x:Bind PicUrls}"
-                          Margin="-21,20,-21,0"
-                          Grid.Column="0"
-                          Grid.ColumnSpan="3"
+                          Margin="20,20,0,0"
+                          Grid.Column="2"
                           Grid.Row="2"
                           Height="auto" 
                           Width="auto"
                           VerticalAlignment="Top"
-                          HorizontalAlignment="Center"
+                          HorizontalAlignment="Left"
                           SelectionMode="Single" 
                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition">
 
                     <GridView.ItemTemplate>
-                        <DataTemplate>
-                            <Image Source="{x:Bind thumpic}"
+                        <DataTemplate x:DataType="model:ThumbnailPics">
+                            <Image Source="{x:Bind Thumbpic}"
                                    Width="140"
                                    Height="140"
                                    Margin="0,0,0,0"
-                                   />
+                                   Stretch="UniformToFill"/>
                         </DataTemplate>
                     </GridView.ItemTemplate>
                 </GridView>
@@ -388,8 +387,7 @@
                                    MaxHeight="300"
                                    d:LayoutOverrides="TopMargin, BottomMargin" 
                                    VerticalAlignment="Top"
-                                   Margin="20,15,0,0"
-                                   Tapped="image1_Tapped"/>
+                                   Margin="20,15,0,0"/>
             </Grid>
         </DataTemplate>
 
@@ -476,22 +474,22 @@
 
                 <GridView x:Name="gridView" 
                           ItemsSource="{x:Bind RepostWeibo.PicUrls}"
-                          Margin="-21,15,-21,0"
-                          Grid.Column="0"
-                          Grid.ColumnSpan="3"
+                          Margin="20,15,-21,0"
+                          Grid.Column="2"
                           Grid.Row="3"
                           Height="auto" 
                           Width="auto"
                           VerticalAlignment="Top"
-                          HorizontalAlignment="Center"
+                          HorizontalAlignment="Left"
                           SelectionMode="Single" 
                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition">
                     <GridView.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="model:ThumbnailPics">
                             <Image Source="{x:Bind Thumbpic}"
                                    Width="140"
                                    Height="140"
-                                   Margin="0,0,0,0"/>
+                                   Margin="0,0,0,0"
+                                   Stretch="UniformToFill"/>
                         </DataTemplate>
                     </GridView.ItemTemplate>
                 </GridView>
@@ -501,7 +499,10 @@
         <local:TimeLineDataTemplateSelector x:Key="MyTimelineDataTemplateSelector"
                                             NormalTemplate="{StaticResource NormalTemplate}"
                                             TextRepostTemplate="{StaticResource TextRepostTemplate}"
-                                            OneImageTemplate="{StaticResource OneImageTemplate}"/>
+                                            OneImageTemplate="{StaticResource OneImageTemplate}"
+                                            RepostOneImageTemplate="{StaticResource RepostOneImageTemplateXaml}"
+                                            MultiImagesTemplate="{StaticResource MultipleImageTemplate}"
+                                            RepostMultiImagesTemplate="{StaticResource RepostMultiImageTemplateXaml}"/>
     </local:BindablePage.Resources>
 
 
