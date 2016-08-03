@@ -1,0 +1,69 @@
+﻿<UserControl
+    x:Class="WooBee_MVVMLight.FloatingActionButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WooBee_MVVMLight"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="250"
+    d:DesignWidth="50">
+
+    <Grid>
+
+        <ListBox x:Name="PopUp" 
+                  Width="50"
+                  Background="Black"
+                  Visibility="Collapsed">
+            <ListBoxItem x:Name="User"  
+                          Height="50"
+                          Width="50"
+                          HorizontalAlignment="Center"
+                          HorizontalContentAlignment="Center">
+                <SymbolIcon Symbol="People"
+                            Foreground="White"/>
+            </ListBoxItem>
+            <ListBoxItem x:Name="Setting" 
+                          Height="50"
+                          HorizontalAlignment="Center"
+                          HorizontalContentAlignment="Center">
+                <SymbolIcon Symbol="Setting"
+                            Foreground="White"/>
+            </ListBoxItem>
+            <ListBoxItem x:Name="Write" 
+                          Height="50"
+                          HorizontalAlignment="Center"
+                          HorizontalContentAlignment="Center">
+                <SymbolIcon Symbol="Add"
+                            Foreground="White"/>
+            </ListBoxItem>
+            <ListBoxItem x:Name="Refresh" 
+                          Height="50"
+                          HorizontalAlignment="Center"
+                          HorizontalContentAlignment="Center" Width="50">
+                <SymbolIcon Symbol="Refresh"
+                            Foreground="White"/>
+            </ListBoxItem>
+        </ListBox>
+        <Button x:Name="FloatingButton"
+                Background="Black"
+                Width="50"
+                Height="50"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Tapped="FloatingButton_Tapped"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center">
+            <SymbolIcon Symbol="More"
+                        Foreground="White"
+                        Height="50"
+                        Width="50" 
+                        Margin="-10,-6"/>
+        </Button>
+
+        
+            
+
+        
+    </Grid>
+</UserControl>

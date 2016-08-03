@@ -96,6 +96,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BlankPage1.xaml.cs">
+      <DependentUpon>BlankPage1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Common\BindablePage.cs" />
     <Compile Include="Common\AppSettings.cs" />
     <Compile Include="Common\API.cs" />
@@ -103,7 +106,7 @@
     <Compile Include="Common\HttpService.cs" />
     <Compile Include="Common\CTSFactory.cs" />
     <Compile Include="Common\INavigable.cs" />
-    <Compile Include="FloatingActionButton.xaml.cs">
+    <Compile Include="Common\Control\FloatingActionButton.xaml.cs">
       <DependentUpon>FloatingActionButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\DataViewModel\TimeLineDataViewModel.cs" />
@@ -148,7 +151,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="FloatingActionButton.xaml">
+    <Page Include="BlankPage1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Common\Control\FloatingActionButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -174,7 +181,6 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Common\Control\" />
     <Folder Include="Common\Source\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
