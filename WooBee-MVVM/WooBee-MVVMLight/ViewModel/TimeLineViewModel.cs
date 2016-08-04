@@ -90,6 +90,19 @@ namespace WooBee_MVVMLight.ViewModel
             }
         }
 
+        private RelayCommand _goToNewPostViewCommand;
+        public RelayCommand GoToNewPostViewCommand
+        {
+            get
+            {
+                if (_goToNewPostViewCommand != null) return _goToNewPostViewCommand;
+                return _goToNewPostViewCommand = new RelayCommand(() =>
+                {
+                    NavigationService.NaivgateToPage(typeof(NewPostView));
+                });
+            }
+        }
+
         public TimeLineViewModel()
         {
             MainList = new ObservableCollection<Weibo>();

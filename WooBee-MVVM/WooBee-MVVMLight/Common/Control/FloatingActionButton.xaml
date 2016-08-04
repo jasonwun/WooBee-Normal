@@ -10,49 +10,94 @@
     d:DesignWidth="50">
 
     <Grid>
-
         <ListBox x:Name="PopUp" 
                   Width="50"
                   Background="Black"
                   Visibility="Visible">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="Padding" Value="0"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
             <ListBoxItem x:Name="User"  
                           Height="50"
                           Width="50"
                           HorizontalAlignment="Center"
                           HorizontalContentAlignment="Center">
-                <SymbolIcon Symbol="People"
+                <Button Height="50"
+                        Width="50"
+                        HorizontalAlignment="Center"
+                        Command="{x:Bind MainVM.GoToUserViewCommand}">
+                    <SymbolIcon Symbol="People"
                             Foreground="White"/>
+                </Button>
             </ListBoxItem>
             <ListBoxItem x:Name="Setting" 
-                          Height="50"
+                         Height="50"
                          Width="50"
-                          HorizontalAlignment="Center"
-                          HorizontalContentAlignment="Center">
-                <SymbolIcon Symbol="Setting"
-                            Foreground="White"/>
+                         HorizontalAlignment="Center"
+                         HorizontalContentAlignment="Center">
+                <Button Height="50"
+                        Width="50"
+                        HorizontalAlignment="Center"
+                        Command="{x:Bind MainVM.GoToSettingViewCommand}">
+                    <SymbolIcon Symbol="Setting"
+                                Foreground="White"
+                                Height="50"
+                                Width="50"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                </Button>
             </ListBoxItem>
             <ListBoxItem x:Name="Message"
                          Height="50"
                           Width="50"
                           HorizontalAlignment="Center"
                           HorizontalContentAlignment="Center">
-                <SymbolIcon Symbol="Message"
-                            Foreground="White"/>
+                <Button Height="50"
+                        Width="50"
+                        HorizontalAlignment="Center"
+                        Command="{x:Bind MainVM.GoToMessageViewCommand}">
+                    <SymbolIcon Symbol="Message"
+                                Foreground="White"
+                                Height="50"
+                                Width="50"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                </Button>
             </ListBoxItem>
             <ListBoxItem x:Name="Write" 
                           Height="50"
                          Width="50"
                           HorizontalAlignment="Center"
                           HorizontalContentAlignment="Center">
-                <SymbolIcon Symbol="Add"
-                            Foreground="White"/>
+                <Button Height="50"
+                        Width="50"
+                        HorizontalAlignment="Center"
+                        Command="{x:Bind MainVM.GoToNewPostViewCommand}">
+                    <SymbolIcon Symbol="Add"
+                                Foreground="White"
+                                Height="50"
+                                Width="50"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                </Button>
             </ListBoxItem>
             <ListBoxItem x:Name="Refresh" 
                           Height="50"
                           HorizontalAlignment="Center"
                           HorizontalContentAlignment="Center" Width="50">
-                <SymbolIcon Symbol="Refresh"
-                            Foreground="White"/>
+                <Button Height="50"
+                        Width="50"
+                        HorizontalAlignment="Center">
+                    <SymbolIcon Symbol="Refresh"
+                            Foreground="White"
+                                Height="50"
+                                Width="50"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                </Button>
             </ListBoxItem>
         </ListBox>
         <Button x:Name="FloatingButton"
@@ -67,13 +112,9 @@
             <SymbolIcon Symbol="More"
                         Foreground="White"
                         Height="50"
-                        Width="50" 
-                        Margin="-10,-6"/>
+                        Width="50"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
         </Button>
-
-        
-            
-
-        
     </Grid>
 </UserControl>

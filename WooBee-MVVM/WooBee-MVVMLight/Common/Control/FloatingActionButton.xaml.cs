@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Hosting;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WooBee_MVVMLight.ViewModel;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -22,6 +23,14 @@ namespace WooBee_MVVMLight
 {
     public sealed partial class FloatingActionButton : UserControl
     {
+
+        private TimeLineViewModel MainVM
+        {
+            get
+            {
+                return this.DataContext as TimeLineViewModel;
+            }
+        }
 
         public FloatingActionButton()
         {

@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="WooBee_MVVMLight.UserView"
+    x:Class="WooBee_MVVMLight.BlankPage1"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WooBee_MVVMLight"
@@ -8,9 +8,8 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="User View"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="30"/>
+        <local:FloatingActionButton Height="300"
+                                    Width="50"
+                                    DataContext="{x:Bind MainVM,Mode=OneWay}" />
     </Grid>
 </Page>
