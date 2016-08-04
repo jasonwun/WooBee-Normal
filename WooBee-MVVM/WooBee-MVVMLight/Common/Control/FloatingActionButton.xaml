@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="250"
+    d:DesignHeight="300"
     d:DesignWidth="50">
 
     <Grid>
@@ -14,7 +14,7 @@
         <ListBox x:Name="PopUp" 
                   Width="50"
                   Background="Black"
-                  Visibility="Collapsed">
+                  Visibility="Visible">
             <ListBoxItem x:Name="User"  
                           Height="50"
                           Width="50"
@@ -25,13 +25,23 @@
             </ListBoxItem>
             <ListBoxItem x:Name="Setting" 
                           Height="50"
+                         Width="50"
                           HorizontalAlignment="Center"
                           HorizontalContentAlignment="Center">
                 <SymbolIcon Symbol="Setting"
                             Foreground="White"/>
             </ListBoxItem>
+            <ListBoxItem x:Name="Message"
+                         Height="50"
+                          Width="50"
+                          HorizontalAlignment="Center"
+                          HorizontalContentAlignment="Center">
+                <SymbolIcon Symbol="Message"
+                            Foreground="White"/>
+            </ListBoxItem>
             <ListBoxItem x:Name="Write" 
                           Height="50"
+                         Width="50"
                           HorizontalAlignment="Center"
                           HorizontalContentAlignment="Center">
                 <SymbolIcon Symbol="Add"

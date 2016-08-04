@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using WooBee_MVVM.Model;
 using System.ComponentModel;
+using GalaSoft.MvvmLight.Command;
+using WooBee_MVVMLight.Common;
 
 namespace WooBee_MVVMLight.ViewModel
 {
@@ -48,6 +50,46 @@ namespace WooBee_MVVMLight.ViewModel
             }
         }
 
+        private RelayCommand _goToSettingViewCommand;
+        public RelayCommand GoToSettingViewCommand
+        {
+            get
+            {
+                if (_goToSettingViewCommand != null) return _goToSettingViewCommand;
+                return _goToSettingViewCommand = new RelayCommand(() =>
+                {
+                    //DrawerOpened = false;
+                    NavigationService.NaivgateToPage(typeof(SettingView));
+                });
+            }
+        }
+
+        private RelayCommand _goToUserViewCommand;
+        public RelayCommand GoToUserViewCommand
+        {
+            get
+            {
+                if (_goToUserViewCommand != null) return _goToUserViewCommand;
+                return _goToUserViewCommand = new RelayCommand(() =>
+                {
+                    NavigationService.NaivgateToPage(typeof(UserView));
+                });
+            }
+        }
+
+        private RelayCommand _goToMessageViewCommand;
+        public RelayCommand GoToMessageViewCommand
+        {
+            get
+            {
+                if (_goToMessageViewCommand != null) return _goToMessageViewCommand;
+                return _goToMessageViewCommand = new RelayCommand(() =>
+                {
+                    NavigationService.NaivgateToPage(typeof(MessageView));
+                });
+            }
+        }
+
         public TimeLineViewModel()
         {
             MainList = new ObservableCollection<Weibo>();
@@ -72,9 +114,6 @@ namespace WooBee_MVVMLight.ViewModel
 
         private async Task RefreshAsync()
         {
-
-            
-
             IsRefreshing = true;
             await TimeLineDataViewModel.RefreshAsync();
             MainList = TimeLineDataViewModel.DataList;
