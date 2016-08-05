@@ -7,8 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="Setting View"
+    <Grid Background="#FFF1F1F1">
+        <TextBlock Text="没有什么好设置的"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    FontSize="30"/>

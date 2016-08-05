@@ -7,10 +7,798 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="User View"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="30"/>
+    <!--<Page.Resources>
+         
+         <DataTemplate x:Name="NormalTemplate">
+         <Grid Grid.Column="1"
+         Grid.Row="1" 
+         d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
+         Margin="0,17,0,17"
+         Name="NormalTemplateGrid" >
+         <Grid.RowDefinitions>
+         <RowDefinition Height="14*"/>
+         <RowDefinition Height="325*"/>
+         </Grid.RowDefinitions>
+         <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="0*"/>
+         <ColumnDefinition Width="47*"/>
+         <ColumnDefinition Width="313*"/>
+         </Grid.ColumnDefinitions>
+         
+         <Image x:Name="AvartarImage"
+         Height="40"
+         Grid.Row="1"
+         VerticalAlignment="Top"
+         HorizontalAlignment="Stretch" 
+         Grid.ColumnSpan="2"
+         Source="/Assets/UnloadedAvatar.png"
+         Margin="6,2.667,1,0" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
+         
+         <Grid Background="Black"
+         Height="35"
+         Width="auto"
+         Grid.Column="2"
+         Grid.Row="1"
+         Margin="20,2.667,0,0"
+         VerticalAlignment="Top"
+         HorizontalAlignment="Left" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+         
+         <TextBlock x:Name="textBlock7"
+         Margin="10,8,20,0"
+         TextWrapping="Wrap"
+         Text="{Binding User.ScreenName}"
+         d:LayoutOverrides="TopPosition, BottomPosition"
+         FontFamily="Microsoft YaHei"
+         FontWeight="Bold"
+         Foreground="White"/>
+         </Grid>
+         
+         <StackPanel Margin="0,2.667,0,0" 
+         Grid.Column="2" 
+         Height="20" 
+         Grid.Row="1" 
+         VerticalAlignment="Top" 
+         Width="auto"
+         Orientation="Horizontal" 
+         HorizontalAlignment="Right" d:LayoutOverrides="TopMargin, BottomMargin">
+         <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
+         Width="15"
+         Height="15"
+         Margin="0,5,0,0"/>
+         <TextBlock Text="{Binding CommentsCount}" 
+         FontWeight="Bold" 
+         Margin="3,0,3,0"/>
+         <BitmapIcon UriSource="/Assets/Icons/retweet-black.png"
+         Width="15"
+         Height="15"
+         Margin="0,2,0,0"/>
+         <TextBlock Text="{Binding RepostsCount}" 
+         FontWeight="Bold" 
+         Margin="3,0,3,0"/>
+         <BitmapIcon UriSource="/Assets/Icons/like.png"
+         Width="15"
+         Height="15"/>
+         <TextBlock Text="{Binding AttitudesCount}" 
+         FontWeight="Bold" 
+         Margin="3,0,3,0"/>
+         
+         </StackPanel>
+         
+         
+         <RichTextBlock x:Name="NormalTextblock"
+         Margin="20,49.667,0,0"
+         Grid.Column="2"
+         Grid.Row="1"
+         d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition"
+         HorizontalAlignment="Left" 
+         FontFamily="Microsoft YaHei"
+         Width="auto"
+         IsTextSelectionEnabled="False"/>
+         </Grid>
+         </DataTemplate>
+         
+         <DataTemplate x:Name="TextRepostTemplate">
+         <Grid Grid.Column="1"
+         Grid.Row="1" 
+         d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
+         Margin="0,17,0,17"
+         >
+         
+         <Grid.RowDefinitions>
+         <RowDefinition Height="13*"/>
+         <RowDefinition Height="52*"/>
+         <RowDefinition Height="255*"/>
+         </Grid.RowDefinitions>
+         <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="0*"/>
+         <ColumnDefinition Width="12*"/>
+         <ColumnDefinition Width="80*"/>
+         </Grid.ColumnDefinitions>
+         
+         <Image x:Name="AvartarImage"
+         Height="40"
+         Width="40"
+         Grid.Row="1"
+         VerticalAlignment="Top"
+         HorizontalAlignment="Stretch"
+         d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
+         Grid.ColumnSpan="2"
+         Source="/Assets/UnloadedAvatar.png"
+         local:ImageBindingHelper.UriProperty="{Binding User.AvatarLarge}" 
+         Margin="4,3,0,0">
+         </Image>
+         <Grid Background="Black"
+         Height="35" 
+         Width="auto"
+         Grid.Column="2"
+         Grid.Row="1"
+         Margin="20,3,0,0" 
+         VerticalAlignment="Top" 
+         HorizontalAlignment="Left">
+         <TextBlock x:Name="textBlock927"
+         Margin="10,8,20,0"
+         TextWrapping="Wrap"
+         Text="{Binding User.ScreenName}"
+         d:LayoutOverrides="TopPosition, BottomPosition"
+         FontFamily="Microsoft YaHei" 
+         FontWeight="Bold"
+         Foreground="White"/>
+         </Grid>
+         
+         <StackPanel Margin="0,2.667,0,0" 
+         Grid.Column="2" 
+         Height="20" 
+         Grid.Row="1" 
+         VerticalAlignment="Top" 
+         Width="auto"
+         Orientation="Horizontal" 
+         HorizontalAlignment="Right" d:LayoutOverrides="TopMargin, BottomMargin">
+         <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
+         Width="15"
+         Height="15"
+         Margin="0,5,0,0"/>
+         <TextBlock Text="{Binding CommentsCount}" 
+         FontWeight="Bold" 
+         Margin="3,0,3,0"/>
+         <BitmapIcon UriSource="/Assets/Icons/retweet-black.png"
+         Width="15"
+         Height="15"
+         Margin="0,2,0,0"/>
+         <TextBlock Text="{Binding RepostsCount}" 
+         FontWeight="Bold" 
+         Margin="3,0,3,0"/>
+         <BitmapIcon UriSource="/Assets/Icons/like.png"
+         Width="15"
+         Height="15"/>
+         <TextBlock Text="{Binding AttitudesCount}" 
+         FontWeight="Bold" 
+         Margin="3,0,3,0"/>
+         
+         </StackPanel>
+         
+         <RichTextBlock x:Name="TextRepostContentTextBlock"
+         Margin="20,50,0,0"
+         local:BindingHelper.Text="{Binding Text}"
+         Grid.Column="2"
+         Grid.Row="1"
+         d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
+         FontFamily="Microsoft YaHei"
+         IsTextSelectionEnabled="False"          />
+         
+         <TextBlock x:Name="textBlock7"
+         TextWrapping="Wrap"
+         Grid.Column="2"
+         Grid.Row="2"
+         Margin="20,20,0,0" 
+         Text="{Binding RepostWeibo.User.ScreenName}"
+         d:LayoutOverrides="TopPosition, BottomPosition"
+         FontFamily="Microsoft YaHei" 
+         FontWeight="Bold"
+         Foreground="Black"/>
+         
+         
+         <RichTextBlock x:Name="TextRepostTextBlock"
+         Margin="20,50,8,5"
+         local:BindingHelper.Text="{Binding RepostWeibo.Text}"
+         d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
+         Grid.Column="2"
+         Grid.Row="2"
+         IsTextSelectionEnabled="False"
+         Height="auto"/>
+         
+         
+         </Grid>
+         </DataTemplate>
+         
+         <DataTemplate x:Name="OneImageTemplate">
+         <Grid Grid.Column="1"
+         Grid.Row="1" 
+         d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
+         Margin="0,17,0,17"
+         >
+         <Grid.RowDefinitions>
+         <RowDefinition Height="13*"/>
+         <RowDefinition Height="52*"/>
+         <RowDefinition Height="255*"/>
+         </Grid.RowDefinitions>
+         <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="0*"/>
+         <ColumnDefinition Width="12*"/>
+         <ColumnDefinition Width="80*"/>
+         </Grid.ColumnDefinitions>
+         
+         <Image x:Name="image"
+         Height="40"
+         Width="40"
+         Grid.Row="1"
+         VerticalAlignment="Top"
+         HorizontalAlignment="Stretch"
+         d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
+         Grid.ColumnSpan="2"
+         Source="/Assets/UnloadedAvatar.png"
+         local:ImageBindingHelper.UriProperty="{Binding User.AvatarLarge}" 
+         Margin="4,3,0,0"/>
+         
+         <Grid Background="Black"
+         Height="35"
+         Width="auto"
+         Grid.Column="2"
+         Grid.Row="1"
+         Margin="20,3,0,0" 
+         VerticalAlignment="Top" 
+         HorizontalAlignment="Left">
+         <TextBlock x:Name="textBlock7"
+         Margin="10,8,20,0"
+         TextWrapping="Wrap"
+         Text="{Binding User.ScreenName}"
+         d:LayoutOverrides="TopPosition, BottomPosition"
+         FontFamily="Microsoft YaHei" 
+         FontWeight="Bold"
+         Foreground="White"/>
+         </Grid>
+         
+         
+         <StackPanel Margin="0,2.667,0,0" 
+         Grid.Column="2" 
+         Height="20" 
+         Grid.Row="1" 
+         VerticalAlignment="Top" 
+         Width="auto"
+         Orientation="Horizontal" 
+         HorizontalAlignment="Right" d:LayoutOverrides="TopMargin, BottomMargin">
+         <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
+         Width="15"
+         Height="15"
+         Margin="0,5,0,0"/>
+         <TextBlock Text="{Binding CommentsCount}" 
+         FontWeight="Bold" 
+         Margin="3,0,3,0"/>
+         <BitmapIcon UriSource="/Assets/Icons/retweet-black.png"
+         Width="15"
+         Height="15"
+         Margin="0,2,0,0"/>
+         <TextBlock Text="{Binding RepostsCount}" 
+         FontWeight="Bold" 
+         Margin="3,0,3,0"/>
+         <BitmapIcon UriSource="/Assets/Icons/like.png"
+         Width="15"
+         Height="15"/>
+         <TextBlock Text="{Binding AttitudesCount}" 
+         FontWeight="Bold" 
+         Margin="3,0,3,0"/>
+         
+         </StackPanel>
+         
+         <RichTextBlock x:Name="OneImageContentTextBlock"
+         Margin="20,50,8,0"
+         local:BindingHelper.Text="{Binding Text}"
+         Grid.Column="2"
+         Grid.Row="1"
+         d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
+         FontFamily="Microsoft YaHei"
+         IsTextSelectionEnabled="False"/>
+         <Image x:Name="image1"
+         Margin="20,20,0,0"
+         Grid.Column="2"
+         Grid.Row="2"
+         Source="{Binding ThumbnailPic}"
+         d:LayoutOverrides="TopMargin, BottomMargin" 
+         MaxHeight="200"
+         MaxWidth="500"
+         MinWidth="100"
+         VerticalAlignment="Top" 
+         Stretch="Uniform"
+         HorizontalAlignment="Stretch"/>
+         </Grid>
+         </DataTemplate>
+         
+         <DataTemplate x:Name="MultipleImageTemplate">
+         <Grid Grid.Column="1"
+         Grid.Row="1" 
+         d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
+         Margin="0,17,0,17">
+         <Grid.RowDefinitions>
+         <RowDefinition Height="13*"/>
+         <RowDefinition Height="52*"/>
+         <RowDefinition Height="255*"/>
+         </Grid.RowDefinitions>
+         <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="0*"/>
+         <ColumnDefinition Width="12*"/>
+         <ColumnDefinition Width="80*"/>
+         </Grid.ColumnDefinitions>
+         
+         <Image x:Name="image"
+         Height="40"
+         Grid.Row="1"
+         VerticalAlignment="Top"
+         HorizontalAlignment="Stretch" 
+         Grid.ColumnSpan="2"
+         local:ImageBindingHelper.UriProperty="{Binding User.AvatarLarge}" 
+         Margin="4,3,3,0" 
+         Source="/Assets/UnloadedAvatar.png"
+         d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
+         
+         <Grid Background="Black"
+         Height="35" 
+         Width="auto"
+         Grid.Column="2"
+         Grid.Row="1"
+         Margin="20,3,0,0" 
+         VerticalAlignment="Top" 
+         HorizontalAlignment="Left">
+         <TextBlock x:Name="textBlock927"
+         Margin="10,8,20,0"
+         TextWrapping="Wrap"
+         Text="{Binding User.ScreenName}"
+         d:LayoutOverrides="TopPosition, BottomPosition"
+         FontFamily="Microsoft YaHei" 
+         FontWeight="Bold"
+         Foreground="White"/>
+         </Grid>
+         
+         <StackPanel Margin="0,2.667,0,0" 
+         Grid.Column="2" 
+         Height="20" 
+         Grid.Row="1" 
+         VerticalAlignment="Top" 
+         Width="auto"
+         Orientation="Horizontal" 
+         HorizontalAlignment="Right" d:LayoutOverrides="TopMargin, BottomMargin">
+         <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
+         Width="15"
+         Height="15"
+         Margin="0,5,0,0"/>
+         <TextBlock Text="{Binding CommentsCount}" 
+         FontWeight="Bold" 
+         Margin="3,0,3,0"/>
+         <BitmapIcon UriSource="/Assets/Icons/retweet-black.png"
+         Width="15"
+         Height="15"
+         Margin="0,2,0,0"/>
+         <TextBlock Text="{Binding RepostsCount}" 
+         FontWeight="Bold" 
+         Margin="3,0,3,0"/>
+         <BitmapIcon UriSource="/Assets/Icons/like.png"
+         Width="15"
+         Height="15"/>
+         <TextBlock Text="{Binding AttitudesCount}" 
+         FontWeight="Bold" 
+         Margin="3,0,3,0"/>
+         
+         </StackPanel>
+         
+         <RichTextBlock  x:Name="MultipleImageContentTextBlock"
+         Margin="20,50,0,0"
+         local:BindingHelper.Text="{Binding Text}"
+         Grid.Column="2"
+         Grid.Row="1"
+         d:LayoutOverrides="TopMargin, BottomMargin, TopPosition, BottomPosition"
+         Height="auto"
+         IsTextSelectionEnabled="False"/>
+         
+         <GridView x:Name="gridView" 
+         ItemsSource="{Binding PicUrls}"
+         Margin="-21,20,-21,0"
+         Grid.Column="0"
+         Grid.ColumnSpan="3"
+         Grid.Row="2"
+         Height="auto" 
+         Width="auto"
+         VerticalAlignment="Top"
+         HorizontalAlignment="Stretch"
+         SelectionMode="Single" 
+         d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition"
+         Style="{StaticResource ImageGridViewStyle}" 
+         ItemContainerStyle="{StaticResource MyGridViewItemStyle}">
+         
+         <GridView.ItemTemplate>
+         <DataTemplate>
+         <Image Source="{Binding thumpic}"
+         Width="140"
+         Height="140" 
+         Stretch="UniformToFill" 
+         Margin="0,0,0,0"/>
+         </DataTemplate>
+         </GridView.ItemTemplate>
+         </GridView>
+         </Grid>
+         </DataTemplate>
+         
+         <DataTemplate x:Name="RepostOneImageTemplateXaml">
+         <Grid Grid.Column="1"
+         Grid.Row="1" 
+         d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
+         Margin="0,17,0,17"
+         Height="auto"
+         >
+         <Grid.RowDefinitions>
+         <RowDefinition Height="25*"/>
+         <RowDefinition Height="98*"/>
+         <RowDefinition Height="145*"/>
+         <RowDefinition Height="338*"/>
+         </Grid.RowDefinitions>
+         <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="0*"/>
+         <ColumnDefinition Width="12*"/>
+         <ColumnDefinition Width="80*"/>
+         </Grid.ColumnDefinitions>
+         
+         <Image x:Name="image"
+         Height="40"
+         Width="40"
+         Grid.Row="1"
+         VerticalAlignment="Top"
+         HorizontalAlignment="Stretch"
+         d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
+         Grid.ColumnSpan="2"
+         Source="/Assets/UnloadedAvatar.png"
+         local:ImageBindingHelper.UriProperty="{Binding User.AvatarLarge}" 
+         Margin="4,3,3,0"/>
+         
+         <Grid Background="Black"
+         Height="35" 
+         Width="auto"
+         Grid.Column="2"
+         Grid.Row="1"
+         Margin="20,3,0,0" 
+         VerticalAlignment="Top" 
+         HorizontalAlignment="Left">
+         <TextBlock x:Name="textBlock927"
+         Margin="10,8,20,0"
+         TextWrapping="Wrap"
+         Text="{Binding User.ScreenName}"
+         d:LayoutOverrides="TopPosition, BottomPosition"
+         FontFamily="Microsoft YaHei" 
+         FontWeight="Bold"
+         Foreground="White"/>
+         </Grid>
+         
+         <StackPanel Margin="0,2.667,0,0" 
+         Grid.Column="2" 
+         Height="20" 
+         Grid.Row="1" 
+         VerticalAlignment="Top" 
+         Width="auto"
+         Orientation="Horizontal" 
+         HorizontalAlignment="Right" d:LayoutOverrides="TopMargin, BottomMargin">
+         <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
+         Width="15"
+         Height="15"
+         Margin="0,5,0,0"/>
+         <TextBlock Text="{Binding CommentsCount}" 
+         FontWeight="Bold" 
+         Margin="3,0,3,0"/>
+         <BitmapIcon UriSource="/Assets/Icons/retweet-black.png"
+         Width="15"
+         Height="15"
+         Margin="0,2,0,0"/>
+         <TextBlock Text="{Binding RepostsCount}" 
+         FontWeight="Bold" 
+         Margin="3,0,3,0"/>
+         <BitmapIcon UriSource="/Assets/Icons/like.png"
+         Width="15"
+         Height="15"/>
+         <TextBlock Text="{Binding AttitudesCount}" 
+         FontWeight="Bold" 
+         Margin="3,0,3,0"/>
+         
+         </StackPanel>
+         
+         <RichTextBlock x:Name="RepostOneImageContentTextBlock"
+         Margin="20,50,0,0"
+         local:BindingHelper.Text="{Binding Text}"
+         Grid.Column="2"
+         Grid.Row="1"
+         d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" 
+         FontFamily="Microsoft YaHei"
+         IsTextSelectionEnabled="False"/>
+         
+         
+         <TextBlock x:Name="textBlock7"
+         Margin="20,20,0,0"
+         Grid.Column="2"
+         Grid.Row="2"
+         TextWrapping="Wrap"
+         Text="{Binding RepostWeibo.User.ScreenName}"
+         d:LayoutOverrides="TopPosition, BottomPosition"
+         FontFamily="Microsoft YaHei"
+         FontWeight="Bold"
+         Foreground="Black"/>
+         
+         
+         <RichTextBlock x:Name="RepostOneImageRepostTextBlock"
+         Margin="20,50,0,0"
+         local:BindingHelper.Text="{Binding RepostWeibo.Text}"
+         Grid.Column="2"
+         Grid.Row="2"
+         d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
+         IsTextSelectionEnabled="False"/>
+         
+         <Image x:Name="image1"
+         Grid.Column="2"
+         Grid.Row="3"
+         Source="{Binding RepostWeibo.ThumbnailPic}" 
+         MaxHeight="200"
+         MaxWidth="500" 
+         MinWidth="100"
+         Stretch="Uniform"
+         HorizontalAlignment="Stretch" 
+         d:LayoutOverrides="TopMargin, BottomMargin" 
+         VerticalAlignment="Top"
+         Margin="20,15,0,0"/>
+         </Grid>
+         </DataTemplate>
+         
+         <DataTemplate x:Name="RepostMultiImageTemplateXaml">
+         <Grid Grid.Column="1"
+         Grid.Row="1" 
+         d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
+         Margin="0,17,0,17"
+         >
+         <Grid.RowDefinitions>
+         <RowDefinition Height="25*"/>
+         <RowDefinition Height="99*"/>
+         <RowDefinition Height="154*"/>
+         <RowDefinition Height="332*"/>
+         </Grid.RowDefinitions>
+         <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="0*"/>
+         <ColumnDefinition Width="12*"/>
+         <ColumnDefinition Width="80*"/>
+         </Grid.ColumnDefinitions>
+         
+         <Image x:Name="image"
+         Height="40"
+         Width="40"
+         Grid.Row="1"
+         VerticalAlignment="Top"
+         HorizontalAlignment="Stretch"
+         d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
+         Grid.ColumnSpan="2"
+         Source="/Assets/UnloadedAvatar.png"
+         local:ImageBindingHelper.UriProperty="{Binding User.AvatarLarge}" 
+         Margin="4,3,3,0"/>
+         
+         <Grid Background="Black"
+         Height="35" 
+         Width="auto"
+         Grid.Column="2"
+         Grid.Row="1"
+         Margin="20,3,0,0" 
+         VerticalAlignment="Top" 
+         HorizontalAlignment="Left">
+         <TextBlock x:Name="textBlock927"
+         Margin="10,8,20,0"
+         TextWrapping="Wrap"
+         Text="{Binding User.ScreenName}"
+         d:LayoutOverrides="TopPosition, BottomPosition"
+         FontFamily="Microsoft YaHei" 
+         FontWeight="Bold"
+         Foreground="White"/>
+         </Grid>
+         
+         <StackPanel Margin="0,2.667,0,0" 
+         Grid.Column="2" 
+         Height="20" 
+         Grid.Row="1" 
+         VerticalAlignment="Top" 
+         Width="auto"
+         Orientation="Horizontal" 
+         HorizontalAlignment="Right" d:LayoutOverrides="TopMargin, BottomMargin">
+         <BitmapIcon UriSource="/Assets/Icons/Comment.png" 
+         Width="15"
+         Height="15"
+         Margin="0,5,0,0"/>
+         <TextBlock Text="{Binding CommentsCount}" 
+         FontWeight="Bold" 
+         Margin="3,0,3,0"/>
+         <BitmapIcon UriSource="/Assets/Icons/retweet-black.png"
+         Width="15"
+         Height="15"
+         Margin="0,2,0,0"/>
+         <TextBlock Text="{Binding RepostsCount}" 
+         FontWeight="Bold" 
+         Margin="3,0,3,0"/>
+         <BitmapIcon UriSource="/Assets/Icons/like.png"
+         Width="15"
+         Height="15"/>
+         <TextBlock Text="{Binding AttitudesCount}" 
+         FontWeight="Bold" 
+         Margin="3,0,3,0"/>
+         
+         </StackPanel>
+         
+         <RichTextBlock x:Name="RepostMultiImageContentTextBlock"
+         Margin="20,50,0,0"
+         local:BindingHelper.Text="{Binding Text}"
+         Grid.Column="2"
+         Grid.Row="1"
+         d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" 
+         FontFamily="Microsoft YaHei"
+         IsTextSelectionEnabled="False"/>
+         
+         <TextBlock x:Name="textBlock7"
+         Margin="20,20,0,0"
+         TextWrapping="Wrap"
+         Grid.Row="2"
+         Grid.Column="2"
+         Text="{Binding RepostWeibo.User.ScreenName}"
+         d:LayoutOverrides="TopPosition, BottomPosition"
+         FontFamily="Microsoft YaHei" 
+         FontWeight="Bold"
+         Foreground="Black"/>
+         
+         <RichTextBlock x:Name="RepostMultiImageRepostTextBlock"
+         Margin="20,50,0,0"
+         local:BindingHelper.Text="{Binding RepostWeibo.Text}"
+         Grid.Column="2"
+         Grid.Row="2"
+         d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
+         Height="auto" 
+         VerticalAlignment="Bottom"
+         IsTextSelectionEnabled="False"/>
+         
+         <GridView x:Name="gridView" 
+         ItemsSource="{Binding RepostWeibo.PicUrls}"
+         Margin="20,15,0,0"
+         Grid.Column="2"
+         Grid.Row="3"
+         Height="auto" 
+         Width="auto"
+         VerticalAlignment="Top"
+         HorizontalAlignment="Stretch"
+         SelectionMode="Single" 
+         d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition"
+         Style="{StaticResource ImageGridViewStyle}"
+         ItemContainerStyle="{StaticResource MyGridViewItemStyle}">
+         <GridView.ItemTemplate>
+         <DataTemplate>
+         <Image Source="{Binding thumpic}"
+         Width="100"
+         Height="100" 
+         Stretch="UniformToFill"
+         Margin="0,0,0,0"/>
+         </DataTemplate>
+         </GridView.ItemTemplate>
+         </GridView>
+         </Grid>
+         </DataTemplate>
+         
+         <local:TimelineDataTemplateSelector x:Key="MyTimelineDataTemplateSelector"
+         NormalTemplate="{StaticResource NormalTemplate}"
+         TextRepostTemplate="{StaticResource TextRepostTemplate}"
+         OneImageTemplate="{StaticResource OneImageTemplate}"
+         MultiImagesTemplate="{StaticResource MultipleImageTemplate}"
+         RepostOneImageTemplate="{StaticResource RepostOneImageTemplateXaml}"
+         RepostMultiImagesTemplate="{StaticResource RepostMultiImageTemplateXaml}"/>
+         </Page.Resources>-->
+
+    <Grid Background="#FFF1F1F1">
+
+
+        <Image x:Name="CoverImage"
+               VerticalAlignment="Top"
+               HorizontalAlignment="Left"/>
+
+        <Image x:Name="UserAvatar" 
+               HorizontalAlignment="Center" 
+               Height="70"
+               VerticalAlignment="Top" 
+               Width="70" 
+               Margin="0,30,0,0"/>
+
+        <TextBlock x:Name="UserName" 
+                   HorizontalAlignment="Center" 
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Top"
+                   Margin="0,110,0,0"/>
+
+        <StackPanel x:Name="ProfileRoot"
+                    Margin="0,135,0,0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top">
+            <Image x:Name="Gender"
+                   Height="15"
+                   Width="15"
+                   Margin="0,2,0,0"/>
+            <TextBlock x:Name="Location" 
+                       HorizontalAlignment="Center" 
+                       TextWrapping="Wrap"
+                       VerticalAlignment="Top"
+                       Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <Button x:Name="FollowingButton" 
+                HorizontalAlignment="Center"
+                Content=""
+                VerticalAlignment="Top"
+                Margin="0,175,0,0"
+                Background="Transparent"
+                BorderBrush="{ThemeResource SystemControlBackgroundBaseHighBrush}"
+                BorderThickness="0.5" />
+
+        <StackPanel x:Name="CountsRoot"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center"
+                    Margin="0,240,0,0"
+                    Orientation="Horizontal"
+                    Background="White">
+            <Button x:Name="WeiboCounts"
+                    Content="微博: "
+                    Width="120"
+                    Background="#FFAFAFAF" />
+            <Button x:Name="FollowerCounts"
+                    Content="粉丝: "
+                    Width="120"
+                    Background="#FFEAEAEA" />
+            <Button x:Name="FollwingCounts"
+                    Content="关注: "
+                    Width="120"
+                    Background="#FFEAEAEA" />
+        </StackPanel>
+
+        <ListView x:Name="Statues" 
+                  Margin="0,272,0,0"
+                  Background="#FFF1F1F1">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
+        <GridView x:Name="Followers" 
+                  Margin="0,272,0,0"
+                  Visibility="Collapsed"
+                  Background="#FFF1F1F1"
+                  Padding="20,10,0,0">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Image x:Name="FollowersAvatar"
+                           Height="60"
+                           Width="60"
+                           Source="{Binding AvatarLarge}"/>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+
+        <GridView x:Name="Follwings" 
+                  Margin="0,272,0,0"
+                  Visibility="Collapsed"
+                  Background="#FFF1F1F1"
+                  Padding="20,10,0,0">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Image x:Name="FriendsAvatar"
+                           Height="60"
+                           Width="60"
+                           Source="{Binding AvatarLarge}"/>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+
+
     </Grid>
 </Page>

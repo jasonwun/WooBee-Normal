@@ -6,13 +6,47 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Threading;
+using Windows.Storage;
+using WooBee_MVVMLight.View;
 
 namespace WooBee_MVVMLight
 {
     sealed partial class App
     {
-        public static string AccessToken {get;set;}
-        public static string WeicoAccessToken { get; set; }
+        public static string AccessToken
+        {
+            get
+            {
+                var localSettings = ApplicationData.Current.LocalSettings;
+                if (localSettings.Values["NormalAccessToken"] == null)
+                    return "";
+                else
+                    return localSettings.Values["NormalAccessToken"].ToString();
+            }
+            set
+            {
+                var localSettings = ApplicationData.Current.LocalSettings;
+                localSettings.Values["NormalAccessToken"] = value;
+            }
+        }
+        public static string WeicoAccessToken
+        {
+            get
+            {
+                var localSettings = ApplicationData.Current.LocalSettings;
+                if (localSettings.Values["WeicoAccessToken"] == null)
+                    return "";
+                else
+                    return localSettings.Values["WeicoAccessToken"].ToString();
+            }
+            set
+            {
+                var localSettings = ApplicationData.Current.LocalSettings;
+                localSettings.Values["WeicoAccessToken"] = value;
+            }
+        }
+
+
         public static string AppKey = "839927271";
         public static string AppSecret = "d9a2ae8a01ef87772897bcf0c32ea575";
         public static AppSettings AppSettings
@@ -27,6 +61,7 @@ namespace WooBee_MVVMLight
         {
             InitializeComponent();
             Suspending += OnSuspending;
+            
         }
 
         /// <summary>
@@ -69,7 +104,10 @@ namespace WooBee_MVVMLight
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(typeof(LoginView), e.Arguments);
+                if (App.AccessToken != "" && App.WeicoAccessToken != "")
+                    rootFrame.Navigate(typeof(TimeLineView), e.Arguments);
+                else
+                    rootFrame.Navigate(typeof(LoginView), e.Arguments);
                 //rootFrame.Navigate(typeof(MessageView), e.Arguments);
             }
             // Ensure the current window is active

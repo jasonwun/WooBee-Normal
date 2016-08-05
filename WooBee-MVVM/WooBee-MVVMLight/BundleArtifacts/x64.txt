@@ -1,0 +1,2 @@
+MainPackage=C:\Users\yinju\Source\Repos\WooBee-Normal\WooBee-MVVM\WooBee-MVVMLight\bin\x64\Release\WooBee-MVVMLight_2016.8.5.0_x64.appx
+SymbolPackage=C:\Users\yinju\Source\Repos\WooBee-Normal\WooBee-MVVM\WooBee-MVVMLight\AppPackages\WooBee-MVVMLight_2016.8.5.0_Test\WooBee-MVVMLight_2016.8.5.0_x64.appxsym

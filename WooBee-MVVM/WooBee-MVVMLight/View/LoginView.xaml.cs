@@ -54,7 +54,7 @@ namespace WooBee_MVVMLight
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if(App.AccessToken != null)
+            if(App.AccessToken != "")
             {
                 Vm.NormalButtonEnabled = false;
             }
@@ -62,7 +62,7 @@ namespace WooBee_MVVMLight
             {
                 Vm.NormalButtonEnabled = true;
             }
-            if (App.WeicoAccessToken != null)
+            if (App.WeicoAccessToken != "")
             {
                 Vm.ExtendedButtonEnabled = false;
             }
@@ -74,7 +74,7 @@ namespace WooBee_MVVMLight
 
         private async void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            if (App.AccessToken != null && App.WeicoAccessToken != null)
+            if (App.AccessToken != "" && App.WeicoAccessToken != "")
             {
                 ContentDialog aa = new ContentDialog();
                 TextBlock text = new TextBlock();
