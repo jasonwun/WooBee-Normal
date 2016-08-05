@@ -10,18 +10,18 @@ using WooBee_MVVMLight.Common;
 
 namespace WooBee_MVVMLight
 {
-    public class TimeLineDataViewModel : DataViewModelBase<Weibo>
+    public class CommentDataViewModel : DataViewModelBase<Comment>
     {
-        protected override void ClickItem(Weibo item)
+        protected override void ClickItem(Comment item)
         {
             throw new NotImplementedException();
         }
 
-        protected override async Task<IEnumerable<Weibo>> GetList(int pageIndex)
+        protected override async Task<IEnumerable<Comment>> GetList(int pageIndex)
         {
             try
             {
-                string Uri = API.HOME_TIMELINE;
+                string Uri = API.COMMENTS_TO_ME;
                 Uri += "?source=";
                 Uri += App.AppKey;
                 Uri += "&access_token=";
@@ -34,23 +34,20 @@ namespace WooBee_MVVMLight
                 if (response.IsSuccessStatusCode)
                 {
                     string strResponse = response.Content.ToString();
-                    WeiboModel _weiboModel = JsonConvert.DeserializeObject<WeiboModel>(strResponse);
-                    return _weiboModel.Statuses;
+                    CommentModel _commentModel = JsonConvert.DeserializeObject<CommentModel>(strResponse);
+                    return _commentModel.Comments;
                 }
                 else
                 {
                     throw new Exception();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                return new List<Weibo>();
+                return new List<Comment>();
             }
         }
 
-        protected override void LoadMoreItemCompleted(IEnumerable<Weibo> list, int index)
-        {
-            
-        }
+        protected override void LoadMoreItemCompleted(IEnumerable<Comment> list, int index) { }
     }
 }

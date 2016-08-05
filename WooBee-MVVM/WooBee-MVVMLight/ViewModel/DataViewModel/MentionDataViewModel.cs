@@ -10,7 +10,7 @@ using WooBee_MVVMLight.Common;
 
 namespace WooBee_MVVMLight
 {
-    public class TimeLineDataViewModel : DataViewModelBase<Weibo>
+    public class MentionDataViewModel : DataViewModelBase<Weibo>
     {
         protected override void ClickItem(Weibo item)
         {
@@ -21,7 +21,7 @@ namespace WooBee_MVVMLight
         {
             try
             {
-                string Uri = API.HOME_TIMELINE;
+                string Uri = API.MENTIONS;
                 Uri += "?source=";
                 Uri += App.AppKey;
                 Uri += "&access_token=";
@@ -42,15 +42,12 @@ namespace WooBee_MVVMLight
                     throw new Exception();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return new List<Weibo>();
             }
         }
 
-        protected override void LoadMoreItemCompleted(IEnumerable<Weibo> list, int index)
-        {
-            
-        }
+        protected override void LoadMoreItemCompleted(IEnumerable<Weibo> list, int index) { }
     }
 }

@@ -109,6 +109,9 @@
     <Compile Include="Common\Control\FloatingActionButton.xaml.cs">
       <DependentUpon>FloatingActionButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\DataViewModel\MentionDataViewModel.cs" />
+    <Compile Include="ViewModel\DataViewModel\CommentDataViewModel.cs" />
+    <Compile Include="ViewModel\MessageViewModel.cs" />
     <Compile Include="View\NewPostView.xaml.cs">
       <DependentUpon>NewPostView.xaml</DependentUpon>
     </Compile>

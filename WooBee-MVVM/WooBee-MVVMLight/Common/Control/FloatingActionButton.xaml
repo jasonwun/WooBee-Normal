@@ -13,7 +13,7 @@
         <ListBox x:Name="PopUp" 
                   Width="50"
                   Background="Black"
-                  Visibility="Visible">
+                  Visibility="Collapsed">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
