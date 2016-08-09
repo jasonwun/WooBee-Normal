@@ -154,6 +154,8 @@
     <Compile Include="View\WeiboDetailView.xaml.cs">
       <DependentUpon>WeiboDetailView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\DataTemplateSelectors\WeiboDetailDataTemplateSelector.cs" />
+    <Compile Include="ViewModel\WeiboDetailViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

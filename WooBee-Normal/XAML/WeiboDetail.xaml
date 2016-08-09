@@ -15,19 +15,19 @@
                   Name="NormalTemplateGrid">
 
                 <TextBlock x:Name="WeiboTextTextblock"
-                       Margin="12,0,8,0"
-                       TextWrapping="Wrap"
-                       Text="{Binding Text}"
-                       d:LayoutOverrides="LeftMargin, RightMargin, LeftPosition, RightPosition, TopPosition, BottomPosition" 
-                       FontFamily="Microsoft YaHei"
-                       Height="auto"/>
+                           Margin="12,0,8,0"
+                           TextWrapping="Wrap"
+                           Text="{Binding Text}"
+                           d:LayoutOverrides="LeftMargin, RightMargin, LeftPosition, RightPosition, TopPosition, BottomPosition" 
+                           FontFamily="Microsoft YaHei"
+                           Height="auto"/>
             </Grid>
         </DataTemplate>
 
         <DataTemplate x:Name="TextRepostTemplate">
             <Grid Grid.Row="2"
-              d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition, TopPosition, BottomPosition"
-              Height="auto">
+                  d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition, TopPosition, BottomPosition"
+                  Height="auto">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="29*"/>
                     <RowDefinition Height="36*"/>
@@ -35,30 +35,30 @@
 
 
                 <TextBlock x:Name="textBlock1"
-                       Margin="10,10,8,0"
-                       TextWrapping="Wrap"
-                       Text="{Binding Text}"
-                       d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" 
-                       FontFamily="Microsoft YaHei"
-                       Height="auto"/>
+                           Margin="10,10,8,0"
+                           TextWrapping="Wrap"
+                           Text="{Binding Text}"
+                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" 
+                           FontFamily="Microsoft YaHei"
+                           Height="auto"/>
 
                 <TextBlock x:Name="textBlock7"
-                       TextWrapping="Wrap"
-                       Text="{Binding User.ScreenName}"
-                       Height="auto"
-                       d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
-                       FontFamily="Microsoft YaHei UI" 
-                       FontSize="21.333" 
-                       Grid.Row="1"
-                       Margin="10,10,0,0"/>
+                           TextWrapping="Wrap"
+                           Text="{Binding User.ScreenName}"
+                           Height="auto"
+                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
+                           FontFamily="Microsoft YaHei UI" 
+                           FontSize="21.333" 
+                           Grid.Row="1"
+                           Margin="10,10,0,0"/>
 
 
                 <TextBlock x:Name="textBlock2"
-                       Margin="10,59.333,0,0"
-                       TextWrapping="Wrap"
-                       Text="{Binding RepostWeibo.Text}"
-                       d:LayoutOverrides="VerticalAlignment, LeftMargin, RightMargin, TopPosition, BottomPosition" 
-                       Grid.Row="1"/>
+                           Margin="10,59.333,0,0"
+                           TextWrapping="Wrap"
+                           Text="{Binding RepostWeibo.Text}"
+                           d:LayoutOverrides="VerticalAlignment, LeftMargin, RightMargin, TopPosition, BottomPosition" 
+                           Grid.Row="1"/>
             </Grid>
         </DataTemplate>
 
@@ -106,7 +106,7 @@
 
 
                 <GridView x:Name="gridView" 
-                      ItemsSource="{Binding PicUrls}"
+                          ItemsSource="{Binding PicUrls}"
                           Margin="0,10,0,0"
                           SelectionMode="None" 
                           Grid.Row="1" 
@@ -141,7 +141,7 @@
                            Text="{Binding Text}"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" 
                            FontFamily="Microsoft YaHei"
-                   Height="auto"/>
+                           Height="auto"/>
 
                 <TextBlock x:Name="textBlock7"
                            Margin="10,0,0,10"
@@ -158,7 +158,7 @@
                            Text="{Binding RepostWeibo.Text}"
                            Grid.Row="2"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition"
-                   Height="auto"/>
+                           Height="auto"/>
 
                 <Image x:Name="image1"
                        Margin="0,10,0,0"
@@ -192,7 +192,7 @@
                            Text="{Binding RepostWeibo.User.ScreenName}"
                            d:LayoutOverrides="Height, LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition"
                            FontFamily="Microsoft YaHei" 
-                       Height="auto"
+                           Height="auto"
                            FontWeight="Bold" Grid.Row="1"/>
 
 
@@ -234,40 +234,40 @@
                 </Grid.ColumnDefinitions>
 
                 <Image x:Name="AvartarImage"
-                                           Height="40"
-                                           Width="40"
-                                           Grid.Row="1"
-                                           VerticalAlignment="Top"
-                                           HorizontalAlignment="Stretch"
-                                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
-                                           Grid.ColumnSpan="2"
-                                           Source="{Binding User.AvatarLarge}"
-                                           Margin="0,3,0,0">
+                       Height="40"
+                       Width="40"
+                       Grid.Row="1"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Stretch"
+                       d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
+                       Grid.ColumnSpan="2"
+                       Source="{Binding User.AvatarLarge}"
+                       Margin="0,3,0,0">
                     <Image.Clip>
                         <RectangleGeometry Rect="0 0 40 40"/>
                     </Image.Clip>
                 </Image>
                 <TextBlock x:Name="ScreenNameTextBlock"
-                                               TextWrapping="Wrap"
-                                               Text="{Binding User.ScreenName}"
-                                               Grid.Column="2"
-                                               Grid.Row="1"
-                                               VerticalAlignment="Top"
-                                               d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
-                                               Height="40"
-                                               Margin="20,0,10,0"
-                                               FontFamily="Microsoft YaHei"
-                                               FontWeight="Normal"/>
+                           TextWrapping="Wrap"
+                           Text="{Binding User.ScreenName}"
+                           Grid.Column="2"
+                           Grid.Row="1"
+                           VerticalAlignment="Top"
+                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
+                           Height="40"
+                           Margin="20,0,10,0"
+                           FontFamily="Microsoft YaHei"
+                           FontWeight="Normal"/>
 
                 <TextBlock x:Name="WeiboTextTextblock"
-                                               Margin="20,35,0,0"
-                                               TextWrapping="Wrap"
-                                               Text="{Binding Text}"
-                                               Grid.Column="2"
-                                               Grid.Row="1"
-                                               d:LayoutOverrides="HorizontalAlignment, TopMargin, BottomMargin, LeftPosition, RightPosition, TopPosition, BottomPosition"
-                                               HorizontalAlignment="Left"
-                                               FontFamily="Microsoft YaHei"/>
+                           Margin="20,35,0,0"
+                           TextWrapping="Wrap"
+                           Text="{Binding Text}"
+                           Grid.Column="2"
+                           Grid.Row="1"
+                           d:LayoutOverrides="HorizontalAlignment, TopMargin, BottomMargin, LeftPosition, RightPosition, TopPosition, BottomPosition"
+                           HorizontalAlignment="Left"
+                           FontFamily="Microsoft YaHei"/>
 
             </Grid>
         </DataTemplate>
@@ -332,26 +332,16 @@
             </Grid>
         </DataTemplate>
 
-        <local:WeiboDetailDataTemplateSelector x:Key="MyWeiboDetailDataTemplateSelector"
+        <local: x:Key="MyWeiboDetailDataTemplateSelector"
                                                NormalTemplate="{StaticResource NormalTemplate}"
-                                            TextRepostTemplate="{StaticResource TextRepostTemplate}"
-                                            OneImageTemplate="{StaticResource OneImageTemplate}"
-                                            MultiImagesTemplate="{StaticResource MultipleImageTemplate}"
-                                            RepostOneImageTemplate="{StaticResource RepostOneImageTemplateXaml}"
-                                            RepostMultiImagesTemplate="{StaticResource RepostMultiImageTemplateXaml}"/>
+                                               TextRepostTemplate="{StaticResource TextRepostTemplate}"
+                                               OneImageTemplate="{StaticResource OneImageTemplate}"
+                                               MultiImagesTemplate="{StaticResource MultipleImageTemplate}"
+                                               RepostOneImageTemplate="{StaticResource RepostOneImageTemplateXaml}"
+                                               RepostMultiImagesTemplate="{StaticResource RepostMultiImageTemplateXaml}"/>
     </Page.Resources>
 
-    <Page.BottomAppBar>
-        <CommandBar Background="#FF3D3D3D" Foreground="White">
-            <AppBarButton x:Name="RetweetButton" Foreground="White" Click="RetweetButton_Click">
-                <AppBarButton.Icon>
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/retweet.png"/>
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <AppBarButton x:Name="CommentButton" Foreground="White" Icon="Message" Click="CommentButton_Click"/>
-            <AppBarButton x:Name="LikeButton" Foreground="White" Icon="Like" Click="LikeButton_Click"/>
-        </CommandBar>
-    </Page.BottomAppBar>
+    
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 

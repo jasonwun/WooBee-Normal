@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WooBee_MVVM.Model;
 using WooBee_MVVMLight.ViewModel;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -42,5 +43,17 @@ namespace WooBee_MVVMLight.View
                 await statusbar.HideAsync();
             }
         }
+
+        private void listView_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            var _listview = listView as ListView;
+            Weibo _weibo = (Weibo)_listview.SelectedItem;
+            ListViewItemPresenter originalsource = e.OriginalSource as ListViewItemPresenter;
+            if (originalsource == null)
+            {
+                Frame.Navigate(typeof(WeiboDetailView), _weibo);
+            }
+        }
+
     }
 }

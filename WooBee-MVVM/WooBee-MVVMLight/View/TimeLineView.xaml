@@ -37,13 +37,13 @@
                        Margin="6,2.667,1,0" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
 
                 <StackPanel Background="Black"
-                      Height="35"
-                      Width="auto"
-                      Grid.Column="2"
-                      Grid.Row="1"
-                      Margin="20,2.667,0,0"
-                      VerticalAlignment="Top"
-                      HorizontalAlignment="Left" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+                            Height="35"
+                            Width="auto"
+                            Grid.Column="2"
+                            Grid.Row="1"
+                            Margin="20,2.667,0,0"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Left" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
 
                     <TextBlock x:Name="textBlock7"
                                Margin="10,8,20,0"
@@ -121,10 +121,10 @@
                            Text="{x:Bind Text}"
                            Grid.Column="2"
                            Grid.Row="1"
-                               FontSize="13"
+                           FontSize="13"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
                            FontFamily="Microsoft YaHei"
-                              IsTextSelectionEnabled="False"          />
+                           IsTextSelectionEnabled="False"          />
 
                 <TextBlock x:Name="textBlock7"
                            TextWrapping="Wrap"
@@ -144,9 +144,9 @@
                            d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
                            Grid.Column="2"
                            Grid.Row="2"
-                               FontSize="13"
-                                IsTextSelectionEnabled="False"
-                               Height="auto"/>
+                           FontSize="13"
+                           IsTextSelectionEnabled="False"
+                           Height="auto"/>
 
 
             </Grid>
@@ -203,19 +203,19 @@
                            Text="{x:Bind Text}"
                            Grid.Column="2"
                            Grid.Row="1"
-                               FontSize="13"
+                           FontSize="13"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
-                               FontFamily="Microsoft YaHei"
-                                IsTextSelectionEnabled="False"/>
+                           FontFamily="Microsoft YaHei"
+                           IsTextSelectionEnabled="False"/>
                 <Image x:Name="image1"
-                                   Margin="20,20,0,0"
-                                   Grid.Column="2"
-                                   Grid.Row="2"
-                                   MaxHeight="300"
-                                   Source="{x:Bind ThumbnailPic}"
-                                   d:LayoutOverrides="TopMargin, BottomMargin" 
-                                   VerticalAlignment="Top"
-                                   HorizontalAlignment="Left"/>
+                       Margin="20,20,0,0"
+                       Grid.Column="2"
+                       Grid.Row="2"
+                       MaxHeight="300"
+                       Source="{x:Bind ThumbnailPic}"
+                       d:LayoutOverrides="TopMargin, BottomMargin" 
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"/>
             </Grid>
         </DataTemplate>
 
@@ -353,10 +353,10 @@
                            Text="{x:Bind Text}"
                            Grid.Column="2"
                            Grid.Row="1"
-                               FontSize="13"
+                           FontSize="13"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" 
                            FontFamily="Microsoft YaHei"
-                                        IsTextSelectionEnabled="False"/>
+                           IsTextSelectionEnabled="False"/>
 
 
                 <TextBlock x:Name="textBlock7"
@@ -377,17 +377,17 @@
                            Grid.Column="2"
                            Grid.Row="2"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
-                                IsTextSelectionEnabled="False"/>
+                           IsTextSelectionEnabled="False"/>
 
                 <Image x:Name="image1"
-                                   Grid.Column="2"
-                                   Grid.Row="3"
-                                   Source="{x:Bind RepostWeibo.ThumbnailPic}"
+                       Grid.Column="2"
+                       Grid.Row="3"
+                       Source="{x:Bind RepostWeibo.ThumbnailPic}"
                        HorizontalAlignment="Left" 
-                                   MaxHeight="300"
-                                   d:LayoutOverrides="TopMargin, BottomMargin" 
-                                   VerticalAlignment="Top"
-                                   Margin="20,15,0,0"/>
+                       MaxHeight="300"
+                       d:LayoutOverrides="TopMargin, BottomMargin" 
+                       VerticalAlignment="Top"
+                       Margin="20,15,0,0"/>
             </Grid>
         </DataTemplate>
 
@@ -442,13 +442,13 @@
 
                 <TextBlock x:Name="RepostMultiImageContentTextBlock"
                            Margin="20,50,0,0"
-                               Text="{x:Bind Text}"
+                           Text="{x:Bind Text}"
                            Grid.Column="2"
                            Grid.Row="1"
-                               FontSize="13"
+                           FontSize="13"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" 
                            FontFamily="Microsoft YaHei"
-                               IsTextSelectionEnabled="False"/>
+                           IsTextSelectionEnabled="False"/>
 
                 <TextBlock x:Name="textBlock7"
                            Margin="20,20,0,0"
@@ -462,15 +462,15 @@
                            Foreground="Black"/>
 
                 <TextBlock x:Name="RepostMultiImageRepostTextBlock"
-                                       Margin="20,50,0,0"
-                                       Text="{x:Bind RepostWeibo.Text}"
-                                       Grid.Column="2"
-                                       Grid.Row="2"
-                                       d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
-                                       Height="auto" 
-                               FontSize="13"
-                                       VerticalAlignment="Bottom"
-                               IsTextSelectionEnabled="False"/>
+                           Margin="20,50,0,0"
+                           Text="{x:Bind RepostWeibo.Text}"
+                           Grid.Column="2"
+                           Grid.Row="2"
+                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
+                           Height="auto" 
+                           FontSize="13"
+                           VerticalAlignment="Bottom"
+                           IsTextSelectionEnabled="False"/>
 
                 <GridView x:Name="gridView" 
                           ItemsSource="{x:Bind RepostWeibo.PicUrls}"
@@ -512,7 +512,7 @@
                   ShowsScrollingPlaceholders="False"
                   IncrementalLoadingTrigger="Edge"
                   ItemTemplateSelector="{StaticResource MyTimelineDataTemplateSelector}"
-                  ItemsSource="{x:Bind TLVm.MainList, Mode=OneWay}">
+                  ItemsSource="{x:Bind TLVm.MainList, Mode=OneWay}" Tapped="listView_Tapped">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />

@@ -15,11 +15,11 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="WooBee_MVVMLight.App">
-      <uap:VisualElements DisplayName="WooBee_MVVMLight" Square150x150Logo="Assets\Square150x150Logo.jpg" Square44x44Logo="Assets\Square44x44Logo.jpg" Description="WooBee_MVVMLight" BackgroundColor="transparent">
+      <uap:VisualElements DisplayName="WooBee_MVVMLight" Square150x150Logo="Assets\Square150x150Logo.jpg" Square44x44Logo="Assets\Square44x44Logo.jpg" Description="WooBee_MVVMLight" BackgroundColor="#f1f1f1">
         <uap:LockScreen Notification="badge" BadgeLogo="Assets\BadgeLogo.png" />
         <uap:DefaultTile Square71x71Logo="Assets\Square71x71Logo.jpg" Square310x310Logo="Assets\Square310x310Logo.jpg" Wide310x150Logo="Assets\Wide310x150Logo.png">
         </uap:DefaultTile>
-        <uap:SplashScreen Image="Assets\SplashScreen.jpg" />
+        <uap:SplashScreen Image="Assets\SplashScreen.jpg" BackgroundColor="#f1f1f1" />
       </uap:VisualElements>
     </Application>
   </Applications>
