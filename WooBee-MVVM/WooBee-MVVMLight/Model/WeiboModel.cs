@@ -15,6 +15,13 @@ namespace WooBee_MVVM.Model
         public ObservableCollection<Weibo> Statuses { get; set; }
     }
 
+    [DataContract]
+    public class RepostModel
+    {
+        [DataMember(Name = "reposts")]
+        public ObservableCollection<Weibo> Repost { get; set; }
+    }
+
 
     [DataContract]
     public class Weibo

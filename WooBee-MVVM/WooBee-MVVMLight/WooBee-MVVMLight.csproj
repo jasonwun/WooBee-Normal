@@ -116,6 +116,7 @@
     <Compile Include="Common\Control\FloatingActionButton.xaml.cs">
       <DependentUpon>FloatingActionButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\RepostModel.cs" />
     <Compile Include="ViewModel\DataViewModel\MentionDataViewModel.cs" />
     <Compile Include="ViewModel\DataViewModel\CommentDataViewModel.cs" />
     <Compile Include="ViewModel\MessageViewModel.cs" />
@@ -156,6 +157,7 @@
     </Compile>
     <Compile Include="Common\DataTemplateSelectors\WeiboDetailDataTemplateSelector.cs" />
     <Compile Include="ViewModel\WeiboDetailViewModel.cs" />
+    <Compile Include="WeiboDetailCommentRepostData.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

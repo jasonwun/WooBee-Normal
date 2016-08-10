@@ -301,6 +301,7 @@
         </Style>
 
         <local:AppSettings x:Key="AppSettings"/>
+        
 
     </Application.Resources>
     

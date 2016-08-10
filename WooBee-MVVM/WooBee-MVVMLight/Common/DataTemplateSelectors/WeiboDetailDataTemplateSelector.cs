@@ -32,27 +32,31 @@ namespace WooBee_MVVMLight
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
         {
             var Item = item as Weibo;
-            if (Item.RepostWeibo != null)
+            if(item != null)
             {
-                if (Item.RepostWeibo.PicUrls == null || Item.RepostWeibo.PicUrls.Count == 0)
-                    return TextRepostTemplate;
-                else if (Item.RepostWeibo.PicUrls.Count == 1)
-                    return RepostOneImageTemplate;
-                else if (Item.RepostWeibo.PicUrls.Count > 1)
-                    return RepostMultiImagesTemplate;
-
-            }
-            else if (Item.RepostWeibo == null)
-            {
-                if (Item.PicUrls.Count == 0)
+                if (Item.RepostWeibo != null)
                 {
-                    return NormalTemplate;
+                    if (Item.RepostWeibo.PicUrls == null || Item.RepostWeibo.PicUrls.Count == 0)
+                        return TextRepostTemplate;
+                    else if (Item.RepostWeibo.PicUrls.Count == 1)
+                        return RepostOneImageTemplate;
+                    else if (Item.RepostWeibo.PicUrls.Count > 1)
+                        return RepostMultiImagesTemplate;
+
                 }
-                else if (Item.PicUrls.Count == 1)
-                    return OneImageTemplate;
-                else if (Item.PicUrls.Count > 1)
-                    return MultiImagesTemplate;
+                else if (Item.RepostWeibo == null)
+                {
+                    if (Item.PicUrls.Count == 0)
+                    {
+                        return NormalTemplate;
+                    }
+                    else if (Item.PicUrls.Count == 1)
+                        return OneImageTemplate;
+                    else if (Item.PicUrls.Count > 1)
+                        return MultiImagesTemplate;
+                }
             }
+            
             return base.SelectTemplateCore(item, container);
         }
     }
