@@ -76,7 +76,7 @@ namespace WooBee_MVVMLight
         private ScalarKeyFrameAnimation PopUpOffsetShowUpAnimation()
         {
             var offsetAnim = _compositor.CreateScalarKeyFrameAnimation();
-            offsetAnim.InsertKeyFrame(0.0f, 5.0f);
+            offsetAnim.InsertKeyFrame(0.0f, 3.0f);
             offsetAnim.InsertKeyFrame(1.0f, 0.0f);
             offsetAnim.Duration = TimeSpan.FromMilliseconds(200);
             return offsetAnim;
@@ -84,16 +84,16 @@ namespace WooBee_MVVMLight
         private ScalarKeyFrameAnimation PopUpOpacityShowUpAnimation()
         {
             var opacityAnim = _compositor.CreateScalarKeyFrameAnimation();
-            opacityAnim.InsertKeyFrame(0.0f, 0.0f);
+            opacityAnim.InsertKeyFrame(0.0f, 0.5f);
             opacityAnim.InsertKeyFrame(1.0f, 1.0f);
-            opacityAnim.Duration = TimeSpan.FromMilliseconds(200);
+            opacityAnim.Duration = TimeSpan.FromMilliseconds(150);
             return opacityAnim;
         }
         private ScalarKeyFrameAnimation PopUpOffsetDisableAnimation()
         {
             var offsetAnim = _compositor.CreateScalarKeyFrameAnimation();
             offsetAnim.InsertKeyFrame(0.0f, 0.0f);
-            offsetAnim.InsertKeyFrame(1.0f, 10.0f);
+            offsetAnim.InsertKeyFrame(1.0f, 3.0f);
             offsetAnim.Duration = TimeSpan.FromMilliseconds(200);
             return offsetAnim;
         }
@@ -102,7 +102,7 @@ namespace WooBee_MVVMLight
             var opacityAnim = _compositor.CreateScalarKeyFrameAnimation();
             opacityAnim.InsertKeyFrame(0.0f, 1.0f);
             opacityAnim.InsertKeyFrame(1.0f, 0.0f);
-            opacityAnim.Duration = TimeSpan.FromMilliseconds(200);
+            opacityAnim.Duration = TimeSpan.FromMilliseconds(150);
             return opacityAnim;
         } 
         #endregion

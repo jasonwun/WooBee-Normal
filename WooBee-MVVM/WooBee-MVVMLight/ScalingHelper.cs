@@ -9,18 +9,20 @@ namespace WooBee_MVVMLight
 {
     public class ScalingHelper
     {
-        DisplayInformation displayinformation { get; set; }
+        DisplayInformation displayInformation { get; set; }
 
         public ScalingHelper()
         {
-            displayinformation = DisplayInformation.GetForCurrentView();
+            displayInformation = DisplayInformation.GetForCurrentView();
         }
 
         public double SetTimeLineMultiImgsSize()
         {
-            double rawPixelsPerViewPixel = displayinformation.RawPixelsPerViewPixel;
-            double ScreenWidthRawPixels = displayinformation.ScreenWidthInRawPixels;
-            double ImgSizeRawPixels = Math.Floor(ScreenWidthRawPixels * 0.27431);
+            var assist = new ScaleAssist.Scale();
+            var res = assist.ScreenResolution;
+            double rawPixelsPerViewPixel = displayInformation.RawPixelsPerViewPixel;
+            double ScreenWidthRawPixels = res.X;
+            double ImgSizeRawPixels = Math.Floor(ScreenWidthRawPixels * 0.26662);
             double ImgSizeViewPixels = ImgSizeRawPixels / rawPixelsPerViewPixel;
             return ImgSizeViewPixels;
         }

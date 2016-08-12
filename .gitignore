@@ -210,3 +210,5 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+/WooBee-MVVM/WooBee-MVVM.VC.db
+/WooBee-MVVM/WooBee-MVVM.VC.VC.opendb

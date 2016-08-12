@@ -273,6 +273,12 @@
   <ItemGroup>
     <Folder Include="Common\Source\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ScaleAssist\ScaleAssist.vcxproj">
+      <Project>{71e38d13-e821-4d5e-83f4-92525855f349}</Project>
+      <Name>ScaleAssist</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
