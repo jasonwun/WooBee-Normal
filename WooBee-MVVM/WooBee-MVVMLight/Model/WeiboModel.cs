@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using WooBee_MVVMLight;
 
 namespace WooBee_MVVM.Model
 {
@@ -68,6 +69,16 @@ namespace WooBee_MVVM.Model
     {
         [DataMember(Name = "thumbnail_pic")]
         public string Thumbpic { set; get; }
+
+        [IgnoreDataMember]
+        public double ImgSize
+        {
+            get
+            {
+                ScalingHelper scalingHelper = new ScalingHelper();
+                return scalingHelper.SetTimeLineMultiImgsSize();
+            }
+        }
     }
 
     

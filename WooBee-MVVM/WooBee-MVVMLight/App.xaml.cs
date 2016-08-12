@@ -108,7 +108,7 @@ namespace WooBee_MVVMLight
                     rootFrame.Navigate(typeof(TimeLineView), e.Arguments);
                 else
                     rootFrame.Navigate(typeof(LoginView), e.Arguments);
-                //rootFrame.Navigate(typeof(MessageView), e.Arguments);
+                //rootFrame.Navigate(typeof(BlankPage1), e.Arguments);
             }
             // Ensure the current window is active
             Window.Current.Activate();

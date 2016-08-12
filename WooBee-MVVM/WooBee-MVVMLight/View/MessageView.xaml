@@ -230,13 +230,15 @@
                                Padding="7,0,0,0"
                                Height="auto"
                                Width="45"
-                               FontSize="30"
+                               FontSize="40"
+                               
+                               FontFamily="Microsoft YaHei UI"
                                TextWrapping="Wrap"
                                Grid.ColumnSpan="2" 
                                Margin="0,0,0,0" 
                                Grid.Row="1" 
                                VerticalAlignment="Stretch"
-                               HorizontalAlignment="Stretch"/>
+                               HorizontalAlignment="Stretch" FontWeight="Bold"/>
                     <ListView x:Name="CommentList" 
                               Margin="0,0,0,0" 
                               Grid.Column="2"
@@ -268,7 +270,9 @@
                                Margin="0,0,0,0" 
                                Grid.Row="1" 
                                VerticalAlignment="Stretch"
-                               HorizontalAlignment="Stretch"/>
+                               HorizontalAlignment="Stretch" 
+                               FontWeight="Bold" 
+                               FontFamily="Microsoft YaHei UI"/>
                     <ListView x:Name="RepostList" 
                               Margin="0,0,0,0" 
                               Grid.Column="2"
