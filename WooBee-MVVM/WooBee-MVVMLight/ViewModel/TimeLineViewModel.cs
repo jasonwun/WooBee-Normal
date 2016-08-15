@@ -58,7 +58,6 @@ namespace WooBee_MVVMLight.ViewModel
                 if (_goToSettingViewCommand != null) return _goToSettingViewCommand;
                 return _goToSettingViewCommand = new RelayCommand(() =>
                 {
-                    //DrawerOpened = false;
                     NavigationService.NaivgateToPage(typeof(SettingView));
                 });
             }
@@ -109,6 +108,7 @@ namespace WooBee_MVVMLight.ViewModel
             MainList = new ObservableCollection<Weibo>();
             TimeLineDataViewModel = new TimeLineDataViewModel();
         }
+
         #region Empty Methods
 
         public void Activate(object parameter) { }
@@ -133,8 +133,6 @@ namespace WooBee_MVVMLight.ViewModel
             MainList = TimeLineDataViewModel.DataList;
             IsRefreshing = false;
 
-            //await SaveMainListDataAsync();
-            //await UpdateLiveTileAsync();
         }
 
         

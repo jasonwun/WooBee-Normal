@@ -1,6 +1,0 @@
-MainPackage=C:\Users\yinju\Source\Repos\WooBee-Normal\WooBee-MVVM\WooBee-MVVMLight\bin\ARM\Release\WooBee-MVVMLight_2016.8.5.0_ARM.appx
-SymbolPackage=C:\Users\yinju\Source\Repos\WooBee-Normal\WooBee-MVVM\WooBee-MVVMLight\AppPackages\WooBee-MVVMLight_2016.8.5.0_Test\WooBee-MVVMLight_2016.8.5.0_ARM.appxsym
-ResourcePack=C:\Users\yinju\Source\Repos\WooBee-Normal\WooBee-MVVM\WooBee-MVVMLight\bin\ARM\Release\WooBee-MVVMLight_2016.8.5.0_scale-100.appx
-ResourcePack=C:\Users\yinju\Source\Repos\WooBee-Normal\WooBee-MVVM\WooBee-MVVMLight\bin\ARM\Release\WooBee-MVVMLight_2016.8.5.0_scale-125.appx
-ResourcePack=C:\Users\yinju\Source\Repos\WooBee-Normal\WooBee-MVVM\WooBee-MVVMLight\bin\ARM\Release\WooBee-MVVMLight_2016.8.5.0_scale-150.appx
-ResourcePack=C:\Users\yinju\Source\Repos\WooBee-Normal\WooBee-MVVM\WooBee-MVVMLight\bin\ARM\Release\WooBee-MVVMLight_2016.8.5.0_scale-400.appx

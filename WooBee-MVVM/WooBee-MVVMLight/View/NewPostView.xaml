@@ -5,7 +5,8 @@
     xmlns:local="using:WooBee_MVVMLight"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    IsTabStop="True">
 
     <Grid Background="#FFF1F1F1">
         <Grid.RowDefinitions>
@@ -27,34 +28,36 @@
               Visibility="Collapsed" 
               Height="296" 
               VerticalAlignment="Bottom">
-
+             
             <GridView x:Name="EmoticonContainer"
                       Style="{StaticResource EmoticonsGridViewStyle}"
                       Height="auto" 
                       Grid.RowSpan="2" 
                       d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
                       Padding="15,15,0,0"
-                      Background="#1f1f1f">
-                <!--<GridView.ItemTemplate>
-                     <DataTemplate>
-                     <Image Source="{Binding UriSource}"
-                     Height="35"
-                     Width="35"/>
-                     </DataTemplate>
-                     </GridView.ItemTemplate>-->
+                      Background="#1f1f1f"
+                      ItemsSource="{x:Bind NewPostVM.EmojiSource, Mode=OneWay}">
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="BitmapImage">
+                        <Image Source="{x:Bind}"
+                               Height="35"
+                               Width="35"/>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
             </GridView>
-
-            <Button x:Name="DelteButton" Height="40" Width="57"
-                    Background="#464646"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom">
-                <!--<StackPanel>
-                     <Image Source="/Assets/Icons/delete-512.png"
-                     Height="23" 
-                     d:LayoutOverrides="LeftMargin, RightMargin"
-                     Margin="0,1,0,0"/>
-                     </StackPanel>-->
-            </Button>
+             
+            <!--<Button x:Name="DelteButton" Height="40" Width="57"
+                 Background="#464646"
+                 HorizontalAlignment="Right"
+                 VerticalAlignment="Bottom">
+                 <StackPanel>
+                 <Image Source="/Assets/Icons/delete-512.png"
+                 Height="23" 
+                 d:LayoutOverrides="LeftMargin, RightMargin"
+                 Margin="0,1,0,0"/>
+                 </StackPanel>
+                 </Button>-->
+            
         </Grid>
 
         <TextBlock x:Name="headerTextBlock" 
@@ -63,12 +66,16 @@
                    VerticalAlignment="Top" 
                    FontFamily="Microsoft YaHei UI Light" 
                    Grid.Column="1" 
-                   Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="42"
-                   Margin="0,3,0,0" FontSize="10.667" Height="13"/>
+                   Grid.ColumnSpan="2" 
+                   HorizontalAlignment="Left" 
+                   Width="42"
+                   Margin="0,3,0,0" 
+                   FontSize="10.667" 
+                   Height="13"/>
 
         <TextBox x:Name="contentTextBox" 
                  TextWrapping="Wrap" 
-                 Text="写点啥吧" 
+                 Text="{x:Bind NewPostVM.TextBlockString, Mode=TwoWay}" 
                  VerticalAlignment="Top" 
                  Margin="0,46,13,0" 
                  Grid.Column="2" 
@@ -97,16 +104,14 @@
                 BorderThickness="4" 
                 Grid.Column="2" 
                 Grid.Row="1" 
+                Command="{x:Bind NewPostVM.SendWeiboCommand}"
                 Style="{StaticResource SendWeiboButtonStyle}">
-            <!--<StackPanel Height="30" 
-                 Width="30" 
-                 Margin="-22.667,-8,-22.333,-8" 
-                 VerticalAlignment="Top">
-                 
-                 <BitmapIcon x:Name="asd"  
-                 UriSource="/Assets/Icons/CheckIcon.png"
-                 Margin="1,0,-1,0"/>
-                 </StackPanel>-->
+            <BitmapIcon x:Name="asd"  
+                        Height="30" 
+                        Width="30"
+                        UriSource="/Assets/Icons/CheckIcon.png"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
         </Button>
 
         <Button x:Name="EmojiButton"
@@ -121,15 +126,14 @@
                 BorderThickness="4" 
                 Grid.Column="2" 
                 Grid.Row="1" 
+                Tapped="EmojiButton_Tapped"
                 Style="{StaticResource SendWeiboButtonStyle}">
-            <!--<StackPanel Height="30" 
-                 Width="30" 
-                 Margin="-22.667,-8,-22.333,-8" 
-                 VerticalAlignment="Top">
-                 
-                 <BitmapIcon  x:Name="Emoji"  UriSource="/Assets/Icons/Emotions.png"
-                 Margin="0,0,-1,0"/>
-                 </StackPanel>-->
+            <BitmapIcon  x:Name="Emoji"  
+                         Height="30" 
+                         Width="30"
+                         UriSource="/Assets/Icons/Emotions.png"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"/>
         </Button>
 
         <Button x:Name="UploadPhotoButton"
@@ -144,14 +148,15 @@
                 BorderThickness="4" 
                 Grid.Column="2" 
                 Grid.Row="1" 
+                Tapped="UploadPhotoButton_Tapped"
                 Style="{StaticResource SendWeiboButtonStyle}">
-            <!--<StackPanel Height="30" 
-                 Width="30" 
-                 Margin="-22.667,-8,-22.333,-8" 
-                 VerticalAlignment="Top">
-                 <BitmapIcon  x:Name="Photo"  UriSource="/Assets/Icons/Uploadphoto.png"
-                 Margin="0,-1,-1,0"/>
-                 </StackPanel>-->
+            <BitmapIcon  x:Name="Photo"  
+                         UriSource="/Assets/Icons/Uploadphoto.png"
+                         Margin="0,-1,-1,0"
+                         Height="30" 
+                         Width="30"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"/>
         </Button>
 
         <Button x:Name="PhotoButton"
@@ -166,15 +171,13 @@
                 BorderThickness="4" 
                 Grid.Column="2" 
                 Grid.Row="1"
+                Command="{x:Bind NewPostVM.OpenPhotoLibraryCommand}"
                 Style="{StaticResource SendWeiboButtonStyle}">
-            <!--<StackPanel Height="22" 
-                 Width="22" 
-                 Margin="-22.5,-7,-22.333,-8" 
-                 VerticalAlignment="Top">
-                 
-                 <BitmapIcon UriSource="/Assets/Icons/Images.png"
-                 Margin="1,0,-1,0"/>
-                 </StackPanel>-->
+            <BitmapIcon UriSource="/Assets/Icons/Images.png"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Height="22"
+                        Width="22"/>
         </Button>
 
         <Button x:Name="CameraButton"
@@ -190,14 +193,11 @@
                 Grid.Column="2" 
                 Grid.Row="1" 
                 Style="{StaticResource SendWeiboButtonStyle}">
-            <!--<StackPanel Height="23" 
-                 Width="23" 
-                 Margin="-21,-8,-22.333,-8" 
-                 VerticalAlignment="Top">
-                 
-                 <BitmapIcon UriSource="/Assets/Icons/Camera.png"
-                 Margin="0,0,-1,0"/>
-                 </StackPanel>-->
+            <BitmapIcon UriSource="/Assets/Icons/Camera.png"
+                        Height="23" 
+                        Width="23"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
         </Button>
 
         <Button x:Name="ReturnButton"
@@ -212,15 +212,16 @@
                 BorderThickness="4" 
                 Grid.Column="2" 
                 Grid.Row="1" 
+                Tapped="ReturnButton_Tapped"
                 Style="{StaticResource SendWeiboButtonStyle}">
-            <!--<StackPanel Height="20" 
-                 Width="20" 
-                 Margin="-22.667,-5,-22.333,-8" 
-                 VerticalAlignment="Top">
-                 <BitmapIcon  UriSource="/Assets/Icons/Previous.png"
-                 Margin="0,-1,-1,0"/>
-                 </StackPanel>-->
+            <BitmapIcon  UriSource="/Assets/Icons/Previous.png"
+                         Height="20" 
+                         Width="20"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"/>
         </Button>
+        
+        
         <!--<StackPanel x:Name="ImagePanel" 
              Grid.ColumnSpan="2" 
              HorizontalAlignment="Left" 

@@ -55,9 +55,9 @@
                                Foreground="White"/>
                 </StackPanel>
 
-                <TextBlock x:Name="NormalTextblock"
+                <RichTextBlock x:Name="NormalTextblock"
                            Margin="20,49.667,0,0"
-                           Text="{x:Bind Text}"
+                           local:RichTextBlockConvertor.Text="{x:Bind Text}"
                            Grid.Column="2"
                            Grid.Row="1"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition"
@@ -116,15 +116,15 @@
                                Foreground="White"/>
                 </Grid>
 
-                <TextBlock x:Name="TextRepostContentTextBlock"
+                <RichTextBlock x:Name="TextRepostContentTextBlock"
                            Margin="20,50,0,0"
-                           Text="{x:Bind Text}"
+                           local:RichTextBlockConvertor.Text="{x:Bind Text}"
                            Grid.Column="2"
                            Grid.Row="1"
                            FontSize="13"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
                            FontFamily="Microsoft YaHei"
-                           IsTextSelectionEnabled="False"          />
+                           IsTextSelectionEnabled="False"/>
 
                 <TextBlock x:Name="textBlock7"
                            TextWrapping="Wrap"
@@ -138,9 +138,9 @@
                            Foreground="Black"/>
 
 
-                <TextBlock x:Name="TextRepostTextBlock"
+                <RichTextBlock x:Name="TextRepostTextBlock"
                            Margin="20,50,8,5"
-                           Text="{x:Bind RepostWeibo.Text}"
+                           local:RichTextBlockConvertor.Text="{x:Bind RepostWeibo.Text}"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
                            Grid.Column="2"
                            Grid.Row="2"
@@ -198,9 +198,9 @@
                                Foreground="White"/>
                 </Grid>
 
-                <TextBlock x:Name="OneImageContentTextBlock"
+                <RichTextBlock x:Name="OneImageContentTextBlock"
                            Margin="20,50,8,0"
-                           Text="{x:Bind Text}"
+                           local:RichTextBlockConvertor.Text="{x:Bind Text}"
                            Grid.Column="2"
                            Grid.Row="1"
                            FontSize="13"
@@ -264,9 +264,9 @@
                                Foreground="White"/>
                 </Grid>
                 
-                <TextBlock  x:Name="MultipleImageContentTextBlock"
+                <RichTextBlock  x:Name="MultipleImageContentTextBlock"
                             Margin="20,50,0,0"
-                            Text="{x:Bind Text}"
+                            local:RichTextBlockConvertor.Text="{x:Bind Text}"
                             Grid.Column="2"
                             Grid.Row="1"
                             FontSize="13"
@@ -276,7 +276,7 @@
 
                 <GridView x:Name="gridView" 
                           ItemsSource="{x:Bind PicUrls}"
-                          Margin="20,15,-8,0"
+                          Margin="20,15,-10,0"
                           Grid.Column="2"
                           Grid.Row="2"
                           Height="auto" 
@@ -357,9 +357,9 @@
                 </Grid>
 
 
-                <TextBlock x:Name="RepostOneImageContentTextBlock"
+                <RichTextBlock x:Name="RepostOneImageContentTextBlock"
                            Margin="20,50,0,0"
-                           Text="{x:Bind Text}"
+                           local:RichTextBlockConvertor.Text="{x:Bind Text}"
                            Grid.Column="2"
                            Grid.Row="1"
                            FontSize="13"
@@ -380,9 +380,9 @@
                            Foreground="Black"/>
 
 
-                <TextBlock x:Name="RepostOneImageRepostTextBlock"
+                <RichTextBlock x:Name="RepostOneImageRepostTextBlock"
                            Margin="20,50,0,0"
-                           Text="{x:Bind RepostWeibo.Text}"
+                           local:RichTextBlockConvertor.Text="{x:Bind RepostWeibo.Text}"
                            Grid.Column="2"
                            Grid.Row="2"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
@@ -449,9 +449,9 @@
                 </Grid>
 
 
-                <TextBlock x:Name="RepostMultiImageContentTextBlock"
+                <RichTextBlock x:Name="RepostMultiImageContentTextBlock"
                            Margin="20,50,0,0"
-                           Text="{x:Bind Text}"
+                           local:RichTextBlockConvertor.Text="{x:Bind Text}"
                            Grid.Column="2"
                            Grid.Row="1"
                            FontSize="13"
@@ -470,9 +470,9 @@
                            FontWeight="ExtraBold"
                            Foreground="Black"/>
 
-                <TextBlock x:Name="RepostMultiImageRepostTextBlock"
+                <RichTextBlock x:Name="RepostMultiImageRepostTextBlock"
                            Margin="20,50,0,0"
-                           Text="{x:Bind RepostWeibo.Text}"
+                           local:RichTextBlockConvertor.Text="{x:Bind RepostWeibo.Text}"
                            Grid.Column="2"
                            Grid.Row="2"
                            d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"

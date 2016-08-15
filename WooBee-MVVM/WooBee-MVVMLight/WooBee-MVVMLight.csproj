@@ -117,7 +117,9 @@
       <DependentUpon>FloatingActionButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\RepostModel.cs" />
-    <Compile Include="ScalingHelper.cs" />
+    <Compile Include="Common\ScalingHelper.cs" />
+    <Compile Include="Common\RichTextBlockConvertor.cs" />
+    <Compile Include="ViewModel\NewPostViewModel.cs" />
     <Compile Include="ViewModel\DataViewModel\MentionDataViewModel.cs" />
     <Compile Include="ViewModel\DataViewModel\CommentDataViewModel.cs" />
     <Compile Include="ViewModel\MessageViewModel.cs" />
@@ -173,6 +175,229 @@
     <Content Include="Assets\BadgeLogo.scale-150.png" />
     <Content Include="Assets\BadgeLogo.scale-200.png" />
     <Content Include="Assets\BadgeLogo.scale-400.png" />
+    <Content Include="Assets\Emoticon\01.png" />
+    <Content Include="Assets\Emoticon\02.png" />
+    <Content Include="Assets\Emoticon\03.png" />
+    <Content Include="Assets\Emoticon\04.png" />
+    <Content Include="Assets\Emoticon\05.png" />
+    <Content Include="Assets\Emoticon\06.png" />
+    <Content Include="Assets\Emoticon\07.png" />
+    <Content Include="Assets\Emoticon\08.png" />
+    <Content Include="Assets\Emoticon\09.png" />
+    <Content Include="Assets\Emoticon\10.png" />
+    <Content Include="Assets\Emoticon\100.png" />
+    <Content Include="Assets\Emoticon\101.png" />
+    <Content Include="Assets\Emoticon\102.png" />
+    <Content Include="Assets\Emoticon\103.png" />
+    <Content Include="Assets\Emoticon\104.png" />
+    <Content Include="Assets\Emoticon\105.png" />
+    <Content Include="Assets\Emoticon\106.png" />
+    <Content Include="Assets\Emoticon\107.png" />
+    <Content Include="Assets\Emoticon\108.png" />
+    <Content Include="Assets\Emoticon\109.png" />
+    <Content Include="Assets\Emoticon\11.png" />
+    <Content Include="Assets\Emoticon\110.png" />
+    <Content Include="Assets\Emoticon\111.png" />
+    <Content Include="Assets\Emoticon\112.png" />
+    <Content Include="Assets\Emoticon\113.png" />
+    <Content Include="Assets\Emoticon\114.png" />
+    <Content Include="Assets\Emoticon\115.png" />
+    <Content Include="Assets\Emoticon\116.png" />
+    <Content Include="Assets\Emoticon\117.png" />
+    <Content Include="Assets\Emoticon\118.png" />
+    <Content Include="Assets\Emoticon\119.png" />
+    <Content Include="Assets\Emoticon\12.png" />
+    <Content Include="Assets\Emoticon\120.png" />
+    <Content Include="Assets\Emoticon\121.png" />
+    <Content Include="Assets\Emoticon\122.png" />
+    <Content Include="Assets\Emoticon\123.png" />
+    <Content Include="Assets\Emoticon\124.png" />
+    <Content Include="Assets\Emoticon\125.png" />
+    <Content Include="Assets\Emoticon\126.png" />
+    <Content Include="Assets\Emoticon\127.png" />
+    <Content Include="Assets\Emoticon\128.png" />
+    <Content Include="Assets\Emoticon\129.png" />
+    <Content Include="Assets\Emoticon\13.png" />
+    <Content Include="Assets\Emoticon\130.png" />
+    <Content Include="Assets\Emoticon\131.png" />
+    <Content Include="Assets\Emoticon\132.png" />
+    <Content Include="Assets\Emoticon\133.png" />
+    <Content Include="Assets\Emoticon\134.png" />
+    <Content Include="Assets\Emoticon\135.png" />
+    <Content Include="Assets\Emoticon\136.png" />
+    <Content Include="Assets\Emoticon\137.png" />
+    <Content Include="Assets\Emoticon\138.png" />
+    <Content Include="Assets\Emoticon\139.png" />
+    <Content Include="Assets\Emoticon\14.png" />
+    <Content Include="Assets\Emoticon\140.png" />
+    <Content Include="Assets\Emoticon\141.png" />
+    <Content Include="Assets\Emoticon\142.png" />
+    <Content Include="Assets\Emoticon\143.png" />
+    <Content Include="Assets\Emoticon\144.png" />
+    <Content Include="Assets\Emoticon\145.png" />
+    <Content Include="Assets\Emoticon\146.png" />
+    <Content Include="Assets\Emoticon\147.png" />
+    <Content Include="Assets\Emoticon\148.png" />
+    <Content Include="Assets\Emoticon\149.png" />
+    <Content Include="Assets\Emoticon\15.png" />
+    <Content Include="Assets\Emoticon\150.png" />
+    <Content Include="Assets\Emoticon\151.png" />
+    <Content Include="Assets\Emoticon\152.png" />
+    <Content Include="Assets\Emoticon\153.png" />
+    <Content Include="Assets\Emoticon\154.png" />
+    <Content Include="Assets\Emoticon\155.png" />
+    <Content Include="Assets\Emoticon\156.png" />
+    <Content Include="Assets\Emoticon\157.png" />
+    <Content Include="Assets\Emoticon\158.png" />
+    <Content Include="Assets\Emoticon\159.png" />
+    <Content Include="Assets\Emoticon\16.png" />
+    <Content Include="Assets\Emoticon\160.png" />
+    <Content Include="Assets\Emoticon\161.png" />
+    <Content Include="Assets\Emoticon\162.png" />
+    <Content Include="Assets\Emoticon\163.png" />
+    <Content Include="Assets\Emoticon\164.png" />
+    <Content Include="Assets\Emoticon\165.png" />
+    <Content Include="Assets\Emoticon\166.png" />
+    <Content Include="Assets\Emoticon\167.png" />
+    <Content Include="Assets\Emoticon\168.png" />
+    <Content Include="Assets\Emoticon\169.png" />
+    <Content Include="Assets\Emoticon\17.png" />
+    <Content Include="Assets\Emoticon\170.png" />
+    <Content Include="Assets\Emoticon\171.png" />
+    <Content Include="Assets\Emoticon\172.png" />
+    <Content Include="Assets\Emoticon\173.png" />
+    <Content Include="Assets\Emoticon\174.png" />
+    <Content Include="Assets\Emoticon\175.png" />
+    <Content Include="Assets\Emoticon\176.png" />
+    <Content Include="Assets\Emoticon\177.png" />
+    <Content Include="Assets\Emoticon\178.png" />
+    <Content Include="Assets\Emoticon\179.png" />
+    <Content Include="Assets\Emoticon\18.png" />
+    <Content Include="Assets\Emoticon\180.png" />
+    <Content Include="Assets\Emoticon\181.png" />
+    <Content Include="Assets\Emoticon\182.png" />
+    <Content Include="Assets\Emoticon\183.png" />
+    <Content Include="Assets\Emoticon\184.png" />
+    <Content Include="Assets\Emoticon\185.png" />
+    <Content Include="Assets\Emoticon\186.png" />
+    <Content Include="Assets\Emoticon\187.png" />
+    <Content Include="Assets\Emoticon\188.png" />
+    <Content Include="Assets\Emoticon\189.png" />
+    <Content Include="Assets\Emoticon\19.png" />
+    <Content Include="Assets\Emoticon\190.png" />
+    <Content Include="Assets\Emoticon\191.png" />
+    <Content Include="Assets\Emoticon\192.png" />
+    <Content Include="Assets\Emoticon\193.png" />
+    <Content Include="Assets\Emoticon\194.png" />
+    <Content Include="Assets\Emoticon\195.png" />
+    <Content Include="Assets\Emoticon\196.png" />
+    <Content Include="Assets\Emoticon\197.png" />
+    <Content Include="Assets\Emoticon\198.png" />
+    <Content Include="Assets\Emoticon\199.png" />
+    <Content Include="Assets\Emoticon\20.png" />
+    <Content Include="Assets\Emoticon\200.png" />
+    <Content Include="Assets\Emoticon\201.png" />
+    <Content Include="Assets\Emoticon\202.png" />
+    <Content Include="Assets\Emoticon\203.png" />
+    <Content Include="Assets\Emoticon\204.png" />
+    <Content Include="Assets\Emoticon\205.png" />
+    <Content Include="Assets\Emoticon\206.png" />
+    <Content Include="Assets\Emoticon\207.png" />
+    <Content Include="Assets\Emoticon\208.png" />
+    <Content Include="Assets\Emoticon\209.png" />
+    <Content Include="Assets\Emoticon\21.png" />
+    <Content Include="Assets\Emoticon\210.png" />
+    <Content Include="Assets\Emoticon\211.png" />
+    <Content Include="Assets\Emoticon\212.png" />
+    <Content Include="Assets\Emoticon\213.png" />
+    <Content Include="Assets\Emoticon\214.png" />
+    <Content Include="Assets\Emoticon\215.png" />
+    <Content Include="Assets\Emoticon\216.png" />
+    <Content Include="Assets\Emoticon\217.png" />
+    <Content Include="Assets\Emoticon\22.png" />
+    <Content Include="Assets\Emoticon\23.png" />
+    <Content Include="Assets\Emoticon\24.png" />
+    <Content Include="Assets\Emoticon\25.png" />
+    <Content Include="Assets\Emoticon\26.png" />
+    <Content Include="Assets\Emoticon\27.png" />
+    <Content Include="Assets\Emoticon\28.png" />
+    <Content Include="Assets\Emoticon\29.png" />
+    <Content Include="Assets\Emoticon\30.png" />
+    <Content Include="Assets\Emoticon\31.png" />
+    <Content Include="Assets\Emoticon\32.png" />
+    <Content Include="Assets\Emoticon\33.png" />
+    <Content Include="Assets\Emoticon\34.png" />
+    <Content Include="Assets\Emoticon\35.png" />
+    <Content Include="Assets\Emoticon\36.png" />
+    <Content Include="Assets\Emoticon\37.png" />
+    <Content Include="Assets\Emoticon\38.png" />
+    <Content Include="Assets\Emoticon\39.png" />
+    <Content Include="Assets\Emoticon\40.png" />
+    <Content Include="Assets\Emoticon\41.png" />
+    <Content Include="Assets\Emoticon\42.png" />
+    <Content Include="Assets\Emoticon\43.png" />
+    <Content Include="Assets\Emoticon\44.png" />
+    <Content Include="Assets\Emoticon\45.png" />
+    <Content Include="Assets\Emoticon\46.png" />
+    <Content Include="Assets\Emoticon\47.png" />
+    <Content Include="Assets\Emoticon\48.png" />
+    <Content Include="Assets\Emoticon\49.png" />
+    <Content Include="Assets\Emoticon\50.png" />
+    <Content Include="Assets\Emoticon\51.png" />
+    <Content Include="Assets\Emoticon\52.png" />
+    <Content Include="Assets\Emoticon\53.png" />
+    <Content Include="Assets\Emoticon\54.png" />
+    <Content Include="Assets\Emoticon\55.png" />
+    <Content Include="Assets\Emoticon\56.png" />
+    <Content Include="Assets\Emoticon\57.png" />
+    <Content Include="Assets\Emoticon\58.png" />
+    <Content Include="Assets\Emoticon\59.png" />
+    <Content Include="Assets\Emoticon\60.png" />
+    <Content Include="Assets\Emoticon\61.png" />
+    <Content Include="Assets\Emoticon\62.png" />
+    <Content Include="Assets\Emoticon\63.png" />
+    <Content Include="Assets\Emoticon\64.png" />
+    <Content Include="Assets\Emoticon\65.png" />
+    <Content Include="Assets\Emoticon\66.png" />
+    <Content Include="Assets\Emoticon\67.png" />
+    <Content Include="Assets\Emoticon\68.png" />
+    <Content Include="Assets\Emoticon\69.png" />
+    <Content Include="Assets\Emoticon\70.png" />
+    <Content Include="Assets\Emoticon\71.png" />
+    <Content Include="Assets\Emoticon\72.png" />
+    <Content Include="Assets\Emoticon\73.png" />
+    <Content Include="Assets\Emoticon\74.png" />
+    <Content Include="Assets\Emoticon\75.png" />
+    <Content Include="Assets\Emoticon\76.png" />
+    <Content Include="Assets\Emoticon\77.png" />
+    <Content Include="Assets\Emoticon\78.png" />
+    <Content Include="Assets\Emoticon\79.png" />
+    <Content Include="Assets\Emoticon\80.png" />
+    <Content Include="Assets\Emoticon\81.png" />
+    <Content Include="Assets\Emoticon\82.png" />
+    <Content Include="Assets\Emoticon\83.png" />
+    <Content Include="Assets\Emoticon\84.png" />
+    <Content Include="Assets\Emoticon\85.png" />
+    <Content Include="Assets\Emoticon\86.png" />
+    <Content Include="Assets\Emoticon\87.png" />
+    <Content Include="Assets\Emoticon\88.png" />
+    <Content Include="Assets\Emoticon\89.png" />
+    <Content Include="Assets\Emoticon\90.png" />
+    <Content Include="Assets\Emoticon\91.png" />
+    <Content Include="Assets\Emoticon\92.png" />
+    <Content Include="Assets\Emoticon\93.png" />
+    <Content Include="Assets\Emoticon\94.png" />
+    <Content Include="Assets\Emoticon\95.png" />
+    <Content Include="Assets\Emoticon\96.png" />
+    <Content Include="Assets\Emoticon\97.png" />
+    <Content Include="Assets\Emoticon\98.png" />
+    <Content Include="Assets\Emoticon\99.png" />
+    <Content Include="Assets\Icons\Camera.png" />
+    <Content Include="Assets\Icons\CheckIcon.png" />
+    <Content Include="Assets\Icons\Emotions.png" />
+    <Content Include="Assets\Icons\Images.png" />
+    <Content Include="Assets\Icons\Previous.png" />
+    <Content Include="Assets\Icons\Uploadphoto.png" />
     <Content Include="Assets\SplashScreen.scale-100.jpg" />
     <Content Include="Assets\SplashScreen.scale-125.jpg" />
     <Content Include="Assets\SplashScreen.scale-150.jpg" />
@@ -263,21 +488,15 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
-      <Name>BehaviorsXamlSDKManaged</Name>
-    </SDKReference>
-    <SDKReference Include="WindowsMobile, Version=10.0.14393.0">
-      <Name>Windows Mobile Extensions for the UWP</Name>
-    </SDKReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Common\Source\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ScaleAssist\ScaleAssist.vcxproj">
-      <Project>{71e38d13-e821-4d5e-83f4-92525855f349}</Project>
-      <Name>ScaleAssist</Name>
-    </ProjectReference>
+    <SDKReference Include="WindowsDesktop, Version=10.0.14393.0">
+      <Name>Windows Desktop Extensions for the UWP %28WindowsDesktop, Version=10.0.14393.0%29</Name>
+    </SDKReference>
+    <SDKReference Include="WindowsMobile, Version=10.0.14393.0">
+      <Name>Windows Mobile Extensions for the UWP %28WindowsMobile, Version=10.0.14393.0%29</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

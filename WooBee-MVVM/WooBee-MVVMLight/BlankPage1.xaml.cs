@@ -43,10 +43,6 @@ namespace WooBee_MVVMLight
             gridView.ItemsSource = ew;
         }
 
-        private void ScalingHelper()
-        {
-
-        }
 
 
     }
