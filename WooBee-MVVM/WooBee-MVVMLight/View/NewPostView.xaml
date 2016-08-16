@@ -27,15 +27,16 @@
               Grid.Row="1"
               Visibility="Collapsed" 
               Height="296" 
+              Background="#1f1f1f"
               VerticalAlignment="Bottom">
-             
             <GridView x:Name="EmoticonContainer"
                       Style="{StaticResource EmoticonsGridViewStyle}"
                       Height="auto" 
                       Grid.RowSpan="2" 
                       d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
-                      Padding="15,15,0,0"
-                      Background="#1f1f1f"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Padding="0,10,0,0"
                       ItemsSource="{x:Bind NewPostVM.EmojiSource, Mode=OneWay}">
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="BitmapImage">
@@ -45,19 +46,6 @@
                     </DataTemplate>
                 </GridView.ItemTemplate>
             </GridView>
-             
-            <!--<Button x:Name="DelteButton" Height="40" Width="57"
-                 Background="#464646"
-                 HorizontalAlignment="Right"
-                 VerticalAlignment="Bottom">
-                 <StackPanel>
-                 <Image Source="/Assets/Icons/delete-512.png"
-                 Height="23" 
-                 d:LayoutOverrides="LeftMargin, RightMargin"
-                 Margin="0,1,0,0"/>
-                 </StackPanel>
-                 </Button>-->
-            
         </Grid>
 
         <TextBlock x:Name="headerTextBlock" 
@@ -89,7 +77,7 @@
                  Background="{x:Null}" 
                  BorderBrush="{x:Null}" 
                  Grid.ColumnSpan="2" 
-                 Grid.RowSpan="2" 
+                 Grid.RowSpan="2"
                  Style="{StaticResource TextBoxStyle}"/>
 
         <Button x:Name="SendButton"
@@ -192,6 +180,7 @@
                 BorderThickness="4" 
                 Grid.Column="2" 
                 Grid.Row="1" 
+                Command="{x:Bind NewPostVM.InvokeCameraCommand}"
                 Style="{StaticResource SendWeiboButtonStyle}">
             <BitmapIcon UriSource="/Assets/Icons/Camera.png"
                         Height="23" 
@@ -222,21 +211,28 @@
         </Button>
         
         
-        <!--<StackPanel x:Name="ImagePanel" 
-             Grid.ColumnSpan="2" 
-             HorizontalAlignment="Left" 
-             Height="80" 
-             VerticalAlignment="Bottom" 
-             Width="80" 
-             Grid.Row="1" 
-             Grid.Column="1"
-             Visibility="Collapsed"
-             Orientation="Vertical"
-             Background="#FFE0E0E0"
-             Margin="0,0,0,0">
-             <TextBlock x:Name="ImagesCount" Text="0" HorizontalAlignment="Center"/>
-             <Image x:Name="image" />
-             </StackPanel>-->
+        <Grid x:Name="ImagePanel" 
+                    Grid.ColumnSpan="2" 
+                    HorizontalAlignment="Left" 
+                    Height="80" 
+                    VerticalAlignment="Bottom" 
+                    Width="80"
+                    Grid.Row="1" 
+                    Grid.Column="1"
+                    Visibility="Visible"
+                    Background="#FFE0E0E0"
+                    Margin="0,0,0,0">
+            <Image x:Name="image"
+                   Source="{x:Bind NewPostVM.GetFirstImg, Mode=OneWay}"
+                   Stretch="UniformToFill"/>
+            <TextBlock x:Name="ImagesCount" 
+                       Text="{x:Bind NewPostVM.ImagesCount, Mode=OneWay}" 
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="30"
+                       Foreground="White"/>
+            
+        </Grid>
 
 
         <!--<Button x:Name="button" Content="Button" Grid.Column="2" HorizontalAlignment="Stretch" Margin="240,0,10,71" VerticalAlignment="Stretch" Grid.Row="2"/>-->

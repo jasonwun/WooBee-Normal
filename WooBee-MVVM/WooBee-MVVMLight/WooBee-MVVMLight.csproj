@@ -394,6 +394,7 @@
     <Content Include="Assets\Emoticon\99.png" />
     <Content Include="Assets\Icons\Camera.png" />
     <Content Include="Assets\Icons\CheckIcon.png" />
+    <Content Include="Assets\Icons\Delete.png" />
     <Content Include="Assets\Icons\Emotions.png" />
     <Content Include="Assets\Icons\Images.png" />
     <Content Include="Assets\Icons\Previous.png" />
