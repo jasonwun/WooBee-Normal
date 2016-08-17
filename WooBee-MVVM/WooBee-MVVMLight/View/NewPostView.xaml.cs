@@ -28,22 +28,96 @@ namespace WooBee_MVVMLight
     /// </summary>
     public sealed partial class NewPostView : BindablePage
     {
+
+        #region Field
         public NewPostViewModel NewPostVM { get; set; }
         InputPane inputPane = InputPane.GetForCurrentView();
         private static Dictionary<string, string> _reverseEmojiDict = new Dictionary<string, string>();
         private bool _isEmojiActivated = false;
         private bool _isInputPanelActivated = false;
+        #endregion
 
-        public NewPostView()
+        #region Method
+        private async void DisableStatusBar()
         {
-            this.InitializeComponent();
-            DisableStatusBar();
-            DataContext = NewPostVM = new NewPostViewModel();
-            ReverseDict(App.emojiDict);
-            inputPane.Showing += this.InputPaneShowing;
-            inputPane.Hiding += this.InputPaneHiding;
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                var statusbar = StatusBar.GetForCurrentView();
+                await statusbar.HideAsync();
+            }
         }
 
+        private void EmojiPanelShowing()
+        {
+            SendButton.Margin = new Thickness(0, 0, 0, 20 + Root.Height);
+            EmojiButton.Margin = new Thickness(0, 0, 65, 20 + Root.Height);
+            UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20 + Root.Height);
+            PhotoButton.Margin = new Thickness(0, 0, 0, 20 + Root.Height);
+            CameraButton.Margin = new Thickness(0, 0, 65, 20 + Root.Height);
+            ReturnButton.Margin = new Thickness(0, 0, 130, 20 + Root.Height);
+            //ImagePanel.Margin = new Thickness(0, 0, 0, Root.Height);
+            Root.Visibility = Visibility.Visible;
+
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+            {
+                HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+            }
+            _isEmojiActivated = true;
+        }
+
+        private void EmojiPanelHiding()
+        {
+            SendButton.Margin = new Thickness(0, 0, 0, 20);
+            EmojiButton.Margin = new Thickness(0, 0, 65, 20);
+            UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20);
+            PhotoButton.Margin = new Thickness(0, 0, 0, 20);
+            CameraButton.Margin = new Thickness(0, 0, 65, 20);
+            ReturnButton.Margin = new Thickness(0, 0, 130, 20);
+            //ImagePanel.Margin = new Thickness(0, 0, 0, 0);
+            Root.Visibility = Visibility.Collapsed;
+            _isEmojiActivated = false;
+        }
+
+        private void ReverseDict(Dictionary<string, string> a)
+        {
+            if (_reverseEmojiDict.Count != 0)
+                return;
+            foreach (var item in a)
+            {
+                _reverseEmojiDict.Add(item.Value, item.Key);
+            }
+        }
+
+        void InputPaneHiding(InputPane sender, InputPaneVisibilityEventArgs args)
+        {
+            SendButton.Margin = new Thickness(0, 0, 0, 20);
+            EmojiButton.Margin = new Thickness(0, 0, 65, 20);
+            UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20);
+            PhotoButton.Margin = new Thickness(0, 0, 0, 20);
+            CameraButton.Margin = new Thickness(0, 0, 65, 20);
+            ReturnButton.Margin = new Thickness(0, 0, 130, 20);
+            //ImagePanel.Margin = new Thickness(0, 0, 0, 0);
+            _isInputPanelActivated = false;
+            if (_isEmojiActivated)
+                EmojiPanelShowing();
+        }
+
+        private void InputPaneShowing(InputPane sender, InputPaneVisibilityEventArgs args)
+        {
+            //EmojiPanelHiding();
+            SendButton.Margin = new Thickness(0, 0, 0, 20 + args.OccludedRect.Height);
+            PhotoButton.Margin = new Thickness(0, 0, 0, 20 + args.OccludedRect.Height);
+            EmojiButton.Margin = new Thickness(0, 0, 65, 20 + args.OccludedRect.Height);
+            CameraButton.Margin = new Thickness(0, 0, 65, 20 + args.OccludedRect.Height);
+            UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20 + args.OccludedRect.Height);
+            ReturnButton.Margin = new Thickness(0, 0, 130, 20 + args.OccludedRect.Height);
+            //ImagePanel.Margin = new Thickness(0, 0, 0, args.OccludedRect.Height);
+            _isInputPanelActivated = true;
+
+        }
+        #endregion
+
+        #region Event
         private void UploadPhotoButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
             UploadPhotoButton.Visibility = Visibility.Collapsed;
@@ -67,56 +141,6 @@ namespace WooBee_MVVMLight
             }
         }
 
-        private async void DisableStatusBar()
-        {
-            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-            {
-                var statusbar = StatusBar.GetForCurrentView();
-                await statusbar.HideAsync();
-            }
-        }
-
-        private void EmojiPanelShowing()
-        {
-            SendButton.Margin = new Thickness(0, 0, 0, 20 + Root.Height);
-            EmojiButton.Margin = new Thickness(0, 0, 65, 20 + Root.Height);
-            UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20 + Root.Height);
-            PhotoButton.Margin = new Thickness(0, 0, 0, 20 + Root.Height);
-            CameraButton.Margin = new Thickness(0, 0, 65, 20 + Root.Height);
-            ReturnButton.Margin = new Thickness(0, 0, 130, 20 + Root.Height);
-            ImagePanel.Margin = new Thickness(0, 0, 0, Root.Height);
-            Root.Visibility = Visibility.Visible;
-
-            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
-            {
-                HardwareButtons.BackPressed += HardwareButtons_BackPressed;
-            }
-            _isEmojiActivated = true;
-        }
-
-        private void EmojiPanelHiding()
-        {
-            SendButton.Margin = new Thickness(0, 0, 0, 20);
-            EmojiButton.Margin = new Thickness(0, 0, 65, 20);
-            UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20);
-            PhotoButton.Margin = new Thickness(0, 0, 0, 20);
-            CameraButton.Margin = new Thickness(0, 0, 65, 20);
-            ReturnButton.Margin = new Thickness(0, 0, 130, 20);
-            ImagePanel.Margin = new Thickness(0, 0, 0, 0);
-            Root.Visibility = Visibility.Collapsed;
-            _isEmojiActivated = false;
-        }
-
-        private void ReverseDict(Dictionary<string, string> a)
-        {
-            if (_reverseEmojiDict.Count != 0)
-                return;
-            foreach (var item in a)
-            {
-                _reverseEmojiDict.Add(item.Value, item.Key);
-            }
-        }
-
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
             if (_isEmojiActivated)
@@ -137,35 +161,27 @@ namespace WooBee_MVVMLight
             inputPane.Visible = false;
         }
 
-        void InputPaneHiding(InputPane sender, InputPaneVisibilityEventArgs args)
+        private void NewPostVM_NewPhotosInserted()
         {
-            SendButton.Margin = new Thickness(0, 0, 0, 20);
-            EmojiButton.Margin = new Thickness(0, 0, 65, 20);
-            UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20);
-            PhotoButton.Margin = new Thickness(0, 0, 0, 20);
-            CameraButton.Margin = new Thickness(0, 0, 65, 20);
-            ReturnButton.Margin = new Thickness(0, 0, 130, 20);
-            ImagePanel.Margin = new Thickness(0, 0, 0, 0);
-            _isInputPanelActivated = false;
-            if (_isEmojiActivated)
-                EmojiPanelShowing();
+            ImagePanel.Visibility = Visibility.Visible;
+
+            //TODO: Animation
         }
 
-        private void InputPaneShowing(InputPane sender, InputPaneVisibilityEventArgs args)
-        {
-            //EmojiPanelHiding();
-            SendButton.Margin = new Thickness(0, 0, 0, 20 + args.OccludedRect.Height);
-            PhotoButton.Margin = new Thickness(0, 0, 0, 20 + args.OccludedRect.Height);
-            EmojiButton.Margin = new Thickness(0, 0, 65, 20 + args.OccludedRect.Height);
-            CameraButton.Margin = new Thickness(0, 0, 65, 20 + args.OccludedRect.Height);
-            UploadPhotoButton.Margin = new Thickness(0, 0, 130, 20 + args.OccludedRect.Height);
-            ReturnButton.Margin = new Thickness(0, 0, 130, 20 + args.OccludedRect.Height);
-            ImagePanel.Margin = new Thickness(0, 0, 0, args.OccludedRect.Height);
-            _isInputPanelActivated = true;
+        #endregion
 
+
+        public NewPostView()
+        {
+            this.InitializeComponent();
+            DisableStatusBar();
+            DataContext = NewPostVM = new NewPostViewModel();
+            ReverseDict(App.emojiDict);
+            inputPane.Showing += this.InputPaneShowing;
+            inputPane.Hiding += this.InputPaneHiding;
+            NewPostVM.NewPhotosInserted += NewPostVM_NewPhotosInserted;
         }
 
-
-        //TODO: 当拍照成功或者成功获取相片之后需要进行动画，然而现在没办法
+        //TODO: 重新整理表情页面跟键盘之间的显示消失的逻辑
     }
 }

@@ -209,19 +209,29 @@
                          HorizontalAlignment="Center"
                          VerticalAlignment="Center"/>
         </Button>
-        
-        
-        <Grid x:Name="ImagePanel" 
-                    Grid.ColumnSpan="2" 
-                    HorizontalAlignment="Left" 
-                    Height="80" 
-                    VerticalAlignment="Bottom" 
-                    Width="80"
-                    Grid.Row="1" 
-                    Grid.Column="1"
-                    Visibility="Visible"
-                    Background="#FFE0E0E0"
-                    Margin="0,0,0,0">
+
+
+        <local:ImagesHint x:Name="ImagePanel"
+                 Grid.ColumnSpan="2" 
+                          HorizontalAlignment="Left"
+                          Grid.Row="1" 
+                          Grid.Column="1"
+                          VerticalAlignment="Bottom"
+                          Height="80"
+                          Width="80"
+                          Visibility="Collapsed"
+                          DataContext="{x:Bind NewPostVM, Mode=OneWay}"/>
+        <!--<Grid x:Name="ImagePanel" 
+              Grid.ColumnSpan="2" 
+              HorizontalAlignment="Left" 
+              Height="80" 
+              VerticalAlignment="Bottom" 
+              Width="80"
+              Grid.Row="1" 
+              Grid.Column="1"
+              Visibility="Collapsed"
+              Background="#FFE0E0E0"
+              Margin="0,0,0,0">
             <Image x:Name="image"
                    Source="{x:Bind NewPostVM.GetFirstImg, Mode=OneWay}"
                    Stretch="UniformToFill"/>
@@ -232,7 +242,7 @@
                        FontSize="30"
                        Foreground="White"/>
             
-        </Grid>
+        </Grid>-->
 
 
         <!--<Button x:Name="button" Content="Button" Grid.Column="2" HorizontalAlignment="Stretch" Margin="240,0,10,71" VerticalAlignment="Stretch" Grid.Row="2"/>-->

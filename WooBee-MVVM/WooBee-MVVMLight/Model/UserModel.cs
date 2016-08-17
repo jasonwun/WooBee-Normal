@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace WooBee_MVVM.Model
 {
@@ -28,6 +29,12 @@ namespace WooBee_MVVM.Model
         [DataMember(Name = "location")]
         public string Location { set; get; }
 
+        [DataMember(Name = "cover_image")]
+        public string CoverImage { set; get; }
+
+        [DataMember(Name = "cover_image_phone")]
+        public string CoverImagePhone { set; get; }
+
         [DataMember(Name = "description")]
         public string Description { set; get; }
 
@@ -50,7 +57,7 @@ namespace WooBee_MVVM.Model
         public string StatusesCount { set; get; }
 
         [DataMember(Name = "following")]
-        public string Following { set; get; }
+        public bool Following { set; get; }
 
         [DataMember(Name = "verified")]
         public string Verified { set; get; }
@@ -65,6 +72,59 @@ namespace WooBee_MVVM.Model
         public string VerifiedReason { set; get; }
 
         [DataMember(Name = "follow_me")]
-        public string FollowMe { set; get; }
+        public bool FollowMe { set; get; }
+
+        [IgnoreDataMember]
+        public string FriendShipStatus
+        {
+            get
+            {
+                if (Following && FollowMe)
+                    return "互相关注";
+                else if (Following)
+                    return "已关注";
+                else
+                    return "未关注";
+            }
+        }
+
+        [IgnoreDataMember]
+        public BitmapImage IsMaleOrFemale
+        {
+            get
+            {
+                if (Gender == "m")
+                    return new BitmapImage(new Uri("ms-appx:///Assets/Icons/male-icon.jpg"));
+                else
+                    return new BitmapImage(new Uri("ms-appx:///Assets/Icons/female-icon.png"));
+            }
+        }
+
+        [IgnoreDataMember]
+        public string FollwersCountOutput
+        {
+            get
+            {
+                return "粉丝数: " + FollowersCount;
+            }
+        }
+
+        [IgnoreDataMember]
+        public string FriendsCountCountOutput
+        {
+            get
+            {
+                return "关注数: " + FriendsCount;
+            }
+        }
+
+        [IgnoreDataMember]
+        public string WeiboCountOutput
+        {
+            get
+            {
+                return "微博数: " + StatusesCount;
+            }
+        }
     }
 }

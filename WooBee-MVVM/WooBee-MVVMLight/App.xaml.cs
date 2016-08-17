@@ -164,11 +164,11 @@ namespace WooBee_MVVMLight
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                //if (App.AccessToken != "" && App.WeicoAccessToken != "")
-                //    rootFrame.Navigate(typeof(TimeLineView), e.Arguments);
-                //else
-                //    rootFrame.Navigate(typeof(LoginView), e.Arguments);
-                rootFrame.Navigate(typeof(NewPostView), e.Arguments);
+                if (App.AccessToken != "" && App.WeicoAccessToken != "")
+                    rootFrame.Navigate(typeof(TimeLineView), e.Arguments);
+                else
+                    rootFrame.Navigate(typeof(LoginView), e.Arguments);
+                //rootFrame.Navigate(typeof(UserView), e.Arguments);
             }
 
 

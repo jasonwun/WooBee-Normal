@@ -272,6 +272,7 @@ namespace WooBee_MVVMLight
                 if (_getFirstImg != value)
                     _getFirstImg = value;
                 RaisePropertyChanged(() => GetFirstImg);
+                NewPhotosInserted?.Invoke();
             }
         }
 
@@ -289,6 +290,7 @@ namespace WooBee_MVVMLight
 
         private bool IsFirst = true;
         private string pic_ids;
+        public event Action NewPhotosInserted;
 
         public NewPostViewModel() { }
         #endregion

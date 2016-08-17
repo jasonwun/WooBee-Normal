@@ -20,11 +20,21 @@ namespace WooBee_MVVMLight
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class UserView : Page
+    public sealed partial class UserView : BindablePage
     {
+        private string ID = "1404376560";
+        public UserViewModel UserVM { get; set; }
         public UserView()
         {
             this.InitializeComponent();
+            DataContext = UserVM = new UserViewModel(ID);
+
         }
+
+        //protected override void OnNavigatedTo(NavigationEventArgs e)
+        //{
+        //    ID = e.Parameter.ToString();
+        //    base.OnNavigatedTo(e);
+        //}
     }
 }

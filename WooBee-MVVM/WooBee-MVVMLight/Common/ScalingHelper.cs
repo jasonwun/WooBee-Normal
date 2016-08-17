@@ -42,5 +42,13 @@ namespace WooBee_MVVMLight
             var scale = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
             return rect.Width * scale;
         }
+
+        public double GetScreenWidth()
+        {
+            double ScreenWidthRawPixels = GetWidth();
+            double rawPixelsPerViewPixel = displayInformation.RawPixelsPerViewPixel;
+            double ScreenWidthViewPixels = ScreenWidthRawPixels / rawPixelsPerViewPixel;
+            return ScreenWidthViewPixels;
+        }
     }
 }
