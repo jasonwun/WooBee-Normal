@@ -187,7 +187,7 @@ namespace WooBee_MVVMLight
             string Uri = API.USER_SHOW;
             Uri += "?access_token=";
             Uri += App.WeicoAccessToken;
-            Uri += "&uid=";
+            Uri += "&screen_name=";
             Uri += ID;
 
             HttpClient httpclient = new HttpClient();

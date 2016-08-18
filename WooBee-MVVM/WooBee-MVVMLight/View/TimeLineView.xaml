@@ -48,6 +48,7 @@
                     <TextBlock x:Name="textBlock7"
                                Margin="10,8,20,0"
                                TextWrapping="Wrap"
+                               FontSize="15"
                                Text="{x:Bind User.ScreenName}"
                                d:LayoutOverrides="TopPosition, BottomPosition"
                                FontFamily="Microsoft YaHei"
@@ -56,16 +57,16 @@
                 </StackPanel>
 
                 <RichTextBlock x:Name="NormalTextblock"
-                           Margin="20,49.667,0,0"
-                           local:RichTextBlockConvertor.Text="{x:Bind Text}"
-                           Grid.Column="2"
-                           Grid.Row="1"
-                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition"
-                           HorizontalAlignment="Left" 
-                           FontFamily="Microsoft YaHei"
-                           Width="auto"
-                           FontSize="13"
-                           IsTextSelectionEnabled="False"/>
+                               Margin="20,49.667,0,0"
+                               local:RichTextBlockConvertor.Text="{x:Bind Text}"
+                               Grid.Column="2"
+                               Grid.Row="1"
+                               d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition"
+                               HorizontalAlignment="Left" 
+                               FontFamily="Microsoft YaHei"
+                               Width="auto"
+                               FontSize="13"
+                               IsTextSelectionEnabled="False"/>
             </Grid>
         </DataTemplate>
 
@@ -109,6 +110,7 @@
                     <TextBlock x:Name="textBlock927"
                                Margin="10,8,20,0"
                                TextWrapping="Wrap"
+                               FontSize="15"
                                Text="{x:Bind User.ScreenName}"
                                d:LayoutOverrides="TopPosition, BottomPosition"
                                FontFamily="Microsoft YaHei" 
@@ -117,20 +119,21 @@
                 </Grid>
 
                 <RichTextBlock x:Name="TextRepostContentTextBlock"
-                           Margin="20,50,0,0"
-                           local:RichTextBlockConvertor.Text="{x:Bind Text}"
-                           Grid.Column="2"
-                           Grid.Row="1"
-                           FontSize="13"
-                           d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
-                           FontFamily="Microsoft YaHei"
-                           IsTextSelectionEnabled="False"/>
+                               Margin="20,50,0,0"
+                               local:RichTextBlockConvertor.Text="{x:Bind Text}"
+                               Grid.Column="2"
+                               Grid.Row="1"
+                               FontSize="13"
+                               d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
+                               FontFamily="Microsoft YaHei"
+                               IsTextSelectionEnabled="False"/>
 
                 <TextBlock x:Name="textBlock7"
                            TextWrapping="Wrap"
                            Grid.Column="2"
                            Grid.Row="2"
                            Margin="20,20,0,0" 
+                           FontSize="15"
                            Text="{x:Bind RepostWeibo.User.ScreenName}"
                            d:LayoutOverrides="TopPosition, BottomPosition"
                            FontFamily="Microsoft YaHei" 
@@ -139,14 +142,14 @@
 
 
                 <RichTextBlock x:Name="TextRepostTextBlock"
-                           Margin="20,50,8,5"
-                           local:RichTextBlockConvertor.Text="{x:Bind RepostWeibo.Text}"
-                           d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
-                           Grid.Column="2"
-                           Grid.Row="2"
-                           FontSize="13"
-                           IsTextSelectionEnabled="False"
-                           Height="auto"/>
+                               Margin="20,50,8,5"
+                               local:RichTextBlockConvertor.Text="{x:Bind RepostWeibo.Text}"
+                               d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
+                               Grid.Column="2"
+                               Grid.Row="2"
+                               FontSize="13"
+                               IsTextSelectionEnabled="False"
+                               Height="auto"/>
 
 
             </Grid>
@@ -191,6 +194,7 @@
                     <TextBlock x:Name="textBlock7"
                                Margin="10,8,20,0"
                                TextWrapping="Wrap"
+                               FontSize="15"
                                Text="{x:Bind User.ScreenName}"
                                d:LayoutOverrides="TopPosition, BottomPosition"
                                FontFamily="Microsoft YaHei" 
@@ -199,23 +203,37 @@
                 </Grid>
 
                 <RichTextBlock x:Name="OneImageContentTextBlock"
-                           Margin="20,50,8,0"
-                           local:RichTextBlockConvertor.Text="{x:Bind Text}"
-                           Grid.Column="2"
-                           Grid.Row="1"
-                           FontSize="13"
-                           d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
-                           FontFamily="Microsoft YaHei"
-                           IsTextSelectionEnabled="False"/>
-                <Image x:Name="image1"
-                       Margin="20,20,0,0"
-                       Grid.Column="2"
-                       Grid.Row="2"
-                       MaxHeight="300"
-                       Source="{x:Bind HighResThumnailPic}"
-                       d:LayoutOverrides="TopMargin, BottomMargin" 
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Left"/>
+                               Margin="20,50,8,0"
+                               local:RichTextBlockConvertor.Text="{x:Bind Text}"
+                               Grid.Column="2"
+                               Grid.Row="1"
+                               FontSize="13"
+                               d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
+                               FontFamily="Microsoft YaHei"
+                               IsTextSelectionEnabled="False"/>
+                <Grid x:Name="image1"
+                      Margin="20,20,0,0"
+                      Grid.Column="2"
+                      Grid.Row="2"
+                      MaxHeight="300"
+                      d:LayoutOverrides="TopMargin, BottomMargin" 
+                      VerticalAlignment="Top"
+                      HorizontalAlignment="Left">
+                    <Image Source="{x:Bind HighResThumnailPic}"
+                           Stretch="UniformToFill"/>
+
+                    <StackPanel Background="#FFFFFF85"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Right"
+                                Visibility="{x:Bind IsGif, Mode=OneWay, Converter={StaticResource BoolToVis}}">
+                        <TextBlock Text="GIF"
+                                   FontSize="8"
+                                   FontWeight="Bold"
+                                   Margin="10,5,10,5"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
             </Grid>
         </DataTemplate>
 
@@ -242,7 +260,7 @@
                        VerticalAlignment="Top"
                        HorizontalAlignment="Stretch" 
                        Grid.ColumnSpan="2"
-                       Margin="4,3,3,0" 
+                       Margin="4,3,3,0"
                        Source="{x:Bind User.AvatarLarge}"
                        d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
 
@@ -257,6 +275,7 @@
                     <TextBlock x:Name="textBlock927"
                                Margin="10,8,20,0"
                                TextWrapping="Wrap"
+                               FontSize="15"
                                Text="{x:Bind User.ScreenName}"
                                d:LayoutOverrides="TopPosition, BottomPosition"
                                FontFamily="Microsoft YaHei" 
@@ -265,14 +284,14 @@
                 </Grid>
                 
                 <RichTextBlock  x:Name="MultipleImageContentTextBlock"
-                            Margin="20,50,0,0"
-                            local:RichTextBlockConvertor.Text="{x:Bind Text}"
-                            Grid.Column="2"
-                            Grid.Row="1"
-                            FontSize="13"
-                            d:LayoutOverrides="TopMargin, BottomMargin, TopPosition, BottomPosition"
-                            Height="auto"
-                            IsTextSelectionEnabled="False"/>
+                                Margin="20,50,0,0"
+                                local:RichTextBlockConvertor.Text="{x:Bind Text}"
+                                Grid.Column="2"
+                                Grid.Row="1"
+                                FontSize="13"
+                                d:LayoutOverrides="TopMargin, BottomMargin, TopPosition, BottomPosition"
+                                Height="auto"
+                                IsTextSelectionEnabled="False"/>
 
                 <GridView x:Name="gridView" 
                           ItemsSource="{x:Bind PicUrls}"
@@ -298,11 +317,24 @@
 
                     <GridView.ItemTemplate>
                         <DataTemplate x:DataType="model:ThumbnailPics">
-                            <Image Source="{x:Bind HighResThumPic}"
-                                   Width="{x:Bind ImgSize}"
-                                   Height="{x:Bind ImgSize}"
-                                   Margin="0,0,0,0"
-                                   Stretch="UniformToFill"/>
+                            <Grid Width="{x:Bind ImgSize}"
+                                  Height="{x:Bind ImgSize}"
+                                  Margin="0,0,0,0">
+                                <Image Source="{x:Bind HighResThumPic}"
+                                       Stretch="UniformToFill"/>
+
+                                <StackPanel Background="#FFFFFF85"
+                                            VerticalAlignment="Bottom"
+                                            HorizontalAlignment="Right"
+                                            Visibility="{x:Bind IsGif, Mode=OneWay, Converter={StaticResource BoolToVis}}">
+                                    <TextBlock Text="GIF"
+                                               FontSize="8"
+                                               FontWeight="Bold"
+                                               Margin="10,5,10,5"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Grid>
                         </DataTemplate>
                     </GridView.ItemTemplate>
                 </GridView>
@@ -350,6 +382,7 @@
                     <TextBlock x:Name="textBlock927"
                                Margin="10,8,20,0"
                                TextWrapping="Wrap"
+                               FontSize="15"
                                Text="{x:Bind User.ScreenName}"
                                d:LayoutOverrides="TopPosition, BottomPosition"
                                FontFamily="Microsoft YaHei" 
@@ -359,14 +392,14 @@
 
 
                 <RichTextBlock x:Name="RepostOneImageContentTextBlock"
-                           Margin="20,50,0,0"
-                           local:RichTextBlockConvertor.Text="{x:Bind Text}"
-                           Grid.Column="2"
-                           Grid.Row="1"
-                           FontSize="13"
-                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" 
-                           FontFamily="Microsoft YaHei"
-                           IsTextSelectionEnabled="False"/>
+                               Margin="20,50,0,0"
+                               local:RichTextBlockConvertor.Text="{x:Bind Text}"
+                               Grid.Column="2"
+                               Grid.Row="1"
+                               FontSize="13"
+                               d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" 
+                               FontFamily="Microsoft YaHei"
+                               IsTextSelectionEnabled="False"/>
 
 
                 <TextBlock x:Name="textBlock7"
@@ -374,6 +407,7 @@
                            Grid.Column="2"
                            Grid.Row="2"
                            TextWrapping="Wrap"
+                           FontSize="15"
                            Text="{x:Bind RepostWeibo.User.ScreenName}"
                            d:LayoutOverrides="TopPosition, BottomPosition"
                            FontFamily="Microsoft YaHei"
@@ -382,22 +416,37 @@
 
 
                 <RichTextBlock x:Name="RepostOneImageRepostTextBlock"
-                           Margin="20,50,0,0"
-                           local:RichTextBlockConvertor.Text="{x:Bind RepostWeibo.Text}"
-                           Grid.Column="2"
-                           Grid.Row="2"
-                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
-                           IsTextSelectionEnabled="False"/>
+                               Margin="20,50,0,0"
+                               local:RichTextBlockConvertor.Text="{x:Bind RepostWeibo.Text}"
+                               Grid.Column="2"
+                               Grid.Row="2"
+                               FontSize="13"
+                               d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
+                               IsTextSelectionEnabled="False"/>
 
-                <Image x:Name="image1"
-                       Grid.Column="2"
-                       Grid.Row="3"
-                       Source="{x:Bind RepostWeibo.HighResThumnailPic}"
-                       HorizontalAlignment="Left" 
-                       MaxHeight="300"
-                       d:LayoutOverrides="TopMargin, BottomMargin" 
-                       VerticalAlignment="Top"
-                       Margin="20,15,0,0"/>
+                <Grid x:Name="image1"
+                      Grid.Column="2"
+                      Grid.Row="3"
+                      HorizontalAlignment="Left" 
+                      MaxHeight="200"
+                      d:LayoutOverrides="TopMargin, BottomMargin" 
+                      VerticalAlignment="Top"
+                      Margin="20,15,0.5,0">
+                    <Image Source="{x:Bind RepostWeibo.HighResThumnailPic}"
+                           Stretch="UniformToFill"/>
+
+                    <StackPanel Background="#FFFFFF85"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Right"
+                                Visibility="{x:Bind RepostWeibo.IsGif, Mode=OneWay, Converter={StaticResource BoolToVis}}">
+                        <TextBlock Text="GIF"
+                                   FontSize="8"
+                                   FontWeight="Bold"
+                                   Margin="10,5,10,5"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
             </Grid>
         </DataTemplate>
 
@@ -442,6 +491,7 @@
                     <TextBlock x:Name="textBlock927"
                                Margin="10,8,20,0"
                                TextWrapping="Wrap"
+                               FontSize="15"
                                Text="{x:Bind User.ScreenName}"
                                d:LayoutOverrides="TopPosition, BottomPosition"
                                FontFamily="Microsoft YaHei" 
@@ -451,20 +501,21 @@
 
 
                 <RichTextBlock x:Name="RepostMultiImageContentTextBlock"
-                           Margin="20,50,0,0"
-                           local:RichTextBlockConvertor.Text="{x:Bind Text}"
-                           Grid.Column="2"
-                           Grid.Row="1"
-                           FontSize="13"
-                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" 
-                           FontFamily="Microsoft YaHei"
-                           IsTextSelectionEnabled="False"/>
+                               Margin="20,50,0,0"
+                               local:RichTextBlockConvertor.Text="{x:Bind Text}"
+                               Grid.Column="2"
+                               Grid.Row="1"
+                               FontSize="13"
+                               d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" 
+                               FontFamily="Microsoft YaHei"
+                               IsTextSelectionEnabled="False"/>
 
                 <TextBlock x:Name="textBlock7"
                            Margin="20,20,0,0"
                            TextWrapping="Wrap"
                            Grid.Row="2"
                            Grid.Column="2"
+                           FontSize="15"
                            Text="{x:Bind RepostWeibo.User.ScreenName}"
                            d:LayoutOverrides="TopPosition, BottomPosition"
                            FontFamily="Microsoft YaHei" 
@@ -472,15 +523,15 @@
                            Foreground="Black"/>
 
                 <RichTextBlock x:Name="RepostMultiImageRepostTextBlock"
-                           Margin="20,50,0,0"
-                           local:RichTextBlockConvertor.Text="{x:Bind RepostWeibo.Text}"
-                           Grid.Column="2"
-                           Grid.Row="2"
-                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
-                           Height="auto" 
-                           FontSize="13"
-                           VerticalAlignment="Bottom"
-                           IsTextSelectionEnabled="False"/>
+                               Margin="20,50,0,0"
+                               local:RichTextBlockConvertor.Text="{x:Bind RepostWeibo.Text}"
+                               Grid.Column="2"
+                               Grid.Row="2"
+                               d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
+                               Height="auto" 
+                               FontSize="13"
+                               VerticalAlignment="Bottom"
+                               IsTextSelectionEnabled="False"/>
 
                 <GridView x:Name="gridView" 
                           ItemsSource="{x:Bind RepostWeibo.PicUrls}"
@@ -501,17 +552,32 @@
                     </GridView.ItemContainerStyle>
                     <GridView.ItemTemplate>
                         <DataTemplate x:DataType="model:ThumbnailPics">
-                            <Image Source="{x:Bind HighResThumPic}"
-                                   Width="{x:Bind ImgSize}"
-                                   Height="{x:Bind ImgSize}"
-                                   Margin="0,0,0,0"
-                                   Stretch="UniformToFill"/>
+                            <Grid Width="{x:Bind ImgSize}"
+                                  Height="{x:Bind ImgSize}"
+                                  Margin="0,0,0,0">
+                                <Image Source="{x:Bind HighResThumPic}"
+                                       Stretch="UniformToFill"/>
+
+                                <StackPanel Background="#FFFFFF85"
+                                            VerticalAlignment="Bottom"
+                                            HorizontalAlignment="Right"
+                                            Visibility="{x:Bind IsGif, Mode=OneWay, Converter={StaticResource BoolToVis}}">
+                                    <TextBlock Text="GIF"
+                                               FontSize="8"
+                                               FontWeight="Bold"
+                                               Margin="10,5,10,5"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Grid>
                         </DataTemplate>
                     </GridView.ItemTemplate>
                 </GridView>
             </Grid>
         </DataTemplate>
 
+
+        <local:BooleanToVisibilityConverter x:Key="BoolToVis"/>
         <local:TimeLineDataTemplateSelector x:Key="MyTimelineDataTemplateSelector"
                                             NormalTemplate="{StaticResource NormalTemplate}"
                                             TextRepostTemplate="{StaticResource TextRepostTemplate}"

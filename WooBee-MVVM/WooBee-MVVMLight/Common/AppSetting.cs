@@ -8,7 +8,7 @@ using Windows.Storage;
 
 namespace WooBee_MVVMLight
 {
-    public class AppSetting: ViewModelBase
+    public class AppSettings: ViewModelBase
     {
         public ApplicationDataContainer LocalSettings { get; set; }
 

@@ -101,27 +101,26 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\AppSetting.cs" />
+    <Compile Include="Common\AppSettings.cs" />
+    <Compile Include="Common\Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="BlankPage1.xaml.cs">
       <DependentUpon>BlankPage1.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\DataTemplateSelectors\CommentDataTemplateSelector.cs" />
     <Compile Include="Common\BindablePage.cs" />
-    <Compile Include="Common\AppSettings.cs" />
     <Compile Include="Common\API.cs" />
     <Compile Include="Common\NavigationService.cs" />
-    <Compile Include="Common\HttpService.cs" />
     <Compile Include="Common\CTSFactory.cs" />
     <Compile Include="Common\INavigable.cs" />
     <Compile Include="Common\Control\FloatingActionButton.xaml.cs">
       <DependentUpon>FloatingActionButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\Control\ImagesHint.xaml.cs">
-      <DependentUpon>ImagesHint.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Model\RepostModel.cs" />
     <Compile Include="Common\ScalingHelper.cs" />
-    <Compile Include="Common\RichTextBlockConvertor.cs" />
+    <Compile Include="Common\Converter\RichTextBlockConvertor.cs" />
+    <Compile Include="Common\Control\NewPostImageHint.xaml.cs">
+      <DependentUpon>NewPostImageHint.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\DataViewModel\UserFollowerDataViewModel.cs" />
     <Compile Include="ViewModel\DataViewModel\UserFollowingDataViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
@@ -464,7 +463,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Common\Control\ImagesHint.xaml">
+    <Page Include="Common\Control\NewPostImageHint.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

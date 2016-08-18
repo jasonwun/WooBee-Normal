@@ -31,7 +31,7 @@ namespace WooBee_MVVMLight
                 string Uri = API.FRIENDSHIPS_FRIENDS;
                 Uri += "?access_token=";
                 Uri += App.WeicoAccessToken;
-                Uri += "&uid=";
+                Uri += "&screen_name=";
                 Uri += iD;
                 HttpClient httpclient = new HttpClient();
                 HttpResponseMessage response = new HttpResponseMessage();

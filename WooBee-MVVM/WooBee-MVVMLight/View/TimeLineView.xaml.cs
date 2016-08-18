@@ -47,12 +47,65 @@ namespace WooBee_MVVMLight.View
         private void listView_Tapped(object sender, TappedRoutedEventArgs e)
         {
             var _listview = listView as ListView;
-            Weibo _weibo = (Weibo)_listview.SelectedItem;
+            var _weibo = (Weibo)_listview.SelectedItem;
             ListViewItemPresenter originalsource = e.OriginalSource as ListViewItemPresenter;
             if (originalsource == null)
             {
+                var advancesource = e.OriginalSource as TextBlock;
+                var imageSource = e.OriginalSource as Image;
+                var richtextBlock = e.OriginalSource as RichTextBlock;
+                if (advancesource != null)
+                {
+                    if (advancesource.Text == "网页链接")
+                    {
+                        e.Handled = true;
+                    }
+                    else if (advancesource.Text.Substring(0, 1) == "#")
+                    {
+                        string hashtag = advancesource.Text.Substring(1);
+                        hashtag = hashtag.Remove(hashtag.Length - 1);
+                        //Frame.Navigate(typeof(HashTagPage), hashtag);
+                    }
+                    else if (advancesource.Text.Substring(0, 1) == "@")
+                    {
+                        string username = advancesource.Text.Substring(1);
+                        Frame.Navigate(typeof(UserView), username);
+                    }
+                    else if (_weibo.User.ScreenName != null && advancesource.Text == _weibo.User.ScreenName)
+                    {
+                        string username = advancesource.Text;
+                        Frame.Navigate(typeof(UserView), username);
+                    }
+                    else if(advancesource.Text == _weibo.RepostWeibo.User.ScreenName)
+                    {
+                        string username = advancesource.Text;
+                        Frame.Navigate(typeof(UserView), username);
+                    }
+                    else
+                    {
+                        Frame.Navigate(typeof(WeiboDetailView), _weibo);
+                    }
+                }
+
+                else if (imageSource != null)
+                {
+                    string username = _weibo.User.ScreenName;
+                    Frame.Navigate(typeof(UserView), username);
+                }
+                else if (richtextBlock != null)
+                {
+                    Frame.Navigate(typeof(WeiboDetailView), _weibo);
+                }
+
+
+            }
+
+            else
+            {
                 Frame.Navigate(typeof(WeiboDetailView), _weibo);
             }
+
+
         }
 
     }

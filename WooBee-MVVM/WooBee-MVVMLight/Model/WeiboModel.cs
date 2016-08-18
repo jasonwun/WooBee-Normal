@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media.Imaging;
 using WooBee_MVVMLight;
 
 namespace WooBee_MVVM.Model
@@ -64,12 +65,26 @@ namespace WooBee_MVVM.Model
         public ObservableCollection<ThumbnailPics> PicUrls { set; get; }
 
         [IgnoreDataMember]
-        public string HighResThumnailPic
+        public BitmapImage HighResThumnailPic
         {
             get
             {
                 string HighRes = ThumbnailPic.Replace("thumbnail", "mw690");
-                return HighRes;
+                BitmapImage a = new BitmapImage(new Uri(HighRes));
+                a.AutoPlay = false;
+                return a;
+            }
+        }
+
+        [IgnoreDataMember]
+        public bool IsGif
+        {
+            get
+            {
+                if (ThumbnailPic.Substring(ThumbnailPic.Length - 3) == "gif")
+                    return true;
+                else
+                    return false;
             }
         }
     }
@@ -97,6 +112,18 @@ namespace WooBee_MVVM.Model
             {
                 string HighRes = Thumbpic.Replace("thumbnail", "mw690");
                 return HighRes;
+            }
+        }
+
+        [IgnoreDataMember]
+        public bool IsGif
+        {
+            get
+            {
+                if (Thumbpic.Substring(Thumbpic.Length - 3) == "gif")
+                    return true;
+                else
+                    return false;
             }
         }
     }

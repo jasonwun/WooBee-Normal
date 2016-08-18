@@ -31,8 +31,10 @@ namespace WooBee_MVVMLight
                 string Uri = API.USER_TIMELINE;
                 Uri += "?access_token=";
                 Uri += App.WeicoAccessToken;
-                Uri += "&uid=";
+                Uri += "&s=ab230784&source=211160679&c=weicoandroid";
+                Uri += "&screen_name=";
                 Uri += iD;
+                //Uri += "&gsid=_2A256selmDeTxGedO41AY9CjKyT2IHXVX53uurDV6PUJbjdANLUvekWpFzGTIoZzbkdNPhNil6IFvjFXIcw..";
                 HttpClient httpclient = new HttpClient();
                 HttpResponseMessage response = new HttpResponseMessage();
                 response = await httpclient.GetAsync(new Uri(Uri, UriKind.Absolute));

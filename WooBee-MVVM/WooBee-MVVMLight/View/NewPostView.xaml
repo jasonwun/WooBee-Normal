@@ -211,7 +211,7 @@
         </Button>
 
 
-        <local:ImagesHint x:Name="ImagePanel"
+        <local:NewPostImageHint x:Name="ImagePanel"
                  Grid.ColumnSpan="2" 
                           HorizontalAlignment="Left"
                           Grid.Row="1" 

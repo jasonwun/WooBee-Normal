@@ -102,8 +102,8 @@ namespace WooBee_MVVMLight
         {
             IsRefreshing = true;
             await CommentDataViewModel.RefreshAsync();
-            CommentList = CommentDataViewModel.DataList;
             await MentionDataViewModel.RefreshAsync();
+            CommentList = CommentDataViewModel.DataList;
             MentionList = MentionDataViewModel.DataList;
             IsRefreshing = false;
         }
