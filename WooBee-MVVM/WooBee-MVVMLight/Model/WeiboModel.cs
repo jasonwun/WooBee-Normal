@@ -58,17 +58,27 @@ namespace WooBee_MVVM.Model
         public Weibo RepostWeibo { set; get; }
 
         [DataMember(Name = "thumbnail_pic")]
-        public string ThumbnailPic { set; get; }
+        public string ThumbnailPic { get; set; }
 
         [DataMember(Name = "pic_urls")]
         public ObservableCollection<ThumbnailPics> PicUrls { set; get; }
+
+        [IgnoreDataMember]
+        public string HighResThumnailPic
+        {
+            get
+            {
+                string HighRes = ThumbnailPic.Replace("thumbnail", "mw690");
+                return HighRes;
+            }
+        }
     }
 
     [DataContract]
     public class ThumbnailPics
     {
         [DataMember(Name = "thumbnail_pic")]
-        public string Thumbpic { set; get; }
+        public string Thumbpic { get; set; }
 
         [IgnoreDataMember]
         public double ImgSize
@@ -77,6 +87,16 @@ namespace WooBee_MVVM.Model
             {
                 ScalingHelper scalingHelper = new ScalingHelper();
                 return scalingHelper.SetTimeLineMultiImgsSize();
+            }
+        }
+
+        [IgnoreDataMember]
+        public string HighResThumPic
+        {
+            get
+            {
+                string HighRes = Thumbpic.Replace("thumbnail", "mw690");
+                return HighRes;
             }
         }
     }

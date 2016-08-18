@@ -54,6 +54,22 @@ namespace WooBee_MVVMLight
                 localSettings.Values["WeicoAccessToken"] = value;
             }
         }
+        public static string Uid
+        {
+            get
+            {
+                var localSettings = ApplicationData.Current.LocalSettings;
+                if (localSettings.Values["Uid"] == null)
+                    return "";
+                else
+                    return localSettings.Values["Uid"].ToString();
+            }
+            set
+            {
+                var localSettings = ApplicationData.Current.LocalSettings;
+                localSettings.Values["Uid"] = value;
+            }
+        }
         public static string AppKey = "839927271";
         public static string AppSecret = "d9a2ae8a01ef87772897bcf0c32ea575";
         public static AppSettings AppSettings

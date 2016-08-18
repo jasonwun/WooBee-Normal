@@ -18,7 +18,7 @@
                    Text="正常登录"
                    HorizontalAlignment="Center" 
                    Grid.Row="1" 
-                   Grid.RowSpan="3" Margin="150,0"/>
+                   Grid.RowSpan="3"/>
         <Button x:Name="NormalLoginButton"
                 Content="登陆"
                 HorizontalAlignment="Center"
@@ -31,8 +31,7 @@
         <TextBlock x:Name="BlackMagicLogin" 
                    Text="拓展登陆"
                    HorizontalAlignment="Center"
-                   Grid.Row="2" 
-                   Margin="150,0" 
+                   Grid.Row="2"
                    Grid.RowSpan="2"/>
         <Button x:Name="BlackMagicLoginButton"
                 Content="登陆"

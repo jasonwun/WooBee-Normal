@@ -71,7 +71,7 @@ namespace WooBee_MVVMLight.ViewModel
                 if (_goToUserViewCommand != null) return _goToUserViewCommand;
                 return _goToUserViewCommand = new RelayCommand(() =>
                 {
-                    NavigationService.NaivgateToPage(typeof(UserView));
+                    NavigationService.NaivgateToPage(typeof(UserView),App.Uid);
                 });
             }
         }

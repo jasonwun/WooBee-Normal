@@ -22,19 +22,19 @@ namespace WooBee_MVVMLight
     /// </summary>
     public sealed partial class UserView : BindablePage
     {
-        private string ID = "1404376560";
+        private string ID;
         public UserViewModel UserVM { get; set; }
         public UserView()
         {
             this.InitializeComponent();
-            DataContext = UserVM = new UserViewModel(ID);
-
         }
 
-        //protected override void OnNavigatedTo(NavigationEventArgs e)
-        //{
-        //    ID = e.Parameter.ToString();
-        //    base.OnNavigatedTo(e);
-        //}
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            
+            ID = e.Parameter.ToString();
+            DataContext = UserVM = new UserViewModel(ID);
+            base.OnNavigatedTo(e);
+        }
     }
 }

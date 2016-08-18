@@ -104,7 +104,9 @@ namespace WooBee_MVVMLight.View
                 string responseString = await response.Content.ReadAsStringAsync();
                 JsonObject token = JsonObject.Parse(responseString);
                 AccessToken = token.GetNamedString("access_token").ToString();
+                string Uid = token.GetNamedString("uid").ToString();
                 App.AccessToken = AccessToken;
+                App.Uid = Uid;
                 Frame.GoBack();
 
             }

@@ -187,8 +187,8 @@ namespace WooBee_MVVMLight
             string Uri = API.USER_SHOW;
             Uri += "?access_token=";
             Uri += App.WeicoAccessToken;
-            Uri += "&screen_name=";
-            Uri += "喵星人的喵星球";
+            Uri += "&uid=";
+            Uri += ID;
 
             HttpClient httpclient = new HttpClient();
             HttpResponseMessage response = new HttpResponseMessage();
@@ -208,7 +208,5 @@ namespace WooBee_MVVMLight
             FollowingList = new ObservableCollection<User>();
             FollowerList = new ObservableCollection<User>();
         }
-
-
     }
 }
