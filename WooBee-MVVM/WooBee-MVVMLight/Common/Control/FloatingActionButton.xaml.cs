@@ -6,7 +6,9 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Composition;
+using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -28,8 +30,29 @@ namespace WooBee_MVVMLight
         {
             get
             {
-                return this.DataContext as TimeLineViewModel;
+                TimeLineViewModel TimeLineVM = this.DataContext as TimeLineViewModel;
+
+                if (TimeLineVM != null)
+                {
+                    TimeLineVM.NotificationShowAync += MainVM_NotificationShowAync;
+                    TimeLineVM.MessageDisable += TimeLineVM_MessageDisable;
+                    TimeLineVM.FollowerDisable += TimeLineVM_FollowerDisable;
+                }
+                    
+                return TimeLineVM;
             }
+        }
+
+        private void TimeLineVM_FollowerDisable()
+        {
+            UserButton.Content = UserSymbol;
+            UserButton.Background = new SolidColorBrush(Colors.Black);
+        }
+
+        private void TimeLineVM_MessageDisable()
+        {
+            MessageButton.Content = MessageSymbol;
+            MessageButton.Background = new SolidColorBrush(Colors.Black);
         }
 
         public FloatingActionButton()
@@ -39,10 +62,39 @@ namespace WooBee_MVVMLight
             _popUp = ElementCompositionPreview.GetElementVisual(PopUp);
         }
 
+        private void MainVM_NotificationShowAync()
+        {
+            if (MainVM.Notification.Noti_Total != "0")
+            {
+                TextBlock textBlock = new TextBlock();
+                textBlock.Text = MainVM.Notification.Noti_Total;
+                textBlock.FontWeight = FontWeights.Bold;
+                FloatingButton.Content = textBlock;
+                FloatingButton.Background = new SolidColorBrush(Colors.Yellow);
+            }
+            else if(MainVM.Notification.Noti_Total == "0")
+            {
+                FloatingButton.Content = SymbolIcons;
+                FloatingButton.Foreground = new SolidColorBrush(Colors.White);
+                FloatingButton.Background = new SolidColorBrush(Colors.Black);
+            }
+
+        }
+
         private async void FloatingButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (!IsOpened)
             {
+                if(MainVM.Notification != null && MainVM.Notification.Follower != 0)
+                {
+                    UserNotificationShow();
+                }
+                if(MainVM.Notification != null && (MainVM.Notification.Cmt + MainVM.Notification.Mention_status) != 0)
+                {
+                    MessageNotificationShow();
+                }
+                FloatingButton.Content = SymbolIcons;
+                FloatingButton.Background = new SolidColorBrush(Colors.Black);
                 PopUp.Visibility = Visibility.Visible;
                 ScalarKeyFrameAnimation opacityAnim = PopUpOpacityShowUpAnimation();
                 ScalarKeyFrameAnimation offsetAnim = PopUpOffsetShowUpAnimation();
@@ -56,6 +108,14 @@ namespace WooBee_MVVMLight
 
             else
             {
+                if (MainVM.Notification != null && MainVM.Notification.Noti_Total != "0")
+                {
+                    TextBlock textBlock = new TextBlock();
+                    textBlock.Text = MainVM.Notification.Noti_Total;
+                    textBlock.FontWeight = FontWeights.Bold;
+                    FloatingButton.Content = textBlock;
+                    FloatingButton.Background = new SolidColorBrush(Colors.Yellow);
+                }
                 ScalarKeyFrameAnimation offsetAnim = PopUpOffsetDisableAnimation();
                 ScalarKeyFrameAnimation opacityAnim = PopUpOpacityDisableAnimation();
 
@@ -70,6 +130,24 @@ namespace WooBee_MVVMLight
                 PopUp.Visibility = Visibility.Collapsed;
             }
 
+        }
+
+        private void MessageNotificationShow()
+        {
+            TextBlock textBlock = new TextBlock();
+            textBlock.Text = MainVM.Notification.GetMessage;
+            textBlock.FontWeight = FontWeights.Bold;
+            MessageButton.Content = textBlock;
+            MessageButton.Background = new SolidColorBrush(Colors.Yellow);
+        }
+
+        private void UserNotificationShow()
+        {
+            TextBlock textBlock = new TextBlock();
+            textBlock.Text = MainVM.Notification.GetFollower;
+            textBlock.FontWeight = FontWeights.Bold;
+            UserButton.Content = textBlock;
+            UserButton.Background = new SolidColorBrush(Colors.Yellow);
         }
 
         #region PopUpAnimation

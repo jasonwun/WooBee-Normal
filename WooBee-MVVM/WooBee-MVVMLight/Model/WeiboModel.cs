@@ -69,10 +69,18 @@ namespace WooBee_MVVM.Model
         {
             get
             {
-                string HighRes = ThumbnailPic.Replace("thumbnail", "mw690");
-                BitmapImage a = new BitmapImage(new Uri(HighRes));
-                a.AutoPlay = false;
-                return a;
+                if(ThumbnailPic != null)
+                {
+                    string HighRes = ThumbnailPic.Replace("thumbnail", "mw690");
+                    BitmapImage a = new BitmapImage(new Uri(HighRes));
+                    a.AutoPlay = false;
+                    return a;
+                }
+                else
+                {
+                    return new BitmapImage();
+                }
+                
             }
         }
 
@@ -81,7 +89,8 @@ namespace WooBee_MVVM.Model
         {
             get
             {
-                if (ThumbnailPic.Substring(ThumbnailPic.Length - 3) == "gif")
+                
+                if ( ThumbnailPic != null && ThumbnailPic.Substring(ThumbnailPic.Length - 3) == "gif")
                     return true;
                 else
                     return false;
@@ -106,12 +115,14 @@ namespace WooBee_MVVM.Model
         }
 
         [IgnoreDataMember]
-        public string HighResThumPic
+        public BitmapImage HighResThumPic
         {
             get
             {
                 string HighRes = Thumbpic.Replace("thumbnail", "mw690");
-                return HighRes;
+                BitmapImage a = new BitmapImage(new Uri(HighRes));
+                a.AutoPlay = false;
+                return a;
             }
         }
 
@@ -126,6 +137,7 @@ namespace WooBee_MVVM.Model
                     return false;
             }
         }
+
     }
 
     

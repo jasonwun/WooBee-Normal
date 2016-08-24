@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WooBee_MVVM.Model;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -22,7 +23,8 @@ namespace WooBee_MVVMLight
     /// </summary>
     public sealed partial class UserView : BindablePage
     {
-        private string ID;
+        private string param;
+        private string type;
         public UserViewModel UserVM { get; set; }
         public UserView()
         {
@@ -31,9 +33,10 @@ namespace WooBee_MVVMLight
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            
-            ID = e.Parameter.ToString();
-            DataContext = UserVM = new UserViewModel(ID);
+            NavigationParameter navi = e.Parameter as NavigationParameter;
+            param = navi.PostParameter;
+            type = navi.PostType;
+            DataContext = UserVM = new UserViewModel(param,type);
             base.OnNavigatedTo(e);
         }
     }

@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WooBee_MVVM.Model;
+using WooBee_MVVMLight.Common;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,6 +26,7 @@ namespace WooBee_MVVMLight
     public sealed partial class WeiboDetailView : BindablePage
     {
         public WeiboDetailViewModel WeiboDV { get; set; }
+        private Weibo weibo { get; set; }
         public WeiboDetailView()
         {
             this.InitializeComponent();
@@ -44,9 +46,30 @@ namespace WooBee_MVVMLight
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            //TODO: 区别评论微博和回复评论
             Weibo _weibo = e.Parameter as Weibo;
             WeiboDV.Weibo = _weibo;
+            weibo = _weibo;
             base.OnNavigatedTo(e);
+        }
+
+        private void replyButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Comment comment = (Comment)(sender as Button).DataContext;
+            PostWeiboNaviParamContainer postcontainer = new PostWeiboNaviParamContainer();
+            postcontainer.PostType = "replycomment";
+            postcontainer.WeiboID = comment.ID;
+            postcontainer.CommentID = comment.Status.ID;
+            NavigationService.NaivgateToPage(typeof(NewPostView), postcontainer);
+        }
+
+        private void ReShareButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Weibo weibo = (Weibo)(sender as Button).DataContext;
+            PostWeiboNaviParamContainer postcontainer = new PostWeiboNaviParamContainer();
+            postcontainer.PostType = "replyrepost";
+            postcontainer.WeiboID = weibo.ID;
+            NavigationService.NaivgateToPage(typeof(NewPostView), postcontainer);
         }
     }
 }

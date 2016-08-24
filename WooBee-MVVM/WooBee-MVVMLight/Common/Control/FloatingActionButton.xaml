@@ -11,9 +11,9 @@
 
     <Grid>
         <ListBox x:Name="PopUp" 
-                  Width="50"
-                  Background="Black"
-                  Visibility="Collapsed">
+                 Width="50"
+                 Background="Black"
+                 Visibility="Collapsed">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -21,16 +21,18 @@
                 </Style>
             </ListBox.ItemContainerStyle>
             <ListBoxItem x:Name="User"  
-                          Height="50"
-                          Width="50"
-                          HorizontalAlignment="Center"
-                          HorizontalContentAlignment="Center">
-                <Button Height="50"
+                         Height="50"
+                         Width="50"
+                         HorizontalAlignment="Center"
+                         HorizontalContentAlignment="Center">
+                <Button x:Name="UserButton"
+                        Height="50"
                         Width="50"
                         HorizontalAlignment="Center"
                         Command="{x:Bind MainVM.GoToUserViewCommand}">
-                    <SymbolIcon Symbol="People"
-                            Foreground="White"/>
+                    <SymbolIcon x:Name="UserSymbol" 
+                                Symbol="People"
+                                Foreground="White"/>
                 </Button>
             </ListBoxItem>
             <ListBoxItem x:Name="Setting" 
@@ -52,14 +54,16 @@
             </ListBoxItem>
             <ListBoxItem x:Name="Message"
                          Height="50"
-                          Width="50"
-                          HorizontalAlignment="Center"
-                          HorizontalContentAlignment="Center">
-                <Button Height="50"
+                         Width="50"
+                         HorizontalAlignment="Center"
+                         HorizontalContentAlignment="Center">
+                <Button x:Name="MessageButton" 
+                    Height="50"
                         Width="50"
                         HorizontalAlignment="Center"
                         Command="{x:Bind MainVM.GoToMessageViewCommand}">
-                    <SymbolIcon Symbol="Message"
+                    <SymbolIcon x:Name="MessageSymbol"
+                                Symbol="Message"
                                 Foreground="White"
                                 Height="50"
                                 Width="50"
@@ -68,10 +72,10 @@
                 </Button>
             </ListBoxItem>
             <ListBoxItem x:Name="Write" 
-                          Height="50"
+                         Height="50"
                          Width="50"
-                          HorizontalAlignment="Center"
-                          HorizontalContentAlignment="Center">
+                         HorizontalAlignment="Center"
+                         HorizontalContentAlignment="Center">
                 <Button Height="50"
                         Width="50"
                         HorizontalAlignment="Center"
@@ -85,14 +89,14 @@
                 </Button>
             </ListBoxItem>
             <ListBoxItem x:Name="Refresh" 
-                          Height="50"
-                          HorizontalAlignment="Center"
-                          HorizontalContentAlignment="Center" Width="50">
+                         Height="50"
+                         HorizontalAlignment="Center"
+                         HorizontalContentAlignment="Center" Width="50">
                 <Button Height="50"
                         Width="50"
                         HorizontalAlignment="Center">
                     <SymbolIcon Symbol="Refresh"
-                            Foreground="White"
+                                Foreground="White"
                                 Height="50"
                                 Width="50"
                                 HorizontalAlignment="Center"
@@ -109,7 +113,8 @@
                 Tapped="FloatingButton_Tapped"
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center">
-            <SymbolIcon Symbol="More"
+            <SymbolIcon x:Name="SymbolIcons"
+                        Symbol="More"
                         Foreground="White"
                         Height="50"
                         Width="50"

@@ -22,5 +22,10 @@ namespace WooBee_MVVMLight.Common
         {
             RootFrame.Navigate(pagetype, param);
         }
+
+        public static void GoBack()
+        {
+            RootFrame.GoBack();
+        }
     }
 }

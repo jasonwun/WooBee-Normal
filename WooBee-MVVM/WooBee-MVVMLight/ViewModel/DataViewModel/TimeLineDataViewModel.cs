@@ -28,6 +28,8 @@ namespace WooBee_MVVMLight
                 Uri += App.WeicoAccessToken;
                 Uri += "&page=";
                 Uri += pageIndex.ToString();
+                Uri += "&since_id=";
+                Uri += App.Since_id.ToString();
                 HttpClient httpclient = new HttpClient();
                 HttpResponseMessage response = new HttpResponseMessage();
                 response = await httpclient.GetAsync(new Uri(Uri, UriKind.Absolute));

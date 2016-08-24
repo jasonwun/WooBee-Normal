@@ -35,6 +35,9 @@ namespace WooBee_MVVMLight
         private static Dictionary<string, string> _reverseEmojiDict = new Dictionary<string, string>();
         private bool _isEmojiActivated = false;
         private bool _isInputPanelActivated = false;
+        private string posttype = "";
+        private string WeiboID = "";
+        private string CommentID = "";
         #endregion
 
         #region Method
@@ -170,16 +173,46 @@ namespace WooBee_MVVMLight
 
         #endregion
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var qwe = e.Parameter as PostWeiboNaviParamContainer;
+            if(qwe.PostType == "post")
+            {
+                posttype = "post";
+            }
+            else if(qwe.PostType == "comment")
+            {
+                posttype = "comment";
+                WeiboID = qwe.WeiboID;
+            }
+            else if(qwe.PostType == "repost")
+            {
+                posttype = "repost";
+                WeiboID = qwe.WeiboID;
+            }
+            else if(qwe.PostType == "replycomment")
+            {
+                posttype = "replycomment";
+                WeiboID = qwe.WeiboID;
+                CommentID = qwe.CommentID;
+            }
+            else if(qwe.PostType == "replyrepost")
+            {
+                posttype = "replyrepost";
+                WeiboID = qwe.WeiboID;
+            }
+            DataContext = NewPostVM = new NewPostViewModel(posttype, WeiboID, CommentID);
+            NewPostVM.NewPhotosInserted += NewPostVM_NewPhotosInserted;
+        }
 
         public NewPostView()
         {
             this.InitializeComponent();
             DisableStatusBar();
-            DataContext = NewPostVM = new NewPostViewModel();
             ReverseDict(App.emojiDict);
             inputPane.Showing += this.InputPaneShowing;
             inputPane.Hiding += this.InputPaneHiding;
-            NewPostVM.NewPhotosInserted += NewPostVM_NewPhotosInserted;
+            
         }
 
         //TODO: 重新整理表情页面跟键盘之间的显示消失的逻辑

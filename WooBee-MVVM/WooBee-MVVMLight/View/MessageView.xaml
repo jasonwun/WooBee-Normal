@@ -221,30 +221,35 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0*"/>
-                        <ColumnDefinition Width="45*"/>
+                        <ColumnDefinition Width="60*"/>
                         <ColumnDefinition Width="313*"/>
                     </Grid.ColumnDefinitions>
 
                     <TextBlock x:Name="AvartarImage"
                                Text="评论"
-                               Padding="7,0,0,0"
                                Height="auto"
                                Width="45"
                                FontSize="40"
-                               
+                               Margin="5,0,5,0"
                                FontFamily="Microsoft YaHei UI"
                                TextWrapping="Wrap"
-                               Grid.ColumnSpan="2" 
-                               Margin="0,0,0,0" 
-                               Grid.Row="1" 
+                               Grid.ColumnSpan="2"
+                               Grid.Row="1"
                                VerticalAlignment="Stretch"
-                               HorizontalAlignment="Stretch" FontWeight="Bold"/>
-                    <ListView x:Name="CommentList" 
-                              Margin="0,0,0,0" 
+                               HorizontalAlignment="Center"
+                               FontWeight="Bold"/>
+                    <ListView x:Name="CommentList"
                               Grid.Column="2"
                               Grid.RowSpan="2"
                               ItemTemplateSelector="{StaticResource MyCommentDataTemplateSelector}"
-                              ItemsSource="{x:Bind MessageVm.CommentList, Mode=OneWay}"/>
+                              ItemsSource="{x:Bind MessageVm.CommentList, Mode=OneWay}">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                <Setter Property="Padding" Value="0"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
                 </Grid>
             </FlipViewItem>
             <FlipViewItem Background="#FFF1F1F4">
@@ -255,30 +260,36 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0*"/>
-                        <ColumnDefinition Width="45*"/>
+                        <ColumnDefinition Width="60*"/>
                         <ColumnDefinition Width="313*"/>
                     </Grid.ColumnDefinitions>
 
                     <TextBlock x:Name="RepostTitle"
                                Text="转发"
-                               Padding="7,0,0,0"
                                Height="auto"
                                Width="45"
-                               FontSize="30"
+                               FontSize="40"
+                               Margin="5,0,5,0"
+                               FontFamily="Microsoft YaHei UI"
                                TextWrapping="Wrap"
-                               Grid.ColumnSpan="2" 
-                               Margin="0,0,0,0" 
-                               Grid.Row="1" 
+                               Grid.ColumnSpan="2"
+                               Grid.Row="1"
                                VerticalAlignment="Stretch"
-                               HorizontalAlignment="Stretch" 
-                               FontWeight="Bold" 
-                               FontFamily="Microsoft YaHei UI"/>
+                               HorizontalAlignment="Center"
+                               FontWeight="Bold"/>
                     <ListView x:Name="RepostList" 
                               Margin="0,0,0,0" 
                               Grid.Column="2"
                               Grid.RowSpan="2"
                               ItemTemplate="{StaticResource MentionsToMe}"
-                              ItemsSource="{x:Bind MessageVm.MentionList, Mode=OneWay}"/>
+                              ItemsSource="{x:Bind MessageVm.MentionList, Mode=OneWay}">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                <Setter Property="Padding" Value="0"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
                 </Grid>
             </FlipViewItem>
         </FlipView>

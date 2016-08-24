@@ -81,6 +81,9 @@ namespace WooBee_MVVMLight
         }
         public static ObservableCollection<BitmapImage> _EmoticonSource = new ObservableCollection<BitmapImage>();
         public static StorageFile Photofile { get; set; }
+        public static int Since_id = 0;
+        public static double _scrollViewerVerticalOffset = 0;
+        public static bool IsRefresh = true;
         #region EmojiDict
         public static readonly Dictionary<string, string> emojiDict = new Dictionary<string, string>
     {

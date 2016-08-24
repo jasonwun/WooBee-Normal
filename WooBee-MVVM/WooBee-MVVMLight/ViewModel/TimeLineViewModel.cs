@@ -9,6 +9,10 @@ using WooBee_MVVM.Model;
 using System.ComponentModel;
 using GalaSoft.MvvmLight.Command;
 using WooBee_MVVMLight.Common;
+using Windows.Web.Http;
+using Newtonsoft.Json;
+using System.Diagnostics;
+using Windows.Web.Http.Filters;
 
 namespace WooBee_MVVMLight.ViewModel
 {
@@ -69,9 +73,14 @@ namespace WooBee_MVVMLight.ViewModel
             get
             {
                 if (_goToUserViewCommand != null) return _goToUserViewCommand;
-                return _goToUserViewCommand = new RelayCommand(() =>
+                return _goToUserViewCommand = new RelayCommand(async () =>
                 {
-                    NavigationService.NaivgateToPage(typeof(UserView),App.Uid);
+                    if (Notification.Follower != 0)
+                    {
+                        await ResetNotification("follower");
+                    }
+                    NavigationParameter navip = new NavigationParameter(App.Uid, "uid");
+                    NavigationService.NaivgateToPage(typeof(UserView), navip);
                 });
             }
         }
@@ -82,8 +91,13 @@ namespace WooBee_MVVMLight.ViewModel
             get
             {
                 if (_goToMessageViewCommand != null) return _goToMessageViewCommand;
-                return _goToMessageViewCommand = new RelayCommand(() =>
+                return _goToMessageViewCommand = new RelayCommand(async () =>
                 {
+                    if ((Notification.Cmt + Notification.Mention_status) != 0)
+                    {
+                        await ResetNotification("cmt");
+                        await ResetNotification("mention_status");
+                    }
                     NavigationService.NaivgateToPage(typeof(MessageView));
                 });
             }
@@ -99,6 +113,21 @@ namespace WooBee_MVVMLight.ViewModel
                 {
                     NavigationService.NaivgateToPage(typeof(NewPostView));
                 });
+            }
+        }
+
+        private NotificationModel _notification;
+        public NotificationModel Notification
+        {
+            get
+            {
+                return _notification;
+            }
+            set
+            {
+                if (_notification != value)
+                    _notification = value;
+                RaisePropertyChanged(() => Notification);
             }
         }
 
@@ -135,7 +164,88 @@ namespace WooBee_MVVMLight.ViewModel
 
         }
 
-        
+        public async void Refresh()
+        {
+            App.Since_id++;
+            await RefreshAsync();
+        }
+
+        public async Task RefreshNotification()
+        {
+            try
+            {
+                await Task.Delay(1000);
+                string Uri = API.REMIND_UNREAD_COUNT;
+                Uri += "?source=211160679";
+                Uri += "&access_token=";
+                Uri += App.WeicoAccessToken;
+                Uri += "&uid=";
+                Uri += App.Uid.ToString();
+                Uri += "&a=";
+                Uri += new Random().Next().ToString();
+                var httpclient = new HttpClient();
+                HttpResponseMessage response = new HttpResponseMessage();
+                response = await httpclient.GetAsync(new Uri(Uri, UriKind.Absolute));
+                if (response.IsSuccessStatusCode)
+                {
+                    string strResponse = response.Content.ToString();
+                    NotificationModel _NotifiModel = JsonConvert.DeserializeObject<NotificationModel>(strResponse);
+                    Notification = _NotifiModel;
+                    NotificationShowAync?.Invoke();
+                }
+                else
+                {
+                    throw new Exception();
+                }
+                httpclient.Dispose();
+            }
+            catch
+            {
+                Notification = new NotificationModel();
+            }
+        }
+
+        public async Task ResetNotification(string type)
+        {
+            try
+            {
+                string posturi = API.REMIND_UNREAD_SET_COUNT;
+                
+                HttpClient httpClient = new HttpClient();
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri(posturi));
+                HttpFormUrlEncodedContent postData = new HttpFormUrlEncodedContent(
+                    new List<KeyValuePair<string, string>>
+                    {
+                        new KeyValuePair<string, string>("source", "211160679"),
+                        new KeyValuePair<string, string>("access_token", App.WeicoAccessToken),
+                        new KeyValuePair<string, string>("type", type)
+
+                    }
+                );
+                request.Content = postData;
+                HttpResponseMessage response = await httpClient.SendRequestAsync(request);
+                if (response.IsSuccessStatusCode)
+                {
+                    if(type == "cmt" || type == "mention_status")
+                    {
+                        MessageDisable?.Invoke();
+                    }
+                    else if(type == "follower")
+                    {
+                        FollowerDisable?.Invoke();
+                    }
+                }
+                
+            }
+            catch
+            {
+            }
+        }
+
+        public event Action NotificationShowAync;
+        public event Action FollowerDisable;
+        public event Action MessageDisable;
+
         private bool IsRefreshing;
         public bool IsFirstActived { get; set; } = true;
     }

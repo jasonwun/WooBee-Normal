@@ -115,11 +115,16 @@
     <Compile Include="Common\Control\FloatingActionButton.xaml.cs">
       <DependentUpon>FloatingActionButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\Extensions.cs" />
     <Compile Include="Model\RepostModel.cs" />
     <Compile Include="Common\ScalingHelper.cs" />
     <Compile Include="Common\Converter\RichTextBlockConvertor.cs" />
     <Compile Include="Common\Control\NewPostImageHint.xaml.cs">
       <DependentUpon>NewPostImageHint.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\NavigationParameter.cs" />
+    <Compile Include="View\PhotoPage.xaml.cs">
+      <DependentUpon>PhotoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\DataViewModel\UserFollowerDataViewModel.cs" />
     <Compile Include="ViewModel\DataViewModel\UserFollowingDataViewModel.cs" />
@@ -405,6 +410,7 @@
     <Content Include="Assets\Icons\female-icon.png" />
     <Content Include="Assets\Icons\Images.png" />
     <Content Include="Assets\Icons\male-icon.jpg" />
+    <Content Include="Assets\Icons\Message-Add.png" />
     <Content Include="Assets\Icons\Previous.png" />
     <Content Include="Assets\Icons\Uploadphoto.png" />
     <Content Include="Assets\SplashScreen.scale-100.jpg" />
@@ -464,6 +470,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Common\Control\NewPostImageHint.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PhotoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

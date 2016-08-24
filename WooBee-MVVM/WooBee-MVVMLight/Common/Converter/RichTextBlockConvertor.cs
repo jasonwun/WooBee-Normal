@@ -45,7 +45,7 @@ namespace WooBee_MVVMLight
 
                 Regex urlRx = new Regex("http(s)?://([a-zA-Z|\\d]+\\.)+[a-zA-Z|\\d]+(/[a-zA-Z|\\d|\\-|\\+|_./?%=]*)?", RegexOptions.IgnoreCase);
                 Regex hashtagRx = new Regex(@"#[^#]+#");
-                Regex usernameRx = new Regex(@"@[^,，：:\s@]+");
+                Regex usernameRx = new Regex(@"(\@)+((\w+-\w+)|(\w+))");
                 MatchCollection matches = urlRx.Matches(value);
                 MatchCollection hastagmc = hashtagRx.Matches(value);
                 MatchCollection usermc = usernameRx.Matches(value);

@@ -12,11 +12,13 @@ namespace WooBee_MVVMLight
 {
     public class UserWeiboDataViewModel : DataViewModelBase<Weibo>
     {
-        private string iD;
+        private string param;
+        private string posttype;
 
-        public UserWeiboDataViewModel(string iD)
+        public UserWeiboDataViewModel(string Param, string PostType)
         {
-            this.iD = iD;
+            param = Param;
+            posttype = PostType;
         }
 
         protected override void ClickItem(Weibo item)
@@ -31,9 +33,11 @@ namespace WooBee_MVVMLight
                 string Uri = API.USER_TIMELINE;
                 Uri += "?access_token=";
                 Uri += App.WeicoAccessToken;
-                Uri += "&s=ab230784&source=211160679&c=weicoandroid";
-                Uri += "&screen_name=";
-                Uri += iD;
+                if (posttype == "uid")
+                    Uri += "&uid=";
+                else if (posttype == "screen_name")
+                    Uri += "&screen_name=";
+                Uri += param;
                 //Uri += "&gsid=_2A256selmDeTxGedO41AY9CjKyT2IHXVX53uurDV6PUJbjdANLUvekWpFzGTIoZzbkdNPhNil6IFvjFXIcw..";
                 HttpClient httpclient = new HttpClient();
                 HttpResponseMessage response = new HttpResponseMessage();

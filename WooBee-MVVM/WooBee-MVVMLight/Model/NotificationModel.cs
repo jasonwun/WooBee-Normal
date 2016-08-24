@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 
 namespace WooBee_MVVM.Model
 {
@@ -30,5 +31,32 @@ namespace WooBee_MVVM.Model
 
         [DataMember(Name = "notice")]
         public int Notice { set; get; }
+
+        [IgnoreDataMember]
+        public string Noti_Total
+        {
+            get
+            {
+                return (Follower + Cmt + Mention_status).ToString();
+            }
+        }
+
+        [IgnoreDataMember]
+        public string GetFollower
+        {
+            get
+            {
+                return Follower.ToString();
+            }
+        }
+
+        [IgnoreDataMember]
+        public string GetMessage
+        {
+            get
+            {
+                return (Cmt + Mention_status).ToString();
+            }
+        }
     }
 }

@@ -50,7 +50,7 @@
 
         <TextBlock x:Name="headerTextBlock" 
                    TextWrapping="NoWrap" 
-                   Text="新微博" 
+                   Text="{x:Bind NewPostVM.PostType, Mode=OneWay}" 
                    VerticalAlignment="Top" 
                    FontFamily="Microsoft YaHei UI Light" 
                    Grid.Column="1" 

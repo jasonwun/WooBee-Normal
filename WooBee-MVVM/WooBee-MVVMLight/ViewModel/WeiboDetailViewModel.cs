@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WooBee_MVVM.Model;
+using WooBee_MVVMLight.Common;
 
 namespace WooBee_MVVMLight
 {
@@ -76,6 +78,51 @@ namespace WooBee_MVVMLight
                     _commentList = value;
                     RaisePropertyChanged(() => CommentList);
                 }
+            }
+        }
+
+        private RelayCommand _commentCommand;
+        public RelayCommand CommentCommand
+        {
+            get
+            {
+                if (_commentCommand != null) return _commentCommand;
+                return _commentCommand = new RelayCommand(() =>
+                {
+                    PostWeiboNaviParamContainer postNaviContainer = new PostWeiboNaviParamContainer();
+                    postNaviContainer.PostType = "comment";
+                    postNaviContainer.WeiboID = Weibo.ID;
+                    NavigationService.NaivgateToPage(typeof(NewPostView), postNaviContainer);
+                });
+            }
+        }
+
+        private RelayCommand _repostCommand;
+        public RelayCommand RepostCommand
+        {
+            get
+            {
+                if (_repostCommand != null) return _repostCommand;
+                return _repostCommand = new RelayCommand(() =>
+                {
+                    PostWeiboNaviParamContainer postNaviContainer = new PostWeiboNaviParamContainer();
+                    postNaviContainer.PostType = "repost";
+                    postNaviContainer.WeiboID = Weibo.ID;
+                    NavigationService.NaivgateToPage(typeof(NewPostView), postNaviContainer);
+                });
+            }
+        }
+
+        private RelayCommand _likeCommand;
+        public RelayCommand LikeCommand
+        {
+            get
+            {
+                if (_likeCommand != null) return _likeCommand;
+                return _likeCommand = new RelayCommand(() =>
+                {
+                    //TODO
+                });
             }
         }
 

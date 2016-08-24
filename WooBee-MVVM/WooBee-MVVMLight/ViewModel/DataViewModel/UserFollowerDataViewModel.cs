@@ -12,11 +12,13 @@ namespace WooBee_MVVMLight
 {
     public class UserFollowerDataViewModel:DataViewModelBase<User>
     {
-        private string iD;
+        private string param;
+        private string posttype;
 
-        public UserFollowerDataViewModel(string iD)
+        public UserFollowerDataViewModel(string Param, string PostType)
         {
-            this.iD = iD;
+            param = Param;
+            posttype = PostType;
         }
 
         protected override void ClickItem(User item)
@@ -31,8 +33,11 @@ namespace WooBee_MVVMLight
                 string Uri = API.FRIENDSHIPS_FOLLOWERS;
                 Uri += "?access_token=";
                 Uri += App.WeicoAccessToken;
-                Uri += "&screen_name=";
-                Uri += iD;
+                if (posttype == "uid")
+                    Uri += "&uid=";
+                else if (posttype == "screen_name")
+                    Uri += "&screen_name=";
+                Uri += param;
                 HttpClient httpclient = new HttpClient();
                 HttpResponseMessage response = new HttpResponseMessage();
                 response = await httpclient.GetAsync(new Uri(Uri, UriKind.Absolute));

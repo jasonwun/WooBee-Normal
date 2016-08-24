@@ -120,20 +120,21 @@ namespace WooBee_MVVMLight
             }
         }
 
-        private string _iD;
-        public string ID
+        private string _param;
+        public string Param
         {
             get
             {
-                return _iD;
+                return _param;
             }
             set
             {
-                if (_iD != value)
-                    _iD = value;
-                RaisePropertyChanged(() => ID);
+                if (_param != value)
+                    _param = value;
+                RaisePropertyChanged(() => Param);
             }
         }
+
 
         public double ButtonWidth
         {
@@ -170,7 +171,7 @@ namespace WooBee_MVVMLight
             await UserFollowerDataViewModel.RefreshAsync();
             await UserFollowingDataViewModel.RefreshAsync();
             await UserWeiboDataViewModel.RefreshAsync();
-            UserProfile = await GetUserProfile(ID);
+            UserProfile = await GetUserProfile(Param, posttype);
             FollowerList = UserFollowerDataViewModel.DataList;
             FollowingList = UserFollowingDataViewModel.DataList;
             WeiboList = UserWeiboDataViewModel.DataList;
@@ -181,14 +182,18 @@ namespace WooBee_MVVMLight
 
         private bool IsRefreshing;
         public bool IsFirstActived { get; set; } = true;
+        private string posttype { get; set; }
 
-        private static async Task<User> GetUserProfile(string ID)
+        private static async Task<User> GetUserProfile(string param, string posttype)
         {
             string Uri = API.USER_SHOW;
             Uri += "?access_token=";
             Uri += App.WeicoAccessToken;
-            Uri += "&screen_name=";
-            Uri += ID;
+            if (posttype == "uid")
+                Uri += "&uid=";
+            else if (posttype == "screen_name")
+                Uri += "&screen_name=";
+            Uri += param;
 
             HttpClient httpclient = new HttpClient();
             HttpResponseMessage response = new HttpResponseMessage();
@@ -198,12 +203,13 @@ namespace WooBee_MVVMLight
             return _userprofiles;
         }
 
-        public UserViewModel(string iD)
+        public UserViewModel(string param, string type)
         {
-            ID = iD;
-            UserWeiboDataViewModel = new UserWeiboDataViewModel(ID);
-            UserFollowerDataViewModel = new UserFollowerDataViewModel(ID);
-            UserFollowingDataViewModel = new UserFollowingDataViewModel(ID);
+            Param = param;
+            posttype = type;
+            UserWeiboDataViewModel = new UserWeiboDataViewModel(Param, posttype);
+            UserFollowerDataViewModel = new UserFollowerDataViewModel(Param, posttype);
+            UserFollowingDataViewModel = new UserFollowingDataViewModel(Param, posttype);
             WeiboList = new ObservableCollection<Weibo>();
             FollowingList = new ObservableCollection<User>();
             FollowerList = new ObservableCollection<User>();

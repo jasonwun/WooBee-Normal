@@ -24,7 +24,7 @@ namespace WooBee_MVVMLight
             {
                 double ScreenWidthRawPixels = GetWidth();
                 double rawPixelsPerViewPixel = displayInformation.RawPixelsPerViewPixel;
-                double ImgSizeRawPixels = Math.Floor(ScreenWidthRawPixels * 0.26661);
+                double ImgSizeRawPixels = ScreenWidthRawPixels * 0.254000;
                 double ImgSizeViewPixels = ImgSizeRawPixels / rawPixelsPerViewPixel;
                 return ImgSizeViewPixels;
             }
