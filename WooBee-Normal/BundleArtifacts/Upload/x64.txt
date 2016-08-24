@@ -1,1 +1,0 @@
-MainPackage=C:\Users\yinju\Source\Repos\WooBee-Normal\WooBee-Normal\bin\x64\Release\Upload\WooBee-Normal_2016.5.9.0_x64.appx
