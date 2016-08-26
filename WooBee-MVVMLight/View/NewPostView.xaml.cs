@@ -54,6 +54,7 @@ namespace WooBee_MVVMLight
         private void EmojiPanelShowing()
         {
             ButtonsPanel.Margin = new Thickness(0, 0, 10, 15 + Root.Height);
+            ImagePanel.Margin = new Thickness(15, 0, 0, Root.Height);
             Root.Visibility = Visibility.Visible;
 
             if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
@@ -66,6 +67,7 @@ namespace WooBee_MVVMLight
         private void EmojiPanelHiding()
         {
             ButtonsPanel.Margin = new Thickness(0, 0, 10, 15);
+            ImagePanel.Margin = new Thickness(15, 0, 0, 0);
             Root.Visibility = Visibility.Collapsed;
             _isEmojiActivated = false;
         }
@@ -110,11 +112,13 @@ namespace WooBee_MVVMLight
         private void ButtonsUp(InputPaneVisibilityEventArgs args)
         {
             ButtonsPanel.Margin = new Thickness(0, 0, 10, 15 + args.OccludedRect.Height);
+            ImagePanel.Margin = new Thickness(15, 0, 0, args.OccludedRect.Height);
         }
 
         private void ButtonsDown()
         {
             ButtonsPanel.Margin = new Thickness(0, 0, 10, 15);
+            ImagePanel.Margin = new Thickness(15, 0, 0, 0);
         }
         #endregion
 
@@ -167,8 +171,6 @@ namespace WooBee_MVVMLight
         private void NewPostVM_NewPhotosInserted()
         {
             ImagePanel.Visibility = Visibility.Visible;
-
-            //TODO: Animation
         }
 
         #endregion
@@ -233,6 +235,7 @@ namespace WooBee_MVVMLight
         private void contentTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             contentTextBox.Foreground = new SolidColorBrush(Colors.Black);
+            contentTextBox.Text = "";
         }
 
         private void contentTextBox_LostFocus(object sender, RoutedEventArgs e)
