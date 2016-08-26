@@ -1,0 +1,61 @@
+﻿<Page
+    x:Class="WooBee_MVVMLight.LoginView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WooBee_MVVMLight"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="#FFF1F1F1" Loaded="Grid_Loaded">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="89*"/>
+            <RowDefinition Height="97*"/>
+            <RowDefinition Height="308*"/>
+            <RowDefinition Height="146*"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="NormalLogin" 
+                   Text="正常登录"
+                   HorizontalAlignment="Center" 
+                   Grid.Row="1" 
+                   Grid.RowSpan="3"/>
+        <Button x:Name="NormalLoginButton"
+                Content="登陆"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Margin="0,30,0,0" 
+                Grid.Row="1"
+                Width="80"
+                Command="{x:Bind Vm.NormalLoginCommand, Mode=OneWay}"
+                IsEnabled="{x:Bind Vm.NormalButtonEnabled, Mode=OneWay}"/>
+        <TextBlock x:Name="BlackMagicLogin" 
+                   Text="拓展登陆"
+                   HorizontalAlignment="Center"
+                   Grid.Row="2"
+                   Grid.RowSpan="2"/>
+        <Button x:Name="BlackMagicLoginButton"
+                Content="登陆"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Grid.Row="2"
+                Margin="0,30,0,0"
+                Width="80"
+                Command="{x:Bind Vm.ExtendedLoginCommand, Mode=OneWay}"
+                IsEnabled="{x:Bind Vm.ExtendedButtonEnabled, Mode=OneWay}"/>
+
+        <TextBlock x:Name="Description"
+                   Text="鉴于新浪的API政策，本应用需要登录两次才可以完整使用新浪微博服务"
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Top"
+                   Grid.Row="4"
+                   Margin="15"
+                   FontWeight="ExtraBlack"/>
+        <TextBlock x:Name="DescriptionEn"
+                   Text="Due to the policy of Sina API usage, this app needs user to login twice for running features of Weibo services"
+                   TextWrapping="WrapWholeWords"
+                   VerticalAlignment="Bottom"
+                   Grid.Row="4"
+                   Margin="15,0,15,15" 
+                   FontFamily="Segoe UI Black"/>
+    </Grid>
+</Page>
