@@ -210,6 +210,16 @@ namespace WooBee_MVVMLight
             else
                 NewPostVM.IsPhotoButtonShown = true;
             NewPostVM.NewPhotosInserted += NewPostVM_NewPhotosInserted;
+            if(qwe.PostType == "repost")
+            {
+                string RepostText = "//" + qwe.RepostScreenName + ": " + qwe.RepostText;
+                while (RepostText.Length > 140)
+                {
+                    RepostText = RepostText.Substring(0, RepostText.Length - 1);
+                }
+                NewPostVM.TextBlockString = RepostText;
+            }
+                
         }
 
         public NewPostView()
@@ -225,17 +235,24 @@ namespace WooBee_MVVMLight
         private void EmoticonContainer_Tapped(object sender, TappedRoutedEventArgs e)
         {
             var _gridView = EmoticonContainer as GridView;
-            string index = _gridView.SelectedIndex.ToString();
-            if (Int32.Parse(index) < 10)
-                index = "0" + index;
-
-            NewPostVM.TextBlockString = NewPostVM.TextBlockString + _reverseEmojiDict[index];
+            int index = _gridView.SelectedIndex;
+            string str_idx="";
+            index++;
+            if (index < 10)
+            {
+                str_idx = "0" + index.ToString();
+            }
+            NewPostVM.TextBlockString = NewPostVM.TextBlockString + _reverseEmojiDict[str_idx];
         }
 
         private void contentTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            contentTextBox.Foreground = new SolidColorBrush(Colors.Black);
-            contentTextBox.Text = "";
+            if(contentTextBox.Text == "写点啥吧")
+            {
+                contentTextBox.Foreground = new SolidColorBrush(Colors.Black);
+                contentTextBox.Text = "";
+            }
+            
         }
 
         private void contentTextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -243,10 +260,18 @@ namespace WooBee_MVVMLight
             if(contentTextBox.Text == "")
             {
                 contentTextBox.Text = "写点啥吧";
-                contentTextBox.Foreground = new SolidColorBrush(Colors.LightGray);
+                contentTextBox.Foreground = new SolidColorBrush(Colors.SlateGray);
             }
             else if(contentTextBox.Text == "写点啥吧")
-                contentTextBox.Foreground = new SolidColorBrush(Colors.LightGray);
+                contentTextBox.Foreground = new SolidColorBrush(Colors.SlateGray);
+        }
+
+        private void contentTextBox_TextChanged(object sender, TextChangedEventArgs e)
+      {
+            if(contentTextBox.Text != "" && contentTextBox.Text != "写点啥吧")
+                contentTextBox.Foreground = new SolidColorBrush(Colors.Black);
+            else if(contentTextBox.Text == "写点啥吧")
+                contentTextBox.Foreground = new SolidColorBrush(Colors.SlateGray);
         }
     }
 }

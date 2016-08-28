@@ -36,7 +36,7 @@
                 <StackPanel Background="Black"
                             Height="35"
                             Grid.Column="2"
-                            Margin="20,2.667,0,0"
+                            Margin="10.5,2.667,0,0"
                             VerticalAlignment="Top"
                             HorizontalAlignment="Left" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
 
@@ -52,7 +52,7 @@
                 </StackPanel>
 
                 <RichTextBlock x:Name="NormalTextblock"
-                               Margin="20,50,0,0"
+                               Margin="10.5,50,0,0"
                                Grid.Column="2"
                                Grid.Row="1"
                                local:RichTextBlockConvertor.Text="{x:Bind Text}"
@@ -95,7 +95,7 @@
                             Width="auto"
                             Grid.Column="2"
                             Grid.Row="1"
-                            Margin="20,2.667,0,0"
+                            Margin="10.5,2.667,0,0"
                             VerticalAlignment="Top" 
                             Orientation="Horizontal"
                             HorizontalAlignment="Left">
@@ -112,7 +112,7 @@
                 </StackPanel>
 
                 <RichTextBlock x:Name="TextRepostContentTextBlock"
-                               Margin="20,50,0,0"
+                               Margin="10.5,50,0,0"
                                Grid.Column="2"
                                Grid.Row="1"
                                FontSize="13"
@@ -125,7 +125,7 @@
                            TextWrapping="Wrap"
                            Grid.Column="2"
                            Grid.Row="2"
-                           Margin="20,15,0,0" 
+                           Margin="10.5,15,0,0" 
                            FontSize="15"
                            Text="{x:Bind RepostWeibo.User.ScreenName}"
                            d:LayoutOverrides="TopMargin, BottomMargin"
@@ -136,7 +136,7 @@
 
 
                 <RichTextBlock x:Name="TextRepostTextBlock"
-                               Margin="20,50,0,0"
+                               Margin="10.5,50,0,0"
                                Grid.Column="2"
                                Grid.Row="2"
                                FontSize="13"
@@ -175,7 +175,7 @@
                             Width="auto"
                             Grid.Column="2"
                             Grid.Row="1"
-                            Margin="20,2.667,0,0"
+                            Margin="10.5,2.667,0,0"
                             VerticalAlignment="Top" 
                             HorizontalAlignment="Left"
                             Orientation="Horizontal">
@@ -191,7 +191,7 @@
                 </StackPanel>
 
                 <RichTextBlock x:Name="OneImageContentTextBlock"
-                               Margin="20,50,0,0"
+                               Margin="10.5,50,0,0"
                                Grid.Column="2"
                                Grid.Row="1"
                                FontSize="13"
@@ -202,7 +202,7 @@
                 
                 
                 <Grid x:Name="image1"
-                      Margin="20,20,5,0"
+                      Margin="10.5,20,5,0"
                       Grid.Column="2"
                       Grid.Row="2"
                       MaxHeight="200"
@@ -259,7 +259,7 @@
                       Width="auto"
                       Grid.Column="2"
                       Grid.Row="1"
-                      Margin="20,3,0,0" 
+                      Margin="10.5,3,0,0" 
                       VerticalAlignment="Top" 
                       HorizontalAlignment="Left">
                     <TextBlock x:Name="textBlock927"
@@ -274,7 +274,7 @@
                 </Grid>
                 
                 <RichTextBlock  x:Name="MultipleImageContentTextBlock"
-                                Margin="20,50,0,0"
+                                Margin="10.5,50,0,0"
                                 local:RichTextBlockConvertor.Text="{x:Bind Text}"
                                 Grid.Column="2"
                                 Grid.Row="1"
@@ -285,24 +285,26 @@
 
                 <GridView x:Name="gridView" 
                           ItemsSource="{x:Bind PicUrls}"
-                          Margin="20,20,5,0"
+                          Margin="10.5,20,0,0"
                           Grid.Column="2"
+                          Grid.ColumnSpan="2"
                           Grid.Row="2"
                           Height="auto" 
-                          Width="auto"
                           Tapped="gridView_Tapped"
                           ScrollViewer.VerticalScrollBarVisibility="Hidden"
                           ScrollViewer.VerticalScrollMode="Disabled"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                           ScrollViewer.HorizontalScrollMode="Disabled"
                           VerticalAlignment="Top"
-                          HorizontalAlignment="Left"
+                          HorizontalAlignment="Stretch"
                           SelectionMode="Single" 
                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition">
                     <GridView.ItemContainerStyle>
                         <Style TargetType="GridViewItem">
                             <Setter Property="Background" Value="#FFE6E6E6"/>
                             <Setter Property="Margin" Value="0.5"/>
+                            <Setter Property="Padding" Value="0"/>
+                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
                         </Style>
                     </GridView.ItemContainerStyle>
 
@@ -367,7 +369,7 @@
                       Width="auto"
                       Grid.Column="2"
                       Grid.Row="1"
-                      Margin="20,3,0,0" 
+                      Margin="10.5,3,0,0" 
                       VerticalAlignment="Top" 
                       HorizontalAlignment="Left">
                     <TextBlock x:Name="textBlock927"
@@ -383,7 +385,7 @@
 
 
                 <RichTextBlock x:Name="RepostOneImageContentTextBlock"
-                               Margin="20,50,0,0"
+                               Margin="10.5,50,0,0"
                                local:RichTextBlockConvertor.Text="{x:Bind Text}"
                                Grid.Column="2"
                                Grid.Row="1"
@@ -394,7 +396,7 @@
 
 
                 <TextBlock x:Name="textBlock7"
-                           Margin="20,15,0,0"
+                           Margin="10.5,15,0,0"
                            Grid.Column="2"
                            Grid.Row="2"
                            TextWrapping="Wrap"
@@ -407,7 +409,7 @@
 
 
                 <RichTextBlock x:Name="RepostOneImageRepostTextBlock"
-                               Margin="20,50,0,0"
+                               Margin="10.5,50,0,0"
                                local:RichTextBlockConvertor.Text="{x:Bind RepostWeibo.Text}"
                                Grid.Column="2"
                                Grid.Row="2"
@@ -422,7 +424,7 @@
                       MaxHeight="200"
                       d:LayoutOverrides="TopMargin, BottomMargin" 
                       VerticalAlignment="Top"
-                      Margin="20,20,5,0">
+                      Margin="10.5,20,5,0">
                     <Image Source="{x:Bind RepostWeibo.HighResThumnailPic}"
                            Stretch="UniformToFill"
                            Tapped="image1_Tapped"/>
@@ -477,7 +479,7 @@
                       Width="auto"
                       Grid.Column="2"
                       Grid.Row="1"
-                      Margin="20,3,0,0" 
+                      Margin="10.5,3,0,0" 
                       VerticalAlignment="Top" 
                       HorizontalAlignment="Left">
                     <TextBlock x:Name="textBlock927"
@@ -493,7 +495,7 @@
 
 
                 <RichTextBlock x:Name="RepostMultiImageContentTextBlock"
-                               Margin="20,50,0,0"
+                               Margin="10.5,50,0,0"
                                local:RichTextBlockConvertor.Text="{x:Bind Text}"
                                Grid.Column="2"
                                Grid.Row="1"
@@ -503,7 +505,7 @@
                                IsTextSelectionEnabled="False"/>
 
                 <TextBlock x:Name="textBlock7"
-                           Margin="20,15,0,0"
+                           Margin="10.5,15,0,0"
                            TextWrapping="Wrap"
                            Grid.Row="2"
                            Grid.Column="2"
@@ -515,7 +517,7 @@
                            Foreground="Black"/>
 
                 <RichTextBlock x:Name="RepostMultiImageRepostTextBlock"
-                               Margin="20,50,0,0"
+                               Margin="10.5,50,0,0"
                                local:RichTextBlockConvertor.Text="{x:Bind RepostWeibo.Text}"
                                Grid.Column="2"
                                Grid.Row="2"
@@ -527,20 +529,21 @@
 
                 <GridView x:Name="gridView" 
                           ItemsSource="{x:Bind RepostWeibo.PicUrls}"
-                          Margin="20,20,5,0"
+                          Margin="10.5,20,0,0"
                           Grid.Column="2"
+                          Grid.ColumnSpan="2"
                           Grid.Row="3"
                           Height="auto" 
-                          Width="auto"
                           Tapped="gridView_Tapped"
                           VerticalAlignment="Top"
-                          HorizontalAlignment="Left"
+                          HorizontalAlignment="Stretch"
                           SelectionMode="Single" 
                           d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition">
                     <GridView.ItemContainerStyle>
                         <Style TargetType="GridViewItem">
                             <Setter Property="Background" Value="#FFE6E6E6"/>
                             <Setter Property="Margin" Value="0.5"/>
+                            <Setter Property="Padding" Value="0"/>
                             <Setter Property="HorizontalAlignment" Value="Stretch"/>
                         </Style>
                     </GridView.ItemContainerStyle>

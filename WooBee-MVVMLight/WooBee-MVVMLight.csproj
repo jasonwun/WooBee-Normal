@@ -116,6 +116,7 @@
       <DependentUpon>FloatingActionButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\Extensions.cs" />
+    <Compile Include="Common\DataTemplateSelectors\MentionListDatatemplateSelector.cs" />
     <Compile Include="Model\RepostModel.cs" />
     <Compile Include="Common\ScalingHelper.cs" />
     <Compile Include="Common\Converter\RichTextBlockConvertor.cs" />

@@ -76,11 +76,264 @@
                       Height="auto">
                     <TextBlock x:Name="textBlock2"
                                TextWrapping="WrapWholeWords"
-                               Text="{x:Bind RepostWeibo.Text}"
+                               Text="{x:Bind RepostWeibo.RepostText}"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Stretch"
                                Margin="5,10,0,10"/>
                 </Grid>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Name="NormalTemplate"
+                      x:DataType="model:Weibo">
+            <Grid Margin="0,10,0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0*"/>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="38*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image x:Name="image"
+                       Source="{x:Bind User.AvatarLarge}"
+                       Grid.Column="1"
+                       Grid.Row="1"
+                       Height="35"
+                       Width="35"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Margin="5"/>
+
+                <TextBlock x:Name="textBlock"
+                           TextWrapping="Wrap"
+                           Text="{x:Bind User.ScreenName}"
+                           Grid.Column="2" 
+                           Grid.Row="1"
+                           Width="auto"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="6,0,0,0"/>
+
+                <Button x:Name="ReplyWeiboButton" 
+                        Grid.Row="1" 
+                        HorizontalAlignment="Right"
+                        Background="Transparent"
+                        VerticalAlignment="Center"
+                        Grid.Column="2"
+                        Margin="5"
+                        Tapped="ReplyWeiboButton_Tapped">
+                    <SymbolIcon Symbol="Comment"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                </Button>
+
+                <TextBlock x:Name="textBlock1"
+                           TextWrapping="Wrap"
+                           Text="{x:Bind Text}"
+                           Grid.Column="1"
+                           Grid.ColumnSpan="2"
+                           Grid.Row="2" 
+                           Height="auto"
+                           VerticalAlignment="Center"
+                           Margin="5,10,0,10"/>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Name="OneImageTemplate"
+                      x:DataType="model:Weibo">
+            <Grid Margin="0,10,0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0*"/>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="38*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image x:Name="image"
+                       Source="{x:Bind User.AvatarLarge}"
+                       Grid.Column="1"
+                       Grid.Row="1"
+                       Height="35"
+                       Width="35"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Margin="5"/>
+
+                <TextBlock x:Name="textBlock"
+                           TextWrapping="Wrap"
+                           Text="{x:Bind User.ScreenName}"
+                           Grid.Column="2" 
+                           Grid.Row="1"
+                           Width="auto"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="6,0,0,0"/>
+
+                <Button x:Name="ReplyWeiboButton" 
+                        Grid.Row="1" 
+                        HorizontalAlignment="Right"
+                        Background="Transparent"
+                        VerticalAlignment="Center"
+                        Grid.Column="2"
+                        Margin="5"
+                        Tapped="ReplyWeiboButton_Tapped">
+                    <SymbolIcon Symbol="Comment"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                </Button>
+
+                <TextBlock x:Name="textBlock1"
+                           TextWrapping="Wrap"
+                           Text="{x:Bind Text}"
+                           Grid.Column="1"
+                           Grid.ColumnSpan="2"
+                           Grid.Row="2" 
+                           Height="auto"
+                           VerticalAlignment="Center"
+                           Margin="5,10,0,10"/>
+
+
+                <Grid Background="#FFE5E5E5" 
+                      Grid.Column="1"
+                      VerticalAlignment="Top"
+                      HorizontalAlignment="Stretch"
+                      Grid.ColumnSpan="2" 
+                      MaxHeight="200"
+                      Grid.Row="3" 
+                      Height="auto">
+                    <Image Source="{x:Bind HighResThumnailPic}"
+                           Stretch="UniformToFill"/>
+
+                    <StackPanel Background="#FFFFFF85"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Right"
+                                Visibility="{x:Bind IsGif, Mode=OneWay, Converter={StaticResource BoolToVis}}">
+                        <TextBlock Text="GIF"
+                                   FontSize="8"
+                                   FontWeight="Bold"
+                                   Margin="10,5,10,5"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Name="MultipleImageTemplate"
+                      x:DataType="model:Weibo">
+            <Grid Margin="0,10,0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0*"/>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="38*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image x:Name="image"
+                       Source="{x:Bind User.AvatarLarge}"
+                       Grid.Column="1"
+                       Grid.Row="1"
+                       Height="35"
+                       Width="35"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Margin="5"/>
+
+                <TextBlock x:Name="textBlock"
+                           TextWrapping="Wrap"
+                           Text="{x:Bind User.ScreenName}"
+                           Grid.Column="2" 
+                           Grid.Row="1"
+                           Width="auto"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="6,0,0,0"/>
+
+                <Button x:Name="ReplyWeiboButton" 
+                        Grid.Row="1" 
+                        HorizontalAlignment="Right"
+                        Background="Transparent"
+                        VerticalAlignment="Center"
+                        Grid.Column="2"
+                        Margin="5"
+                        Tapped="ReplyWeiboButton_Tapped">
+                    <SymbolIcon Symbol="Comment"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                </Button>
+
+                <TextBlock x:Name="textBlock1"
+                           TextWrapping="Wrap"
+                           Text="{x:Bind Text}"
+                           Grid.Column="1"
+                           Grid.ColumnSpan="2"
+                           Grid.Row="2" 
+                           Height="auto"
+                           VerticalAlignment="Center"
+                           Margin="5,10,0,10"/>
+
+                <GridView x:Name="gridView" 
+                          ItemsSource="{x:Bind PicUrls}"
+                          Background="#FFE5E5E5" 
+                      Grid.Column="1"
+                      Grid.ColumnSpan="2" 
+                      Grid.Row="3" 
+                      Height="auto" 
+                          
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                          ScrollViewer.VerticalScrollMode="Disabled"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          ScrollViewer.HorizontalScrollMode="Disabled"
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Stretch"
+                          SelectionMode="Single">
+                    <GridView.ItemContainerStyle>
+                        <Style TargetType="GridViewItem">
+                            <Setter Property="Background" Value="#FFE6E6E6"/>
+                            <Setter Property="Margin" Value="0.5"/>
+                            <Setter Property="Padding" Value="0"/>
+                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                        </Style>
+                    </GridView.ItemContainerStyle>
+
+                    <GridView.ItemTemplate>
+                        <DataTemplate x:DataType="model:ThumbnailPics">
+                            <Grid Width="{x:Bind ImgSize}"
+                                  Height="{x:Bind ImgSize}"
+                                  Margin="0,0,0,0">
+                                <Image Source="{x:Bind HighResThumPic}"
+                                       Stretch="UniformToFill"/>
+
+                                <StackPanel Background="#FFFFFF85"
+                                            VerticalAlignment="Bottom"
+                                            HorizontalAlignment="Right"
+                                            Visibility="{x:Bind IsGif, Mode=OneWay, Converter={StaticResource BoolToVis}}">
+                                    <TextBlock Text="GIF"
+                                               FontSize="8"
+                                               FontWeight="Bold"
+                                               Margin="10,5,10,5"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
             </Grid>
         </DataTemplate>
 
@@ -198,7 +451,8 @@
                         Background="Transparent"
                         VerticalAlignment="Center"
                         Grid.Column="2"
-                        Margin="5">
+                        Margin="5"
+                        Tapped="replyButton_Tapped">
                     <SymbolIcon Symbol="Comment"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"/>
@@ -230,13 +484,19 @@
             </Grid>
         </DataTemplate>
 
+        <local:BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        <local:MentionListDatatemplateSelector x:Key="MyMentionDataTemplateSelctor"
+                                            NormalTemplate="{StaticResource NormalTemplate}"
+                                            OneImageTemplate="{StaticResource OneImageTemplate}"
+                                            MultiImagesTemplate="{StaticResource MultipleImageTemplate}"
+                                               MentionToMe="{StaticResource MentionsToMe}"/>
         <local:CommentDataTemplateSelector x:Name="MyCommentDataTemplateSelector"
                                            RepliedToCommentTemplate="{StaticResource CommentToComment}"
                                            RepliedToWeiboTemplate="{StaticResource CommentToWeibo}"/>
     </local:BindablePage.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="#FFF1F1F1">
         <FlipView Background="Transparent">
-            <FlipViewItem Background="#FFF1F1F1">
+            <FlipViewItem Background="Transparent">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="14*"/>
@@ -276,7 +536,7 @@
                     </ListView>
                 </Grid>
             </FlipViewItem>
-            <FlipViewItem Background="#FFF1F1F4">
+            <FlipViewItem Background="Transparent">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="14*"/>
@@ -306,7 +566,8 @@
                               Margin="0,0,0,0" 
                               Grid.Column="2"
                               Grid.RowSpan="2"
-                              ItemTemplate="{StaticResource MentionsToMe}"
+                              ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                              ItemTemplateSelector="{StaticResource MyMentionDataTemplateSelctor}"
                               ItemsSource="{x:Bind MessageVm.MentionList, Mode=OneWay}">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
@@ -317,6 +578,7 @@
                     </ListView>
                 </Grid>
             </FlipViewItem>
+           
         </FlipView>
     </Grid>
 </local:BindablePage>

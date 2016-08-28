@@ -210,7 +210,10 @@ namespace WooBee_MVVMLight
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
             NavigationService navigationService = new NavigationService();
-            navigationService.GoBack() ;
+            if (navigationService.CurrentPageKey != "TimeLineView")
+                Exit();
+            else
+                navigationService.GoBack() ;
             e.Handled = true;
         }
 

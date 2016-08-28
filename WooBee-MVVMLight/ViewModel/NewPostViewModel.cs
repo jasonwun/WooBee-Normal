@@ -316,14 +316,9 @@ namespace WooBee_MVVMLight
         {
             get
             {
-                if (IsFirst)
-                {
-                    IsFirst = false;
+                if (_textBlockString == null)
                     return "写点啥吧";
-                }
-
-                else
-                    return _textBlockString;
+                return _textBlockString;
             }
             set
             {

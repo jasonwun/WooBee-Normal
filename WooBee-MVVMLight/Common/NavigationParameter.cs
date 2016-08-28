@@ -34,5 +34,7 @@ namespace WooBee_MVVMLight
         public string PostType="";
         public string WeiboID = "";
         public string CommentID = "";
+        public string RepostText = "";
+        public string RepostScreenName = "";
     }
 }

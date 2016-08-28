@@ -9,7 +9,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DeviceId>DA831653-315E-41D9-BF63-CCCE346F4E9C</DeviceId>
-    <UseEmulator>true</UseEmulator>
+    <UseEmulator>false</UseEmulator>
   </PropertyGroup>
   <PropertyGroup>
     <AppxPackageIsForStore>True</AppxPackageIsForStore>

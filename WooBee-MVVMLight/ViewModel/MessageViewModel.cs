@@ -79,11 +79,14 @@ namespace WooBee_MVVMLight
             }
         }
 
+        
+
         public MessageViewModel()
         {
             CommentList = new ObservableCollection<Comment>();
             CommentDataViewModel = new CommentDataViewModel();
             MentionDataViewModel = new MentionDataViewModel();
+            
         }
 
 
@@ -102,8 +105,8 @@ namespace WooBee_MVVMLight
         {
             IsRefreshing = true;
             await CommentDataViewModel.RefreshAsync();
-            await MentionDataViewModel.RefreshAsync();
             CommentList = CommentDataViewModel.DataList;
+            await MentionDataViewModel.RefreshAsync();
             MentionList = MentionDataViewModel.DataList;
             IsRefreshing = false;
         }

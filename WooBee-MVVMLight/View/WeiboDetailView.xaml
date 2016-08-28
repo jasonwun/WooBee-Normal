@@ -780,7 +780,7 @@
                         Foreground="Black"
                         Tapped="ReShareButton_Tapped"
                         d:LayoutOverrides="TopMargin, BottomMargin, LeftPosition, RightPosition">
-                    <SymbolIcon Symbol="ReShare"
+                    <SymbolIcon Symbol="Comment"
                                 Width="20"
                                 Height="20"/>
                 </Button>

@@ -45,7 +45,7 @@ namespace WooBee_MVVMLight
 
                 Regex urlRx = new Regex("http(s)?://([a-zA-Z|\\d]+\\.)+[a-zA-Z|\\d]+(/[a-zA-Z|\\d|\\-|\\+|_./?%=]*)?", RegexOptions.IgnoreCase);
                 Regex hashtagRx = new Regex(@"#[^#]+#");
-                Regex usernameRx = new Regex(@"(\@)+((\w+-\w+)|(\w+))");
+                Regex usernameRx = new Regex(@"@[^,，：:\s@]+");
                 MatchCollection matches = urlRx.Matches(value);
                 MatchCollection hastagmc = hashtagRx.Matches(value);
                 MatchCollection usermc = usernameRx.Matches(value);
@@ -63,7 +63,7 @@ namespace WooBee_MVVMLight
                     string url = match.Value;
                     if (value.Contains(string.Format(@"全文： {0}...", url)))
                         value = value.Replace(string.Format(@"全文： {0}...", url), "");
-                    if (value.Contains(string.Format(@"NavigateUri=""{0}""", match.Value)))
+                    if (value.Contains(string.Format(@"Tag=""{0}""", match.Value)))
                         break;
                     else
                     {
@@ -73,7 +73,7 @@ namespace WooBee_MVVMLight
 
                 foreach (Match m in hastagmc)
                 {
-                    if (value.Contains(string.Format(@"Content=""{0}""", m.Value)))
+                    if (value.Contains(string.Format(@"<Underline>{0}</Underline>", m.Value)))
                         break;
                     value = value.Replace(m.Value, @"<InlineUIContainer><TextBlock Foreground=""Black""><Underline>" + m.Value + "</Underline></TextBlock></InlineUIContainer>");
                 }

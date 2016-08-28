@@ -5,8 +5,7 @@
     xmlns:local="using:WooBee_MVVMLight"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    IsTabStop="True">
+    mc:Ignorable="d">
 
     <local:BindablePage.Resources>
         <local:BooleanToVisibilityConverter x:Key="Bool2Visibility"/>
@@ -54,6 +53,7 @@
                  HorizontalAlignment="Stretch"
                  MinHeight="140" 
                  Height="auto"
+                 TextChanged="contentTextBox_TextChanged"
                  BorderThickness="0" 
                  FontFamily="Microsoft YaHei UI" 
                  FontSize="15"
