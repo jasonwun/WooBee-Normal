@@ -169,6 +169,7 @@ namespace WooBee_MVVMLight
                 rootFrame = new Frame();
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
+                rootFrame.Navigated += OnNavigated;
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
@@ -177,6 +178,14 @@ namespace WooBee_MVVMLight
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
+
+                SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
+
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                    rootFrame.CanGoBack ?
+                    AppViewBackButtonVisibility.Visible :
+                    AppViewBackButtonVisibility.Collapsed;
+
             }
 
             if (rootFrame.Content == null)
@@ -200,29 +209,29 @@ namespace WooBee_MVVMLight
                 this,
                 HandleNotificationMessage);
 
-            SystemNavigationManager.GetForCurrentView().BackRequested += App_BackRequested;
-            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+        }
+
+        private void OnNavigated(object sender, NavigationEventArgs e)
+        {
+            // Each time a navigation event occurs, update the Back button's visibility
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                ((Frame)sender).CanGoBack ?
+                AppViewBackButtonVisibility.Visible :
+                AppViewBackButtonVisibility.Collapsed;
+        }
+
+        private void OnBackRequested(object sender, BackRequestedEventArgs e)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+
+            if (rootFrame.CanGoBack)
             {
-                HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+                e.Handled = true;
+                rootFrame.GoBack();
             }
         }
 
-        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
-        {
-            NavigationService navigationService = new NavigationService();
-            if (navigationService.CurrentPageKey != "TimeLineView")
-                Exit();
-            else
-                navigationService.GoBack() ;
-            e.Handled = true;
-        }
 
-        private void App_BackRequested(object sender, BackRequestedEventArgs e)
-        {
-            NavigationService navigationService = new NavigationService();
-            navigationService.GoBack();
-            e.Handled = true;
-        }
 
         private void HandleNotificationMessage(NotificationMessageAction<string> message)
         {
