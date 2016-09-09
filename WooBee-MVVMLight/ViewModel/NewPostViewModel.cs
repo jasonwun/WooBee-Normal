@@ -151,52 +151,80 @@ namespace WooBee_MVVMLight
 
         private async Task PostReplyComment(string textBlockString)
         {
-            HttpClient httpClient = new HttpClient();
-            string posturi = API.COMMENTS_REPLY;
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri(posturi));
-            HttpFormUrlEncodedContent postData = new HttpFormUrlEncodedContent(
-                new List<KeyValuePair<string, string>>
-                {
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                string posturi = API.COMMENTS_REPLY;
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri(posturi));
+                HttpFormUrlEncodedContent postData = new HttpFormUrlEncodedContent(
+                    new List<KeyValuePair<string, string>>
+                    {
                         new KeyValuePair<string, string>("access_token",App.AccessToken),
                         new KeyValuePair<string, string>("comment", textBlockString),
                         new KeyValuePair<string, string>("cid",CommentID),
                         new KeyValuePair<string, string>("id", WeiboID)
+                    }
+                );
+                request.Content = postData;
+                HttpResponseMessage response = await httpClient.SendRequestAsync(request);
+                if (response.IsSuccessStatusCode)
+                {
+                    ToastService.SendToast("发送成功", 1000);
+                    await Task.Delay(600);
+                    NavigationService.GoBack();
                 }
-            );
-            request.Content = postData;
-            HttpResponseMessage response = await httpClient.SendRequestAsync(request);
-            if (response.IsSuccessStatusCode)
-            {
-                string responseString = await response.Content.ReadAsStringAsync();
-                NavigationService.GoBack();
+                else
+                {
+                    StatusCodeDetermine(response);
+                }
             }
+            catch (Exception e)
+            {
+                ToastService.SendToast("Network not available", 1000);
+            }
+
+
         }
 
         private async Task PostNewRepost(string textBlockString)
         {
-            HttpClient httpClient = new HttpClient();
-            string posturi = API.REPOST;
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri(posturi));
-            HttpFormUrlEncodedContent postData = new HttpFormUrlEncodedContent(
-                new List<KeyValuePair<string, string>>
-                {
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                string posturi = API.REPOST;
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri(posturi));
+                HttpFormUrlEncodedContent postData = new HttpFormUrlEncodedContent(
+                    new List<KeyValuePair<string, string>>
+                    {
                         new KeyValuePair<string, string>("access_token",App.AccessToken),
                         new KeyValuePair<string, string>("status", textBlockString),
                         new KeyValuePair<string, string>("id", WeiboID)
+                    }
+                );
+                request.Content = postData;
+                HttpResponseMessage response = await httpClient.SendRequestAsync(request);
+                if (response.IsSuccessStatusCode)
+                {
+                    ToastService.SendToast("发送成功", 1000);
+                    await Task.Delay(600);
+                    NavigationService.GoBack();
                 }
-            );
-            request.Content = postData;
-            HttpResponseMessage response = await httpClient.SendRequestAsync(request);
-            if (response.IsSuccessStatusCode)
-            {
-                string responseString = await response.Content.ReadAsStringAsync();
-                NavigationService.GoBack();
+                else
+                {
+                    StatusCodeDetermine(response);
+                }
             }
-            
+            catch (Exception e)
+            {
+                ToastService.SendToast("Network not available", 1000);
+            }
+
         }
 
         private async Task PostNewComment(string textBlockString)
         {
+            try
+            {
                 HttpClient httpClient = new HttpClient();
                 string posturi = API.COMMENTS_CREATE;
                 HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri(posturi));
@@ -212,9 +240,20 @@ namespace WooBee_MVVMLight
                 HttpResponseMessage response = await httpClient.SendRequestAsync(request);
                 if (response.IsSuccessStatusCode)
                 {
-                    string responseString = await response.Content.ReadAsStringAsync();
+                    ToastService.SendToast("发送成功", 1000);
+                    await Task.Delay(600);
                     NavigationService.GoBack();
                 }
+                else
+                {
+                    StatusCodeDetermine(response);
+                }
+            }
+            catch (Exception e)
+            {
+                ToastService.SendToast("Network not available", 1000);
+            }
+
         }
 
         private async Task PostNewWeibo(string textBlockString)
@@ -246,8 +285,13 @@ namespace WooBee_MVVMLight
                         HttpResponseMessage response = await httpClient.SendRequestAsync(request);
                     if (response.IsSuccessStatusCode)
                     {
-                        string responseString = await response.Content.ReadAsStringAsync();
+                        ToastService.SendToast("发送成功", 1000);
+                        await Task.Delay(600);
                         NavigationService.GoBack();
+                    }
+                    else
+                    {
+                        StatusCodeDetermine(response);
                     }
 
                 }
@@ -266,10 +310,16 @@ namespace WooBee_MVVMLight
                     );
                     request.Content = postData;
                     HttpResponseMessage response = await httpClient.SendRequestAsync(request);
+                    
                     if (response.IsSuccessStatusCode)
                     {
-                        string responseString = await response.Content.ReadAsStringAsync();
+                        ToastService.SendToast("发送成功", 1000);
+                        await Task.Delay(600);
                         NavigationService.GoBack();
+                    }
+                    else
+                    {
+                        StatusCodeDetermine(response);
                     }
                 }
 
@@ -277,9 +327,120 @@ namespace WooBee_MVVMLight
             }
             catch(Exception e)
             {
-
+                ToastService.SendToast("Network not available", 1000);
             }
             
+        }
+
+        private static void StatusCodeDetermine(HttpResponseMessage response)
+        {
+            int StatusCode = (int)response.StatusCode;
+            switch (StatusCode)
+            {
+                case 400:
+                    ToastService.SendToast("400 Bad Request", 1000);
+                    break;
+                case 401:
+                    ToastService.SendToast("401 Unauthorized", 1000);
+                    break;
+                case 403:
+                    ToastService.SendToast("403 Forbidden", 1000);
+                    break;
+                case 404:
+                    ToastService.SendToast("404 Not Found", 1000);
+                    break;
+                case 405:
+                    ToastService.SendToast("405 Method Not Allowed", 1000);
+                    break;
+                case 406:
+                    ToastService.SendToast("406 Not Acceptable", 1000);
+                    break;
+                case 407:
+                    ToastService.SendToast("407 Proxy Authentication Required", 1000);
+                    break;
+                case 408:
+                    ToastService.SendToast("408 Request Timeout", 1000);
+                    break;
+                case 409:
+                    ToastService.SendToast("409 Conflict", 1000);
+                    break;
+                case 410:
+                    ToastService.SendToast("410 Gone", 1000);
+                    break;
+                case 411:
+                    ToastService.SendToast("411 Length Required", 1000);
+                    break;
+                case 412:
+                    ToastService.SendToast("412 Precondition Failed", 1000);
+                    break;
+                case 413:
+                    ToastService.SendToast("413 Request Entity Too Large", 1000);
+                    break;
+                case 414:
+                    ToastService.SendToast("414 Request-URI Too Long", 1000);
+                    break;
+                case 415:
+                    ToastService.SendToast("415 Unsupported Media Type", 1000);
+                    break;
+                case 416:
+                    ToastService.SendToast("416 Requested Range Not Satisfiable", 1000);
+                    break;
+                case 417:
+                    ToastService.SendToast("417 Expectation Failed", 1000);
+                    break;
+                case 422:
+                    ToastService.SendToast("422 Unprocessable Entity", 1000);
+                    break;
+                case 423:
+                    ToastService.SendToast("423 Locked", 1000);
+                    break;
+                case 424:
+                    ToastService.SendToast("424 Failed Dependency", 1000);
+                    break;
+                case 425:
+                    ToastService.SendToast("425 Unordered Collection", 1000);
+                    break;
+                case 426:
+                    ToastService.SendToast("426 Upgrade Required", 1000);
+                    break;
+                case 449:
+                    ToastService.SendToast("449 Retry With", 1000);
+                    break;
+                case 500:
+                    ToastService.SendToast("500 Internal Server Error", 1000);
+                    break;
+                case 501:
+                    ToastService.SendToast("501 Not Implemented", 1000);
+                    break;
+                case 502:
+                    ToastService.SendToast("502 Bad Gateway", 1000);
+                    break;
+                case 503:
+                    ToastService.SendToast("503 Service Unavailable", 1000);
+                    break;
+                case 504:
+                    ToastService.SendToast("504 Gateway Timeout", 1000);
+                    break;
+                case 505:
+                    ToastService.SendToast("505 HTTP Version Not Supported", 1000);
+                    break;
+                case 506:
+                    ToastService.SendToast("506 Variant Also Negotiates", 1000);
+                    break;
+                case 507:
+                    ToastService.SendToast("507 Insufficient Storage", 1000);
+                    break;
+                case 509:
+                    ToastService.SendToast("509 Bandwidth Limit Exceeded", 1000);
+                    break;
+                case 510:
+                    ToastService.SendToast("510 Not Extended", 1000);
+                    break;
+                case 600:
+                    ToastService.SendToast("600 Unparseable Response Headers", 1000);
+                    break;
+
+            }
         }
 
         private async Task UploadImages(HttpStreamContent streamContent)

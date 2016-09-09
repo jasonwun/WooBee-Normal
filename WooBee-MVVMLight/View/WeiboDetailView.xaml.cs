@@ -46,7 +46,7 @@ namespace WooBee_MVVMLight
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //TODO: 区别评论微博和回复评论
+            
             Weibo _weibo = e.Parameter as Weibo;
             WeiboDV.Weibo = _weibo;
             weibo = _weibo;
@@ -58,8 +58,8 @@ namespace WooBee_MVVMLight
             Comment comment = (Comment)(sender as Button).DataContext;
             PostWeiboNaviParamContainer postcontainer = new PostWeiboNaviParamContainer();
             postcontainer.PostType = "replycomment";
-            postcontainer.WeiboID = comment.ID;
-            postcontainer.CommentID = comment.Status.ID;
+            postcontainer.WeiboID = comment.Status.ID;
+            postcontainer.CommentID = comment.ID;
             NavigationService.NaivgateToPage(typeof(NewPostView), postcontainer);
         }
 

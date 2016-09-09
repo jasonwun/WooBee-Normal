@@ -124,6 +124,7 @@
       <DependentUpon>NewPostImageHint.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\NavigationParameter.cs" />
+    <Compile Include="Common\Control\ToastService.cs" />
     <Compile Include="View\PhotoPage.xaml.cs">
       <DependentUpon>PhotoPage.xaml</DependentUpon>
     </Compile>
@@ -473,6 +474,10 @@
     <Page Include="Common\Control\NewPostImageHint.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\PhotoPage.xaml">
       <SubType>Designer</SubType>

@@ -35,5 +35,14 @@ namespace WooBee_MVVM.Model
 
         [DataMember(Name = "reply_comment")]
         public Comment ReplyComment { set; get; }
+
+        [IgnoreDataMember]
+        public string CombinedReply
+        {
+            get
+            {
+                return "@" + User.ScreenName + ": " + Text;
+            }
+        }
     }
 }

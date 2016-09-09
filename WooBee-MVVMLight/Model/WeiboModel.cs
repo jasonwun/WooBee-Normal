@@ -102,8 +102,8 @@ namespace WooBee_MVVM.Model
         {
             get
             {
-                if (Text == null)
-                    return "抱歉，此微博已被作者删除。查看帮助: http://t.cn/zWSudZc";
+                if (Text == "抱歉，此微博已被作者删除。查看帮助：http://t.cn/zWSudZc")
+                    return Text;
                 else
                 {
                     return "@" + User.ScreenName + ": " + Text;

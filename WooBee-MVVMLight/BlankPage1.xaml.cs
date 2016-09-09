@@ -28,22 +28,12 @@ namespace WooBee_MVVMLight
         public BlankPage1()
         {
             this.InitializeComponent();
-            ScalingHelper scalingHelper = new ScalingHelper();
-            double a = scalingHelper.SetTimeLineMultiImgsSize();
-            ObservableCollection<string> ew = new ObservableCollection<string>();
-            ew.Add("http://ww3.sinaimg.cn/mw690/6ced65e4gw1f6nqg9dud1j20zk0qon5l.jpg");
-            ew.Add("http://ww3.sinaimg.cn/mw690/6ced65e4gw1f6nqg9dud1j20zk0qon5l.jpg");
-            ew.Add("http://ww3.sinaimg.cn/mw690/6ced65e4gw1f6nqg9dud1j20zk0qon5l.jpg");
-            ew.Add("http://ww3.sinaimg.cn/mw690/6ced65e4gw1f6nqg9dud1j20zk0qon5l.jpg");
-            ew.Add("http://ww3.sinaimg.cn/mw690/6ced65e4gw1f6nqg9dud1j20zk0qon5l.jpg");
-            ew.Add("http://ww3.sinaimg.cn/mw690/6ced65e4gw1f6nqg9dud1j20zk0qon5l.jpg");
-            ew.Add("http://ww3.sinaimg.cn/mw690/6ced65e4gw1f6nqg9dud1j20zk0qon5l.jpg");
-            ew.Add("http://ww3.sinaimg.cn/mw690/6ced65e4gw1f6nqg9dud1j20zk0qon5l.jpg");
-            ew.Add("http://ww3.sinaimg.cn/mw690/6ced65e4gw1f6nqg9dud1j20zk0qon5l.jpg");
-            gridView.ItemsSource = ew;
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ToastService.SendToast("Hahahaha",1000);
 
-
+        }
     }
 }
