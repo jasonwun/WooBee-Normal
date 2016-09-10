@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Email;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Documents;
@@ -30,7 +32,7 @@ namespace WooBee_MVVMLight
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.RegisterAttached("Text", typeof(string), typeof(RichTextBlockConvertor), new PropertyMetadata(String.Empty, OnTextChanged));
 
-        private static void OnTextChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        private static async void OnTextChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
 
             var control = sender as RichTextBlock;
@@ -85,8 +87,9 @@ namespace WooBee_MVVMLight
                     value = value.Replace(m.Value, @"<InlineUIContainer><TextBlock Foreground=""Black""><Underline>" + m.Value + "</Underline></TextBlock></InlineUIContainer>");
                 }
 
-
-                var xaml = string.Format(@"<Paragraph 
+                try
+                {
+                    var xaml = string.Format(@"<Paragraph 
                                         xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
                                         xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml"">
                                     <Paragraph.Inlines>
@@ -94,8 +97,39 @@ namespace WooBee_MVVMLight
                                         {0}
                                     </Paragraph.Inlines>
                                 </Paragraph>", value);
-                var p = (Paragraph)XamlReader.Load(xaml);
-                control.Blocks.Add(p);
+                    var p = (Paragraph)XamlReader.Load(xaml);
+                    control.Blocks.Add(p);
+                }
+                catch (Exception ex)
+                {
+                    ContentDialog MesDia = new ContentDialog();
+                    MesDia.Content = "遇到了一些问题，想要即使反馈吗?";
+                    MesDia.PrimaryButtonText = "好的";
+                    MesDia.SecondaryButtonText = "不要";
+                    ContentDialogResult result = await MesDia.ShowAsync();
+                    if (result == ContentDialogResult.Primary)
+                    {
+                        EmailRecipient rec = new EmailRecipient("MetrsignStudio@outlook.com");
+                        EmailMessage mes = new EmailMessage();
+                        mes.To.Add(rec);
+                        mes.Subject = "微博正则表达式Bug反馈";
+                        mes.Body = e.NewValue.ToString();
+                        await EmailManager.ShowComposeNewEmailAsync(mes);
+                    }
+                    var xaml = string.Format(@"<Paragraph 
+                                        xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
+                                        xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml"">
+                                    <Paragraph.Inlines>
+                                    <Run></Run>
+                                        {0}
+                                    </Paragraph.Inlines>
+                                </Paragraph>", e.NewValue.ToString());
+                    var p = (Paragraph)XamlReader.Load(xaml);
+                    control.Blocks.Add(p);
+
+                }
+
+
             }
         }
     }

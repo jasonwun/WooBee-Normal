@@ -8,9 +8,6 @@
     mc:Ignorable="d">
 
     <Grid Background="White">
-        <Button Click="Button_Click"
-                Height="50"
-                Width="100"
-                HorizontalAlignment="Center"/>
+        
     </Grid>
 </Page>
