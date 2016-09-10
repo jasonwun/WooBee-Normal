@@ -108,7 +108,8 @@ namespace WooBee_MVVMLight
                     PostWeiboNaviParamContainer postNaviContainer = new PostWeiboNaviParamContainer();
                     postNaviContainer.PostType = "repost";
                     postNaviContainer.WeiboID = Weibo.ID;
-                    postNaviContainer.RepostText = Weibo.Text;
+                    if(Weibo.RepostWeibo != null)
+                        postNaviContainer.RepostText = Weibo.Text;
                     postNaviContainer.RepostScreenName = Weibo.User.ScreenName;
                     NavigationService.NaivgateToPage(typeof(NewPostView), postNaviContainer);
                 });

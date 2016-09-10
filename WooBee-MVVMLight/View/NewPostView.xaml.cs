@@ -210,7 +210,7 @@ namespace WooBee_MVVMLight
             else
                 NewPostVM.IsPhotoButtonShown = true;
             NewPostVM.NewPhotosInserted += NewPostVM_NewPhotosInserted;
-            if(qwe.PostType == "repost")
+            if(qwe.PostType == "repost" && qwe.RepostText != "")
             {
                 string RepostText = "//" + qwe.RepostScreenName + ": " + qwe.RepostText;
                 while (RepostText.Length > 140)

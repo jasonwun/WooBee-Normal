@@ -477,7 +477,7 @@
                       Height="auto">
                     <TextBlock x:Name="textBlock2"
                                TextWrapping="WrapWholeWords"
-                               Text="{x:Bind Status.Text}"
+                               Text="{x:Bind Status.RepostText}"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Stretch"
                                Margin="5,10,0,10"/>
