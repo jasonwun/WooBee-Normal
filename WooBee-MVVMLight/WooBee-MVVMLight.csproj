@@ -405,6 +405,7 @@
     <Content Include="Assets\Emoticon\97.png" />
     <Content Include="Assets\Emoticon\98.png" />
     <Content Include="Assets\Emoticon\99.png" />
+    <Content Include="Assets\Icons\Bell.png" />
     <Content Include="Assets\Icons\Camera.png" />
     <Content Include="Assets\Icons\CheckIcon.png" />
     <Content Include="Assets\Icons\Delete.png" />

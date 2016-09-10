@@ -20,7 +20,7 @@ namespace WooBee_MVVM.Model
     [DataContract]
     public class User
     {
-        [DataMember(Name = "id")]
+        [DataMember(Name = "idstr")]
         public string ID { set; get; }
 
         [DataMember(Name = "screen_name")]

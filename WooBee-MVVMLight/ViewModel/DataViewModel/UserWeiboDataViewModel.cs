@@ -38,7 +38,6 @@ namespace WooBee_MVVMLight
                 else if (posttype == "screen_name")
                     Uri += "&screen_name=";
                 Uri += param;
-                //Uri += "&gsid=_2A256selmDeTxGedO41AY9CjKyT2IHXVX53uurDV6PUJbjdANLUvekWpFzGTIoZzbkdNPhNil6IFvjFXIcw..";
                 HttpClient httpclient = new HttpClient();
                 HttpResponseMessage response = new HttpResponseMessage();
                 response = await httpclient.GetAsync(new Uri(Uri, UriKind.Absolute));

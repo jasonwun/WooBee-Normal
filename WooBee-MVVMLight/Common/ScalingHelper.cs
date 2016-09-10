@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.Input;
 using Windows.Graphics.Display;
+using Windows.UI.Xaml;
 
 namespace WooBee_MVVMLight
 {
@@ -43,12 +44,10 @@ namespace WooBee_MVVMLight
             return rect.Width * scale;
         }
 
-        public double GetScreenWidth()
+        public double GetWindowWidth()
         {
-            double ScreenWidthRawPixels = GetWidth();
-            double rawPixelsPerViewPixel = displayInformation.RawPixelsPerViewPixel;
-            double ScreenWidthViewPixels = ScreenWidthRawPixels / rawPixelsPerViewPixel;
-            return ScreenWidthViewPixels;
+            double ScreenWidthRawPixels = Window.Current.Bounds.Width;
+            return ScreenWidthRawPixels;
         }
     }
 }

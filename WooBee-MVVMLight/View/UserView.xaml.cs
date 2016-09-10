@@ -29,7 +29,13 @@ namespace WooBee_MVVMLight
         public UserView()
         {
             this.InitializeComponent();
+            //Window.Current.SizeChanged += Current_SizeChanged;
         }
+
+        //private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        //{
+        //    UserVM.WindowSizeChange();
+        //}
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

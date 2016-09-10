@@ -135,13 +135,57 @@ namespace WooBee_MVVMLight
             }
         }
 
+        private bool _isStatusHintShow;
+        public bool IsStatusHintShow
+        {
+            get
+            {
+                return _isStatusHintShow;
+            }
+            set
+            {
+                if (_isStatusHintShow != value)
+                    _isStatusHintShow = value;
+                RaisePropertyChanged(() => IsStatusHintShow);
+            }
+        }
+
+        private bool _isFollowersHintShow;
+        public bool IsFollowersHintShow
+        {
+            get
+            {
+                return _isFollowersHintShow;
+            }
+            set
+            {
+                if (_isFollowersHintShow != value)
+                    _isFollowersHintShow = value;
+                RaisePropertyChanged(() => IsFollowersHintShow);
+            }
+        }
+
+        private bool _isFollowingHintShow;
+        public bool IsFollowingHintShow
+        {
+            get
+            {
+                return _isFollowingHintShow;
+            }
+            set
+            {
+                if (_isFollowingHintShow != value)
+                    _isFollowingHintShow = value;
+                RaisePropertyChanged(() => IsFollowingHintShow);
+            }
+        }
 
         public double ButtonWidth
         {
             get
             {
                 ScalingHelper scale = new ScalingHelper();
-                double tmp = scale.GetScreenWidth() / 3;
+                double tmp = scale.GetWindowWidth() / 3;
                 return tmp;
             }
         }
@@ -175,8 +219,19 @@ namespace WooBee_MVVMLight
             FollowerList = UserFollowerDataViewModel.DataList;
             FollowingList = UserFollowingDataViewModel.DataList;
             WeiboList = UserWeiboDataViewModel.DataList;
+            if(FollowerList.Count == 0)
+            {
+                IsFollowersHintShow = true;
+            }
+            if (FollowingList.Count == 0)
+            {
+                IsFollowingHintShow = true;
+            }
+            if (WeiboList.Count == 0)
+            {
+                IsStatusHintShow = true;
+            }
             IsRefreshing = false;
-
         }
 
 
