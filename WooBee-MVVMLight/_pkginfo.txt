@@ -1,1 +1,1 @@
-C:\Users\yinju\Source\Repos\WooBee-Normal\WooBee-MVVMLight\AppPackages\WooBee-MVVMLight_2016.909.20.0\WooBee-MVVMLight_2016.909.20.0_x86_x64_arm.appxbundle
+C:\Users\yinju\Source\Repos\WooBee-Normal\WooBee-MVVMLight\AppPackages\WooBee-MVVMLight_2016.909.22.0\WooBee-MVVMLight_2016.909.22.0_x86_x64_arm.appxbundle

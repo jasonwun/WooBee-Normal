@@ -21,4 +21,8 @@
     <DeviceId>30F105C9-681E-420b-A277-7C086EAD8A4E</DeviceId>
     <UseEmulator>true</UseEmulator>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DeviceId>DA831653-315E-41D9-BF63-CCCE346F4E9C</DeviceId>
+    <UseEmulator>true</UseEmulator>
+  </PropertyGroup>
 </Project>
