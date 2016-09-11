@@ -410,9 +410,9 @@
     <Content Include="Assets\Icons\CheckIcon.png" />
     <Content Include="Assets\Icons\Delete.png" />
     <Content Include="Assets\Icons\Emotions.png" />
-    <Content Include="Assets\Icons\female-icon.png" />
+    <Content Include="Assets\Icons\Female.png" />
     <Content Include="Assets\Icons\Images.png" />
-    <Content Include="Assets\Icons\male-icon.jpg" />
+    <Content Include="Assets\Icons\Male.png" />
     <Content Include="Assets\Icons\Message-Add.png" />
     <Content Include="Assets\Icons\Previous.png" />
     <Content Include="Assets\Icons\Uploadphoto.png" />

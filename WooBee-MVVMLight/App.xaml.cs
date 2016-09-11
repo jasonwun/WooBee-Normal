@@ -54,6 +54,22 @@ namespace WooBee_MVVMLight
                 localSettings.Values["WeicoAccessToken"] = value;
             }
         }
+        public static string ErrorConversionString
+        {
+            get
+            {
+                var localSettings = ApplicationData.Current.LocalSettings;
+                if (localSettings.Values["ErrorStringConverstion"] == null)
+                    return "";
+                else
+                    return localSettings.Values["ErrorStringConverstion"].ToString();
+            }
+            set
+            {
+                var localSettings = ApplicationData.Current.LocalSettings;
+                localSettings.Values["ErrorStringConverstion"] = value;
+            }
+        }
         public static string Uid
         {
             get
@@ -85,6 +101,7 @@ namespace WooBee_MVVMLight
         public static double _scrollViewerVerticalOffset = 0;
         public static bool IsRefresh = true;
         public static Dictionary<string, string> _reverseDict = new Dictionary<string, string>();
+        
         #region EmojiDict
         public static readonly Dictionary<string, string> emojiDict = new Dictionary<string, string>
     {
@@ -143,6 +160,8 @@ namespace WooBee_MVVMLight
             LoadEmoticons();
             StringBuilder();
         }
+
+        
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -213,22 +232,28 @@ namespace WooBee_MVVMLight
 
         private void OnNavigated(object sender, NavigationEventArgs e)
         {
-            // Each time a navigation event occurs, update the Back button's visibility
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
-                ((Frame)sender).CanGoBack ?
-                AppViewBackButtonVisibility.Visible :
-                AppViewBackButtonVisibility.Collapsed;
+            Frame rootFrame = Window.Current.Content as Frame;
+            if (rootFrame.CanGoBack && rootFrame.CurrentSourcePageType != typeof(TimeLineView))
+            {
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            }
+            else
+            {
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+            }
+            
         }
 
         private void OnBackRequested(object sender, BackRequestedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
 
-            if (rootFrame.CanGoBack)
+            if (rootFrame.CanGoBack && rootFrame.CurrentSourcePageType != typeof(TimeLineView))
             {
                 e.Handled = true;
                 rootFrame.GoBack();
             }
+           
         }
 
 

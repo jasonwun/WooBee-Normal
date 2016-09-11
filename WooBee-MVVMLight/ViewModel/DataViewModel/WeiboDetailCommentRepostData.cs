@@ -57,16 +57,24 @@ namespace WooBee_MVVMLight
 
         private async Task GetRepsot(string a)
         {
-            string Uri = "https://api.weibo.com/2/statuses/repost_timeline.json?access_token=";
-            Uri += App.WeicoAccessToken;
-            Uri += "&id=";
-            Uri += a;
-            HttpClient httpclient = new HttpClient();
-            HttpResponseMessage response = new HttpResponseMessage();
-            response = await httpclient.GetAsync(new Uri(Uri, UriKind.Absolute));
-            string strResponse = response.Content.ToString();
-            RepostModel repostUti = JsonConvert.DeserializeObject<RepostModel>(strResponse);
-            RepostList = repostUti.Repost;
+                string Uri = "https://api.weibo.com/2/statuses/repost_timeline.json?access_token=";
+                Uri += App.WeicoAccessToken;
+                Uri += "&id=";
+                Uri += a;
+                HttpClient httpclient = new HttpClient();
+                HttpResponseMessage response = new HttpResponseMessage();
+                response = await httpclient.GetAsync(new Uri(Uri, UriKind.Absolute));
+            if (response.IsSuccessStatusCode)
+            {
+                string strResponse = response.Content.ToString();
+                RepostModel repostUti = JsonConvert.DeserializeObject<RepostModel>(strResponse);
+                RepostList = repostUti.Repost;
+            }
+            else
+            {
+                RepostList = new ObservableCollection<Weibo>();
+            }
+                
         }
 
         private async Task GetComment(string a)
@@ -78,9 +86,17 @@ namespace WooBee_MVVMLight
             HttpClient httpclient = new HttpClient();
             HttpResponseMessage response = new HttpResponseMessage();
             response = await httpclient.GetAsync(new Uri(Uri, UriKind.Absolute));
-            string strResponse = response.Content.ToString();
-            CommentModel commentuti = JsonConvert.DeserializeObject<CommentModel>(strResponse);
-            CommentList = commentuti.Comments;
+            if (response.IsSuccessStatusCode)
+            {
+                string strResponse = response.Content.ToString();
+                CommentModel commentuti = JsonConvert.DeserializeObject<CommentModel>(strResponse);
+                CommentList = commentuti.Comments;
+            }
+            else
+            {
+                CommentList = new ObservableCollection<Comment>();
+            }
+            
         }
     }
 }

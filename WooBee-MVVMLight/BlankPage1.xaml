@@ -8,6 +8,7 @@
     mc:Ignorable="d">
 
     <Grid Background="White">
-        
+
+        <RichTextBlock local:RichTextBlockConvertor.Text="@qwewqe   @qwewqe"/>
     </Grid>
 </Page>

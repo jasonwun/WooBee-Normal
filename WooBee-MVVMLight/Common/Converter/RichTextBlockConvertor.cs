@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace WooBee_MVVMLight
 
         public static string GetText(DependencyObject obj)
         {
-            return (string)obj.GetValue(TextProperty);
+            return (obj.GetValue(TextProperty)).ToString();
         }
 
         public static void SetText(DependencyObject obj, string value)
@@ -34,61 +35,64 @@ namespace WooBee_MVVMLight
 
         private static async void OnTextChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
+            await StringConversion(sender, e);
+        }
 
+        private static async Task StringConversion(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
             var control = sender as RichTextBlock;
-            if (control != null)
+            try
             {
-                control.Blocks.Clear();
-                string value = e.NewValue.ToString();
-
-
-                value = value.Replace("<", "&lt;").Replace(">", "&gt;").Replace("&", "&amp;");
-
-
-                Regex urlRx = new Regex("http(s)?://([a-zA-Z|\\d]+\\.)+[a-zA-Z|\\d]+(/[a-zA-Z|\\d|\\-|\\+|_./?%=]*)?", RegexOptions.IgnoreCase);
-                Regex hashtagRx = new Regex(@"#[^#]+#");
-                Regex usernameRx = new Regex(@"@[^,，：:\s@]+");
-                MatchCollection matches = urlRx.Matches(value);
-                MatchCollection hastagmc = hashtagRx.Matches(value);
-                MatchCollection usermc = usernameRx.Matches(value);
-                var r = new Regex(builder.ToString());
-                var mc = r.Matches(value);
-
-
-                foreach (Match m in mc)
+                if (control != null)
                 {
-                    value = value.Replace(m.Value, string.Format(@"<InlineUIContainer><Border><StackPanel Margin = ""2,0,-3,0"" ><Image Margin=""0,7,0,0"" Source =""/Assets/Emoticon/{0}.png"" Width=""15"" Height=""15"" /></StackPanel></Border></InlineUIContainer> ", emojiDict[m.Value]));
-                }
-                foreach (Match match in matches)
-                {
+                    control.Blocks.Clear();
+                    string value = e.NewValue.ToString();
 
-                    string url = match.Value;
-                    if (value.Contains(string.Format(@"全文： {0}...", url)))
-                        value = value.Replace(string.Format(@"全文： {0}...", url), "");
-                    if (value.Contains(string.Format(@"Tag=""{0}""", match.Value)))
-                        break;
-                    else
+
+                    value = value.Replace("<", "&lt;").Replace(">", "&gt;").Replace("&", "&amp;");
+
+
+                    Regex urlRx = new Regex("http(s)?://([a-zA-Z|\\d]+\\.)+[a-zA-Z|\\d]+(/[a-zA-Z|\\d|\\-|\\+|_./?%=]*)?", RegexOptions.IgnoreCase);
+                    Regex hashtagRx = new Regex(@"#[^#]+#");
+                    Regex usernameRx = new Regex(@"@[^,，：:\s@]+");
+                    MatchCollection matches = urlRx.Matches(value);
+                    MatchCollection hastagmc = hashtagRx.Matches(value);
+                    MatchCollection usermc = usernameRx.Matches(value);
+                    var r = new Regex(builder.ToString());
+                    var mc = r.Matches(value);
+
+
+                    foreach (Match m in mc)
                     {
-                        value = value.Replace(url, "<InlineUIContainer><TextBlock Foreground=\"Black\" Tag=\"" + match.Value + "\"><Underline>网页链接</Underline></TextBlock></InlineUIContainer>");
+                        value = value.Replace(m.Value, string.Format(@"<InlineUIContainer><Border><StackPanel Margin = ""2,0,-3,0"" ><Image Margin=""0,7,0,0"" Source =""/Assets/Emoticon/{0}.png"" Width=""15"" Height=""15"" /></StackPanel></Border></InlineUIContainer> ", emojiDict[m.Value]));
                     }
-                }
+                    foreach (Match match in matches)
+                    {
 
-                foreach (Match m in hastagmc)
-                {
-                    if (value.Contains(string.Format(@"<Underline>{0}</Underline>", m.Value)))
-                        break;
-                    value = value.Replace(m.Value, @"<InlineUIContainer><TextBlock Foreground=""Black""><Underline>" + m.Value + "</Underline></TextBlock></InlineUIContainer>");
-                }
+                        string url = match.Value;
+                        if (value.Contains(string.Format(@"全文： {0}...", url)))
+                            value = value.Replace(string.Format(@"全文： {0}...", url), "");
+                        if (value.Contains(string.Format(@"Tag=""{0}""", match.Value)))
+                            break;
+                        else
+                        {
+                            value = value.Replace(url, "<InlineUIContainer><TextBlock Foreground=\"Black\" Tag=\"" + match.Value + "\"><Underline>网页链接</Underline></TextBlock></InlineUIContainer>");
+                        }
+                    }
 
-                foreach (Match m in usermc)
-                {
-                    if (value.Contains(string.Format(@"<Underline>{0}</Underline>", m.Value)))
-                        break;
-                    value = value.Replace(m.Value, @"<InlineUIContainer><TextBlock Foreground=""Black""><Underline>" + m.Value + "</Underline></TextBlock></InlineUIContainer>");
-                }
+                    foreach (Match m in hastagmc)
+                    {
+                        if (value.Contains(string.Format(@"<Underline>{0}</Underline>", m.Value)))
+                            break;
+                        value = value.Replace(m.Value, @"<InlineUIContainer><TextBlock Foreground=""Black""><Underline>" + m.Value + "</Underline></TextBlock></InlineUIContainer>");
+                    }
 
-                try
-                {
+                    foreach (Match m in usermc)
+                    {
+                        if (value.Contains(string.Format(@"<Underline>{0}</Underline>", m.Value)))
+                            break;
+                        value = value.Replace(m.Value, @"<InlineUIContainer><TextBlock Foreground=""Black""><Underline>" + m.Value + "</Underline></TextBlock></InlineUIContainer>");
+                    }
                     var xaml = string.Format(@"<Paragraph 
                                         xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
                                         xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml"">
@@ -100,36 +104,52 @@ namespace WooBee_MVVMLight
                     var p = (Paragraph)XamlReader.Load(xaml);
                     control.Blocks.Add(p);
                 }
-                catch (Exception ex)
+            }
+            catch (XamlParseException opp)
+            {
+                control.Blocks.Clear();
+                string ErrorListStr = App.ErrorConversionString;
+                List<string> ErrorList = new List<string>();
+                if (ErrorListStr != "")
+                {
+                    ErrorList = JsonConvert.DeserializeObject<List<string>>(ErrorListStr);
+                }
+                if (!ErrorList.Contains(e.NewValue.ToString()))
                 {
                     ContentDialog MesDia = new ContentDialog();
-                    MesDia.Content = "遇到了一些问题，想要即使反馈吗?";
+                    MesDia.Content = "字符转换出现了未识别的错误并且造成了应用的异常，是否想要反馈，若不反馈应用将自动推出";
                     MesDia.PrimaryButtonText = "好的";
-                    MesDia.SecondaryButtonText = "不要";
+                    MesDia.SecondaryButtonText = "不好";
                     ContentDialogResult result = await MesDia.ShowAsync();
                     if (result == ContentDialogResult.Primary)
                     {
-                        EmailRecipient rec = new EmailRecipient("MetrsignStudio@outlook.com");
+                        EmailRecipient rec = new EmailRecipient("metrsignstudio@outlook.com");
                         EmailMessage mes = new EmailMessage();
                         mes.To.Add(rec);
                         mes.Subject = "微博正则表达式Bug反馈";
-                        mes.Body = e.NewValue.ToString();
+                        mes.Body = "          字符串内容：" + e.NewValue.ToString();
                         await EmailManager.ShowComposeNewEmailAsync(mes);
+                        ErrorList.Add(e.NewValue.ToString());
+                        ErrorListStr = JsonConvert.SerializeObject(ErrorList);
+                        App.ErrorConversionString = ErrorListStr;
                     }
-                    var xaml = string.Format(@"<Paragraph 
-                                        xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
-                                        xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml"">
-                                    <Paragraph.Inlines>
-                                    <Run></Run>
-                                        {0}
-                                    </Paragraph.Inlines>
-                                </Paragraph>", e.NewValue.ToString());
-                    var p = (Paragraph)XamlReader.Load(xaml);
-                    control.Blocks.Add(p);
-
+                    else
+                    {
+                        Application.Current.Exit();
+                    }
+                    
                 }
 
-
+                var xaml = string.Format(@"<Paragraph 
+                                    xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
+                                    xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml"">
+                                <Paragraph.Inlines>
+                                <Run></Run>
+                                    {0}
+                                </Paragraph.Inlines>
+                            </Paragraph>", e.NewValue.ToString());
+                var p = (Paragraph)XamlReader.Load(xaml);
+                control.Blocks.Add(p);
             }
         }
     }
