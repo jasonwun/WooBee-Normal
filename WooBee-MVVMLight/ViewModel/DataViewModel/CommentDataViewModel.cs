@@ -25,7 +25,7 @@ namespace WooBee_MVVMLight
                 Uri += "?source=";
                 Uri += App.AppKey;
                 Uri += "&access_token=";
-                Uri += App.WeicoAccessToken;
+                Uri += App.AccessToken;
                 Uri += "&page=";
                 Uri += pageIndex.ToString();
                 HttpClient httpclient = new HttpClient();

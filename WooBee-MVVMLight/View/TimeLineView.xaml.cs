@@ -266,6 +266,7 @@ namespace WooBee_MVVMLight.View
             
             TLVm.Refresh();
             await Task.Delay(100);
+            await TLVm.RefreshNotification();
         }
 
         private async void listView_Loaded(object sender, RoutedEventArgs e)

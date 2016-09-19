@@ -25,4 +25,9 @@
     <DeviceId>DA831653-315E-41D9-BF63-CCCE346F4E9C</DeviceId>
     <UseEmulator>true</UseEmulator>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>
+    <DebugEngines>
+    </DebugEngines>
+  </PropertyGroup>
 </Project>

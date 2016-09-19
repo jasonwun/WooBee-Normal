@@ -15,6 +15,7 @@ using System.Collections.ObjectModel;
 using Windows.UI.Core;
 using Windows.Phone.UI.Input;
 using GalaSoft.MvvmLight.Views;
+using WooBee_MVVMLight.Common;
 
 namespace WooBee_MVVMLight
 {
@@ -101,9 +102,9 @@ namespace WooBee_MVVMLight
         public static double _scrollViewerVerticalOffset = 0;
         public static bool IsRefresh = true;
         public static Dictionary<string, string> _reverseDict = new Dictionary<string, string>();
-        
+
         #region EmojiDict
-        public static readonly Dictionary<string, string> emojiDict = new Dictionary<string, string>
+        public static Dictionary<string, string> emojiDict = new Dictionary<string, string>
     {
             {"[最右]","01" },{ "[微笑]","02" },{ "[嘻嘻]","03" },{ "[哈哈]","04" },{ "[爱你]","05" },{ "[挖鼻]","06" },{ "[吃惊]","07" },{"[晕]","08" },
             { "[泪]","09" },{ "[馋嘴]","10" },{ "[抓狂]","11" },{ "[哼]","12" },{ "[可爱]","13" },{ "[怒]","14" },{"[汗]","15" },{ "[害羞]","16" },
@@ -134,7 +135,7 @@ namespace WooBee_MVVMLight
 
         private void StringBuilder()
         {
-            foreach (var key in emojiDict.Keys)
+            foreach (var key in EmoticonsDictionary.DICT.Keys)
             {
                 builder.Append(key.Replace("[", @"\[").Replace("]", @"\]"));
 
@@ -145,7 +146,7 @@ namespace WooBee_MVVMLight
 
         private void LoadEmoticons()
         {
-            foreach (KeyValuePair<string, string> qwe in emojiDict)
+            foreach (KeyValuePair<string, string> qwe in EmoticonsDictionary.DICT)
             {
                 string a = string.Format("ms-appx:///Assets/Emoticon/{0}.png", qwe.Value);
                 BitmapImage item = new BitmapImage(new Uri(a));
@@ -212,11 +213,11 @@ namespace WooBee_MVVMLight
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                if (App.AccessToken != "" && App.WeicoAccessToken != "")
-                    rootFrame.Navigate(typeof(TimeLineView), e.Arguments);
-                else
-                    rootFrame.Navigate(typeof(LoginView), e.Arguments);
-                //rootFrame.Navigate(typeof(BlankPage1), e.Arguments);
+                //if (App.AccessToken != "" && App.WeicoAccessToken != "")
+                //    rootFrame.Navigate(typeof(TimeLineView), e.Arguments);
+                //else
+                //    rootFrame.Navigate(typeof(LoginView), e.Arguments);
+                rootFrame.Navigate(typeof(BlankPage1), e.Arguments);
             }
 
 

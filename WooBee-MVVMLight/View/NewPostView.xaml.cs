@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -19,6 +20,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using WooBee_MVVMLight.Common;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -33,6 +35,7 @@ namespace WooBee_MVVMLight
         #region Field
         public NewPostViewModel NewPostVM { get; set; }
         InputPane inputPane = InputPane.GetForCurrentView();
+        GridView _gridView;
         private static Dictionary<string, string> _reverseEmojiDict { get; set; }
         private bool _isEmojiActivated = false;
         private bool _isInputPanelActivated = false;
@@ -72,7 +75,7 @@ namespace WooBee_MVVMLight
             _isEmojiActivated = false;
         }
 
-        private void ReverseDict(Dictionary<string, string> a)
+        private void ReverseDict(ReadOnlyDictionary<string, string> a)
         {
             if (App._reverseDict.Count != 0)
             {
@@ -212,7 +215,7 @@ namespace WooBee_MVVMLight
             NewPostVM.NewPhotosInserted += NewPostVM_NewPhotosInserted;
             if(qwe.PostType == "repost" && qwe.RepostText != "")
             {
-                string RepostText = "//" + qwe.RepostScreenName + ": " + qwe.RepostText;
+                string RepostText = "//@" + qwe.RepostScreenName + ": " + qwe.RepostText;
                 while (RepostText.Length > 140)
                 {
                     RepostText = RepostText.Substring(0, RepostText.Length - 1);
@@ -226,7 +229,7 @@ namespace WooBee_MVVMLight
         {
             this.InitializeComponent();
             DisableStatusBar();
-            ReverseDict(App.emojiDict);
+            ReverseDict(EmoticonsDictionary.DICT);
             inputPane.Showing += this.InputPaneShowing;
             inputPane.Hiding += this.InputPaneHiding;
             
@@ -234,15 +237,18 @@ namespace WooBee_MVVMLight
 
         private void EmoticonContainer_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            var _gridView = EmoticonContainer as GridView;
-            int index = _gridView.SelectedIndex;
-            string str_idx="";
-            index++;
-            if (index < 10)
+            _gridView = sender as GridView;
+            int dex = _gridView.SelectedIndex;
+            dex = dex + 1;
+            string inx_str;
+            if (dex < 10)
             {
-                str_idx = "0" + index.ToString();
+                inx_str = "0" + dex.ToString();
             }
-            NewPostVM.TextBlockString = NewPostVM.TextBlockString + _reverseEmojiDict[str_idx];
+            else
+                inx_str = dex.ToString();
+            NewPostVM.TextBlockString += _reverseEmojiDict[inx_str];
+
         }
 
         private void contentTextBox_GotFocus(object sender, RoutedEventArgs e)

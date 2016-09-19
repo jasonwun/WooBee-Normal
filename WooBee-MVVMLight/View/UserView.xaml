@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <local:BindablePage.Resources>
+    <!--<local:BindablePage.Resources>
         <DataTemplate x:Name="NormalTemplate"
                       x:DataType="model:Weibo">
             <Grid Grid.Column="1"
@@ -518,161 +518,15 @@
                                             RepostOneImageTemplate="{StaticResource RepostOneImageTemplateXaml}"
                                             MultiImagesTemplate="{StaticResource MultipleImageTemplate}"
                                             RepostMultiImagesTemplate="{StaticResource RepostMultiImageTemplateXaml}"/>
-    </local:BindablePage.Resources>
+    </local:BindablePage.Resources>-->
 
     <Grid Background="#FFF1F1F1">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="291*"/>
-            <RowDefinition Height="349*"/>
-        </Grid.RowDefinitions>
-
-
-        <Image x:Name="CoverImage"
-               VerticalAlignment="Top"
-               Stretch="UniformToFill"
-               Source="{x:Bind UserVM.UserProfile.CoverImagePhone, Mode=OneWay}"
-               Grid.RowSpan="1"/>
-
-        <Image x:Name="UserAvatar" 
-               HorizontalAlignment="Center" 
-               Height="60"
-               VerticalAlignment="Top" 
-               Width="60"
-               Margin="0,30,0,0"
-               Source="{x:Bind UserVM.UserProfile.AvatarLarge, Mode=OneWay}"/>
-
-        <TextBlock x:Name="UserName" 
-                   HorizontalAlignment="Center" 
-                   TextWrapping="Wrap"
+        <Rectangle Fill="#df2824"
+                   Height="130"
+                   Width="130"
+                   IsHitTestVisible="False"
                    VerticalAlignment="Top"
-                   Margin="0,110,0,0"
-                   Text="{x:Bind UserVM.UserProfile.ScreenName, Mode=OneWay}"
-                   FontWeight="Bold"/>
-
-        <StackPanel x:Name="ProfileRoot"
-                    Margin="0,135,0,0"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top">
-            <Image x:Name="Gender"
-                   Height="15"
-                   Width="15"
-                   VerticalAlignment="Center"
-                   Source="{x:Bind UserVM.UserProfile.IsMaleOrFemale, Mode=OneWay}"/>
-            <TextBlock x:Name="Location" 
-                       HorizontalAlignment="Center" 
-                       TextWrapping="Wrap"
-                       VerticalAlignment="Center"
-                       Margin="10,0,0,0"
-                       Text="{x:Bind UserVM.UserProfile.Location, Mode=OneWay}"/>
-        </StackPanel>
-
-        <Button x:Name="FollowingButton" 
-                HorizontalAlignment="Center"
-                Content="{x:Bind UserVM.UserProfile.FriendShipStatus, Mode=OneWay}"
-                VerticalAlignment="Top"
-                Margin="0,175,0,0"
-                Background="Transparent"
-                BorderBrush="{ThemeResource SystemControlBackgroundBaseHighBrush}"
-                BorderThickness="0.5"/>
-
-        <StackPanel x:Name="CountsRoot"
-                    VerticalAlignment="Bottom"
-                    Orientation="Horizontal"
-                    Background="#FFEAEAEA" Height="30">
-            <Button x:Name="WeiboCounts"
-                    FontSize="12"
-                    Content="{x:Bind UserVM.UserProfile.WeiboCountOutput, Mode=OneWay}"
-                    Width="{x:Bind UserVM.ButtonWidth, Mode=Oneway}"
-                    Background="Transparent"/>
-            <Button x:Name="FollowerCounts"
-                    FontSize="12"
-                    Content="{x:Bind UserVM.UserProfile.FollwersCountOutput, Mode=OneWay}"
-                    Width="{x:Bind UserVM.ButtonWidth, Mode=Oneway}"
-                    Background="Transparent"/>
-            <Button x:Name="FollwingCounts"
-                    FontSize="12"
-                    Content="{x:Bind UserVM.UserProfile.FriendsCountCountOutput, Mode=OneWay}"
-                    Width="{x:Bind UserVM.ButtonWidth, Mode=Oneway}"
-                    Background="Transparent"/>
-        </StackPanel>
-
-        <FlipView x:Name="ListsContainer"
-                  Grid.Row="1"
-                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                  Background="Transparent">
-            <Grid x:Name="StatuesRoot">
-                
-                <ListView x:Name="Statues"
-                          HorizontalAlignment="Stretch"
-                          ShowsScrollingPlaceholders="False"
-                          IncrementalLoadingTrigger="Edge"
-                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                          ItemsSource="{x:Bind UserVM.WeiboList, Mode=OneWay}"
-                          ItemTemplateSelector="{StaticResource MyTimelineDataTemplateSelector}">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                            <Setter Property="Padding" Value="0"/>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
-                <Image Source="/Assets/Icons/Bell.png"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Center"
-                       Width="250"
-                       Height="auto"
-                       Visibility="{x:Bind UserVM.IsStatusHintShow,Mode=OneWay,Converter={StaticResource Bool2Visibility}}"/>
-            </Grid>
-
-            <Grid x:Name="FollowersRoot">
-                <GridView x:Name="Followers"
-                          Background="#FFF1F1F1"
-                          Padding="20,10,0,0" 
-                          VerticalAlignment="Top"
-                          ItemsSource="{x:Bind UserVM.FollowerList, Mode=OneWay}">
-                    <GridView.ItemTemplate>
-                        <DataTemplate x:DataType="model:User">
-                            <Image x:Name="FollowersAvatar"
-                                   Height="60"
-                                   Width="60"
-                                   Source="{x:Bind AvatarLarge, Mode=OneWay}"/>
-                        </DataTemplate>
-                    </GridView.ItemTemplate>
-                </GridView>
-                <TextBlock Text="Followers"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
-                           FontSize="50"
-                           Visibility="{x:Bind UserVM.IsFollowersHintShow,Mode=OneWay,Converter={StaticResource Bool2Visibility}}"/>
-            </Grid>
-
-            <Grid x:Name="FollowingsRoot">
-                <GridView x:Name="Follwings" 
-                          Margin="0,2,0,0"
-                          Background="#FFF1F1F1"
-                          Padding="20,10,0,0"
-                          VerticalAlignment="Top"
-                          ItemsSource="{x:Bind UserVM.FollowingList, Mode=OneWay}">
-                    <GridView.ItemTemplate>
-                        <DataTemplate x:DataType="model:User">
-                            <Image x:Name="FriendsAvatar"
-                                   Height="60"
-                                   Width="60"
-                                   Source="{x:Bind AvatarLarge, Mode=OneWay}"/>
-                        </DataTemplate>
-                    </GridView.ItemTemplate>
-                </GridView>
-                <TextBlock Text="Followers"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
-                           FontSize="50"
-                           Visibility="{x:Bind UserVM.IsFollowingHintShow,Mode=OneWay,Converter={StaticResource Bool2Visibility}}"/>
-            </Grid>
-            
-        </FlipView>
-        
-
-
+                   HorizontalAlignment="Left"
+                   Margin="20,20,0,0"/>
     </Grid>
 </local:BindablePage>
