@@ -1,23 +1,23 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Email;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Markup;
+using WooBee_MVVMLight.Common;
 
 namespace WooBee_MVVMLight
 {
     public class RichTextBlockConvertor : DependencyObject 
     {
         static StringBuilder builder = App.builder;
-        static Dictionary<string, string> emojiDict = App.emojiDict;
+        static ReadOnlyDictionary<string, string> emojiDict = EmoticonsDictionary.DICT;
 
         public static string GetText(DependencyObject obj)
         {
@@ -58,6 +58,7 @@ namespace WooBee_MVVMLight
                     MatchCollection matches = urlRx.Matches(value);
                     MatchCollection hastagmc = hashtagRx.Matches(value);
                     MatchCollection usermc = usernameRx.Matches(value);
+                    string asd = builder.ToString();
                     var r = new Regex(builder.ToString());
                     var mc = r.Matches(value);
 
