@@ -7,8 +7,54 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="White">
+    <Grid Background="#FFF1F1F1">
+        <Rectangle Fill="#df2824"
+                   Height="130"
+                   Width="130"
+                   IsHitTestVisible="False"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   Margin="20,30,0,0"/>
+        <Image Height="280"
+               Width="280"
+               Stretch="UniformToFill"
+               VerticalAlignment="Top"
+               HorizontalAlignment="Left"
+               Margin="50,65,0,0"
+               Source="http://tva3.sinaimg.cn/crop.0.0.1529.1529.180/408c743dgw1ekwl5bgkhzj216k16kh08.jpg"/>
 
-        <RichTextBlock local:RichTextBlockConvertor.Text="@qwewqe   @qwewqe"/>
+        <StackPanel VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Orientation="Vertical"
+                    Margin="0,0,20,20"
+                    Width="160">
+            <TextBlock Text="甄心cherishhm"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       Margin="0,0,0,4"/>
+            <TextBlock Text="福建 福州"
+                       FontSize="15"
+                       FontWeight="Bold"
+                       Margin="0,0,0,4"/>
+            <TextBlock Text="微软校园精英MSP | 甄爱馥甄 | 电子科大微软俱乐部主席 | 微软核心粉丝 | 四色I AM 1%头像作者 | 微软创..."
+                       TextWrapping="WrapWholeWords"
+                       FontWeight="Bold"
+                       Foreground="#646464"
+                       FontSize="13"/>
+        </StackPanel>
+
+        <Button Margin="20,0,0,20"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Left"
+                Height="26"
+                Width="61"
+                Background="#FFF1F1F1" 
+                BorderBrush="Black"
+                BorderThickness="3"
+                Style="{StaticResource SendWeiboButtonStyle}">
+            <TextBlock Text="未关注"
+                       FontWeight="Bold"
+                       FontSize="10"/>
+        </Button>
     </Grid>
 </Page>
