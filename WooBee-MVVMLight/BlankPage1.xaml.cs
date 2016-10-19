@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,18 +23,29 @@ namespace WooBee_MVVMLight
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class BlankPage1 : Page
+    public sealed partial class BlankPage1 : BindablePage
     {
-        public double ImageSize { get; set; }
+        public UserViewModel UserVM { get; set; }
         public BlankPage1()
         {
             this.InitializeComponent();
+            DisableStatusBar();
+            DataContext = UserVM = new UserViewModel("1082946621", "uid");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ToastService.SendToast("Hahahaha",1000);
 
+        }
+
+        private async void DisableStatusBar()
+        {
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                var statusbar = StatusBar.GetForCurrentView();
+                await statusbar.HideAsync();
+            }
         }
     }
 }

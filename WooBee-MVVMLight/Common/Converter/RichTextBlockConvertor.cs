@@ -17,7 +17,7 @@ namespace WooBee_MVVMLight
     public class RichTextBlockConvertor : DependencyObject 
     {
         static StringBuilder builder = App.builder;
-        static ReadOnlyDictionary<string, string> emojiDict = EmoticonsDictionary.DICT;
+        static Dictionary<string, string> emojiDict = App.emojiDict;
 
         public static string GetText(DependencyObject obj)
         {

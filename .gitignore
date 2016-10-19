@@ -2,5 +2,5 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/WooBee-MVVMLight/bin/x86
+/WooBee-MVVMLight/bin
 /WooBee-MVVMLight/obj

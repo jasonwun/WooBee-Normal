@@ -135,7 +135,7 @@ namespace WooBee_MVVMLight
 
         private void StringBuilder()
         {
-            foreach (var key in EmoticonsDictionary.DICT.Keys)
+            foreach (var key in emojiDict.Keys)
             {
                 builder.Append(key.Replace("[", @"\[").Replace("]", @"\]"));
 
@@ -146,7 +146,7 @@ namespace WooBee_MVVMLight
 
         private void LoadEmoticons()
         {
-            foreach (KeyValuePair<string, string> qwe in EmoticonsDictionary.DICT)
+            foreach (KeyValuePair<string, string> qwe in emojiDict)
             {
                 string a = string.Format("ms-appx:///Assets/Emoticon/{0}.png", qwe.Value);
                 BitmapImage item = new BitmapImage(new Uri(a));
@@ -213,11 +213,11 @@ namespace WooBee_MVVMLight
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                //if (App.AccessToken != "" && App.WeicoAccessToken != "")
-                //    rootFrame.Navigate(typeof(TimeLineView), e.Arguments);
-                //else
-                //    rootFrame.Navigate(typeof(LoginView), e.Arguments);
-                rootFrame.Navigate(typeof(BlankPage1), e.Arguments);
+                if (App.AccessToken != "" && App.WeicoAccessToken != "")
+                    rootFrame.Navigate(typeof(TimeLineView), e.Arguments);
+                else
+                    rootFrame.Navigate(typeof(LoginView), e.Arguments);
+                //rootFrame.Navigate(typeof(BlankPage1), e.Arguments);
             }
 
 

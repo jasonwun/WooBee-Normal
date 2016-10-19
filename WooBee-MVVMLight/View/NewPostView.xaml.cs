@@ -75,7 +75,7 @@ namespace WooBee_MVVMLight
             _isEmojiActivated = false;
         }
 
-        private void ReverseDict(ReadOnlyDictionary<string, string> a)
+        private void ReverseDict(Dictionary<string, string> a)
         {
             if (App._reverseDict.Count != 0)
             {
@@ -229,7 +229,7 @@ namespace WooBee_MVVMLight
         {
             this.InitializeComponent();
             DisableStatusBar();
-            ReverseDict(EmoticonsDictionary.DICT);
+            ReverseDict(App.emojiDict);
             inputPane.Showing += this.InputPaneShowing;
             inputPane.Hiding += this.InputPaneHiding;
             

@@ -8,525 +8,185 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <!--<local:BindablePage.Resources>
-        <DataTemplate x:Name="NormalTemplate"
-                      x:DataType="model:Weibo">
-            <Grid Grid.Column="1"
-                  Grid.Row="1" 
-                  d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
-                  Margin="0,17,0,17"
-                  Name="NormalTemplateGrid" >
+    <FlipView Background="#FFF1F1F1">
+        <FlipViewItem>
+            <Grid Background="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Fill="#df2824"
+                           Height="130"
+                           Width="130"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Margin="20,30,0,0"/>
+                <Image Height="{x:Bind UserVM.ImageWidth, Mode=OneTime}"
+                       Width="{x:Bind UserVM.ImageWidth, Mode=OneTime}"
+                       Stretch="UniformToFill"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       Margin="50,65,0,0"
+                       Source="{x:Bind UserVM.UserProfile.AvatarLarge, Mode=OneWay}"
+                       Grid.ColumnSpan="2"/>
+
+                <StackPanel VerticalAlignment="Bottom"
+                            HorizontalAlignment="Left"
+                            Orientation="Vertical"
+                            Margin="0,0,0,20" 
+                            Grid.Column="1">
+                    <TextBlock Text="{x:Bind UserVM.UserProfile.ScreenName, Mode=OneWay}"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               Margin="0,0,0,4"/>
+                    <TextBlock Text="{x:Bind UserVM.UserProfile.Location, Mode=OneWay}"
+                               FontSize="15"
+                               FontWeight="Bold"
+                               Margin="0,0,0,4"/>
+                    <TextBlock Text="{x:Bind UserVM.UserProfile.Description, Mode=OneWay}"
+                               TextWrapping="WrapWholeWords"
+                               FontWeight="Bold"
+                               Foreground="#646464"
+                               FontSize="13"/>
+                </StackPanel>
+
+                <Button Margin="20,0,0,20"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Left"
+                        Height="{x:Bind UserVM.ButtonHeight, Mode=OneTime}"
+                        Width="{x:Bind UserVM.ButtonWidth, Mode=OneTime}"
+                        Background="#FFF1F1F1" 
+                        BorderBrush="Black"
+                        BorderThickness="2"
+                        Style="{StaticResource SendWeiboButtonStyle}">
+                    <TextBlock Text="未关注"
+                               FontWeight="Bold"
+                               FontSize="10"/>
+                </Button>
+            </Grid>
+        </FlipViewItem>
+        <FlipViewItem Background="Transparent">
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="14*"/>
                     <RowDefinition Height="325*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0*"/>
-                    <ColumnDefinition Width="47*"/>
+                    <ColumnDefinition Width="60*"/>
                     <ColumnDefinition Width="313*"/>
                 </Grid.ColumnDefinitions>
 
-                <Image x:Name="AvartarImage"
-                       Height="40"
-                       Grid.Row="1"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Stretch" 
-                       Grid.ColumnSpan="2"
-                       Source="{x:Bind User.AvatarLarge}"
-                       Margin="6,2.667,1,0" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
-
-                <StackPanel Background="Black"
-                            Height="35"
-                            Width="auto"
-                            Grid.Column="2"
-                            Grid.Row="1"
-                            Margin="20,2.667,0,0"
-                            VerticalAlignment="Top"
-                            HorizontalAlignment="Left" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
-
-                    <TextBlock x:Name="textBlock7"
-                               Margin="10,8,20,0"
-                               TextWrapping="Wrap"
-                               Text="{x:Bind User.ScreenName}"
-                               d:LayoutOverrides="TopPosition, BottomPosition"
-                               FontFamily="Microsoft YaHei"
-                               FontWeight="ExtraBold"
-                               Foreground="White"/>
-                </StackPanel>
-
-                <RichTextBlock x:Name="NormalTextblock"
-                               Margin="20,49.667,0,0"
-                               local:RichTextBlockConvertor.Text="{x:Bind Text}"
-                               Grid.Column="2"
-                               Grid.Row="1"
-                               d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition"
-                               HorizontalAlignment="Left" 
-                               FontFamily="Microsoft YaHei"
-                               Width="auto"
-                               FontSize="13"
-                               IsTextSelectionEnabled="False"/>
-            </Grid>
-        </DataTemplate>
-
-        <DataTemplate x:Name="TextRepostTemplate"
-                      x:DataType="model:Weibo">
-            <Grid Grid.Column="1"
-                  Grid.Row="1" 
-                  d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
-                  Margin="0,17,0,17">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="13*"/>
-                    <RowDefinition Height="52*"/>
-                    <RowDefinition Height="255*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0*"/>
-                    <ColumnDefinition Width="12*"/>
-                    <ColumnDefinition Width="80*"/>
-                </Grid.ColumnDefinitions>
-
-                <Image x:Name="AvartarImage"
-                       Height="40"
-                       Width="40"
-                       Grid.Row="1"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Stretch"
-                       d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
-                       Grid.ColumnSpan="2"
-                       Source="{x:Bind User.AvatarLarge}"
-                       Margin="4,3,0,0">
-                </Image>
-                <Grid Background="Black"
-                      Height="35" 
-                      Width="auto"
-                      Grid.Column="2"
-                      Grid.Row="1"
-                      Margin="20,3,0,0" 
-                      VerticalAlignment="Top" 
-                      HorizontalAlignment="Left">
-                    <TextBlock x:Name="textBlock927"
-                               Margin="10,8,20,0"
-                               TextWrapping="Wrap"
-                               Text="{x:Bind User.ScreenName}"
-                               d:LayoutOverrides="TopPosition, BottomPosition"
-                               FontFamily="Microsoft YaHei" 
-                               FontWeight="ExtraBold"
-                               Foreground="White"/>
-                </Grid>
-
-                <RichTextBlock x:Name="TextRepostContentTextBlock"
-                               Margin="20,50,0,0"
-                               local:RichTextBlockConvertor.Text="{x:Bind Text}"
-                               Grid.Column="2"
-                               Grid.Row="1"
-                               FontSize="13"
-                               d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
-                               FontFamily="Microsoft YaHei"
-                               IsTextSelectionEnabled="False"/>
-
-                <TextBlock x:Name="textBlock7"
+                <TextBlock x:Name="Weibo"
+                           Text="微博"
+                           Height="auto"
+                           Width="45"
+                           FontSize="35"
+                           Margin="5,0,5,0"
+                           FontFamily="Microsoft YaHei UI"
                            TextWrapping="Wrap"
+                           Grid.ColumnSpan="2"
+                           Grid.Row="1"
+                           VerticalAlignment="Stretch"
+                           HorizontalAlignment="Center"
+                           Padding="5,0,0,0"
+                           FontWeight="Bold"/>
+                <TextBlock Text="由于新浪API的不稳定，无法查看该项目内容"
                            Grid.Column="2"
-                           Grid.Row="2"
-                           Margin="20,20,0,0" 
-                           Text="{x:Bind RepostWeibo.User.ScreenName}"
-                           d:LayoutOverrides="TopPosition, BottomPosition"
-                           FontFamily="Microsoft YaHei" 
-                           FontWeight="ExtraBold"
-                           Foreground="Black"/>
-
-
-                <RichTextBlock x:Name="TextRepostTextBlock"
-                               Margin="20,50,8,5"
-                               local:RichTextBlockConvertor.Text="{x:Bind RepostWeibo.Text}"
-                               d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
-                               Grid.Column="2"
-                               Grid.Row="2"
-                               FontSize="13"
-                               IsTextSelectionEnabled="False"
-                               Height="auto"/>
-
-
+                           Grid.Row="0"
+                           Grid.RowSpan="2"
+                           VerticalAlignment="Center"
+                           Margin="20,0,20,0"
+                           Foreground="#FFB8B8B8"/>
             </Grid>
-        </DataTemplate>
-
-        <DataTemplate x:Name="OneImageTemplate"
-                      x:DataType="model:Weibo">
-            <Grid Grid.Column="1"
-                  Grid.Row="1" 
-                  d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
-                  Margin="0,17,0,17">
+        </FlipViewItem>
+        <FlipViewItem Background="Transparent">
+            <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="13*"/>
-                    <RowDefinition Height="52*"/>
-                    <RowDefinition Height="255*"/>
+                    <RowDefinition Height="14*"/>
+                    <RowDefinition Height="325*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0*"/>
-                    <ColumnDefinition Width="12*"/>
-                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="60*"/>
+                    <ColumnDefinition Width="313*"/>
                 </Grid.ColumnDefinitions>
 
-                <Image x:Name="image"
-                       Height="40"
-                       Width="40"
-                       Grid.Row="1"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Stretch"
-                       d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
-                       Grid.ColumnSpan="2"
-                       Source="{x:Bind User.AvatarLarge}"
-                       Margin="4,3,0,0"/>
-
-                <Grid Background="Black"
-                      Height="35"
-                      Width="auto"
-                      Grid.Column="2"
-                      Grid.Row="1"
-                      Margin="20,3,0,0" 
-                      VerticalAlignment="Top" 
-                      HorizontalAlignment="Left">
-                    <TextBlock x:Name="textBlock7"
-                               Margin="10,8,20,0"
-                               TextWrapping="Wrap"
-                               Text="{x:Bind User.ScreenName}"
-                               d:LayoutOverrides="TopPosition, BottomPosition"
-                               FontFamily="Microsoft YaHei" 
-                               FontWeight="ExtraBold"
-                               Foreground="White"/>
-                </Grid>
-
-                <RichTextBlock x:Name="OneImageContentTextBlock"
-                               Margin="20,50,8,0"
-                               local:RichTextBlockConvertor.Text="{x:Bind Text}"
-                               Grid.Column="2"
-                               Grid.Row="1"
-                               FontSize="13"
-                               d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" 
-                               FontFamily="Microsoft YaHei"
-                               IsTextSelectionEnabled="False"/>
-                <Image x:Name="image1"
-                       Margin="20,20,0,0"
-                       Grid.Column="2"
-                       Grid.Row="2"
-                       MaxHeight="300"
-                       Source="{x:Bind ThumbnailPic}"
-                       d:LayoutOverrides="TopMargin, BottomMargin" 
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Left"/>
-            </Grid>
-        </DataTemplate>
-
-        <DataTemplate x:Name="MultipleImageTemplate"
-                      x:DataType="model:Weibo">
-            <Grid Grid.Column="1"
-                  Grid.Row="1" 
-                  d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
-                  Margin="0,17,0,17">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="13*"/>
-                    <RowDefinition Height="52*"/>
-                    <RowDefinition Height="255*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0*"/>
-                    <ColumnDefinition Width="12*"/>
-                    <ColumnDefinition Width="80*"/>
-                </Grid.ColumnDefinitions>
-
-                <Image x:Name="image"
-                       Height="40"
-                       Grid.Row="1"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Stretch" 
-                       Grid.ColumnSpan="2"
-                       Margin="4,3,3,0" 
-                       Source="{x:Bind User.AvatarLarge}"
-                       d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
-
-                <Grid Background="Black"
-                      Height="35" 
-                      Width="auto"
-                      Grid.Column="2"
-                      Grid.Row="1"
-                      Margin="20,3,0,0" 
-                      VerticalAlignment="Top" 
-                      HorizontalAlignment="Left">
-                    <TextBlock x:Name="textBlock927"
-                               Margin="10,8,20,0"
-                               TextWrapping="Wrap"
-                               Text="{x:Bind User.ScreenName}"
-                               d:LayoutOverrides="TopPosition, BottomPosition"
-                               FontFamily="Microsoft YaHei" 
-                               FontWeight="ExtraBold"
-                               Foreground="White"/>
-                </Grid>
-
-                <RichTextBlock  x:Name="MultipleImageContentTextBlock"
-                                Margin="20,50,0,0"
-                                local:RichTextBlockConvertor.Text="{x:Bind Text}"
-                                Grid.Column="2"
-                                Grid.Row="1"
-                                FontSize="13"
-                                d:LayoutOverrides="TopMargin, BottomMargin, TopPosition, BottomPosition"
-                                Height="auto"
-                                IsTextSelectionEnabled="False"/>
-
-                <GridView x:Name="gridView" 
-                          ItemsSource="{x:Bind PicUrls}"
-                          Margin="20,15,-10,0"
+                <TextBlock Text="关注"
+                           Height="auto"
+                           Width="45"
+                           FontSize="35"
+                           Margin="5,0,5,0"
+                           FontFamily="Microsoft YaHei UI"
+                           TextWrapping="Wrap"
+                           Grid.ColumnSpan="2"
+                           Grid.Row="1"
+                           Padding="5,0,0,0"
+                           VerticalAlignment="Stretch"
+                           HorizontalAlignment="Center"
+                           FontWeight="Bold"/>
+                <GridView x:Name="Following"
+                          Background="#FFF1F1F1"
+                          Padding="20,10,0,0" 
                           Grid.Column="2"
-                          Grid.Row="2"
-                          Height="auto" 
-                          Width="auto"
-                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                          ScrollViewer.VerticalScrollMode="Disabled"
-                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                          ScrollViewer.HorizontalScrollMode="Disabled"
+                          Grid.Row="1"
                           VerticalAlignment="Top"
-                          HorizontalAlignment="Left"
-                          SelectionMode="Single" 
-                          d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition">
-                    <GridView.ItemContainerStyle>
-                        <Style TargetType="GridViewItem">
-                            <Setter Property="Margin" Value="0.5"/>
-                        </Style>
-                    </GridView.ItemContainerStyle>
-
+                          ItemsSource="{x:Bind UserVM.FollowingList, Mode=OneWay}">
                     <GridView.ItemTemplate>
-                        <DataTemplate x:DataType="model:ThumbnailPics">
-                            <Image Source="{x:Bind Thumbpic}"
-                                   Width="{x:Bind ImgSize}"
-                                   Height="{x:Bind ImgSize}"
-                                   Margin="0,0,0,0"
-                                   Stretch="UniformToFill"/>
+                        <DataTemplate x:DataType="model:User">
+                            <Image x:Name="FollowersAvatar"
+                                   Height="70"
+                                   Width="70"
+                                   Source="{x:Bind AvatarLarge}"/>
                         </DataTemplate>
                     </GridView.ItemTemplate>
                 </GridView>
             </Grid>
-        </DataTemplate>
-
-        <DataTemplate x:Name="RepostOneImageTemplateXaml"
-                      x:DataType="model:Weibo">
-            <Grid Grid.Column="1"
-                  Grid.Row="1" 
-                  d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
-                  Margin="0,17,0,17"
-                  Height="auto">
+        </FlipViewItem>
+        <FlipViewItem Background="Transparent">
+            <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="25*"/>
-                    <RowDefinition Height="98*"/>
-                    <RowDefinition Height="145*"/>
-                    <RowDefinition Height="338*"/>
+                    <RowDefinition Height="14*"/>
+                    <RowDefinition Height="325*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0*"/>
-                    <ColumnDefinition Width="12*"/>
-                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="60*"/>
+                    <ColumnDefinition Width="313*"/>
                 </Grid.ColumnDefinitions>
 
-                <Image x:Name="image"
-                       Height="40"
-                       Width="40"
-                       Grid.Row="1"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Stretch"
-                       d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
-                       Grid.ColumnSpan="2"
-                       Source="{x:Bind User.AvatarLarge}"
-                       Margin="4,3,3,0"/>
-
-                <Grid Background="Black"
-                      Height="35" 
-                      Width="auto"
-                      Grid.Column="2"
-                      Grid.Row="1"
-                      Margin="20,3,0,0" 
-                      VerticalAlignment="Top" 
-                      HorizontalAlignment="Left">
-                    <TextBlock x:Name="textBlock927"
-                               Margin="10,8,20,0"
-                               TextWrapping="Wrap"
-                               Text="{x:Bind User.ScreenName}"
-                               d:LayoutOverrides="TopPosition, BottomPosition"
-                               FontFamily="Microsoft YaHei" 
-                               FontWeight="ExtraBold"
-                               Foreground="White"/>
-                </Grid>
-
-
-                <RichTextBlock x:Name="RepostOneImageContentTextBlock"
-                               Margin="20,50,0,0"
-                               local:RichTextBlockConvertor.Text="{x:Bind Text}"
-                               Grid.Column="2"
-                               Grid.Row="1"
-                               FontSize="13"
-                               d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" 
-                               FontFamily="Microsoft YaHei"
-                               IsTextSelectionEnabled="False"/>
-
-
-                <TextBlock x:Name="textBlock7"
-                           Margin="20,20,0,0"
-                           Grid.Column="2"
-                           Grid.Row="2"
+                <TextBlock x:Name="RepostTitle"
+                           Text="粉丝"
+                           Height="auto"
+                           Width="45"
+                           FontSize="35"
+                           Margin="5,0,5,0"
+                           FontFamily="Microsoft YaHei UI"
                            TextWrapping="Wrap"
-                           Text="{x:Bind RepostWeibo.User.ScreenName}"
-                           d:LayoutOverrides="TopPosition, BottomPosition"
-                           FontFamily="Microsoft YaHei"
-                           FontWeight="ExtraBold"
-                           Foreground="Black"/>
-
-
-                <RichTextBlock x:Name="RepostOneImageRepostTextBlock"
-                               Margin="20,50,0,0"
-                               local:RichTextBlockConvertor.Text="{x:Bind RepostWeibo.Text}"
-                               Grid.Column="2"
-                               Grid.Row="2"
-                               d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
-                               IsTextSelectionEnabled="False"/>
-
-                <Image x:Name="image1"
-                       Grid.Column="2"
-                       Grid.Row="3"
-                       Source="{x:Bind RepostWeibo.ThumbnailPic}"
-                       HorizontalAlignment="Left" 
-                       MaxHeight="300"
-                       d:LayoutOverrides="TopMargin, BottomMargin" 
-                       VerticalAlignment="Top"
-                       Margin="20,15,0,0"/>
-            </Grid>
-        </DataTemplate>
-
-        <DataTemplate x:Name="RepostMultiImageTemplateXaml"
-                      x:DataType="model:Weibo">
-            <Grid Grid.Column="1"
-                  Grid.Row="1" 
-                  d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
-                  Margin="0,17,0,17"
-                  >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="25*"/>
-                    <RowDefinition Height="99*"/>
-                    <RowDefinition Height="154*"/>
-                    <RowDefinition Height="332*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0*"/>
-                    <ColumnDefinition Width="12*"/>
-                    <ColumnDefinition Width="80*"/>
-                </Grid.ColumnDefinitions>
-
-                <Image x:Name="image"
-                       Height="40"
-                       Width="40"
-                       Grid.Row="1"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Stretch"
-                       d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition" 
-                       Grid.ColumnSpan="2"
-                       Source="{x:Bind User.AvatarLarge}"
-                       Margin="4,3,3,0"/>
-
-                <Grid Background="Black"
-                      Height="35" 
-                      Width="auto"
-                      Grid.Column="2"
-                      Grid.Row="1"
-                      Margin="20,3,0,0" 
-                      VerticalAlignment="Top" 
-                      HorizontalAlignment="Left">
-                    <TextBlock x:Name="textBlock927"
-                               Margin="10,8,20,0"
-                               TextWrapping="Wrap"
-                               Text="{x:Bind User.ScreenName}"
-                               d:LayoutOverrides="TopPosition, BottomPosition"
-                               FontFamily="Microsoft YaHei" 
-                               FontWeight="ExtraBold"
-                               Foreground="White"/>
-                </Grid>
-
-
-                <RichTextBlock x:Name="RepostMultiImageContentTextBlock"
-                               Margin="20,50,0,0"
-                               local:RichTextBlockConvertor.Text="{x:Bind Text}"
-                               Grid.Column="2"
-                               Grid.Row="1"
-                               FontSize="13"
-                               d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" 
-                               FontFamily="Microsoft YaHei"
-                               IsTextSelectionEnabled="False"/>
-
-                <TextBlock x:Name="textBlock7"
-                           Margin="20,20,0,0"
-                           TextWrapping="Wrap"
-                           Grid.Row="2"
-                           Grid.Column="2"
-                           Text="{x:Bind RepostWeibo.User.ScreenName}"
-                           d:LayoutOverrides="TopPosition, BottomPosition"
-                           FontFamily="Microsoft YaHei" 
-                           FontWeight="ExtraBold"
-                           Foreground="Black"/>
-
-                <RichTextBlock x:Name="RepostMultiImageRepostTextBlock"
-                               Margin="20,50,0,0"
-                               local:RichTextBlockConvertor.Text="{x:Bind RepostWeibo.Text}"
-                               Grid.Column="2"
-                               Grid.Row="2"
-                               d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
-                               Height="auto" 
-                               FontSize="13"
-                               VerticalAlignment="Bottom"
-                               IsTextSelectionEnabled="False"/>
-
-                <GridView x:Name="gridView" 
-                          ItemsSource="{x:Bind RepostWeibo.PicUrls}"
-                          Margin="20,15,-21,0"
-                          Grid.Column="2"
-                          Grid.Row="3"
-                          Height="auto" 
-                          Width="auto"
+                           Grid.ColumnSpan="2"
+                           Grid.Row="1"
+                           Padding="5,0,0,0"
+                           VerticalAlignment="Stretch"
+                           HorizontalAlignment="Center"
+                           FontWeight="Bold"/>
+                <GridView x:Name="Followers"
+                          Background="#FFF1F1F1"
+                          Padding="20,10,0,0" 
                           VerticalAlignment="Top"
-                          HorizontalAlignment="Left"
-                          SelectionMode="Single" 
-                          d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition">
-                    <GridView.ItemContainerStyle>
-                        <Style TargetType="GridViewItem">
-                            <Setter Property="Margin" Value="0.5"/>
-                        </Style>
-                    </GridView.ItemContainerStyle>
+                          Grid.Column="2"
+                          Grid.Row="1"
+                          ItemsSource="{x:Bind UserVM.FollowerList, Mode=OneWay}">
                     <GridView.ItemTemplate>
-                        <DataTemplate x:DataType="model:ThumbnailPics">
-                            <Image Source="{x:Bind Thumbpic}"
-                                   Width="{x:Bind ImgSize}"
-                                   Height="{x:Bind ImgSize}"
-                                   Margin="0,0,0,0"
-                                   Stretch="UniformToFill"/>
+                        <DataTemplate x:DataType="model:User">
+                            <Image x:Name="FollowersAvatar"
+                                   Height="70"
+                                   Width="70"
+                                   Source="{x:Bind AvatarLarge}"/>
                         </DataTemplate>
                     </GridView.ItemTemplate>
                 </GridView>
             </Grid>
-        </DataTemplate>
-
-        <local:BooleanToVisibilityConverter x:Key="Bool2Visibility"/>
-
-        <local:TimeLineDataTemplateSelector x:Key="MyTimelineDataTemplateSelector"
-                                            NormalTemplate="{StaticResource NormalTemplate}"
-                                            TextRepostTemplate="{StaticResource TextRepostTemplate}"
-                                            OneImageTemplate="{StaticResource OneImageTemplate}"
-                                            RepostOneImageTemplate="{StaticResource RepostOneImageTemplateXaml}"
-                                            MultiImagesTemplate="{StaticResource MultipleImageTemplate}"
-                                            RepostMultiImagesTemplate="{StaticResource RepostMultiImageTemplateXaml}"/>
-    </local:BindablePage.Resources>-->
-
-    <Grid Background="#FFF1F1F1">
-        <Rectangle Fill="#df2824"
-                   Height="130"
-                   Width="130"
-                   IsHitTestVisible="False"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Left"
-                   Margin="20,20,0,0"/>
-    </Grid>
+        </FlipViewItem>
+    </FlipView>
 </local:BindablePage>

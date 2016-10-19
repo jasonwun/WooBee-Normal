@@ -49,5 +49,11 @@ namespace WooBee_MVVMLight
             double ScreenWidthRawPixels = Window.Current.Bounds.Width;
             return ScreenWidthRawPixels;
         }
+
+        public double GetWindowsHeight()
+        {
+            double ScreenHeightRawPixels = Window.Current.Bounds.Height;
+            return ScreenHeightRawPixels;
+        }
     }
 }

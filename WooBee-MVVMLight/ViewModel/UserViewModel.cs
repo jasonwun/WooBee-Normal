@@ -135,48 +135,23 @@ namespace WooBee_MVVMLight
             }
         }
 
-        private bool _isStatusHintShow;
-        public bool IsStatusHintShow
+        public double ImageWidth
         {
             get
             {
-                return _isStatusHintShow;
-            }
-            set
-            {
-                if (_isStatusHintShow != value)
-                    _isStatusHintShow = value;
-                RaisePropertyChanged(() => IsStatusHintShow);
+                ScalingHelper scale = new ScalingHelper();
+                double tmp = scale.GetWindowWidth() * 0.83;
+                return tmp;
             }
         }
 
-        private bool _isFollowersHintShow;
-        public bool IsFollowersHintShow
+        public double ButtonHeight
         {
             get
             {
-                return _isFollowersHintShow;
-            }
-            set
-            {
-                if (_isFollowersHintShow != value)
-                    _isFollowersHintShow = value;
-                RaisePropertyChanged(() => IsFollowersHintShow);
-            }
-        }
-
-        private bool _isFollowingHintShow;
-        public bool IsFollowingHintShow
-        {
-            get
-            {
-                return _isFollowingHintShow;
-            }
-            set
-            {
-                if (_isFollowingHintShow != value)
-                    _isFollowingHintShow = value;
-                RaisePropertyChanged(() => IsFollowingHintShow);
+                ScalingHelper scale = new ScalingHelper();
+                double tmp = scale.GetWindowsHeight() * 0.04;
+                return tmp;
             }
         }
 
@@ -185,7 +160,7 @@ namespace WooBee_MVVMLight
             get
             {
                 ScalingHelper scale = new ScalingHelper();
-                double tmp = scale.GetWindowWidth() / 3;
+                double tmp = scale.GetWindowWidth() * 0.17;
                 return tmp;
             }
         }
@@ -213,24 +188,10 @@ namespace WooBee_MVVMLight
         {
             IsRefreshing = true;
             await UserFollowerDataViewModel.RefreshAsync();
-            await UserFollowingDataViewModel.RefreshAsync();
-            await UserWeiboDataViewModel.RefreshAsync();
-            UserProfile = await GetUserProfile(Param, posttype);
             FollowerList = UserFollowerDataViewModel.DataList;
+            await UserFollowingDataViewModel.RefreshAsync();
             FollowingList = UserFollowingDataViewModel.DataList;
-            WeiboList = UserWeiboDataViewModel.DataList;
-            if(FollowerList.Count == 0)
-            {
-                IsFollowersHintShow = true;
-            }
-            if (FollowingList.Count == 0)
-            {
-                IsFollowingHintShow = true;
-            }
-            if (WeiboList.Count == 0)
-            {
-                IsStatusHintShow = true;
-            }
+            UserProfile = await GetUserProfile(Param, posttype);
             IsRefreshing = false;
         }
 
