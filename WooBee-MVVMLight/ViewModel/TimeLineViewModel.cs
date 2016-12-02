@@ -13,6 +13,7 @@ using Windows.Web.Http;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using Windows.Web.Http.Filters;
+using Windows.Storage;
 
 namespace WooBee_MVVMLight.ViewModel
 {
@@ -136,8 +137,6 @@ namespace WooBee_MVVMLight.ViewModel
 
         public TimeLineViewModel()
         {
-            MainList = new ObservableCollection<Weibo>();
-            TimeLineDataViewModel = new TimeLineDataViewModel();
         }
 
         #region Empty Methods
@@ -153,23 +152,83 @@ namespace WooBee_MVVMLight.ViewModel
             if (IsFirstActived)
             {
                 IsFirstActived = false;
-                await RefreshAsync();
+                await RestoreMainListDataAsync();
+                MainList = TimeLineDataViewModel.DataList;
+                await RefreshAllAsync();
+                MainList = TimeLineDataViewModel.DataList;
             }
         }
 
-        private async Task RefreshAsync()
+        private async Task RefreshAllAsync()
+        {
+            await RefreshListAsync();
+        }
+
+        private async Task RestoreMainListDataAsync()
+        {
+            InitDataVM();
+            var file = await CacheUtil.GetCachedFileFolder().TryGetItemAsync("MainList.list") as IStorageFile; 
+            if (file != null)
+            {
+                var str = await FileIO.ReadTextAsync(file);
+                var list = JsonConvert.DeserializeObject<List<Weibo>>(str);
+                if (list != null)
+                {
+                    list.ForEach(s => TimeLineDataViewModel.DataList.Add(s));
+                    return;
+                }
+            }
+        }
+
+        private void InitDataVM()
+        {
+            TimeLineDataViewModel = new TimeLineDataViewModel();
+        }
+
+        private async Task RefreshListAsync()
         {
             IsRefreshing = true;
             await TimeLineDataViewModel.RefreshAsync();
-            MainList = TimeLineDataViewModel.DataList;
             IsRefreshing = false;
+            await SaveMainListDataAsync();
 
+        }
+
+        public async Task StoreListAsync()
+        {
+            await SaveMainListDataAsync();
+        }
+
+        private async Task SaveMainListDataAsync()
+        {
+            if (this.TimeLineDataViewModel.DataList?.Count > 0)
+            {
+                var list = new List<Weibo>();
+                foreach (var item in TimeLineDataViewModel.DataList)
+                {
+                    if (item is Weibo)
+                    {
+                        list.Add(item as Weibo);
+                    }
+                }
+                if (list.Count > 0)
+                {
+                    //ToastService.SendToast("Fetched :D");
+
+                    var str = JsonConvert.SerializeObject(list, new JsonSerializerSettings()
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    });
+                    var file = await ApplicationData.Current.LocalFolder.CreateFileAsync("MainList.list", CreationCollisionOption.OpenIfExists);
+                    await FileIO.WriteTextAsync(file, str);
+                }
+            }
         }
 
         public async void Refresh()
         {
             App.Since_id++;
-            await RefreshAsync();
+            await RefreshAllAsync();
         }
 
         public async Task RefreshNotification()
@@ -249,6 +308,7 @@ namespace WooBee_MVVMLight.ViewModel
         public event Action MessageDisable;
 
         private bool IsRefreshing;
+        private string _launcherArg;
         public bool IsFirstActived { get; set; } = true;
     }
 }

@@ -263,7 +263,6 @@ namespace WooBee_MVVMLight.View
 
         private async Task FakeServiceCall()
         {
-            
             TLVm.Refresh();
             await Task.Delay(100);
             await TLVm.RefreshNotification();
@@ -273,18 +272,15 @@ namespace WooBee_MVVMLight.View
         {
             
             _scrollViewer = listView.GetScrollViewer();
-            TimeSpan period = TimeSpan.FromMilliseconds(1000);
-            Windows.System.Threading.ThreadPoolTimer.CreateTimer(async (source) => {
-                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, new Windows.UI.Core.DispatchedHandler(() =>
-                {
-                    _scrollViewer.ChangeView(null, App._scrollViewerVerticalOffset, null, true);
-                }));
-            }, period);
+            double verticalOffset = App._scrollViewerVerticalOffset;
+            await Window.Current.Dispatcher.RunIdleAsync((args) => { _scrollViewer.ChangeView(null, verticalOffset, null); });
             await TLVm.RefreshNotification();
+            Debug.WriteLine(_scrollViewer.VerticalOffset);
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        protected override async void OnNavigatedFrom(NavigationEventArgs e)
         {
+            await TLVm.StoreListAsync();
             App._scrollViewerVerticalOffset = _scrollViewer.VerticalOffset;
             base.OnNavigatedFrom(e);
         }
@@ -394,8 +390,6 @@ namespace WooBee_MVVMLight.View
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            
-            
             App.IsRefresh = false;
             
             base.OnNavigatedTo(e);
