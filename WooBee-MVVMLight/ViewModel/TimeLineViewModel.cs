@@ -134,6 +134,23 @@ namespace WooBee_MVVMLight.ViewModel
             }
         }
 
+        private bool _showWeiboDetail;
+        public bool ShowWeiboDetail
+        {
+            get
+            {
+                return _showWeiboDetail;
+            }
+            set
+            {
+                if (_showWeiboDetail != value)
+                {
+                    _showWeiboDetail = value;
+                    RaisePropertyChanged(() => ShowWeiboDetail);
+                }
+            }
+        }
+
 
         public TimeLineViewModel()
         {

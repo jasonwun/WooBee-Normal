@@ -4,18 +4,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WooBee_MVVMLight"
     xmlns:model="using:WooBee_MVVM.Model"
-    xmlns:uc="using:WooBee_MVVMLight.UserControl"
+    xmlns:uc="using:WooBee_MVVMLight.UserControlView"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid>
+    <Grid Background="Black">
 
-        <uc:WeiboDetail>
-            
-        </uc:WeiboDetail>
-        
-        
+        <Button Click="Button_Click"/>
+        <!--<uc:WeiboDetail />-->
+
+
     </Grid>
     
 </local:BindablePage>

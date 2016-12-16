@@ -5,6 +5,7 @@
     xmlns:local="using:WooBee_MVVMLight"
     xmlns:viewmodel ="using:WooBee_MVVMLight.ViewModel"
     xmlns:model ="using:WooBee_MVVM.Model"
+    xmlns:uc="using:WooBee_MVVMLight.UserControlView"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -612,14 +613,20 @@
             </ListView.ItemContainerStyle>
         </ListView>
 
-        <SymbolIcon x:Name="RefreshIcon" VerticalAlignment="Top" Width="48" Height="48" Symbol="Refresh" />
-
         <local:FloatingActionButton x:Name="FloatTab"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Bottom"
                                     Margin="0,0,20,30"
                                     Height="300"
                                     Holding="FloatTab_Holding"/>
+
+        <uc:WeiboDetail x:Name="WeiboDetail"
+                        d:IsHidden="True"
+                        Shown="{x:Bind TLVm.ShowWeiboDetail, Mode=TwoWay}"/>
+
+        <SymbolIcon x:Name="RefreshIcon" VerticalAlignment="Top" Width="48" Height="48" Symbol="Refresh" />
+
+        
 
     </Grid>
 </local:BindablePage>

@@ -24,8 +24,6 @@ namespace WooBee_MVVMLight
                 return RepliedToCommentTemplate;
             else
                 return RepliedToWeiboTemplate;
-
-            return base.SelectTemplateCore(item, container);
         }
     }
 }

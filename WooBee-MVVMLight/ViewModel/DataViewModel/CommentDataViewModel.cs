@@ -42,7 +42,9 @@ namespace WooBee_MVVMLight
                     throw new Exception();
                 }
             }
+#pragma warning disable CS0168 // Variable is declared but never used
             catch (Exception e)
+#pragma warning restore CS0168 // Variable is declared but never used
             {
                 return new List<Comment>();
             }

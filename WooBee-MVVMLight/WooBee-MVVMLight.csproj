@@ -110,6 +110,8 @@
     <Compile Include="Common\DataTemplateSelectors\CommentDataTemplateSelector.cs" />
     <Compile Include="Common\BindablePage.cs" />
     <Compile Include="Common\API.cs" />
+    <Compile Include="Common\INavigableUserControl.cs" />
+    <Compile Include="Common\NavigableUserControl.cs" />
     <Compile Include="Common\NavigationService.cs" />
     <Compile Include="Common\CTSFactory.cs" />
     <Compile Include="Common\INavigable.cs" />
@@ -126,7 +128,7 @@
     </Compile>
     <Compile Include="Common\NavigationParameter.cs" />
     <Compile Include="Common\Control\ToastService.cs" />
-    <Compile Include="UserControl\WeiboDetail.xaml.cs">
+    <Compile Include="UserControlView\WeiboDetail.xaml.cs">
       <DependentUpon>WeiboDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PhotoPage.xaml.cs">
@@ -484,7 +486,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControl\WeiboDetail.xaml">
+    <Page Include="UserControlView\WeiboDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

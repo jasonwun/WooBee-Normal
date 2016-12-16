@@ -25,19 +25,14 @@ namespace WooBee_MVVMLight
     /// </summary>
     public sealed partial class BlankPage1 : BindablePage
     {
-        public UserViewModel UserVM { get; set; }
+        public TimeLineViewModel TLVM { get; set; }
         public BlankPage1()
         {
             this.InitializeComponent();
             DisableStatusBar();
-            DataContext = UserVM = new UserViewModel("1082946621", "uid");
+            this.DataContext = TLVM = new TimeLineViewModel();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            ToastService.SendToast("Hahahaha",1000);
-
-        }
 
         private async void DisableStatusBar()
         {
@@ -46,6 +41,11 @@ namespace WooBee_MVVMLight
                 var statusbar = StatusBar.GetForCurrentView();
                 await statusbar.HideAsync();
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

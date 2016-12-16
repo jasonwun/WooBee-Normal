@@ -1,15 +1,17 @@
-﻿<UserControl
-    x:Class="WooBee_MVVMLight.UserControl.WeiboDetail"
+﻿<common:NavigableUserControl
+    x:Class="WooBee_MVVMLight.UserControlView.WeiboDetail"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:WooBee_MVVMLight.UserControl"
+    xmlns:local="using:WooBee_MVVMLight"
+    xmlns:common ="using:WooBee_MVVMLight.Common"
+    xmlns:model="using:WooBee_MVVM.Model"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="600"
     d:DesignWidth="900">
 
-    <!--<UserControl.Resources>
+    <common:NavigableUserControl.Resources>
 
         <DataTemplate x:Name="NormalTemplate"
                       x:DataType="model:Weibo">
@@ -665,7 +667,6 @@
                         VerticalAlignment="Center"
                         Grid.Column="2" 
                         Foreground="Black"
-                        Tapped="replyButton_Tapped"
                         d:LayoutOverrides="TopMargin, BottomMargin, LeftPosition, RightPosition">
                     <SymbolIcon Symbol="Comment"
                                 Width="20"
@@ -722,7 +723,6 @@
                         VerticalAlignment="Center"
                         Grid.Column="2" 
                         Foreground="Black"
-                        Tapped="replyButton_Tapped"
                         d:LayoutOverrides="TopMargin, BottomMargin, LeftPosition, RightPosition">
                     <SymbolIcon Symbol="Comment"
                                 Width="20"
@@ -779,7 +779,6 @@
                         VerticalAlignment="Center"
                         Grid.Column="2" 
                         Foreground="Black"
-                        Tapped="ReShareButton_Tapped"
                         d:LayoutOverrides="TopMargin, BottomMargin, LeftPosition, RightPosition">
                     <SymbolIcon Symbol="Comment"
                                 Width="20"
@@ -815,17 +814,19 @@
                                            RepliedToCommentTemplate="{StaticResource ReplyToComment}"/>
 
 
-    </UserControl.Resources>-->
+    </common:NavigableUserControl.Resources>
 
 
     <Grid Background="#FFF1F1F1">
 
-        <!--<FlipView x:Name="Detail" Background="#FFF1F1F1">
+        
+
+        <FlipView x:Name="Detail" Background="#FFF1F1F1">
             <FlipViewItem x:Name="WeiboItem">
                 <Grid>
                     <ContentControl ContentTemplateSelector="{StaticResource MyWeiboDetailDataTemplateSelector}"
-                                    Content="{x:Bind WeiboDV.Weibo}"
-                                    DataContext="{x:Bind WeiboDV.Weibo}"
+                                    Content="{x:Bind Weibo, Mode=OneWay}"
+                                    DataContext="{x:Bind Weibo, Mode=OneWay}"
                                     HorizontalContentAlignment="Stretch"
                                     VerticalContentAlignment="Stretch"/>
                 </Grid>
@@ -855,7 +856,7 @@
                                    FontWeight="Bold" 
                                    FontSize="24"/>
                     </StackPanel>
-                    --><!--<ListView x:Name="CommentListView"
+                    <ListView x:Name="CommentListView"
                               Grid.Row="1"
                               Grid.RowSpan="2"
                               HorizontalAlignment="Stretch"
@@ -871,7 +872,7 @@
                                 <Setter Property="Padding" Value="0"/>
                             </Style>
                         </ListView.ItemContainerStyle>
-                    </ListView>--><!--
+                    </ListView>
                 </Grid>
             </FlipViewItem>
             <FlipViewItem x:Name="RepostItem">
@@ -918,6 +919,15 @@
                     </ListView>
                 </Grid>
             </FlipViewItem>
-        </FlipView>-->
+        </FlipView>
+        <Button x:Name="CloseBtn"
+                Width="70"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="CloseBtn_Click">
+            <FontIcon FontFamily="Segoe MDL2 Assets"
+                      Foreground="White"
+                      Glyph="&#xE0D5;" />
+        </Button>
     </Grid>
-</UserControl>
+</common:NavigableUserControl>
