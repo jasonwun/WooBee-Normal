@@ -33,9 +33,9 @@ namespace WooBee_MVVMLight
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.RegisterAttached("Text", typeof(string), typeof(RichTextBlockConvertor), new PropertyMetadata(String.Empty, OnTextChanged));
 
-        private static async void OnTextChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        private static void OnTextChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            await StringConversion(sender, e);
+            StringConversion(sender, e);
         }
 
         private static async Task StringConversion(DependencyObject sender, DependencyPropertyChangedEventArgs e)
