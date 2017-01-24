@@ -102,7 +102,7 @@ namespace WooBee_MVVM.Model
         {
             get
             {
-                if (Text == "抱歉，此微博已被作者删除。查看帮助：http://t.cn/zWSudZc")
+                if (Text.Contains("抱歉，此微博已被作者删除。查看帮助："))
                     return Text;
                 else
                 {

@@ -111,7 +111,7 @@
     <Compile Include="Common\BindablePage.cs" />
     <Compile Include="Common\API.cs" />
     <Compile Include="Common\INavigableUserControl.cs" />
-    <Compile Include="Common\NavigableUserControl.cs" />
+    <Compile Include="Common\Control\NavigableUserControl.cs" />
     <Compile Include="Common\NavigationService.cs" />
     <Compile Include="Common\CTSFactory.cs" />
     <Compile Include="Common\INavigable.cs" />
